@@ -1,0 +1,21 @@
+# E2/E3 campaign lanes (tavs/campaign.py). One throwaway PostgreSQL per lane, same pinned
+# image as service `current` in compose.yaml (PostgreSQL 18, PostGIS 3.6.4, GEOS 3.14.1).
+# Project name: tavs-lanes (never the shared `tavs` project). Remove with
+#   docker compose -p tavs-lanes -f compose.lanes.yaml down -v
+# campaign.py checks that the digest below equals the `current` digest in compose.yaml.
+x-lane: &lane
+  image: postgis/postgis@sha256:4a43e3c3e5d55b9208240fc71db543b79c638766280c625a425bd0a2390989c4
+  environment:
+    POSTGRES_PASSWORD: postgis
+  command: ["postgres", "-c", "fsync=off", "-c", "synchronous_commit=off", "-c", "full_page_writes=off"]
+  shm_size: 256mb
+
+services:
+  lane0: {<<: *lane, ports: ["127.0.0.1:54340:5432"]}
+  lane1: {<<: *lane, ports: ["127.0.0.1:54341:5432"]}
+  lane2: {<<: *lane, ports: ["127.0.0.1:54342:5432"]}
+  lane3: {<<: *lane, ports: ["127.0.0.1:54343:5432"]}
+  lane4: {<<: *lane, ports: ["127.0.0.1:54344:5432"]}
+  lane5: {<<: *lane, ports: ["127.0.0.1:54345:5432"]}
+  lane6: {<<: *lane, ports: ["127.0.0.1:54346:5432"]}
+  lane7: {<<: *lane, ports: ["127.0.0.1:54347:5432"]}
