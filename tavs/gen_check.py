@@ -10,7 +10,7 @@ from collections import Counter
 import shapely
 
 from . import gen
-from .gen import ARMS, KINDS, coincidence_stats, generate, make_pair, resample_stats, type_signature
+from .gen import ARMS, KINDS, coincidence_stats, generate, generate_all, make_pair, resample_stats
 from .shrink import shrink
 
 NUM = re.compile(r"-?\d+(?:\.\d*)?(?:[eE][-+]?\d+)?")
@@ -34,49 +34,83 @@ def check_coords(pairs) -> str:
 
 
 def main(n: int = 1000) -> None:
-    print(f"shapely {shapely.__version__}, GEOS {shapely.geos_version_string}, n={n}, seed=1\n")
+    print(f"shapely {shapely.__version__}, GEOS {shapely.geos_version_string}, n={n}, seed=1")
+    print("paired design: one base pair per index; plain-int=base, degen-int=base+moves, "
+          "plain-float=regime(base), degen-float=regime(base+moves)\n")
     for kind in KINDS:
-        for arm in ARMS:
-            resample_stats(reset=True)
-            t0 = time.perf_counter()
-            pairs = list(generate(arm, 1, n, kind))
-            dt = time.perf_counter() - t0
-            rs = resample_stats()[f"{arm}/{kind}"]
-            draws = rs["pairs"] + rs.get("resample_a", 0) + rs.get("resample_b", 0)
+        resample_stats(reset=True)
+        t0 = time.perf_counter()
+        rows = list(generate_all(1, n, kind))
+        dt = time.perf_counter() - t0
+        rs = resample_stats()[kind]
+        print(f"#### kind={kind}: {1000 * dt / n:.2f} ms per index (all four arms)")
+        print(f"  base resamples (shared by all arms): {(rs.get('resample_a', 0) + rs.get('resample_b', 0)) / (2 * n):.2%} "
+              f"of geometries (a {rs.get('resample_a', 0)}, b {rs.get('resample_b', 0)}); "
+              f"b centre near a {rs.get('b_near', 0) / n:.3f}")
+        mv = {k: v for k, v in rs.items() if k.startswith("move_")}
+        print(f"  degen arms: indices without any move {rs.get('degen_no_move', 0)}; move retries/not applicable: "
+              + ", ".join(f"{k[5:]}={v}" for k, v in sorted(mv.items())))
+        rg = {k: v for k, v in rs.items() if k.startswith("regime")}
+        print(f"  float arms: regime retries/fallback/mix: " + ", ".join(f"{k}={v}" for k, v in sorted(rg.items())))
+        forms = Counter(gen.parse_source(r["plain-int"].source)["form"] for r in rows)
+        per_geom = Counter(f for r in rows for f in gen.parse_source(r["plain-int"].source)["form"].split("/"))
+        print("  form mix per geometry: " + ", ".join(f"{k} {v / (2 * n):.3f}" for k, v in sorted(per_geom.items()))
+              + "; per pair: " + ", ".join(f"{k} {v}" for k, v in forms.most_common()))
+        cls = Counter("/".join("PLA"[int(shapely.get_dimensions(shapely.from_wkt(w)))] for w in (r["plain-int"].a, r["plain-int"].b))
+                      for r in rows)
+        print("  base classes (by dimension): " + ", ".join(f"{s} {c}" for s, c in sorted(cls.items())))
+        moves = Counter(m for r in rows for m in r["degen-int"].moves)
+        nmoves = Counter(len(r["degen-int"].moves) for r in rows)
+        print("  moves: " + ", ".join(f"{m} {c}" for m, c in moves.most_common())
+              + f"; per index {dict(sorted(nmoves.items()))}")
+
+        # determinism and pairing checks
+        again = list(generate_all(1, n, kind))
+        same = all((r[a].a, r[a].b, r[a].moves, r[a].source) == (s[a].a, s[a].b, s[a].moves, s[a].source)
+                   for r, s in zip(rows, again) for a in ARMS)
+        short = list(generate_all(1, 50, kind))
+        prefix = all(r[a].a == s[a].a and r[a].b == s[a].b for r, s in zip(rows, short) for a in ARMS)
+        k = n - 1
+        lone = all((make_pair(a, 1, kind, k).a, make_pair(a, 1, kind, k).b) == (rows[k][a].a, rows[k][a].b)
+                   for a in ARMS)
+        m = min(n, 100)
+        via_generate = all(p.a == rows[i][a].a and p.b == rows[i][a].b
+                           for a in ARMS for i, p in enumerate(generate(a, 1, m, kind)))
+        rebuilt = 0
+        for r in rows:
+            for src_arm, dst_arm in (("plain-int", "plain-float"), ("degen-int", "degen-float")):
+                f = gen.regime_map(r[dst_arm].source)
+                ga = gen.apply_regime(gen.from_wkt(r[src_arm].a, True), f)
+                gb = gen.apply_regime(gen.from_wkt(r[src_arm].b, True), f)
+                rebuilt += gen.to_wkt(ga) == r[dst_arm].a and gen.to_wkt(gb) == r[dst_arm].b
+        shared_moves = all(r["degen-int"].moves == r["degen-float"].moves for r in rows)
+        same_regime = all(gen.parse_source(r["plain-float"].source) == gen.parse_source(r["degen-float"].source)
+                          for r in rows)
+        print(f"  determinism: rerun {'ok' if same else 'FAIL'}; n=50 prefix {'ok' if prefix else 'FAIL'}; "
+              f"lone index {k} {'ok' if lone else 'FAIL'}; generate(arm) = generate_all[arm] (first {m}) "
+              f"{'ok' if via_generate else 'FAIL'}")
+        print(f"  pairing: float = recorded regime(int) {rebuilt}/{2 * n}; degen arms share moves "
+              f"{'ok' if shared_moves else 'FAIL'}; float arms share regime {'ok' if same_regime else 'FAIL'}")
+
+        print(f"  {'arm':12s} {'coords':6s} {'exact':>6s} {'near1e-9':>8s} {'near4ulp':>8s} "
+              f"{'shared':>6s} {'v-on-e':>6s} {'colin':>6s} {'self':>6s} {'touch0':>6s} {'inters':>6s} {'empty':>6s}  ms/pair(cs)")
+        for a in ARMS:
+            pairs = [r[a] for r in rows]
             t1 = time.perf_counter()
             cs = coincidence_stats(pairs)
             dc = time.perf_counter() - t1
-            sigs = Counter(type_signature(p) for p in pairs)
-            moves = Counter(m for p in pairs for m in p.moves)
-            nmoves = Counter(len(p.moves) for p in pairs)
-            # determinism
-            again = list(generate(arm, 1, n, kind))
-            same = all((p.a, p.b, p.moves) == (q.a, q.b, q.moves) for p, q in zip(pairs, again))
-            short = list(generate(arm, 1, 50, kind))
-            prefix = all((p.a, p.b, p.moves) == (q.a, q.b, q.moves) for p, q in zip(pairs, short))
-            k = n - 1
-            lone = make_pair(arm, 1, kind, k)
-            single = (lone.a, lone.b, lone.moves) == (pairs[k].a, pairs[k].b, pairs[k].moves)
-            print(f"== {arm} / {kind}")
-            print(f"  generation {1000 * dt / n:.2f} ms/pair; coincidence measure {1000 * dc / n:.2f} ms/pair")
-            print(f"  base-geometry resample rate {(draws - rs['pairs']) / (rs['pairs'] * 2):.2%} "
-                  f"of geometries (a {rs.get('resample_a', 0)}, b {rs.get('resample_b', 0)}); "
-                  f"pair resamples (no move applied) {rs.get('resample_pair_no_move', 0)}; "
-                  f"b centre near a {rs.get('b_near', 0) / rs['pairs']:.3f}")
-            mv = {k2: v for k2, v in rs.items() if k2.startswith(("move_", "float_"))}
-            if mv:
-                print("  move retries/not applicable: " + ", ".join(f"{k2.removeprefix('move_')}={v}" for k2, v in sorted(mv.items())))
-            cls = Counter("/".join("PLA"[int(shapely.get_dimensions(shapely.from_wkt(w)))] for w in (p.a, p.b))
-                          for p in pairs)
-            print("  classes (by dimension): " + ", ".join(f"{s} {c}" for s, c in sorted(cls.items())))
-            print("  types: " + ", ".join(f"{s} {c}" for s, c in sigs.most_common()))
-            if moves:
-                print("  moves: " + ", ".join(f"{m} {c}" for m, c in moves.most_common())
-                      + f"; per pair {dict(sorted(nmoves.items()))}")
-            print("  coincidence rates: " + ", ".join(f"{k2} {v:.3f}" for k2, v in cs.items() if k2 != "n"))
-            print(f"  coordinates: {check_coords(pairs)}; determinism: rerun {'ok' if same else 'FAIL'}, "
-                  f"n=50 prefix {'ok' if prefix else 'FAIL'}, lone index {k} {'ok' if single else 'FAIL'}")
-            print()
+            print(f"  {a:12s} {check_coords(pairs):6s} {cs['any_exact']:6.3f} {cs['near_rel_1e-9']:8.3f} "
+                  f"{cs['near_4ulp']:8.3f} {cs['shared_vertex']:6.3f} {cs['vertex_on_edge']:6.3f} "
+                  f"{cs['collinear_overlap']:6.3f} {cs['self_touch']:6.3f} {cs['touch_point_only']:6.3f} "
+                  f"{cs['intersects']:6.3f} {cs['has_empty_part']:6.3f}  {1000 * dc / n:.2f}")
+        for a in ("plain-float", "degen-float"):
+            by = {}
+            for r in rows:
+                by.setdefault(gen.parse_source(r[a].source)["regime"], []).append(r[a])
+            print(f"  {a} by regime: " + "; ".join(
+                f"{g} (n={len(ps)}) exact {cs['any_exact']:.3f} near1e-9 {cs['near_rel_1e-9']:.3f} near4ulp {cs['near_4ulp']:.3f}"
+                for g, ps in sorted(by.items()) for cs in [coincidence_stats(ps)]))
+        print()
 
     print("== shrinker self-check")
     calls = Counter()

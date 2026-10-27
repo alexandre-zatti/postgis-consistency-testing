@@ -47,8 +47,6 @@ OVER_MIX = [("A", "A", 1), ("L", "L", 1)]
 GEOM_MOVES = ["shared-vertex", "vertex-on-edge", "collinear-overlap", "hole-tangent",
               "sliver-or-spike", "parts-touching", "empty-part", "point-collection"]
 PRED_ONLY_MOVES = {"empty-part", "point-collection"}
-FLOAT_MOVES = ["float-many-digits", "float-magnitude-1e15", "float-magnitude-1e-8",
-               "float-mixed-scales"]
 
 SINGLE = {"P": "Point", "L": "LineString", "A": "Polygon"}
 MULTI = {"P": "MultiPoint", "L": "MultiLineString", "A": "MultiPolygon"}
@@ -56,19 +54,20 @@ DIM = {"P": 0, "L": 1, "A": 2}
 CLASSES = ("P", "L", "A")
 
 # --------------------------------------------------------------------------------------------
-# Resample accounting (process-wide; per (arm, kind)).
+# Resample accounting (process-wide; per kind, since the arms share base draws).
 
-_STATS: dict[tuple[str, str], Counter] = {}
+_STATS: dict[str, Counter] = {}
 
 
-def _stat(arm: str, kind: str) -> Counter:
-    return _STATS.setdefault((arm, kind), Counter())
+def _stat(kind: str) -> Counter:
+    return _STATS.setdefault(kind, Counter())
 
 
 def resample_stats(reset: bool = False) -> dict:
-    """Counts per (arm, kind): pairs, invalid base draws resampled (by reason), move attempts
-    that failed validity and were retried, moves not applicable, pairs left without a move."""
-    out = {f"{a}/{k}": dict(c) for (a, k), c in sorted(_STATS.items())}
+    """Counts per kind: indices built; invalid base draws resampled (resample_a/_b, shared by
+    all arms); move attempts retried for invalid output or not applicable (degen arms);
+    indices whose degen arms got no move; regime redraws and fallbacks (float arms); regime mix."""
+    out = {k: dict(c) for k, c in sorted(_STATS.items())}
     if reset:
         _STATS.clear()
     return out
@@ -407,33 +406,12 @@ def _nonempty_vertices(g):
 
 def _lattice_point_on(cx, p, q):
     """A point exactly in the relative interior of segment pq, or None (integer: gcd > 1)."""
-    if cx.integral:
-        dx, dy = q[0] - p[0], q[1] - p[1]
-        g = math.gcd(abs(dx), abs(dy))
-        if g <= 1:
-            return None
-        k = cx.rng.randint(1, g - 1)
-        return (p[0] + k * dx // g, p[1] + k * dy // g)
-    # Float: prefer a dyadic parameter for which the computed point lies exactly on pq;
-    # fall back to a random parameter (then the point is only nearly on the edge).
-    ts = list(DYADIC_IN)
-    cx.rng.shuffle(ts)
-    for t in ts:
-        r = (p[0] + t * (q[0] - p[0]), p[1] + t * (q[1] - p[1]))
-        if _exact_on_segment(r, p, q):
-            return r
-    cx.stats["float_point_on_edge_inexact"] += 1
-    t = cx.rng.uniform(0.05, 0.95)
-    return (p[0] + t * (q[0] - p[0]), p[1] + t * (q[1] - p[1]))
-
-
-DYADIC_IN = (0.5, 0.25, 0.75, 0.125, 0.375, 0.625, 0.875)
-DYADIC_OUT = (-0.5, -0.25, -0.125, 1.125, 1.25, 1.5)
-
-
-def _exact_collinear(v, p, q) -> bool:
-    vx, vy, px, py, qx, qy = (Fraction(t) for t in (*v, *p, *q))
-    return (qx - px) * (vy - py) - (qy - py) * (vx - px) == 0
+    dx, dy = q[0] - p[0], q[1] - p[1]
+    g = math.gcd(abs(dx), abs(dy))
+    if g <= 1:
+        return None
+    k = cx.rng.randint(1, g - 1)
+    return (p[0] + k * dx // g, p[1] + k * dy // g)
 
 
 def mv_shared_vertex(cx, a, b, kind):
@@ -453,10 +431,9 @@ def mv_vertex_on_edge(cx, a, b, kind):
         es, vt = edges(src), _nonempty_vertices(tgt)
         if not es or not vt:
             return None
-    if cx.integral:
-        es = [e for e in es if math.gcd(abs(e[1][0] - e[0][0]), abs(e[1][1] - e[0][1])) > 1]
-        if not es:
-            return None
+    es = [e for e in es if math.gcd(abs(e[1][0] - e[0][0]), abs(e[1][1] - e[0][1])) > 1]
+    if not es:
+        return None
     p, q = cx.rng.choice(es)
     r = _lattice_point_on(cx, p, q)
     w = cx.rng.choice(vt)
@@ -488,30 +465,15 @@ def mv_collinear_overlap(cx, a, b, kind):
         if not edges(src) or not (_leaf_classes(tgt) & {"L", "A"}):
             return None
     p, q = rng.choice(edges(src))
-    if cx.integral:
-        dx, dy = q[0] - p[0], q[1] - p[1]
-        g = math.gcd(abs(dx), abs(dy))
-        if g == 0:
-            return None
-        d0 = (dx // g, dy // g)
-        j1 = rng.randint(-max(1, g // 2), g - 1)
-        j2 = rng.randint(max(j1 + 1, 1), g + max(1, g // 2))
-        s = (p[0] + j1 * d0[0], p[1] + j1 * d0[1])
-        t = (p[0] + j2 * d0[0], p[1] + j2 * d0[1])
-    else:
-        # dyadic parameters, kept only if the computed points are exactly collinear with pq
-        at = lambda u: (p[0] + u * (q[0] - p[0]), p[1] + u * (q[1] - p[1]))
-        los = [u for u in (0.0,) + DYADIC_IN + DYADIC_OUT if u < 1]
-        his = [u for u in (1.0,) + DYADIC_IN + DYADIC_OUT if u > 0]
-        rng.shuffle(los)
-        rng.shuffle(his)
-        pick = next(((u1, u2) for u1 in los for u2 in his if u2 > max(u1, 0) and u1 < min(u2, 1)
-                     and _exact_collinear(at(u1), p, q) and _exact_collinear(at(u2), p, q)), None)
-        if pick is None:
-            cx.stats["float_collinear_inexact"] += 1
-            u1 = rng.uniform(-0.5, 0.9)
-            pick = (u1, rng.uniform(max(u1, 0.0) + 0.05, 1.5))
-        s, t = at(pick[0]), at(pick[1])
+    dx, dy = q[0] - p[0], q[1] - p[1]
+    g = math.gcd(abs(dx), abs(dy))
+    if g == 0:
+        return None
+    d0 = (dx // g, dy // g)
+    j1 = rng.randint(-max(1, g // 2), g - 1)
+    j2 = rng.randint(max(j1 + 1, 1), g + max(1, g // 2))
+    s = (p[0] + j1 * d0[0], p[1] + j1 * d0[1])
+    t = (p[0] + j2 * d0[0], p[1] + j2 * d0[1])
     L = math.dist(s, t)
     n = _unit((-(t[1] - s[1]), t[0] - s[0]))
     side = rng.choice((-1, 1))
@@ -578,13 +540,6 @@ def _signed_area(ring):
     return s / 2
 
 
-def _thin(cx, ext):
-    """Width of a sliver/spike: 1 unit (integer) or near zero (float)."""
-    if cx.integral:
-        return 1
-    return ext * 10 ** cx.rng.uniform(-12, -7)
-
-
 def _lattice_step(direction):
     """Unit lattice vector most aligned with direction."""
     dx, dy = direction
@@ -609,14 +564,9 @@ def mv_sliver_or_spike(cx, a, b, kind):
         out = (e[1], -e[0]) if _signed_area(shell) > 0 else (-e[1], e[0])
         L = math.dist(p, q) * rng.uniform(0.5, 2.0)
         m = cx.snap(((p[0] + q[0]) / 2, (p[1] + q[1]) / 2))
-        if cx.integral:
-            st = _lattice_step(e)
-            m2 = (m[0] + st[0], m[1] + st[1])
-            ap = (int(round(L * out[0])), int(round(L * out[1])))
-        else:
-            w = _thin(cx, math.dist(p, q))
-            m2 = (m[0] + w * e[0], m[1] + w * e[1])
-            ap = (L * out[0], L * out[1])
+        st = _lattice_step(e)                       # width 1 unit
+        m2 = (m[0] + st[0], m[1] + st[1])
+        ap = (int(round(L * out[0])), int(round(L * out[1])))
         spike = [m, (m[0] + ap[0], m[1] + ap[1]), (m2[0] + ap[0], m2[1] + ap[1]), m2]
         shell[i + 1:i + 1] = spike
         new = ("Polygon", [shell] + [list(r) for r in poly[1][1:]])
@@ -635,13 +585,9 @@ def mv_sliver_or_spike(cx, a, b, kind):
     e = _unit(_vec(p, q))
     nrm = (-e[1], e[0]) if rng.random() < 0.5 else (e[1], -e[0])
     mid = ((p[0] + q[0]) / 2, (p[1] + q[1]) / 2)
-    if cx.integral:
-        st = _lattice_step(nrm)
-        m = cx.snap(mid)
-        r = (m[0] + st[0], m[1] + st[1])
-    else:
-        w = _thin(cx, math.dist(p, q))
-        r = (mid[0] + w * nrm[0], mid[1] + w * nrm[1])
+    st = _lattice_step(nrm)                         # width about 1 unit
+    m = cx.snap(mid)
+    r = (m[0] + st[0], m[1] + st[1])
     new = ("Polygon", [[p, q, r]])
     path, _ = rng.choice(_poly_leaves(g))
     ng = set_leaf(g, path, new)
@@ -727,46 +673,6 @@ def mv_point_collection(cx, a, b, kind):
     return _put(a, b, ("GeometryCollection", pts), tb)
 
 
-def _pair_centre(a, b):
-    x0, y0, x1, y1 = bbox([a, b])
-    return ((x0 + x1) / 2, (y0 + y1) / 2)
-
-
-def mv_float_many_digits(cx, a, b, kind):
-    """Rotate the pair about its centre by a random angle: every coordinate gets full-length
-    digits, while designed coincidences hold only up to rounding."""
-    c = _pair_centre(a, b)
-    ang = cx.rng.uniform(0, 2 * math.pi)
-    co, si = math.cos(ang), math.sin(ang)
-    f = lambda p: (c[0] + (p[0] - c[0]) * co - (p[1] - c[1]) * si,
-                   c[1] + (p[0] - c[0]) * si + (p[1] - c[1]) * co)
-    return map_coords(a, f), map_coords(b, f)
-
-
-def mv_float_magnitude_1e15(cx, a, b, kind):
-    off = (cx.rng.uniform(1, 9) * 1e15, cx.rng.uniform(1, 9) * 1e15)
-    return _translate(a, off), _translate(b, off)
-
-
-def mv_float_magnitude_1e_8(cx, a, b, kind):
-    # power-of-two factor: exact, so designed coincidences survive the change of magnitude
-    x0, y0, x1, y1 = bbox([a, b])
-    M = max(abs(x0), abs(y0), abs(x1), abs(y1))
-    s = 2.0 ** round(math.log2(cx.rng.uniform(1, 9) * 1e-8 / M))
-    f = lambda p: (p[0] * s, p[1] * s)
-    return map_coords(a, f), map_coords(b, f)
-
-
-def mv_float_mixed_scales(cx, a, b, kind):
-    """Shrink one geometry about its own centre by 1e-9..1e-5 while the other keeps its size."""
-    isb = cx.rng.random() < 0.5
-    g = b if isb else a
-    c = _pair_centre(g, g)
-    s = 10 ** cx.rng.uniform(-9, -5)
-    ng = map_coords(g, lambda p: (c[0] + (p[0] - c[0]) * s, c[1] + (p[1] - c[1]) * s))
-    return (a, ng) if isb else (ng, b)
-
-
 MOVE_FN = {
     "shared-vertex": mv_shared_vertex,
     "vertex-on-edge": mv_vertex_on_edge,
@@ -776,18 +682,99 @@ MOVE_FN = {
     "parts-touching": mv_parts_touching,
     "empty-part": mv_empty_part,
     "point-collection": mv_point_collection,
-    "float-many-digits": mv_float_many_digits,
-    "float-magnitude-1e15": mv_float_magnitude_1e15,
-    "float-magnitude-1e-8": mv_float_magnitude_1e_8,
-    "float-mixed-scales": mv_float_mixed_scales,
 }
 
 
 # --------------------------------------------------------------------------------------------
-# Pair generation.
+# Float regimes: maps of the plane applied identically to both geometries of a pair.
+# Parameters are drawn from the regime stream and the *base* pair only, so plain-float and
+# degen-float of one index use the same map. They are recorded in Pair.source, from which
+# `regime_map` rebuilds the map.
 
-def _rng_for(arm: str, seed: int, kind: str, index: int) -> random.Random:
-    h = hashlib.sha256(f"tavs-gen|{arm}|{seed}|{kind}|{index}".encode()).digest()
+REGIMES = ("affine", "rotation", "magnitude-1e15", "scale-2^-k")
+MAX_REGIME_TRIES = 20
+
+
+def _draw_regime(rng: random.Random, base_a, base_b) -> dict:
+    name = rng.choice(REGIMES)
+    x0, y0, x1, y1 = bbox([base_a, base_b])
+    if name == "affine":
+        # random non-dyadic factor and random full-precision offset
+        return {"regime": name, "s": rng.uniform(0.5, 2.0),
+                "ox": rng.uniform(-1e6, 1e6), "oy": rng.uniform(-1e6, 1e6)}
+    if name == "rotation":
+        return {"regime": name, "angle": rng.uniform(0, 2 * math.pi),
+                "cx": (x0 + x1) / 2, "cy": (y0 + y1) / 2}
+    if name == "magnitude-1e15":
+        return {"regime": name, "ox": rng.uniform(1, 9) * 1e15, "oy": rng.uniform(1, 9) * 1e15}
+    M = max(abs(x0), abs(y0), abs(x1), abs(y1))
+    k = round(math.log2(M / (rng.uniform(1, 9) * 1e-8)))
+    return {"regime": name, "k": k}
+
+
+def _regime_fn(par: dict):
+    name = par["regime"]
+    if name == "affine":
+        s, ox, oy = par["s"], par["ox"], par["oy"]
+        return lambda p: (float(p[0]) * s + ox, float(p[1]) * s + oy)
+    if name == "rotation":
+        co, si = math.cos(par["angle"]), math.sin(par["angle"])
+        cx_, cy_ = par["cx"], par["cy"]
+        return lambda p: (cx_ + (p[0] - cx_) * co - (p[1] - cy_) * si,
+                          cy_ + (p[0] - cx_) * si + (p[1] - cy_) * co)
+    if name == "magnitude-1e15":
+        ox, oy = par["ox"], par["oy"]
+        return lambda p: (float(p[0]) + ox, float(p[1]) + oy)
+    if name == "scale-2^-k":
+        s = 2.0 ** -int(par["k"])          # exact for the integer base
+        return lambda p: (float(p[0]) * s, float(p[1]) * s)
+    raise ValueError(name)
+
+
+def _source(forms, par: Optional[dict]) -> str:
+    out = f"form={forms[0]}/{forms[1]}"
+    if par is not None:
+        out += ";" + ";".join(f"{k}={v if isinstance(v, (str, int)) else repr(v)}"
+                              for k, v in par.items())
+    return out
+
+
+def parse_source(source: str) -> dict:
+    return dict(kv.split("=", 1) for kv in source.split(";"))
+
+
+def regime_map(source: str):
+    """The plane map recorded in a float pair's source string (None for integer pairs)."""
+    d = parse_source(source)
+    if "regime" not in d:
+        return None
+    par = {"regime": d["regime"]}
+    for k, v in d.items():
+        if k not in ("regime", "form"):
+            par[k] = int(v) if k == "k" else float(v)
+    return _regime_fn(par)
+
+
+def apply_regime(g, f):
+    return map_coords(g, f)
+
+
+# --------------------------------------------------------------------------------------------
+# Pair generation (paired design).
+#
+# For each (seed, kind, index) one base pair is drawn; the four arms derive from it:
+#   plain-int   = base
+#   degen-int   = base + shape moves
+#   plain-float = regime(base)
+#   degen-float = regime(base + the same shape moves)
+# Three RNG streams per index (base, moves, regime) keep these shared across arms.
+
+FORMS = {"predicate": (("single", "multi", "collection"), (0.5, 0.3, 0.2)),
+         "overlay": (("single", "multi"), (0.6, 0.4))}
+
+
+def _rng_for(seed: int, kind: str, index: int, stream: str) -> random.Random:
+    h = hashlib.sha256(f"tavs-gen|{seed}|{kind}|{index}|{stream}".encode()).digest()
     return random.Random(int.from_bytes(h[:16], "big"))
 
 
@@ -805,8 +792,8 @@ def _base_pair(cx: Ctx, kind: str, st: Counter):
     rng = cx.rng
     mix = PRED_MIX if kind == "predicate" else OVER_MIX
     ca_, cb_ = rng.choices([(x, y) for x, y, _ in mix], weights=[w for *_, w in mix])[0]
-    forms = ("single", "multi", "collection") if kind == "predicate" else ("single", "multi")
-    fa, fb = rng.choice(forms), rng.choice(forms)
+    names, weights = FORMS[kind]
+    fa, fb = rng.choices(names, weights=weights)[0], rng.choices(names, weights=weights)[0]
     ea = cx.loguniform(EXT_LO, EXT_HI)
     # ratio a:b log-uniform on [0.1, 10], truncated so that b's extent also stays in [10, 1000]
     rlo, rhi = max(RATIO_LO, ea / EXT_HI), min(RATIO_HI, ea / EXT_LO)
@@ -832,43 +819,26 @@ def _base_pair(cx: Ctx, kind: str, st: Counter):
         cfn = centre_in_range(eb)
         near = False
     b = _draw_valid(cx, st, "b", cb_, fb, cfn, eb)
-    return a, b, near
+    return a, b, near, (fa, fb)
 
 
-def _apply_moves(cx: Ctx, arm: str, kind: str, a, b, st: Counter):
+def _apply_moves(cx: Ctx, kind: str, a, b, st: Counter):
     rng = cx.rng
     pool = [m for m in GEOM_MOVES if kind == "predicate" or m not in PRED_ONLY_MOVES]
-    if arm == "degen-float":
-        pool += FLOAT_MOVES
     want = rng.randint(1, 2)
     order = pool[:]
     rng.shuffle(order)
     chosen = []
-    deferred = []           # float moves run after geometric ones
     for m in order:
-        if len(chosen) + len(deferred) >= want:
+        if len(chosen) >= want:
             break
-        if m in FLOAT_MOVES:
-            deferred.append(m)
-            continue
-        applied = False
         for _ in range(MAX_MOVE_TRIES):
             r = MOVE_FN[m](cx, a, b, kind)
             if r is None:
                 st[f"move_not_applicable:{m}"] += 1
                 break
             na, nb = r
-            if _in_range(na, cx.integral) and _in_range(nb, cx.integral) and valid(na) and valid(nb):
-                a, b, applied = na, nb, True
-                break
-            st[f"move_invalid_retry:{m}"] += 1
-        if applied:
-            chosen.append(m)
-    for m in deferred:
-        for _ in range(MAX_MOVE_TRIES):
-            na, nb = MOVE_FN[m](cx, a, b, kind)
-            if (all(math.isfinite(v) for g in (na, nb) for p in vertices(g) for v in p)
-                    and valid(na) and valid(nb)):
+            if _in_range(na, True) and _in_range(nb, True) and valid(na) and valid(nb):
                 a, b = na, nb
                 chosen.append(m)
                 break
@@ -876,34 +846,63 @@ def _apply_moves(cx: Ctx, arm: str, kind: str, a, b, st: Counter):
     return a, b, chosen
 
 
-def make_pair(arm: str, seed: int, kind: str, index: int) -> Pair:
-    """Pair `index` of the stream (arm, seed, kind); independent of the stream length."""
-    if arm not in ARMS:
-        raise ValueError(arm)
+def _finite(g) -> bool:
+    return all(math.isfinite(v) for p in vertices(g) for v in p)
+
+
+def build(seed: int, kind: str, index: int) -> dict:
+    """The four arm pairs of one index (keys: ARMS); depends only on (seed, kind, index)."""
     if kind not in KINDS:
         raise ValueError(kind)
-    integral = arm.endswith("-int")
-    st = _stat(arm, kind)
-    cx = Ctx(_rng_for(arm, seed, kind, index), integral, st)
+    st = _stat(kind)
     st["pairs"] += 1
-    while True:
-        a, b, near = _base_pair(cx, kind, st)
-        moves: list[str] = []
-        if arm.startswith("degen"):
-            a, b, moves = _apply_moves(cx, arm, kind, a, b, st)
-            if not moves:
-                st["resample_pair_no_move"] += 1
-                continue
-        break
-    if near:
-        st["b_near"] += 1
-    return Pair(a=to_wkt(a), b=to_wkt(b), coord="int" if integral else "float", kind=kind,
-                arm=arm, seed=seed, index=index, moves=moves)
+    a, b, near, forms = _base_pair(Ctx(_rng_for(seed, kind, index, "base"), True, st), kind, st)
+    st["b_near"] += near
+    da, db, moves = _apply_moves(Ctx(_rng_for(seed, kind, index, "moves"), True, st),
+                                 kind, a, b, st)
+    if not moves:
+        st["degen_no_move"] += 1
+    rrng = _rng_for(seed, kind, index, "regime")
+    for _ in range(MAX_REGIME_TRIES):
+        par = _draw_regime(rrng, a, b)
+        fl = [apply_regime(g, _regime_fn(par)) for g in (a, b, da, db)]
+        if all(_finite(g) and valid(g) for g in fl):
+            break
+        st[f"regime_retry:{par['regime']}"] += 1
+    else:   # exact power-of-two scaling cannot break validity
+        st["regime_fallback"] += 1
+        par = {"regime": "scale-2^-k", "k": 40}
+        fl = [apply_regime(g, _regime_fn(par)) for g in (a, b, da, db)]
+    st[f"regime:{par['regime']}"] += 1
+    common = dict(kind=kind, seed=seed, index=index)
+    return {
+        "plain-int": Pair(a=to_wkt(a), b=to_wkt(b), coord="int", arm="plain-int", moves=[],
+                          source=_source(forms, None), **common),
+        "plain-float": Pair(a=to_wkt(fl[0]), b=to_wkt(fl[1]), coord="float", arm="plain-float",
+                            moves=[], source=_source(forms, par), **common),
+        "degen-int": Pair(a=to_wkt(da), b=to_wkt(db), coord="int", arm="degen-int",
+                          moves=list(moves), source=_source(forms, None), **common),
+        "degen-float": Pair(a=to_wkt(fl[2]), b=to_wkt(fl[3]), coord="float", arm="degen-float",
+                            moves=list(moves), source=_source(forms, par), **common),
+    }
+
+
+def make_pair(arm: str, seed: int, kind: str, index: int) -> Pair:
+    """Pair `index` of arm `arm`; independent of the stream length."""
+    if arm not in ARMS:
+        raise ValueError(arm)
+    return build(seed, kind, index)[arm]
 
 
 def generate(arm: str, seed: int, n: int, kind: str) -> Iterator[Pair]:
     for i in range(n):
         yield make_pair(arm, seed, kind, i)
+
+
+def generate_all(seed: int, n: int, kind: str) -> Iterator[dict]:
+    """For each index, the four arm pairs together (dict keyed by arm)."""
+    for i in range(n):
+        yield build(seed, kind, i)
 
 
 # --------------------------------------------------------------------------------------------
@@ -1000,6 +999,37 @@ def _strip_empty(g):
     return g
 
 
+def _near_dists(vs, other_vs, other_es):
+    """Min distance from each vertex of `vs` to a vertex or edge of the other geometry over
+    feature pairs that are NOT exact coincidences (equal vertices, vertex exactly inside an
+    edge, vertex exactly equal to an edge endpoint). Returns an array, inf where none."""
+    if not vs:
+        return np.zeros(0)
+    V = np.array(vs, float)
+    best = np.full(len(vs), np.inf)
+    if other_vs:
+        W = np.array(other_vs, float)
+        D = np.hypot(V[:, None, 0] - W[None, :, 0], V[:, None, 1] - W[None, :, 1])
+        D[(V[:, None, 0] == W[None, :, 0]) & (V[:, None, 1] == W[None, :, 1])] = np.inf
+        best = np.minimum(best, D.min(axis=1))
+    if other_es:
+        P = np.array([e[0] for e in other_es], float)
+        Q = np.array([e[1] for e in other_es], float)
+        ex, ey = (Q - P)[:, 0][None, :], (Q - P)[:, 1][None, :]
+        wx, wy = V[:, 0][:, None] - P[:, 0][None, :], V[:, 1][:, None] - P[:, 1][None, :]
+        L2 = ex * ex + ey * ey
+        t = np.clip((wx * ex + wy * ey) / np.where(L2 > 0, L2, 1), 0, 1)
+        D = np.hypot(wx - t * ex, wy - t * ey)
+        endpoint = (((V[:, None, 0] == P[None, :, 0]) & (V[:, None, 1] == P[None, :, 1]))
+                    | ((V[:, None, 0] == Q[None, :, 0]) & (V[:, None, 1] == Q[None, :, 1])))
+        D[endpoint] = np.inf
+        for i, j in zip(*np.nonzero(_near_collinear(V, P, Q) & ~endpoint)):
+            if _exact_on_segment(vs[i], other_es[j][0], other_es[j][1]):
+                D[i, j] = np.inf
+        best = np.minimum(best, D.min(axis=1))
+    return best
+
+
 def pair_coincidences(p: Pair) -> dict:
     integral = p.coord == "int"
     ga, gb = from_wkt(p.a, integral), from_wkt(p.b, integral)
@@ -1017,7 +1047,12 @@ def pair_coincidences(p: Pair) -> dict:
     ii, ib, bi, bb = m[0], m[1], m[3], m[4]
     inter = [c for c in (ii, ib, bi, bb) if c != "F"]
     touch0 = ii == "F" and bool(inter) and max(inter) == "0"
+    M = max((abs(v) for q in va + vb for v in q), default=0.0)
+    dmin = min(float(np.min(_near_dists(va, vb, eb), initial=np.inf)),
+               float(np.min(_near_dists(vb, va, ea), initial=np.inf)))
     return {
+        "near_rel_1e-9": dmin <= 1e-9 * M,
+        "near_4ulp": dmin <= 4 * math.ulp(M),
         "shared_vertex": shared,
         "vertex_on_edge": on_edge,
         "collinear_overlap": collinear,
@@ -1040,6 +1075,9 @@ def coincidence_stats(pairs: Iterable[Pair]) -> dict:
     bb_dim0            DE-9IM boundary/boundary cell is 0 (includes proper edge crossings)
     touch_point_only   interiors disjoint and the intersection is 0-dimensional
     any_exact          any of the first four
+    near_rel_1e-9      some vertex within 1e-9*M of a vertex/edge of the other geometry,
+                       M = max |coordinate| of the pair, exact coincidences excluded
+    near_4ulp          the same within 4 ulp(M)
     """
     c = Counter()
     n = 0
@@ -1049,7 +1087,7 @@ def coincidence_stats(pairs: Iterable[Pair]) -> dict:
             c[k] += bool(v)
     return {"n": n, **{k: c[k] / n if n else 0.0 for k in
                        ("shared_vertex", "vertex_on_edge", "collinear_overlap", "self_touch",
-                        "any_exact", "bb_dim0", "touch_point_only", "intersects",
+                        "any_exact", "near_rel_1e-9", "near_4ulp", "bb_dim0", "touch_point_only", "intersects",
                         "has_empty_part")}}
 
 
