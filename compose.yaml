@@ -1,0 +1,20 @@
+# PostGIS targets, pinned by digest (pulled 2026-10-27).
+x-db: &db
+  environment:
+    POSTGRES_PASSWORD: postgis
+  command: ["postgres", "-c", "fsync=off", "-c", "synchronous_commit=off", "-c", "full_page_writes=off"]
+  shm_size: 256mb
+
+services:
+  current:   # PostgreSQL 18, PostGIS 3.6.4, GEOS 3.14.1
+    <<: *db
+    image: postgis/postgis@sha256:4a43e3c3e5d55b9208240fc71db543b79c638766280c625a425bd0a2390989c4
+    ports: ["127.0.0.1:54336:5432"]
+  dev:       # PostgreSQL 18, PostGIS 3.7.0dev, GEOS 3.16.0dev
+    <<: *db
+    image: postgis/postgis@sha256:620f1f1ffb479ffbda686dbfde113557a9859cdf9de0f86683b0702846915107
+    ports: ["127.0.0.1:54337:5432"]
+  old:       # PostgreSQL 17, PostGIS 3.5.2, GEOS 3.9.0
+    <<: *db
+    image: postgis/postgis@sha256:01a6a70e41e6c4467c8f55f6063555ed72db2d6662cd0d571040d42eadaeb6f6
+    ports: ["127.0.0.1:54335:5432"]
