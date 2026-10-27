@@ -1,0 +1,1136 @@
+===== geos_1022.json open None | ST_Crosses returns incorrect answer when dealing with geometry collection | milestone: None | closed None
+Consider the following statement:
+```sql
+SELECT ST_Crosses(g1, g2), ST_Crosses(g1, g3)
+FROM (SELECT 
+ST_GeomFromText('GEOMETRYCOLLECTION (POINT (7 1), LINESTRING (6 5, 6 4))') As g1,
+ST_GeomFromText('POLYGON ((7 1, 1 3, 3 9, 7 1))') As g2,
+ST_GeomFromText('POLYGON ((1 3, 3 9, 7 1, 1 3))') As g3
+) As sub;
+-- actual {true, false}; expected {false, false}
+```
+It is noticed that g2 and g3 present the same polygon with different order, while ST_Crosses(g1, g2) and ST_Crosses(g1, g3) give different results, which seems like a bug.
+
+The result of ST_Crosses(g1, g2) is expected to be false because there is no interior intersection, according to the definition:
+
+> ST_Crosses(A, B) ⇔ (dim( Int(A) ⋂ Int(B) ) < max( dim( Int(A) ), dim( Int(B) ) )) ∧ (A ⋂ B ≠ A) ∧ (A ⋂ B ≠ B)
+
+It can be reproduced by:
+```shell
+bin/geosop -a "GEOMETRYCOLLECTION (POINT (7 1), LINESTRING (6 5, 6 4))" -b "POLYGON ((7 1, 1 3,  3 9,  7 1))" crosses
+# actual{true}; expected{false}
+```
+
+Version is the latest in github:
+```
+ POSTGIS="3.5.0dev 3.4.0rc1-839-g61bc019eb" [EXTENSION] PGSQL="170" GEOS="3.13.0dev-CAPI-1.18.0" PROJ="8.2.1 NETWORK_ENABLED=OFF URL_
+ENDPOINT=https://cdn.proj.org USER_WRITABLE_DIRECTORY=/tmp/proj DATABASE_PATH=/usr/share/proj/proj.db" LIBXML="2.9.13" (core procs fr
+om "3.5.0dev 3.4.0rc1-750-g89fb96385" need upgrade)
+```
+--- comment dr-jts 2024-01-02T19:06:33Z
+The IM matrix computed by `relate` is very wrong as well (e.g. it says that `dim(Int n Int) = 2`):
+```
+bin/geosop -a "GEOMETRYCOLLECTION (POINT (7 1), LINESTRING (6 5, 6 4))" -b "POLYGON ((7 1, 1 3,  3 9,  7 1))" relate 
+212FF0212
+```
+
+--- comment JamesParrott 2024-01-03T16:20:29Z
+I can recreate this, but it's very sensitive to the floating-point value of the first point (7, 1), and the bug does not occur when the line string is replaced by a point.
+
+```
+root@523c8b976142:/tmp/geos/build# geosop -a "GEOMETRYCOLLECTION (POINT (6.9999999999999999 1), LINESTRING (6 5, 6 4))" -b
+ "POLYGON ((7 1, 1 3,  3 9,  7 1))" crosses
+true
+root@523c8b976142:/tmp/geos/build# geosop -a "GEOMETRYCOLLECTION (POINT (6.999999999999999 1), LINESTRING (6 5, 6 4))" -b
+"POLYGON ((7 1, 1 3,  3 9,  7 1))" crosses
+false
+root@523c8b976142:/tmp/geos/build# geosop -a "GEOMETRYCOLLECTION (POINT (7 1), POINT (60 5))" -b "POLYGON ((7 1, 1 3,  3 9
+,  7 1))" crosses
+false
+```
+
+
+--- comment dr-jts 2024-01-03T16:52:32Z
+This isn't a precision problem.  It's an issue with the current `relate` algorithm not handling mixed-dimension GeometryCollections correctly.  Likely it involves an incorrect evaluation of endpoints as boundary points.
+--- comment cuteDen-ECNU 2024-01-12T10:13:48Z
+Another trigger case seems to have the same root cause:
+```shell
+bin/geosop -a 'GEOMETRYCOLLECTION (POINT (2 2), LINESTRING (0 0, 1 1))' -b 'LINESTRING ( 2 2, 3 3)' relate
+# 1F10F0102
+```
+It says that `dim(Int n Int) = 1`, which is the same as dim(b).
+Meanwhile, `POINT(2 2)` is the start-point of b.
+===== geos_1027.json open None | ST_Covers gives incorrect answer after mutating POLYGON to MULTIPOLYGON | milestone: None | closed None
+Considering the following statement:
+```sql
+SELECT ST_Covers(g2, g1), ST_Covers(g3, g1) FROM
+(SELECT 
+ST_GeomFromText('GEOMETRYCOLLECTION ( LINESTRING (1 2, 1 1), POINT (0 0))') As g1
+, ST_GeomFromText(' MULTIPOLYGON (((0 0, 3 0, 3 3, 0 3, 0 0)))  ') As g2
+, ST_GeomFromText(' POLYGON ((0 0, 3 0, 3 3, 0 3, 0 0))  ') As g3
+);
+-- expected: {true, true}; actual: {false, true}
+```
+The 2nd geometry covers the 1st one, because each point in the 1st geometry lies inside the 2nd one, according to the definition of ST_Covers:
+> ST_Covers(A, B) ⇔ A ⋂ B = B
+
+However, PostGIS doesn't consider the ST_Covers relation, which seems to be a bug. After normalizing MULTIPOLYGON to POLYGON as g3,  ST_Covers(g3, g1) gives the correct answer. 
+
+Here is a simple reproduction for libgeos:
+```shell
+bin/geosop -a 'GEOMETRYCOLLECTION ( LINESTRING (1 2, 1 1), POINT (0 0))' -b 'MULTIPOLYGON (((0 0, 3 0, 3 3, 0 3, 0 0)))' covers
+# false
+```
+geos version is the latest one in GitHub:
+6f70b63a0d976ce31dd2952094bc1a39209f8a20
+===== geos_1033.json closed completed | Contains gives the error answer, but ContainsPrep gives the correct one | milestone: None | closed 2026-01-07T16:29:17Z
+Consider the statement:
+```sql
+DROP TABLE IF EXISTS t0;
+CREATE TABLE t0 (id int, geom geometry, valid boolean);
+INSERT INTO t0 (id, geom) VALUES (1,ST_GeomFromText('LINESTRING(1 2,1 1)',0));
+INSERT INTO t0 (id, geom) VALUES (2,ST_GeomFromText('GEOMETRYCOLLECTION(POINT(2 2),POINT(1 0),LINESTRING(1 2,1 1))',0));
+INSERT INTO t0 (id, geom) VALUES (3,ST_GeomFromText('POLYGON((1 0,0 4,2 2,1 0))',0));
+SELECT a1.id, a2.id FROM t0 As a1 JOIN t0 As a2 ON ST_Contains(a1.geom, a2.geom);      
+-- result: {1,1; 2,1; 2,2; 3,1; 3,2; 3, 3}   
+SELECT  ST_Contains(a1.geom, a2.geom) FROM t0 as a1, t0 as a2 WHERE a1.id = 3 and a2.id = 2;
+-- expected: true; actual: false
+```
+g3 contains g2 because POINTs of g2 lie in the boundary of g3 and LINESTRING of g2 lies in the interior of g3, which satisfied the sematics of contains:
+> ST_Contains(A, B) ⇔ (A ⋂ B = B) ∧ (Int(A) ⋂ Int(B) ≠ ∅)
+
+I consider the issue different from #982 because the boundary of g3 is not ambiguous. 
+
+The predicate of ContainsPrep gives the correct answer. A simple statement reproduced in Geos:
+```shell
+bin/geosop -a 'POLYGON((1 0,0 4,2 2,1 0))' -b 'GEOMETRYCOLLECTION(POINT(2 2),POINT(1 0),LINESTRING(1 2,1 1))' contains
+# false
+bin/geosop -a 'POLYGON((1 0,0 4,2 2,1 0))' -b 'GEOMETRYCOLLECTION(POINT(2 2),POINT(1 0),LINESTRING(1 2,1 1))' containsPrep
+# true
+```
+
+
+The version of Geos is the latest one:
+https://github.com/libgeos/geos/commit/6f70b63a0d976ce31dd2952094bc1a39209f8a20
+--- comment pramsey 2024-02-08T20:15:05Z
+Interesting, same result in covers/coversPrep.
+--- comment pramsey 2024-02-12T19:45:22Z
+This is a problem relatively deep in the IM calculation, so we are going to instead focus on the RelateNG work, which hopefully removes this inconsistency in future releases (and is faster).
+--- comment cuteDen-ECNU 2024-02-15T05:09:25Z
+Looking forward to the new releases! 😊
+--- comment dbaston 2026-01-07T16:29:17Z
+`contains` and `containsPrep` both return `true` in current main.
+===== geos_1053.json closed completed | ST_Relate gives incorrect result for interior-interior intersection dimension | milestone: None | closed 2024-11-26T00:28:34Z
+Considering the following statement:
+```sql
+SELECT ST_Relate(g1, g2)
+  FROM (VALUES
+  ('MULTILINESTRING((2 4, 10 10),(15 10,10 5,5 10))'::geometry, 
+   'MULTILINESTRING((2 4, 10 10))'::geometry)
+  ) AS sdb(g1, g2);
+
+--expected{ 1F1F001F2}; actual{ 0F1F001F2}
+```
+
+```shell 
+bin/geosop -a 'MULTILINESTRING((2 4, 10 10),(15 10,10 5,5 10))' -b 'MULTILINESTRING((2 4, 10 10))' relate
+# expected{ 1F1F001F2}; actual{ 0F1F001F2}
+```
+The intersection of interior-interior of g1 and g2 is `LINESTRING(2 4, 10 10)` whose dimension is 1. Thus the de9im code should be 1F1F001F2 instead of 0F1F001F2.
+
+The version of Geos is the latest one:
+[bdceea6](https://github.com/libgeos/geos/commit/bdceea69174e80cf2cc2959d6da8d9dd0e766e3e)
+--- comment dr-jts 2024-03-05T20:20:54Z
+This is an example of a long-standing design issue with the current topological predicate algorithm.  See also:
+
+* https://github.com/locationtech/jts/issues/396
+* https://trac.osgeo.org/geos/ticket/572
+
+While https://github.com/libgeos/geos/pull/937 was a fix for some cases of this type, it was not a fully general fix. 
+
+There is a new topological predicate algorithm being worked on which solves this problem.  It should be ready by mid-2024.
+--- comment dr-jts 2024-05-05T05:28:42Z
+Actually the expected result is `1F1F00FF2` (since A contains B, the Exterior of A does not interact with the Interior of B).
+
+This result is correctly computed by the RelateNG algorithm.
+===== geos_1064.json closed completed | RelateCompute intersection report inconsistent for lines and boundary points | milestone: None | closed 2024-11-26T00:28:02Z
+RelateComputer says there's an intersection between line A interior and and line B boundary but says there is no intersection 
+between B boundary and A.
+
+Line A: 010200000002000000B02EA9C2AE5430400E3994256830514037F136E82055304039FAE86851305140
+Line B: 01020000000200000064AB380D714E3040A38E9F0E1F305140E798A2D4E85430405F5969945C305140
+
+### A Interior intersects B boundary in dim = 0
+```
+   I B E
+I: F 0 1
+B: F F 0
+E: 1 0 2
+```  
+
+### A has no intersection with Boundary(B) 
+```
+   I B E
+I: F F 1
+B: F F 0
+E: 0 F 2 
+```
+
+Reported in https://lists.osgeo.org/pipermail/geos-devel/2024-March/011012.html and confirmed in https://github.com/libgeos/geos/issues/968#issuecomment-2041134101
+--- comment dr-jts 2024-04-08T05:23:36Z
+This is not a bug, but a limitation in the ability to compute the relate matrix due to numeric rounding.  In order to correctly compute the relate matrix for two lines the **node point** must be computed (see https://github.com/locationtech/jts/issues/396 for an example of a case which requires noding for correct evaluation). However, due to numeric roundoff the computed node point equals an **endpoint** of line B, even though the robust `Orientation` test reports that it lies in the **interior** of B.
+
+It's not clear that there is an algorithm which can avoid noding, since this would cause an inconsistency in other cases.
+
+Another future option is to support evaluating predicates with a distance tolerance.  This will essentially allow avoiding inconsistency due to roundoff.  (However, note that this may not be a solution in itself - when used as part of a bigger process, the entire process must be designed to support using a tolerance.)
+--- comment strk 2024-05-07T07:57:10Z
+For the record, GEOS-3.8 gives a different intersection matrix for the two lines, saying there is no interior/boundary intersection. Did 3.8 not have this limitation ?
+
+```
+   I B E
+I: F F 1
+B: F F 0
+E: 1 0 2
+```
+
+--- comment strk 2024-05-07T08:01:49Z
+An XML test for this case was added in #1092 - the test passes in 3.8 branch, fails in main branch:
+```
+build/bin/test_xmltester -v ../3.8/tests/xmltester/tests/issue/issue-geos-gh1064.xml 
+../3.8/tests/xmltester/tests/issue/issue-geos-gh1064.xml: case1: test1: relatestring(A, B): failed. (0 ms)
+        Description: See https://github.com/libgeos/geos/issues/1064
+        Geometry A: LINESTRING (16.330791631988802 68.75635661578073, 16.332533372319826 68.75496886016562)
+        Geometry B: LINESTRING (16.30641253121884 68.75189557630306, 16.33167771310482 68.75565061843871)
+        Expected result: FF1FF0102
+        Obtained result: F01FF0102
+
+Files: 1
+Tests: 1
+Failed: 1
+Succeeded: 0
+```
+--- comment strk 2024-05-07T08:42:42Z
+CI confirming the problem in main branch: https://github.com/libgeos/geos/actions/runs/8982099329/job/24668988763?pr=1093#step:8:7913 (PR GH-1093)
+
+CI confirming there is no problem in 3.8 branch: https://github.com/libgeos/geos/actions/runs/8982102259/job/24668979871?pr=1092#step:4:6239 (PR GH-1092)
+--- comment dr-jts 2024-05-07T14:02:15Z
+> For the record, GEOS-3.8 gives a different intersection matrix for the two lines, saying there is no interior/boundary intersection. Did 3.8 not have this limitation ?
+
+This might be due to the change in line intersection computation math, from `ttmath` to `DD` (in https://github.com/libgeos/geos/commit/ec219c058280dae38f338437925c8062fb6b85d7). However, the reason that `DD` was added is that it fixes other cases which were failing using `ttmath`.
+
+Note that 3.8 is reporting that there is no intersection between the lines at all.  However, the 3.12 `Orientation` predicate is reporting that there is a proper intersection between them (see image below).  This uses the best known algorithm we have, so the only thing we can do is to accept it as the correct analysis of the situation.   So in this case 3.8 is "wrong", according to current technology.
+
+<img width="509" alt="image" src="https://github.com/libgeos/geos/assets/3529053/92802394-9dce-45f4-81cc-925e753d265a">
+
+
+
+===== geos_1224.json closed completed | Union Operations returns collections containing empty elements | milestone: None | closed 2025-01-17T22:37:48Z
+Relates to: https://trac.osgeo.org/postgis/ticket/5835
+
+Reproduce in GEOS:
+```
+geosop -a 'GEOMETRYCOLLECTION(POLYGON EMPTY, POINT EMPTY, LINESTRING(10 10, 10 10))' -b 'POINT(1 1)' union
+-- reuslt:{GEOMETRYCOLLECTION (POLYGON EMPTY, POINT EMPTY, LINESTRING (10 10, 10 10), POINT (1 1))}
+
+geosop -a 'GEOMETRYCOLLECTION(POLYGON EMPTY, POINT EMPTY, LINESTRING(10 10, 10 10), POINT(1 1))' unaryUnion
+-- result:{GEOMETRYCOLLECTION (POINT (1 1), LINESTRING EMPTY)}
+```
+--- comment dr-jts 2025-01-09T06:33:28Z
+Interesting - in JTS the unary union gives the expected result:
+```
+POINT (1 1)
+```
+--- comment dr-jts 2025-01-09T06:37:09Z
+A simpler case for unary union:
+```
+bin/geosop -a 'GEOMETRYCOLLECTION(LINESTRING(10 10, 10 10), POINT(1 1))' unaryUnion 
+--> GEOMETRYCOLLECTION (POINT (1 1), LINESTRING EMPTY)
+```
+The ideal result is probably
+```
+ GEOMETRYCOLLECTION (LINESTRING(10 10, 10 10), POINT (1 1))
+```
+--- comment nbvfgh 2025-01-09T07:47:51Z
+> A simpler case for unary union:
+> 
+> ```
+> bin/geosop -a 'GEOMETRYCOLLECTION(LINESTRING(10 10, 10 10), POINT(1 1))' unaryUnion 
+> --> GEOMETRYCOLLECTION (POINT (1 1), LINESTRING EMPTY)
+> ```
+> 
+> The ideal result is probably
+> 
+> ```
+>  GEOMETRYCOLLECTION (LINESTRING(10 10, 10 10), POINT (1 1))
+> ```
+
+Yes,   dicussion in #1136 indicate that a Linestring of 0 length or a Area of 0 size should return a point or at least be retained.
+--- comment dr-jts 2025-01-10T21:35:09Z
+The cause of the `union` anomaly is the [heuristic code](https://github.com/libgeos/geos/blob/main/src/geom/Geometry.cpp#L623) in `Geometry::Union`, which combines the two inputs if their envelopes are disjoint.  It does not check for empty geometries (and in general does not reduce geometries to a more canonical form, which performing an explicit union would do).
+
+This code should be enhanced to remove empty elements.  
+
+Actually I'm in favour of removing it altogether, since it creates other behaviour differences with OverlayNG (for example, it does not node disjoint sets of LineStrings).  Or at least refining it significantly, and perhaps moving it into OverlayNG, since it is then available everywhere.  At very least it can be moved into `HeuristicOverlay`.
+
+In general I think it's better to avoid putting heuristic logic into `Geometry` methods, because:
+* complex heuristic logic complicates the `Geometry` class
+* it splits up the logic for operations and makes it less widely available
+
+--- comment pramsey 2025-01-10T21:42:22Z
+I guess it depends on just how fast the fast path through OverlayNG is, for the "union of disjoint things"?
+--- comment dr-jts 2025-01-10T21:48:53Z
+> I guess it depends on just how fast the fast path through OverlayNG is, for the "union of disjoint things"?
+
+It should provide similar performance, apart from a bit of overhead from a few more calls.
+===== geos_1248.json closed completed | 3.13.1 regression: "POINT ZM EMPTY".Union("POINT ZM EMPTY") returns "POINT EMPTY" instead of "MULTIPOINT ZM EMPTY" | milestone: None | closed 2025-04-22T15:53:39Z
+Caught by GDAL autotest suite: https://github.com/OSGeo/gdal/actions/runs/13681199663/job/38265852044?pr=11924
+
+```
+41:     @pytest.mark.require_geos(3, 12)
+41:     def test_ogr_geos_pointzm_empty():
+41:     
+41:         g1 = ogr.CreateGeometryFromWkt("POINT ZM EMPTY")
+41:     
+41:         g2 = g1.Union(g1)
+41:     
+41:         # GEOS 3.12 returns MULTIPOINT ZM EMPTY, but also accept POINT ZM EMPTY
+41:         # to be future proof...
+41: >       assert g2.ExportToIsoWkt() in ("MULTIPOINT ZM EMPTY", "POINT ZM EMPTY")
+41: E       AssertionError: assert 'POINT EMPTY' in ('MULTIPOINT ZM EMPTY', 'POINT ZM EMPTY')
+```
+
+This passed with 3.13.0
+--- comment pramsey 2025-04-16T20:34:22Z
+I cannot get GEOS to output a ZM empty in version 3.13 or 3.12 or main. In all I get `POINT EMPTY`
+
+```
+./bin/geosop union -a 'POINT ZM EMPTY' -b 'POINT ZM EMPTY'
+
+POINT EMPTY
+```
+
+(Which is dropping the ZM dimension information, but that seems to be by design in OverlayNG from the start. Not sure when/how it would ever have preserved the ZM.)
+--- comment pramsey 2025-04-16T20:49:04Z
+Oh wait, here we go, if I pull the 3.12.0 tag then I see what you describe
+```
+./bin/geosop union -a 'POINT ZM EMPTY' -b 'POINT ZM EMPTY'
+
+MULTIPOINT ZM EMPTY
+```
+--- comment dr-jts 2025-04-16T21:30:28Z
+I am planning to fix this to return `POINT ZM EMPTY` (as per current thinking about semantics - keep empty geoms as simple as possible).  
+
+@pramsey @rouault ok with that?
+--- comment rouault 2025-04-16T21:40:07Z
+> ok with that?
+ 
++1
+--- comment dr-jts 2025-04-18T15:32:21Z
+Do we have clear semantics for handling overlay of geometries of different coordinate dimension? (@dbaston?)
+
+E.g. 
+```
+./bin/geosop union -a 'POINT EMPTY' -b 'POINT ZM EMPTY'
+```
+
+My thinking is the smallest dimension should be used for the result (to avoid populating Z and M when no information is available).
+--- comment lbartoletti 2025-04-18T18:22:30Z
+> My thinking is the smallest dimension should be used for the result (to avoid populating Z and M when no information is available).
+
++1
+--- comment dr-jts 2025-04-18T19:03:52Z
+I now have:
+```
+./bin/geosop union -a 'POINT ZM EMPTY' -b 'POINT ZM EMPTY'
+POINT ZM EMPTY
+./bin/geosop union -a 'POINT Z EMPTY' -b 'POINT ZM EMPTY'
+POINT Z EMPTY
+./bin/geosop union -a 'POINT EMPTY' -b 'POINT ZM EMPTY' 
+POINT EMPTY
+```
+Note that:
+```
+./bin/geosop union -a 'POINT ZM EMPTY' -b 'POINT M EMPTY'
+POINT Z EMPTY
+```
+--- comment dr-jts 2025-04-21T17:35:10Z
+For reference, this regression was caused by https://github.com/libgeos/geos/pull/1229
+--- comment dr-jts 2025-04-22T15:53:39Z
+Fixed by #1258
+===== geos_1275.json closed completed | Relate(g1, g2, pattern) returning different results depending on prepared state | milestone: 3.13.1 | closed 2025-07-05T03:54:25Z
+Reported here in PostGIS, probably an issue in the GEOS RelateNG prepared geometry code.
+
+https://lists.osgeo.org/pipermail/postgis-devel/2025-July/030578.html
+
+Needs a GEOS test case first.
+--- comment pramsey 2025-07-04T23:03:26Z
+OK, that's odd, because I just wrote a GEOS test case that does not show the problem, so I was turning my attention back to PostGIS as the culprit. 
+
+https://github.com/Snowflake-Labs/geos/commit/2cf080632bc309bdbf35a2ea1bea87f4ef82c844
+--- comment pramsey 2025-07-04T23:04:46Z
+Oh, no, wait, I see in my test case I'm preparing the point, whereas the way the PostGIS cache works I would end up preparing the polygon, which means my test case is not actually testing what I think it is.
+--- comment dr-jts 2025-07-04T23:12:27Z
+Um, yes, it turned out I was wrong about seeing this in JTS too.  Maybe the problem is with PostGIS after all.  If the polygon is prepared, the mask needs to be transposed (since it is the second arg).  Is that being done?
+--- comment pramsey 2025-07-05T00:25:52Z
+Mask inversion is the problem. The order of operands is being currently flipped promiscuously. 
+--- comment dr-jts 2025-07-05T01:35:24Z
+JTS test here: https://github.com/locationtech/jts/commit/f664e0ff56115c3a9a8756da1fb214412904fe50
+===== geos_1342.json open None | Intersection between 2 multipolygons results in invalid geometry | milestone: None | closed None
+The intersection between two specific multipolygons results in an invalid geometry.
+
+Tested with GEOS 3.14.1 installed via conda-forge in windows.
+
+Originally reported in https://github.com/shapely/shapely/issues/2077.
+
+Reproducer script in python. The output also includes the geosop commands.
+
+``` python
+import subprocess
+
+import shapely
+import shapely.wkt
+
+print('shapely.__version__:', shapely.__version__)
+
+wkt1 = 'MULTIPOLYGON (((-78.04121599394897 -5.89365988248295, -79.46982124803172 -9.194972039429315, -31.771830845642597 -73.42037355623992, 47.69799040238911 -64.22540151681056, 79.46982124803172 9.194972039429311, 31.771830845642597 73.42037355623992, -47.69799040238911 64.22540151681056, -78.04121599394897 -5.89365988248295), (-44.94414807547773 60.517346154721146, 29.937481933257768 69.18144635507574, 74.88162621931913 8.664099761904156, 44.94414423125503 -60.51734611949454, -29.937485777480447 -69.18144631984912, -74.8816300087355 -8.664100200354595, -44.94414807547773 60.517346154721146)))'
+wkt2 = 'MULTIPOLYGON (((-78.04121599394897 -5.89365988248295, -47.69799040238911 64.22540151681056, -79.22212318407406 -8.622575551695201, -78.04121599394897 -5.89365988248295)), ((79.46982124803172 9.194972039429311, 79.26313658326842 8.717351930944158, 79.46982124803172 9.194972039429313, 79.46982124803172 9.194972039429311)), ((-74.8816300087355 -8.664100200354591, -74.8816300087355 -8.66410020035459, -44.94414807547773 60.517346154721146, -74.8816300087355 -8.664100200354591)))'
+mp1 = shapely.wkt.loads(wkt1)
+mp2 = shapely.wkt.loads(wkt2)
+
+print(f"{mp1.is_valid=}")
+print(f"{mp2.is_valid=}")
+print(f"{shapely.is_valid_reason(mp1.intersection(mp2))=}")
+
+# Reproduce with geosop
+geosop = "C:\\Tools\\miniforge3\\envs\\pysnippets\\Library\\bin\\geosop.exe"
+cmdline = f'{geosop} -a "{wkt1}" -b "{wkt2}" intersection'
+print(f'Run:\n{cmdline}\n')
+output = subprocess.check_output(cmdline, shell=True)
+print(f'GEOSOP output: {output.decode()}\n')
+
+cmdline = f'{geosop} -a "{output.decode().strip()}" isValid'
+print(f'Run:\n{cmdline}\n')
+output = subprocess.check_output(cmdline, shell=True)
+print(f'GEOSOP output: {output.decode()}\n')
+```
+Output:
+```
+shapely.__version__: 2.1.2
+mp1.is_valid=True
+mp2.is_valid=True
+shapely.is_valid_reason(mp1.intersection(mp2))='Hole lies outside shell[-74.8816300087355 -8.66410020035459]'
+Run:
+C:\Tools\miniforge3\envs\pysnippets\Library\bin\geosop.exe -a "MULTIPOLYGON (((-78.04121599394897 -5.89365988248295, -79.46982124803172 -9.194972039429315, -31.771830845642597 -73.42037355623992, 47.69799040238911 -64.22540151681056, 79.46982124803172 9.194972039429311, 31.771830845642597 73.42037355623992, -47.69799040238911 64.22540151681056, -78.04121599394897 -5.89365988248295), (-44.94414807547773 60.517346154721146, 29.937481933257768 69.18144635507574, 74.88162621931913 8.664099761904156, 44.94414423125503 -60.51734611949454, -29.937485777480447 -69.18144631984912, -74.8816300087355 -8.664100200354595, -44.94414807547773 60.517346154721146)))" -b "MULTIPOLYGON (((-78.04121599394897 -5.89365988248295, -47.69799040238911 64.22540151681056, -79.22212318407406 -8.622575551695201, -78.04121599394897 -5.89365988248295)), ((79.46982124803172 9.194972039429311, 79.26313658326842 8.717351930944158, 79.46982124803172 9.194972039429313, 79.46982124803172 9.194972039429311)), ((-74.8816300087355 -8.664100200354591, -74.8816300087355 -8.66410020035459, -44.94414807547773 60.517346154721146, -74.8816300087355 -8.664100200354591)))" intersection
+
+GEOSOP output: GEOMETRYCOLLECTION (POLYGON ((-47.69799040238911 64.22540151681056, -79.22212318407406 -8.622575551695201, -78.04121599394897 -5.89365988248295, -47.69799040238911 64.22540151681056)), POLYGON ((-74.8816300087355 -8.664100200354591, -74.8816300087355 -8.66410020035459, -44.94414807547773 60.517346154721146, -74.8816300087355 -8.664100200354591), (-74.8816300087355 -8.664100200354595, -29.937485777480447 -69.18144631984912, 44.94414423125503 -60.51734611949454, 74.88162621931913 8.664099761904156, 29.937481933257768 69.18144635507574, -44.94414807547773 60.517346154721146, -74.8816300087355 -8.664100200354595)), LINESTRING (79.46982124803172 9.194972039429311, 79.26313658326842 8.717351930944158))
+
+
+Run:
+C:\Tools\miniforge3\envs\pysnippets\Library\bin\geosop.exe -a "GEOMETRYCOLLECTION (POLYGON ((-47.69799040238911 64.22540151681056, -79.22212318407406 -8.622575551695201, -78.04121599394897 -5.89365988248295, -47.69799040238911 64.22540151681056)), POLYGON ((-74.8816300087355 -8.664100200354591, -74.8816300087355 -8.66410020035459, -44.94414807547773 60.517346154721146, -74.8816300087355 -8.664100200354591), (-74.8816300087355 -8.664100200354595, -29.937485777480447 -69.18144631984912, 44.94414423125503 -60.51734611949454, 74.88162621931913 8.664099761904156, 29.937481933257768 69.18144635507574, -44.94414807547773 60.517346154721146, -74.8816300087355 -8.664100200354595)), LINESTRING (79.46982124803172 9.194972039429311, 79.26313658326842 8.717351930944158))" isValid
+
+GEOSOP output: false
+```
+--- comment dr-jts 2025-12-15T19:12:18Z
+Fails in JTS too.
+===== geos_1343.json open None | Wrong result of unary_union: islands in polygons being unioned get "lost" | milestone: None | closed None
+When union-ing two polygon that are both ~donut shaped, the result doesn't have a hole in it anymore.
+
+Originally reported here: https://github.com/shapely/shapely/issues/1633
+
+Visual (**left**: green + blue: overlapping donut-like shapes / **right**: result of union):
+
+<img width="569" height="417" alt="Image" src="https://github.com/user-attachments/assets/888f8377-4b19-43b1-a97c-eb8b77f1c5d4" />
+
+Script to reproduce:
+``` python
+import shapely
+import shapely.wkt
+from shapely import plotting
+import matplotlib.pyplot as plt
+
+# TODO shapely bug
+poly1 = shapely.wkt.loads(
+    "POLYGON ((-70.1162076595306 -1.534802639761859, -69.11618088109869 0.1972327069961337, -58.117783208841075 -6.152921874253107, -82.91750004113058 -49.107291593330054, -92.53033522436974 -36.35721051634815, -71.84825846863409 -0.5348026424198639, -70.1162076595306 -1.534802639761859), (-70.1162076595306 -1.534802639761859, -90.1362204660169 -36.210482111666536, -83.13912274760473 -45.49115337178261, -60.849818553267646 -6.88494590501217, -70.1162076595306 -1.534802639761859))")
+poly2 = shapely.wkt.loads(
+    "POLYGON ((-54.71170009216383 -7.253412859063702, -80.4528216636855 -51.8383434227556, -82.83439152620278 -50.463343426410354, -85.03022855188276 -52.1188795198414, -95.62396528443203 -38.067769761534805, -93.42812825875205 -36.41223366810376, -95.80969812126934 -35.037233671758514, -73.50445135763194 3.59658713514124, -71.12288149511465 2.2215871387959965, -69.76459062209818 4.612726177890158, -69.7335565179279 4.595097198664126, -71.09184739094437 2.2039581595699644, -69.71681057060047 4.585506761362204, -55.718233134337225 -3.4968642609262157, -57.09326995468111 -5.878412862718456, -54.71170009216383 -7.253412859063702), (-60.84981855326765 -6.884945905012167, -70.1162076595306 -1.5348026397618595, -90.1362204660169 -36.210482111666536, -83.13912274760473 -45.4911533717826, -60.84981855326765 -6.884945905012167))")
+print(f"{poly1.is_valid=}")
+print(f"{poly2.is_valid=}")
+
+u = shapely.unary_union([poly1, poly2])
+
+if u.area <= (poly1.area + poly2.area) + (eps := 1):
+    print(f"Unary union OK: area ({u.area}) <= {(poly1.area + poly2.area)=}")
+else:
+    print(f"Unary union not OK: area ({u.area}) > {(poly1.area + poly2.area)=}")
+
+union = poly1.union(poly2)
+if union.area <= (poly1.area + poly2.area) + (eps := 1):
+    print(f"Union OK: area ({union.area}) <= {(poly1.area + poly2.area)=}")
+else:
+    print(f"Union not OK: area ({union.area}) > {(poly1.area + poly2.area)=}")
+
+fig, ax = plt.subplots(ncols=2, sharey=True)
+
+plotting.plot_polygon(ax=ax[0], polygon=poly1, color="blue", alpha=0.5)
+plotting.plot_polygon(ax=ax[0], polygon=poly2, color="green", alpha=0.5)
+plotting.plot_polygon(ax=ax[1], polygon=u, color="red", alpha=0.5)
+plt.show()
+```
+
+
+--- comment pramsey 2025-12-15T16:28:13Z
+This one replicates in JTS OverlayNGRobust, @dr-jts 
+
+<img width="912" height="912" alt="Image" src="https://github.com/user-attachments/assets/581b15dd-082c-4f68-93c9-0e31850bc494" />
+===== geos_1344.json open None | Union between specific input polygons returns vastly wrong results | milestone: None | closed None
+Originally reported in https://github.com/shapely/shapely/issues/2368
+
+The union between two specific polygons results in a vastly wrong-shaped result
+Tested with GEOS 3.14.1 (thanks [theroggy](https://github.com/theroggy))
+
+instead of returning something like this:
+<img width="536" height="142" alt="Image" src="https://github.com/user-attachments/assets/054bb3ee-05bf-4223-bdb0-76e6c5bf096b" />
+
+Geos produces this:
+<img width="561" height="220" alt="Image" src="https://github.com/user-attachments/assets/432ac9a8-bbdc-438d-9c50-678bc9d12f85" />
+
+Similar issues occur for the same input polygons when you try to intersect them or get the difference between the polygons.
+e.g. this is the result of the intersection, instead of it being empty:
+<img width="551" height="220" alt="Image" src="https://github.com/user-attachments/assets/404b754a-f0b5-49e3-92a4-50bc26437e5a" />
+
+
+# Code To Reproduce:
+
+```python
+import os
+
+import matplotlib.pyplot as plt
+import shapely
+from shapely import plotting
+
+coords1 = [(-295.25030351249666, 4.236074061427525),
+ (-295.08711234218333, -2.301948231163383),
+ (-314.64218025800653, -2.7900491087570383),
+ (-314.80537142831986, 3.7479731838338695)]
+poly1 = shapely.Polygon(coords1)
+
+coords2 = [(-275.69523559667346, 4.7241749390211805),
+ (-275.53204442636013, -1.8138473535697273),
+ (-295.08711234218333, -2.3019482311633825),
+ (-295.25030351249666, 4.236074061427525)]
+poly2 = shapely.Polygon(coords2)
+
+print(f'{poly1.wkt=}')
+print('poly1 area           ', poly1.area)
+print(f'poly1 is_valid       {poly1.is_valid}')
+print(f'{poly2.wkt=}')
+print('poly2 area           ', poly2.area)
+print(f'poly2 is_valid       {poly2.is_valid}')
+print('incorrect union area ', shapely.union(poly1, poly2).area)
+print(f'incorrect union is_valid {shapely.union(poly1, poly2).is_valid=}')
+print(f"({(shapely.union(poly1, poly2).equals(poly2))=}")
+print('incorrect union area ', shapely.unary_union(shapely.MultiPolygon([poly1, poly2])).area)
+print('correct union area   ', shapely.union(poly1, poly2.buffer(0.00000000001)).area)
+
+# Reproduce with geosop
+geosop = "C:\\Tools\\miniforge3\\envs\\pysnippets\\Library\\bin\\geosop.exe"
+cmdline = f'{geosop} -a "{shapely.MultiPolygon([poly1, poly2]).wkt}" unaryUnion'
+print(f'Running command:\n{cmdline}\n')
+os.system(cmdline)
+
+# Plot
+fig, ax = plt.subplots()
+ax.set_title('Input Polygons')
+ax.set_aspect("equal")
+plotting.plot_polygon(ax=ax, polygon=poly1, color='blue', alpha=0.3)
+plotting.plot_polygon(ax=ax, polygon=poly2, color='green', alpha=0.3)
+
+union_incorrect = shapely.union_all([poly1, poly2])
+plotting.plot_polygon(ax=ax, polygon=union_incorrect, color='purple', alpha=0.3)
+plt.show()
+```
+Output:
+```
+poly1.wkt='POLYGON ((-295.25030351249666 4.236074061427525, -295.08711234218333 -2.301948231163383, -314.64218025800653 -2.7900491087570383, -314.80537142831986 3.7479731838338695, -295.25030351249666 4.236074061427525))'
+poly1 area            127.9311237202268
+poly1 is_valid       True
+poly2.wkt='POLYGON ((-275.69523559667346 4.7241749390211805, -275.53204442636013 -1.8138473535697273, -295.08711234218333 -2.3019482311633825, -295.25030351249666 4.236074061427525, -275.69523559667346 4.7241749390211805))'
+poly2 area            127.9311237202268
+poly2 is_valid       True
+incorrect union area  127.9311237202268
+incorrect union is_valid shapely.union(poly1, poly2).is_valid=True
+((shapely.union(poly1, poly2).equals(poly2))=True
+incorrect union area  127.9311237202268
+correct union area    255.86224744091012
+Running command:
+C:\Tools\miniforge3\envs\pysnippets\Library\bin\geosop.exe -a "MULTIPOLYGON (((-295.25030351249666 4.236074061427525, -295.08711234218333 -2.301948231163383, -314.64218025800653 -2.7900491087570383, -314.80537142831986 3.7479731838338695, -295.25030351249666 4.236074061427525)), ((-275.69523559667346 4.7241749390211805, -275.53204442636013 -1.8138473535697273, -295.08711234218333 -2.3019482311633825, -295.25030351249666 4.236074061427525, -275.69523559667346 4.7241749390211805)))" unaryUnion
+
+POLYGON ((-275.53204442636013 -1.8138473535697273, -295.08711234218333 -2.3019482311633825, -295.25030351249666 4.236074061427525, -275.69523559667346 4.7241749390211805, -275.53204442636013 -1.8138473535697273))
+```
+
+--- comment pramsey 2025-12-16T00:21:21Z
+JTS provides different but also wrong results for union/intersection and correctly gets EMPTY for difference. /cc @dr-jts 
+
+<img width="912" height="912" alt="Image" src="https://github.com/user-attachments/assets/a2ac7f26-160c-460b-a863-aa0c7ee1c1e5" />
+--- comment pramsey 2025-12-16T00:24:30Z
+Intersection is dodgy on GEOS (MacOS) too. Difference comes up with EMPTY.
+```
+./bin/geosop \
+-a "POLYGON((-295.25030351249666 4.236074061427525,-295.08711234218333 -2.301948231163383,-314.64218025800653 -2.7900491087570383,-314.80537142831986 3.7479731838338695, -295.25030351249666 4.236074061427525))" \
+-b "POLYGON((-275.69523559667346 4.7241749390211805,-275.53204442636013 -1.8138473535697273,-295.08711234218333 -2.3019482311633825,-295.25030351249666 4.236074061427525,-275.69523559667346 4.7241749390211805))" \
+intersection
+```
+--- comment mwtoews 2025-12-17T01:53:25Z
+I get the correct result with normalized inputs:
+```
+$ geosop -a "POLYGON ((-295.25030351249666 4.236074061427525, -295.08711234218333 -2.301948231163383, -314.64218025800653 -2.7900491087570383, -314.80537142831986 3.7479731838338695, -295.25030351249666 4.236074061427525))" normalize > a.wkt
+$ cat a.wkt
+POLYGON ((-314.80537142831986 3.7479731838338695, -295.25030351249666 4.236074061427525, -295.08711234218333 -2.301948231163383, -314.64218025800653 -2.7900491087570383, -314.80537142831986 3.7479731838338695))
+$ geosop -a "POLYGON ((-275.69523559667346 4.7241749390211805, -275.53204442636013 -1.8138473535697273, -295.08711234218333 -2.3019482311633825, -295.25030351249666 4.236074061427525, -275.69523559667346 4.7241749390211805))" normalize > b.wkt
+$ cat b.wkt
+POLYGON ((-295.25030351249666 4.236074061427525, -275.69523559667346 4.7241749390211805, -275.53204442636013 -1.8138473535697273, -295.08711234218333 -2.3019482311633825, -295.25030351249666 4.236074061427525))
+$ geosop -a a.wkt -b b.wkt union > ab.wkt
+$ cat ab.wkt
+POLYGON ((-295.25030351249666 4.236074061427525, -275.69523559667346 4.7241749390211805, -275.53204442636013 -1.8138473535697273, -295.08711234218333 -2.301948231163383, -314.64218025800653 -2.7900491087570383, -314.80537142831986 3.7479731838338695, -295.25030351249666 4.236074061427525))
+$ geosop -a ab.wkt area
+255.86224744045356
+```
+--- comment pramsey 2025-12-17T01:54:48Z
+That's... scary. Same points, different starting point, good answer.
+--- comment dr-jts 2026-01-08T23:59:31Z
+> That's... scary. Same points, different starting point, good answer.
+
+Typical non-robustness behaviour.  More frustrating than scary.
+===== geos_1354.json open None | intersection between polygons results in Point instead of Polygon | milestone: None | closed None
+The intersection of a valid polygon (geom_0) with another valid polygon (zone) that should result in a Polygon results in a Point. Applying normalize or a different orientation on one of the polygons sometimes changes the result.
+
+When coordinates of geom_0 are slightly changed (1e-14) to (=geom_1), the result is correct as well.
+
+Originally reported here: https://github.com/shapely/shapely/issues/1639
+
+Visualisation of the input polygons (zone: blue, geom_0: red, geom_1: green):
+
+<img width="400" height="300" alt="Image" src="https://github.com/user-attachments/assets/556a645b-e014-48a9-97bb-a319ff6f8ce6" />
+
+Reproduction script:
+``` python
+import matplotlib.pyplot as plt
+
+from shapely import normalize, orient_polygons, plotting, wkt
+
+zone = wkt.loads("POLYGON ((79.57006468414316 227.16715306136757, 43.44048377114246 -7.28462320799008, 127.74283932445364 -13.587090929970145, 154.99848808655608 219.60419326741248, 79.57006468414316 227.16715306136757))")
+geom_0 = wkt.loads("POLYGON ((127.74283932445364 -13.587090929970145, 43.44048377114247 -7.28462320799008, 54.329847263553376 63.37854389007508, 54.61818554266568 63.33040101339976, 135.62637080265046 53.862076963892896, 127.74283932445364 -13.587090929970145))")
+# this geometry is almost exactly the same as geom_0
+geom_1 = wkt.loads("POLYGON ((127.74283932445363 -13.587091019377114, 43.44048377114246 -7.284623297862709, 54.32984726350768 63.37854379976558, 54.61818554261504 63.33040092309082, 135.62637080259915 53.862076873508386, 127.74283932445363 -13.587091019377114))")
+
+print(f"{zone.is_valid=}, {geom_0.is_valid=}, {geom_1.is_valid=}")
+
+# intersection of geom_0 with zone, gives a point, also if geom_0 is oriented cw
+print(f"Wrong: {geom_0.intersection(zone).geom_type=}")
+print(f"Wrong: {orient_polygons(geom_0, exterior_cw=True).intersection(zone).geom_type=}")
+
+# when geom_0 is oriented ccw or normalized first, gives a polygon
+print(f"OK: {orient_polygons(geom_0).intersection(zone).geom_type=}")
+print(f"OK: {normalize(geom_0).intersection(zone).geom_type=}")
+
+# intersection of zone with geom_0, gives a point too, also if zone is oriented ccw
+print(f"Wrong: {zone.intersection(geom_0).geom_type=}")
+print(f"Wrong: {orient_polygons(zone).intersection(geom_0).geom_type=}")
+
+# when zone is oriented cw or normalized first, gives a polygon
+print(f"OK: {orient_polygons(zone, exterior_cw=True).intersection(geom_0).geom_type=}")
+print(f"OK: {normalize(zone).intersection(geom_0).geom_type=}")
+
+# intersection of geom_1 with zone, gives a polygon
+print(f"OK: {geom_1.intersection(zone).geom_type=}")
+
+# Visualization
+fig, ax = plt.subplots(ncols=3, sharey=True)
+plotting.plot_polygon(zone, ax=ax[0], color="blue", alpha=0.3)
+plotting.plot_polygon(zone, ax=ax[1], color="blue", alpha=0.3)
+plotting.plot_polygon(geom_0, ax=ax[1], color="red", alpha=0.3)
+plotting.plot_polygon(zone, ax=ax[2], color="blue", alpha=0.3)
+plotting.plot_polygon(geom_1, ax=ax[2], color="green", alpha=0.3)
+plt.show()
+```
+Output:
+```
+zone.is_valid=True, geom_0.is_valid=True, geom_1.is_valid=True
+Wrong: geom_0.intersection(zone).geom_type='Point'
+Wrong: orient_polygons(geom_0, exterior_cw=True).intersection(zone).geom_type='Point'
+OK: orient_polygons(geom_0).intersection(zone).geom_type='Polygon'
+OK: normalize(geom_0).intersection(zone).geom_type='Polygon'
+Wrong: zone.intersection(geom_0).geom_type='Point'
+Wrong: orient_polygons(zone).intersection(geom_0).geom_type='Point'
+OK: orient_polygons(zone, exterior_cw=True).intersection(geom_0).geom_type='Polygon'
+OK: normalize(zone).intersection(geom_0).geom_type='Polygon'
+OK: geom_1.intersection(zone).geom_type='Polygon'
+```
+--- comment dr-jts 2026-02-11T21:00:38Z
+Fails in JTS as well.  However, it works using using snapping, and also snap-rounding.  This is somewhat good news - a better detector for robustness failures after initial overlay should fix this.
+
+As always, the recommendation is to not carry excess precision in geometries, and use snap-rounded overlay to ensure robustness.
+
+
+===== geos_1355.json open None | UnaryUnion gives error: found two shells in EdgeRing list | milestone: None | closed None
+For a combination of 3 specific valid polygons, applying unaryUnion on them gives an error using GEOS 3.14.1.
+
+```
+C:\Tools\miniforge3\envs\pysnippets\Library\bin\geosop.exe -a "GEOMETRYCOLLECTION (POLYGON ((-8.060879443418989 -2.6638274935170196, -8.194659017192153 -33.71089267415941, -11.242630721688515 -33.69775918301853, -11.10885114791535 -2.6506940023761434, -8.060879443418989 -2.6638274935170196)), POLYGON ((-84.63155622050482 -2.3338899473058037, -84.61842272936394 0.7140817571905578, -8.047745952278113 0.3841442109793418, -8.06087944341899 -2.6638274935170196, -84.63155622050482 -2.3338899473058037)), POLYGON ((-84.63155622050482 -2.3338899473058037, -84.61842272936394 0.7140817571905576, -11.095717656774472 0.3972777021202178, -11.108851147915349 -2.6506940023761434, -84.63155622050482 -2.3338899473058037)))" unaryUnion
+```
+```
+Run-time exception: AssertionFailedException: found two shells in EdgeRing list
+```
+
+If all input polygons are oriented ccw first, the error does not occur, but e.g. nomalizing does not help.
+
+Originally posted here: https://github.com/shapely/shapely/issues/1639#issuecomment-1334553140
+
+Visualization of input:
+
+<img width="400" height="200" alt="Image" src="https://github.com/user-attachments/assets/31b52109-b85d-41ac-a589-221500c2f47a" />
+
+Full script to reproduce some different scenarios:
+``` python
+import os
+import matplotlib.pyplot as plt
+import shapely
+from shapely import normalize, orient_polygons, plotting, unary_union, wkt
+
+buffer_0 = wkt.loads('POLYGON ((-8.060879443418989 -2.6638274935170196, -8.194659017192153 -33.71089267415941, -11.242630721688515 -33.69775918301853, -11.10885114791535 -2.6506940023761434, -8.060879443418989 -2.6638274935170196))')
+buffer_1 = wkt.loads('POLYGON ((-84.63155622050482 -2.3338899473058037, -84.61842272936394 0.7140817571905578, -8.047745952278113 0.3841442109793418, -8.06087944341899 -2.6638274935170196, -84.63155622050482 -2.3338899473058037))')
+buffer_2 = wkt.loads('POLYGON ((-84.63155622050482 -2.3338899473058037, -84.61842272936394 0.7140817571905576, -11.095717656774472 0.3972777021202178, -11.108851147915349 -2.6506940023761434, -84.63155622050482 -2.3338899473058037))')
+buffers = [buffer_0, buffer_1, buffer_2]
+
+print(f"{all([b.is_valid for b in buffers])=}") # True
+
+try:
+    print(f"{unary_union(buffers)=}")
+except Exception as e:
+    print(f"Exception: {e}")
+
+try:
+    print(f"{unary_union([normalize(b) for b in buffers])=}")
+except Exception as e:
+    print(f"Exception after normalize: {e}")
+
+try:
+    print(f"{unary_union([orient_polygons(b, exterior_cw=True) for b in buffers])=}")
+except Exception as e:
+    print(f"Exception after orient_polygons with exterior_cw=True: {e}")
+
+# orient_polygons with exterior_cw=False does work though
+print(f"{unary_union([orient_polygons(b) for b in buffers])=}")
+
+# Running with geosop gives the same error:
+#    Run-time exception: AssertionFailedException: found two shells in EdgeRing list
+geosop = "C:\\Tools\\miniforge3\\envs\\pysnippets\\Library\\bin\\geosop.exe"
+wkt = shapely.GeometryCollection(buffers).wkt
+cmdline = f'{geosop} -a "{wkt}" unaryUnion'
+print(f"Running command: {cmdline}")
+os.system(cmdline)
+
+# Visiualize the input
+plotting.plot_polygon(buffer_0, color='red')
+plotting.plot_polygon(buffer_1, color='green')
+plotting.plot_polygon(buffer_2, color='blue')
+plt.show()
+```
+Output:
+```
+all([b.is_valid for b in buffers])=True
+Exception: AssertionFailedException: found two shells in EdgeRing list
+Exception after normalize: AssertionFailedException: found two shells in EdgeRing list
+Exception after orient_polygons with exterior_cw=True: AssertionFailedException: found two shells in EdgeRing list  
+unary_union([orient_polygons(b) for b in buffers])=<POLYGON ((-8.061 -2.664, -8.195 -33.711, -11.243 -33.698, -11.109 -2.651, -...>
+Running command: C:\Tools\miniforge3\envs\pysnippets\Library\bin\geosop.exe -a "GEOMETRYCOLLECTION (POLYGON ((-8.060879443418989 -2.6638274935170196, -8.194659017192153 -33.71089267415941, -11.242630721688515 -33.69775918301853, -11.10885114791535 -2.6506940023761434, -8.060879443418989 -2.6638274935170196)), POLYGON ((-84.63155622050482 -2.3338899473058037, -84.61842272936394 0.7140817571905578, -8.047745952278113 0.3841442109793418, -8.06087944341899 -2.6638274935170196, -84.63155622050482 -2.3338899473058037)), POLYGON ((-84.63155622050482 -2.3338899473058037, -84.61842272936394 0.7140817571905576, -11.095717656774472 0.3972777021202178, -11.108851147915349 -2.6506940023761434, -84.63155622050482 -2.3338899473058037)))" unaryUnion
+Run-time exception: AssertionFailedException: found two shells in EdgeRing list
+```
+===== geos_1383.json open None | Union of two valid (sliver)polygons results in POLYGON EMPTY | milestone: None | closed None
+The unary union of two sliver polygons (very narrow) results in POLYGON EMPTY.
+
+For what it is worth, it seems that this is an easy case to detect that the standard `unary union` code path doesn't result in a correct result, as the result of `unary union` of two non-empty geometries should never be empty?
+
+The input polygons are extremely narrow, but valid:
+<img width="557" height="448" alt="Image" src="https://github.com/user-attachments/assets/144d8c0f-1866-45f7-9f24-e50dab16dee3" />
+
+Script to reproduce
+``` python
+import matplotlib.pyplot as plt
+import shapely
+from shapely import plotting as plotter
+
+examples = [
+    (
+        "POLYGON ((184293.20931495726 191412.37075890973, 184293.23465140502 191412.3245224961, 184293.23465140507 191412.324522496, 184293.20931495726 191412.37075890973))",
+        "POLYGON ((184293.23465140502 191412.3245224961, 184297.14 191403.80000000002, 184293.23465140496 191412.32452249623, 184293.23465140502 191412.3245224961))",
+    ),
+    (
+        "Polygon ((185537.86885940807405859 192540.71049361632321961, 185537.86885940856882371 192540.71049361626501195, 185561.19000000000232831 192537.80999999999767169, 185537.86885940807405859 192540.71049361632321961))",
+        "Polygon ((185537.868859409034485 192540.71049361620680429, 185537.66598733825958334 192540.7357251928478945, 185537.8688594093255233 192540.71049361617770046, 185537.868859409034485 192540.71049361620680429))",
+    ),
+]
+
+for i, (wkt1, wkt2) in enumerate(examples):
+    print(f"--- Example: {i} ---")
+    geom1 = shapely.from_wkt(wkt1)
+    print(f"{geom1.is_valid=}")
+    geom2 = shapely.from_wkt(wkt2)
+    print(f"{geom2.is_valid=}")
+
+    union_geom = geom1.union(geom2)
+    print(f"{union_geom=}")  # POLYGON EMPTY
+
+    fig, ax = plt.subplots()
+    plotter.plot_polygon(geom1, ax=ax, color="blue")
+    plotter.plot_polygon(geom2, ax=ax, color="red")
+    plt.show()
+```
+Output:
+```
+--- Example: 0 ---
+geom1.is_valid=True
+geom2.is_valid=True
+union_geom=<POLYGON EMPTY>
+--- Example: 1 ---
+geom1.is_valid=True
+geom2.is_valid=True
+union_geom=<POLYGON EMPTY>
+```
+--- comment mwtoews 2026-02-04T21:26:05Z
+With JTS 1.20.0, OverlayNG's union yields an exception:
+> org.locationtech.jts.geom.TopologyException : org.locationtech.jts.geom.TopologyException: found non-noded intersection between LINESTRING ( 184293.20931495726 191412.37075890973, 184293.234651405 191412.32452249617 ) and LINESTRING ( 184293.23465140496 191412.32452249623, 184293.23465140502 191412.3245224961 ) [ (184293.234651405, 191412.32452249617, NaN) ]
+
+And Overlay's union yields an invalid result:
+> POLYGON ((184293.20931495726 191412.37075890973, 184293.23465140496 191412.32452249623, 184293.23465140502 191412.3245224961, 184293.23465140507 191412.324522496, 184297.14 191403.80000000002, 184293.23465140502 191412.3245224961, 184293.20931495726 191412.37075890973))
+
+with invalid description:
+> Ring Self-intersection at or near point (184293.23465140502, 191412.3245224961, NaN)
+--- comment pramsey 2026-02-04T21:32:51Z
+Interesting that JTS catches it. I wonder if GEOS has as many post-process checks for anomalies as JTS does.
+--- comment dbaston 2026-02-06T19:07:17Z
+With JTS OverlayNGRobust I get a MultiLineString result.
+
+```
+MULTILINESTRING ((184293.20931495726 191412.37075890973, 184293.23465140502 191412.3245224961), 
+  (184293.23465140502 191412.3245224961, 184297.14 191403.80000000002))
+```
+--- comment theroggy 2026-02-10T15:51:15Z
+I added another example of the same behaviour in the reproducing script...
+--- comment dr-jts 2026-02-11T20:51:35Z
+> With JTS OverlayNGRobust I get a MultiLineString result.
+
+Yes, that's good news actually. It shows that the basic OverlayNG code catches the robustness failure, and falls back to using snapping to produce an answer.  The snapping collapses the geometry to lines.
+
+It would be nice if it was possible to determine a polygonal result (like the old Overlay does).  But this is quite a bit less egregious than other reported OverlayNG failures, so it's lower in priority to try and fix.
+
+
+===== geos_1405.json closed completed | Intersection of polygons gives incorrect results, depending on order of arguments | milestone: None | closed 2026-08-12T20:03:07Z
+Picture shows it, code to reproduce below.  Both geometries are valid.  The adjustment is setting precision to a very small value on one geometry.  The only difference between sub-plots is the order used in calculating the intersection in the second plot, and a tiny rounding difference in the third.
+<img width="1000" height="480" alt="Image" src="https://github.com/user-attachments/assets/ee84e354-98dd-4434-9bec-b825ffc4cdcf" />
+
+Code to reproduce:
+```
+import shapely
+from matplotlib import pyplot as plt
+from shapely.plotting import plot_polygon, plot_line
+
+# Define shapes
+shape1 = shapely.from_wkt(
+    'POLYGON ((0.3081742230052605 0.8574917215741684, 0.3235558676951882 0.959764955575765, 0.3268384579963268 0.9761955555650583, 0.3309851357533714 0.9899402381062132, 0.3364277995673436 1.0032251410108646, 0.3431165154642001 1.015928381315176, 0.3509899175067092 1.0279334125460768, 0.3599757707991199 1.039130093982343, 0.3699916342095888 1.0494157011457903, 0.3809456167302097 1.058695868251819, 0.392737220535371 1.0668854539727242, 0.4052582630037556 1.073909322570786, 0.4183938692448725 1.079703033234622, 0.4320235260241182 1.0842134312944256, 0.4460221874170914 1.0873991358919737, 0.4602614220492758 1.0892309196312477, 0.4746105913957159 1.0896919767265496, 0.4913319068024928 1.0886253811328888, 1.6700718959842467 0.9565165637600046, 1.57979867649902 0.6026736686526396, 1.091045353275972 0.0772874773100065, 1.0880332290753003 0.0751954761072001, 1.0807249769395977 0.0690039561787506, 1.0740426168917647 0.0621416291321494, 1.0680474565569975 0.0546714537082506, 1.063366321369268 0.0475338562857705, 1.0334449647384247 0.0153698445990219, 0.7231700686154534 0.6266171384924346, 0.7149755148483247 0.6410255508351703, 0.7068170547053731 0.6526513145597219, 0.697594844851672 0.6634526894489446, 0.6873916890776646 0.6733326928059559, 0.6762991988285427 0.6822026146859029, 0.6644169706492398 0.6899828143991633, 0.6497523731524246 0.6977095626115124, 0.3081742230052605 0.8574917215741684))',
+)
+shape2 = shapely.from_wkt(
+'POLYGON ((1.108561208420377086625308038492221385240554809570312500000000 0.096116174702266674034767390821798471733927726745605468750000, 1.579798676499019949304170040704775601625442504882812500000000 0.602673668652639604736975798005005344748497009277343750000000, 1.445650745099990475139861700881738215684890747070312500000000 0.076855572327130111665027811795880552381277084350585937500000, 1.444900805558562373320796723419334739446640014648437500000000 0.076572789294606147247890248763724230229854583740234375000000, 1.429693401346880499147573573281988501548767089843750000000000 0.072597961830626389634346651291707530617713928222656250000000, 1.414153318559506544715986819937825202941894531250000000000000 0.070237829803077911350328577100299298763275146484375000000000, 1.398451511191880936024745096801780164241790771484375000000000 0.069518356651499413345618449966423213481903076171875000000000, 1.380137763162443853559580020373687148094177246093750000000000 0.070602770087456412362314495112514123320579528808593750000000, 1.160083364028043684257340828480664640665054321289062500000000 0.095265653076203160587454021879239007830619812011718750000000, 1.150524405216126089257500098028685897588729858398437500000000 0.095875386407627882778825778586906380951404571533203125000000, 1.140950960368624311769281121087260544300079345703125000000000 0.095567779425867860343402071521268226206302642822265625000000, 1.131450861503619176318125028046779334545135498046875000000000 0.094345654285582614129168632643995806574821472167968750000000, 1.122111267723040706201231841987464576959609985351562500000000 0.092220223431104253464241082838270813226699829101562500000000, 1.113017865567405006999024408287368714809417724609375000000000 0.089210986727341734514595827931771054863929748535156250000000, 1.112913182538546097433140857901889830827713012695312500000000 0.089164814272908357595248673987953225150704383850097656250000, 1.108561208420377086625308038492221385240554809570312500000000 0.096116174702266674034767390821798471733927726745605468750000))'
+)
+
+# Define plotting function
+def plot_intersection(ax, A, B):
+    plot_polygon(A, ax=ax, facecolor='none', edgecolor='r', hatch="/")
+    plot_polygon(B, ax=ax, facecolor='none', edgecolor='b', hatch="\\")
+    plot_polygon(shapely.intersection(A, B), ax=ax, linewidth=5, linestyle="-.", edgecolor='g', alpha=0.5, hatch="||||")
+    return ax
+
+# Make sure there's nothing wrong with the geometry
+assert shape1.is_valid
+assert shape2.is_valid
+
+# And do some clean up just in case...
+shape1 = shape1.buffer(0)
+shape2 = shape2.buffer(0)
+shape1 = shape1.normalize()
+shape2 = shape2.normalize()
+
+# Plot outline of shapes and shade their intersection
+fig, [ax1, ax2, ax3] = plt.subplots(1, 3, sharex=True, sharey=True)
+
+ax1.set_title("Wrong behavior")
+plot_intersection(ax1, shape1, shape2)
+ax2.set_title("Expected behavior")
+plot_intersection(ax2, shape2, shape1)
+ax3.set_title("Behavior, after \"adjusting\" geometry")
+plot_intersection(ax3, shape1, shapely.set_precision(shape2, 1e-300))
+plt.show()
+
+```
+
+Version info:
+```
+Python 3.13.7 (main, Mar  3 2026, 12:19:54) [GCC 15.2.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import shapely
+>>> shapely.__version__
+'2.1.2'
+>>> shapely.geos_version_string
+'3.13.1'
+```
+On Ubuntu 25.10
+===== geos_1523.json open None | Overlay silently wrong when an operand has a zero-width collinear interior ring | milestone: None | closed None
+# Overlay silently returns wrong areas when noding a nearly collinear interior ring
+
+Intersection and difference of two valid polygons can silently return incorrect areas when one polygon has an extremely thin triangular hole and the other polygon's boundary crosses it. The floating-point overlay returns successfully, so the robust overlay wrapper does not retry.
+
+## Reproduce
+
+Save these geometries as `a.wkt` and `b.wkt`, respectively:
+
+```text
+POLYGON ((379.694383 3423, 382 3423, 382 3428, 379.694383 3428, 379.694383 3423))
+```
+
+```text
+POLYGON ((380 3428.3, 382 3429, 388 3422, 377 3422, 378 3427, 380 3428.3),
+         (379.153701 3427.199712952367, 380.736005 3427.1997128766443,
+          379.777158 3427.199712922531, 379.153701 3427.199712952367))
+```
+
+Both geometries pass `isValid`. A lies inside B's shell. B's hole is nearly collinear, but **not exactly collinear or zero-area**: exact rational arithmetic on the parsed binary64 coordinates gives a hole area of approximately `1.3650878779e-13`.
+
+```sh
+geosop -a a.wkt isValid
+geosop -a b.wkt isValid
+geosop -a a.wkt -b b.wkt -f wkt intersection
+geosop -a a.wkt -b b.wkt -f wkt difference
+```
+
+Without the fix, intersection returns:
+
+```text
+POLYGON ((379.694383 3427.1997129264923, 380.736005 3427.1997128766443,
+          379.777158 3427.199712922531, 379.694383 3427.1997129264923))
+```
+
+| Operation | Observed area | Expected area, approximately |
+| --- | ---: | ---: |
+| A intersection B | 5.01746e-15 | 11.528085 |
+| A difference B | 11.528085 | 0 |
+
+The exact difference is a tiny portion of the hole, not literally empty. The error is that almost all of A is assigned to the wrong result.
+
+Independently reproduced on GEOS 3.13.1 and the unpatched development revision `55809ca8d` (3.16.0dev). Swapping the inputs also gives incorrect results; for B difference A, the expected area is approximately `36.571915`, rather than approximately `48.1`. Keep the hole's ordinates as written: this example depends on rounding at binary64 precision.
+
+Snap-rounding computes the expected areas for this example:
+
+```sh
+geosop -a a.wkt -b b.wkt -f wkt intersectionSR 100000000
+geosop -a a.wkt -b b.wkt -f wkt differenceSR 100000000
+```
+
+![Input configuration and the local winding reversal after noding](https://github.com/user-attachments/assets/2ffeb7cc-ed16-440d-aa12-196211c61e52)
+
+## What happens
+
+Exact rational calculations on the parsed doubles establish the following numerical mechanism:
+
+1. The two intersections of A's left edge with the hole differ in y by approximately `1.496359985e-13`. One ulp at this y-coordinate is `4.547473509e-13`. Both crossings round to `X = (379.694383, 3427.1997129264923)`.
+2. Replacing the crossings with X pinches the hole. The remaining triangle, in vertex order X, second hole vertex, third hole vertex, has signed area approximately `-5.017455576e-15`, whereas the original ring has positive signed area. Its winding has reversed on the noded coordinates.
+3. The boundary side labels come from the original ring, while the angular order at X comes from the noded coordinates. This example gets through side-location consistency checking but propagates incorrect locations to A's boundary. Intersection then assembles only the tiny triangle.
+
+The existing result-area heuristic does not detect this case: intersection is checked against upper bounds, which a tiny result satisfies. Difference also satisfies its existing bounds here. This does not imply that every operation's area check is only an upper-bound check.
+
+The unpatched development revision already includes the angular-ordering change from GH-1499. This reproduction therefore needs additional handling beyond that change.
+
+## Proposed fix
+
+After labelling, check for inconsistent edge locations at nodes incident on a collapsed edge. For each eligible non-boundary, non-collapsed edge, compare its label with a point-in-area query against the original input, using a midpoint sample from its longest segment with an eligible midpoint. Skip samples that round to a segment endpoint, are non-finite, or locate on the input boundary. A mismatch raises `TopologyException`, allowing `OverlayNGRobust` to retry with its existing snapping strategies.
+
+**Apply this check only to the default floating-point noding path for linear inputs.** Do not apply it with a fixed precision model, a caller-supplied noder, or curved inputs. Snapping and precision reduction can legitimately change locations relative to the original geometry; rejecting those changes would break the fallback strategies. A supplied noder can snap even when the overlay precision model is floating.
+
+This is a targeted consistency heuristic. It detects the inversion in this reproduction without adding a distance tolerance to the check. It is not a proof that all possible inversions have collapsed edges, nor a complete validation of the overlay graph. The existing robust retries retain their own snapping tolerances.
+
+===== geos_1540.json open None | RelateOp fails to report interior-interior intersection | milestone: None | closed None
+See https://github.com/libgeos/geos/issues/1530#issuecomment-5876928771
+Upstream: https://github.com/locationtech/jts/issues/1237
+===== geos_1558.json {'message': 'Not Found', 'documentation_url': 'https://docs.github.com/rest/issues/issues#get-an-issue', 'status': '404'}
+===== jts_1222.json open None | OverlayNG difference operation moves points in outer edge | milestone: None | closed None
+Stepping through the code the change in point locations occurs in `GeometryOverlay` in the JTS code base. `isOverLayNG` is set to `true` so `OverlayNGRobust.overlay` is used. The two input geometries are:
+
+```
+POLYGON ((412023.08 92158.29, 412021.68 92161.6, 412022.58 92161.96, 412021.45 
+92164.58, 412022.19 92165.38, 412021.43 92167.13, 412018.32 92165.86, 412016.28 
+92165.03, 412019.75 92156.92, 412023.08 92158.29))
+```
+and a negative (-0.5m) buffer of it:
+
+```
+POLYGON ((412022.4 92158.6, 412020 92157.6, 412016.9 92164.8, 412021.2 92166.5, 
+412021.6 92165.5, 412021.1 92164.9, 412021 92164.8, 412021 92164.7, 412021 
+92164.6, 412021 92164.5, 412021 92164.4, 412021.9 92162.2, 412021.5 92162.1, 
+412021.4 92162, 412021.3 92162, 412021.3 92161.9, 412021.2 92161.8, 412021.2 
+92161.7, 412021.2 92161.6, 412021.2 92161.5, 412021.2 92161.4, 412022.4 
+92158.6))
+```
+are differenced to give a bordered polygon. which results in:
+
+```
+POLYGON ((412019.8 92156.9, 412016.3 92165, 412018.3 92165.9, 412021.4 92167.1, 
+412022.2 92165.4, 412021.5 92164.6, 412022.6 92162, 412021.7 92161.6, 412023.1 
+92158.3, 412019.8 92156.9), (412021.2 92161.4, 412021.2 92161.5, 412021.2 
+92161.6, 412021.2 92161.7, 412021.2 92161.8, 412021.3 92161.9, 412021.3 92162, 
+412021.4 92162, 412021.5 92162.1, 412021.9 92162.2, 412021 92164.4, 412021 
+92164.5, 412021 92164.6, 412021 92164.7, 412021 92164.8, 412021.1 92164.9, 
+412021.6 92165.5, 412021.2 92166.5, 412016.9 92164.8, 412020 92157.6, 412022.4 
+92158.6, 412021.2 92161.4))
+```
+
+Some of the points in the outer polygon are moved for no reason.
+
+<img width="1306" height="939" alt="Image" src="https://github.com/user-attachments/assets/b68f56fc-f8d4-4e44-871f-830fd2818681" />
+
+Reverting to isOverlayNG=false solves this issue.
+--- comment dr-jts 2026-08-11T15:03:10Z
+Which version of JTS are you using?  I'm not seeing this behaviour in the current master.
+--- comment ianturton 2026-08-11T15:42:08Z
+this is version 1.20 as used by GeoTools 35.0
+
+Cheers
+
+Ian
+
+On Tue, 11 Aug 2026 at 16:03, Martin Davis ***@***.***> wrote:
+
+> *dr-jts* left a comment (locationtech/jts#1222)
+> <https://github.com/locationtech/jts/issues/1222#issuecomment-5254935866>
+>
+> Which version of JTS are you using? I'm not seeing this behaviour in the
+> current master.
+>
+> —
+> Reply to this email directly, view it on GitHub
+> <https://github.com/locationtech/jts/issues/1222?email_source=notifications&email_token=AAA55IN4VFPJJIHUN4X5XU35JMYUJA5CNFSNUABFM5UWIORPF5TWS5BNNB2WEL2JONZXKZKDN5WW2ZLOOQXTKMRVGQ4TGNJYGY3KM4TFMFZW63VGMF2XI2DPOKSWK5TFNZ2KYZTPN52GK4S7MNWGSY3L#issuecomment-5254935866>,
+> or unsubscribe
+> <https://github.com/notifications/unsubscribe-auth/AAA55IK4NHYKUU2OOJERHKL5JMYUJAVCNFSNUABEKJSXA33TNF2G64TZHM2TAMZXGAYTSMB3JFZXG5LFHM2TCMRQGQZTSMJYHGQXMAQ>
+> .
+> Triage notifications, keep track of coding agent tasks and review pull
+> requests on the go with GitHub Mobile for iOS
+> <https://github.com/notifications/mobile/ios/AAA55IMO5WD3AGPVX4HJD5D5JMYUJA5CNFSNUABFM5UWIORPF5TWS5BNNB2WEL2JONZXKZKDN5WW2ZLOOQXTKMRVGQ4TGNJYGY3KM4TFMFZW63VGMF2XI2DPOKSWK5TFNZ2KUZTPN52GK4S7NFXXG>
+> and Android
+> <https://github.com/notifications/mobile/android/AAA55IN5IYIP2NKH6LTC5P35JMYUJA5CNFSNUABFM5UWIORPF5TWS5BNNB2WEL2JONZXKZKDN5WW2ZLOOQXTKMRVGQ4TGNJYGY3KM4TFMFZW63VGMF2XI2DPOKSWK5TFNZ2K4ZTPN52GK4S7MFXGI4TPNFSA>.
+> Download it today!
+> You are receiving this because you authored the thread.Message ID:
+> ***@***.***>
+>
+
+
+-- 
+Ian Turton
+
+--- comment dr-jts 2026-08-11T18:36:42Z
+I can't reproduce this in 1.20 either (in the TestBuilder).
+
+Ideally this would have a simple code reproducer.  Failing that, can you provide a stack trace and debug output confirming that this is the result coming out of OverlayNG?  
+--- comment dr-jts 2026-08-11T19:04:52Z
+Another observation: the points in the result are rounded to one decimal place.  This is what is causing the discrepancy from the input geometry.  is it possible that the rounding is being done somewhere else in the pipeline you are using?
+--- comment ianturton 2026-08-17T12:36:14Z
+I'm using a 100 scale PrecisonModel when building the inputs which should give me cm accuracy, I can't see any way to pass my own GeometryFactory down to the GeoTools renderer to make sure it's used in this operation
+===== jts_1237.json open None | RelateOp fails to detect interior-interior intersection | milestone: None | closed None
+Inputs:
+
+A: 0102000020A2100000030000005163B45884333540352259FDE66A51406043FEC3BA333540C0BFF081E66A5140831D215B883335
+B: 0102000020A210000002000000685E205B88333540B7363CF4E66A5140831D215B88333540107B41F4E66A5140
+
+Reported Relate output: FF1F00102
+
+According to https://github.com/locationtech/jts/issues/1236#issuecomment-5876987804 the two lines have an interior intersection instead, but RelateOp doesn't report that.
+--- comment strk 2026-10-02T10:34:14Z
+Note that IsSimpleOp is able to spot the interior/interior intersection when passed a single line formed by joining the two input lines on their end point (which is equal) and using the EndPoint boundary node rule
+===== jts_1239.json open None | OverlayNGRobust symDifference returns an inverted polygon: the area check has no lower bound for SYMDIFFERENCE | milestone: None | closed None
+For a valid polygon and a valid line crossing near its vertices, `OverlayNGRobust` returns an invalid symmetric difference: the polygon's ring comes back as the *hole* of a tiny shell (area ~1.4e-22), so the result has area −0.03123 instead of 0.03123. Union and difference of the same pair are correct. The cause looks like a gap in `OverlayUtil.isResultAreaConsistent`: for `SYMDIFFERENCE` it only checks the upper bound, so the bad result of the first snapping try is accepted instead of rejected. Reproduces on 1.20.0 and current master (`5a0a7363`); GEOS 3.15.0 and current main return the same result.
+
+## Reproducer
+
+```java
+WKTReader reader = new WKTReader();
+Geometry a = reader.read("POLYGON ((20.58 46.965, 27.52 53.905, 28.52 54.914, 20.58 46.965))");
+Geometry b = reader.read("LINESTRING (27.519999973297118 53.90499997329712, 52.192 78.577, 27.519 53.904, 28.519999999 54.913999999, 39.599 65.984)");
+
+a.isValid(); b.isValid();                                         // true, true
+Geometry r = OverlayNGRobust.overlay(a, b, OverlayNG.SYMDIFFERENCE);
+r.getArea();                                                      // -0.031229999995478153
+r.isValid();                                                      // false
+
+OverlayNGRobust.overlay(a, b, OverlayNG.UNION).getArea();         // 0.03122999999997944, valid
+OverlayNGRobust.overlay(a, b, OverlayNG.DIFFERENCE).getArea();    // 0.03122999999997944, valid
+```
+
+`b` has no area, so the areal part of `a ⊕ b` should be `a` itself: area 0.03123, valid. The returned polygon instead has a 4-vertex shell of area ~1.4e-22 near (28.52 54.914), and `a`'s ring after snapping (area 0.0312299999955) as its hole. The input is reduced from a fuzzer case; every vertex of `b` is needed.
+
+## What happens
+
+1. Floating-point `OverlayNG` throws `TopologyException` (non-noded intersection), so `OverlayNGRobust` falls back to snapping noding, starting from `snapTolerance(a, b)` = 78.577 / 1e12 = 7.8577e-11 and multiplying it by 10 on each try.
+2. The first two tries, with `OverlayNG.overlay(a, b, op, new SnappingNoder(tol))`:
+
+   | tol | SYMDIFFERENCE | UNION | DIFFERENCE |
+   |---|---|---|---|
+   | 7.8577e-11 (first try) | area −0.03123, invalid — **accepted** | `TopologyException: Result area inconsistent with overlay operation` | same as union |
+   | 7.8577e-10 (second try) | 0.03123, valid | 0.03123, valid | 0.03123, valid |
+
+3. On the first try the area check rejects the result for union and difference, so `OverlayNGRobust` moves on and the second try gives the correct answer; for symDifference it accepts the inverted result:
+
+   ```java
+   case OverlayNG.SYMDIFFERENCE:
+     isConsistent = isLess(areaResult, areaA + areaB, AREA_HEURISTIC_TOLERANCE);
+     break;
+   ```
+
+   `INTERSECTION` checks only upper bounds, `UNION` only lower ones, and `DIFFERENCE` both. `SYMDIFFERENCE` checks only the upper bound, so a negative (or near-zero) area has nothing to fail against.
+
+## Possible fix
+
+The symmetric difference can't be smaller than the difference of the input areas. Written the way #1005 wrote the lower bound for `DIFFERENCE`, so that nearly identical inputs (whose areas differ only by rounding) still get an empty result:
+
+```java
+case OverlayNG.SYMDIFFERENCE:
+  isConsistent = isLess(areaResult, areaA + areaB, AREA_HEURISTIC_TOLERANCE)
+      && areaResult >= Math.abs(areaA - areaB) - AREA_HEURISTIC_TOLERANCE * Math.max(areaA, areaB);
+  break;
+```
+
+On master `5a0a7363` with this change: the reproducer returns 0.031229999999978345, valid (equal to union); the input from #951 still gives an empty result, both through `OverlayNGRobust` and through `SnappingNoder(1e-10)` / `SnappingNoder(1e-6)`; all 2307 tests in `modules/core` pass. A plainer `isGreater(areaResult, Math.abs(areaA - areaB), AREA_HEURISTIC_TOLERANCE)` is not enough: on the #951 input it rejects the correct empty result (`|areaA − areaB|` = 8.9e-16) and throws `Result area inconsistent`. The same change in GEOS 3.15.0's `OverlayUtil::isResultAreaConsistent` fixes the reproducer there too and keeps the #951 input empty.
+
+This only fixes the safety net — the first snapping try still builds an inverted polygon, which may be worth a look on its own.
+
+## Results across engines
+
+| Engine | `a ⊕ b` | `a ∪ b`, `a − b` |
+|---|---|---|
+| JTS 1.20.0, `OverlayNGRobust` | area −0.031229999995478153, invalid | 0.03123, valid |
+| JTS master `5a0a7363` (1.21.0-SNAPSHOT) | area −0.03122999999547761, invalid | 0.03123, valid |
+| GEOS 3.15.0 (release tarball and Homebrew) and main `7312930` (3.16.0dev) | area −0.031229999995477611, invalid (`Self-intersection`) | 0.03123, valid |
+| NetTopologySuite 2.6.0, `OverlayNGRobust` | area −0.031229999995478153, invalid | 0.03123, valid |
+
+The `SYMDIFFERENCE` case of the area check is the same in JTS master `5a0a7363`, GEOS main and NTS develop.
+
+## Related
+
+- #812 — added the area check
+- #951 / #1005 — the area check being too strict for `DIFFERENCE`
+- #1000 — summary of OverlayNG wrong results on nearly-coincident linework; notes the area check "does not handle all cases"
+
+## Environment
+
+- JTS 1.20.0 (Maven Central), Oracle JDK 24.0.1 on macOS (arm64)
+- JTS master `5a0a7363` (2026-09-28), built from source, Temurin 21 on Linux (arm64, Docker)
+
+Found by fuzzing NetTopologySuite's legacy overlay against OverlayNG, with each result checked against the bounds the input areas put on the operation; then reproduced in JTS and GEOS.
+
+*Edited after filing: the fix first proposed here (`isGreater(areaResult, Math.abs(areaA - areaB), …)`) would have brought #951 back for `SYMDIFFERENCE`; also corrected the snapping tolerances (computed from `a` alone at first) and the shell area.*

@@ -1,0 +1,855 @@
+{
+  "generated_with": {
+    "shapely": "2.2.0",
+    "geos": "3.14.1"
+  },
+  "notes": "Geometry text is verbatim from the cited issue/test (CRLF normalised to LF). WKB/EWKB inputs converted with shapely.to_wkt(rounding_precision=-1); hex kept in `original`. reproduces_in_geos_3_14_1 is decided by the per-record rule in seeds/tools/build_known_bugs.py (ev* functions). Raw issue downloads are in seeds/raw.",
+  "records": [
+    {
+      "id": "geos#1022",
+      "url": "https://github.com/libgeos/geos/issues/1022",
+      "title": "ST_Crosses returns incorrect answer when dealing with geometry collection",
+      "status": "open",
+      "fixed_in": null,
+      "fixed_in_basis": null,
+      "geometries": {
+        "g1": "GEOMETRYCOLLECTION (POINT (7 1), LINESTRING (6 5, 6 4))",
+        "g2": "POLYGON ((7 1, 1 3, 3 9, 7 1))",
+        "g3": "POLYGON ((1 3, 3 9, 7 1, 1 3))",
+        "c1_a": "GEOMETRYCOLLECTION (POINT (2 2), LINESTRING (0 0, 1 1))",
+        "c1_b": "LINESTRING ( 2 2, 3 3)"
+      },
+      "original": null,
+      "operations": [
+        "crosses",
+        "relate"
+      ],
+      "reported": "ST_Crosses(g1,g2)=true, ST_Crosses(g1,g3)=false; geosop relate(g1,g2)=212FF0212 (dr-jts comment); comment case relate(c1_a,c1_b)=1F10F0102",
+      "expected": "ST_Crosses(g1,g2)=false and ST_Crosses(g1,g3)=false (reporter); maintainer: relate matrix 'very wrong' (dim(Int n Int)=2 is wrong); for c1 reporter says dim(Int n Int)=1 is wrong (POINT(2 2) is b's start point)",
+      "notes": "g2 and g3 are the same polygon with a rotated start vertex (order-invariance). dr-jts: old relate mishandles mixed-dimension GeometryCollections. c1_a/c1_b from comment by cuteDen-ECNU 2024-01-12. Issue still open on GitHub; GEOS 3.13.0 replaced relate with RelateNG.",
+      "check": {
+        "g1": {
+          "parses": true,
+          "geom_type": "GeometryCollection",
+          "is_valid": true,
+          "explain_validity": null
+        },
+        "g2": {
+          "parses": true,
+          "geom_type": "Polygon",
+          "is_valid": true,
+          "explain_validity": null
+        },
+        "g3": {
+          "parses": true,
+          "geom_type": "Polygon",
+          "is_valid": true,
+          "explain_validity": null
+        },
+        "c1_a": {
+          "parses": true,
+          "geom_type": "GeometryCollection",
+          "is_valid": true,
+          "explain_validity": null
+        },
+        "c1_b": {
+          "parses": true,
+          "geom_type": "LineString",
+          "is_valid": true,
+          "explain_validity": null
+        }
+      },
+      "observed_geos_3_14_1": "crosses(g1,g2)=False crosses(g1,g3)=False relate(g1,g2)=F01FF0212 relate(g1,g3)=F01FF0212 relate(c1_a,c1_b)=F01FF0102",
+      "reproduces_in_geos_3_14_1": "no"
+    },
+    {
+      "id": "geos#1027",
+      "url": "https://github.com/libgeos/geos/issues/1027",
+      "title": "ST_Covers gives incorrect answer after mutating POLYGON to MULTIPOLYGON",
+      "status": "open",
+      "fixed_in": null,
+      "fixed_in_basis": null,
+      "geometries": {
+        "g1": "GEOMETRYCOLLECTION ( LINESTRING (1 2, 1 1), POINT (0 0))",
+        "g2": " MULTIPOLYGON (((0 0, 3 0, 3 3, 0 3, 0 0)))  ",
+        "g3": " POLYGON ((0 0, 3 0, 3 3, 0 3, 0 0))  "
+      },
+      "original": null,
+      "operations": [
+        "covers"
+      ],
+      "reported": "ST_Covers(g2,g1)=false, ST_Covers(g3,g1)=true; geosop covers(g1? -a GC -b MULTIPOLYGON)=false",
+      "expected": "{true, true} (reporter): g2 covers g1",
+      "notes": "WKT kept with the surrounding spaces as written in the SQL. Note the geosop line in the issue passes -a GC -b MULTIPOLYGON covers (i.e. covers(GC, MP)), which differs from the SQL order; the SQL ST_Covers(g2,g1) is the stated bug. Issue open on GitHub.",
+      "check": {
+        "g1": {
+          "parses": true,
+          "geom_type": "GeometryCollection",
+          "is_valid": true,
+          "explain_validity": null
+        },
+        "g2": {
+          "parses": true,
+          "geom_type": "MultiPolygon",
+          "is_valid": true,
+          "explain_validity": null
+        },
+        "g3": {
+          "parses": true,
+          "geom_type": "Polygon",
+          "is_valid": true,
+          "explain_validity": null
+        }
+      },
+      "observed_geos_3_14_1": "covers(g2,g1)=True covers(g3,g1)=True covers(g1,g2)=False relate(g2,g1)=1020F1FF2",
+      "reproduces_in_geos_3_14_1": "no"
+    },
+    {
+      "id": "geos#1033",
+      "url": "https://github.com/libgeos/geos/issues/1033",
+      "title": "Contains gives the error answer, but ContainsPrep gives the correct one",
+      "status": "closed",
+      "fixed_in": "3.13.0",
+      "fixed_in_basis": "inferred: maintainer (pramsey 2024-02-12) deferred to RelateNG, released in GEOS 3.13.0 (NEWS); closed 2026-01-07 by dbaston 'contains and containsPrep both return true in current main'; no closing commit",
+      "geometries": {
+        "a": "POLYGON((1 0,0 4,2 2,1 0))",
+        "b": "GEOMETRYCOLLECTION(POINT(2 2),POINT(1 0),LINESTRING(1 2,1 1))"
+      },
+      "original": null,
+      "operations": [
+        "contains",
+        "contains (prepared)",
+        "covers",
+        "covers (prepared)"
+      ],
+      "reported": "contains(a,b)=false; containsPrep(a,b)=true (pramsey: same for covers/coversPrep)",
+      "expected": "contains(a,b)=true (reporter; dbaston confirms both true in main)",
+      "notes": "Prepared vs non-prepared inconsistency.",
+      "check": {
+        "a": {
+          "parses": true,
+          "geom_type": "Polygon",
+          "is_valid": true,
+          "explain_validity": null
+        },
+        "b": {
+          "parses": true,
+          "geom_type": "GeometryCollection",
+          "is_valid": true,
+          "explain_validity": null
+        }
+      },
+      "observed_geos_3_14_1": "contains=True containsPrep=True covers=True coversPrep=True relate(a,b)=1020F1FF2",
+      "reproduces_in_geos_3_14_1": "no"
+    },
+    {
+      "id": "geos#1053",
+      "url": "https://github.com/libgeos/geos/issues/1053",
+      "title": "ST_Relate gives incorrect result for interior-interior intersection dimension",
+      "status": "closed",
+      "fixed_in": "3.13.0",
+      "fixed_in_basis": "inferred: dr-jts 2024-05-05 'This result is correctly computed by the RelateNG algorithm'; RelateNG ported in 3.13.0 (NEWS); closed 2024-11-26 without closing commit",
+      "geometries": {
+        "g1": "MULTILINESTRING((2 4, 10 10),(15 10,10 5,5 10))",
+        "g2": "MULTILINESTRING((2 4, 10 10))"
+      },
+      "original": null,
+      "operations": [
+        "relate"
+      ],
+      "reported": "0F1F001F2",
+      "expected": "1F1F00FF2 (dr-jts correction of reporter's 1F1F001F2)",
+      "notes": "Reporter originally expected 1F1F001F2; maintainer corrected to 1F1F00FF2 since A contains B.",
+      "check": {
+        "g1": {
+          "parses": true,
+          "geom_type": "MultiLineString",
+          "is_valid": true,
+          "explain_validity": null
+        },
+        "g2": {
+          "parses": true,
+          "geom_type": "MultiLineString",
+          "is_valid": true,
+          "explain_validity": null
+        }
+      },
+      "observed_geos_3_14_1": "relate(g1,g2)=1F1F00FF2 relate(g2,g1)=1FFF0F102",
+      "reproduces_in_geos_3_14_1": "no"
+    },
+    {
+      "id": "geos#1064",
+      "url": "https://github.com/libgeos/geos/issues/1064",
+      "title": "RelateCompute intersection report inconsistent for lines and boundary points",
+      "status": "closed",
+      "fixed_in": null,
+      "fixed_in_basis": "closed 2024-11-26 without fix; dr-jts 2024-04-08: 'not a bug, but a limitation ... due to numeric rounding'",
+      "geometries": {
+        "A": "LINESTRING (16.330791631988802 68.75635661578073, 16.332533372319826 68.75496886016562)",
+        "B": "LINESTRING (16.30641253121884 68.75189557630306, 16.33167771310482 68.75565061843871)"
+      },
+      "original": {
+        "format": "WKB hex (as given in issue body)",
+        "A": "010200000002000000B02EA9C2AE5430400E3994256830514037F136E82055304039FAE86851305140",
+        "B": "01020000000200000064AB380D714E3040A38E9F0E1F305140E798A2D4E85430405F5969945C305140"
+      },
+      "operations": [
+        "relate",
+        "relate(A, boundary(B))"
+      ],
+      "reported": "relate(A,B) says Int(A) n Bdy(B) has dim 0 (matrix 'F01 FF0 102' as printed: I/B/E rows F 0 1 / F F 0 / 1 0 2), while A vs Boundary(B) shows no intersection (F F 1 / F F 0 / 0 F 2). strk XML test (PR #1092/#1093): obtained F01FF0102 on main",
+      "expected": "Consistent answers; XML test issue-geos-gh1064.xml expects FF1FF0102 (GEOS 3.8 result). Maintainer: the 3.12+ Orientation predicate reports a proper intersection, so 3.8 is 'wrong' by current technology; not considered a bug",
+      "notes": "WKT converted with Shapely 2.2.0 to_wkt(rounding_precision=-1). The WKT in strk's XML test output (LINESTRING (16.330791631988802 68.75635661578073, ...)) matches A.",
+      "check": {
+        "A": {
+          "parses": true,
+          "geom_type": "LineString",
+          "is_valid": true,
+          "explain_validity": null
+        },
+        "B": {
+          "parses": true,
+          "geom_type": "LineString",
+          "is_valid": true,
+          "explain_validity": null
+        }
+      },
+      "observed_geos_3_14_1": "relate(A,B)=F01FF0102 relate(B,A)=FF10F0102 (transpose consistent=True) relate(A,boundary(B))=FF1FF00F2 intersects(A,boundary(B))=False",
+      "reproduces_in_geos_3_14_1": "yes"
+    },
+    {
+      "id": "geos#1224",
+      "url": "https://github.com/libgeos/geos/issues/1224",
+      "title": "Union Operations returns collections containing empty elements",
+      "status": "closed",
+      "fixed_in": "3.13.1",
+      "fixed_in_basis": "PR #1229 merged 2025-01-17 (merge b6c1b594); NEWS lists GH-1229 under 3.14.0; #1248 calls a 3.13.1 regression 'caused by #1229', so it was also in 3.13.1",
+      "geometries": {
+        "a": "GEOMETRYCOLLECTION(POLYGON EMPTY, POINT EMPTY, LINESTRING(10 10, 10 10))",
+        "b": "POINT(1 1)",
+        "c": "GEOMETRYCOLLECTION(POLYGON EMPTY, POINT EMPTY, LINESTRING(10 10, 10 10), POINT(1 1))",
+        "d": "GEOMETRYCOLLECTION(LINESTRING(10 10, 10 10), POINT(1 1))"
+      },
+      "original": null,
+      "operations": [
+        "union",
+        "unaryUnion"
+      ],
+      "reported": "union(a,b)=GEOMETRYCOLLECTION (POLYGON EMPTY, POINT EMPTY, LINESTRING (10 10, 10 10), POINT (1 1)); unaryUnion(c)=GEOMETRYCOLLECTION (POINT (1 1), LINESTRING EMPTY); unaryUnion(d)=GEOMETRYCOLLECTION (POINT (1 1), LINESTRING EMPTY)",
+      "expected": "No empty elements in union results; JTS unary union gives POINT (1 1); dr-jts: ideal unaryUnion(d) is probably GEOMETRYCOLLECTION (LINESTRING(10 10, 10 10), POINT (1 1))",
+      "notes": "d is the simpler case from dr-jts comment 2025-01-09. Inputs contain a zero-length LINESTRING, so they are invalid by OGC rules. Cause: envelope-disjoint union heuristic in Geometry::Union.",
+      "check": {
+        "a": {
+          "parses": true,
+          "geom_type": "GeometryCollection",
+          "is_valid": false,
+          "explain_validity": "Too few points in geometry component[10 10]"
+        },
+        "b": {
+          "parses": true,
+          "geom_type": "Point",
+          "is_valid": true,
+          "explain_validity": null
+        },
+        "c": {
+          "parses": true,
+          "geom_type": "GeometryCollection",
+          "is_valid": false,
+          "explain_validity": "Too few points in geometry component[10 10]"
+        },
+        "d": {
+          "parses": true,
+          "geom_type": "GeometryCollection",
+          "is_valid": false,
+          "explain_validity": "Too few points in geometry component[10 10]"
+        }
+      },
+      "observed_geos_3_14_1": "union(a,b)=GEOMETRYCOLLECTION (LINESTRING (10 10, 10 10), POINT (1 1)) | unaryUnion(c)=GEOMETRYCOLLECTION (POINT (1 1), LINESTRING EMPTY) | unaryUnion(d)=GEOMETRYCOLLECTION (POINT (1 1), LINESTRING EMPTY)",
+      "reproduces_in_geos_3_14_1": "yes",
+      "reproduces_detail": "partial: union(a,b) no longer contains empty elements (the part PR #1229 fixed); unaryUnion(c) and unaryUnion(d) still return a LINESTRING EMPTY element as reported in the issue body/comment"
+    },
+    {
+      "id": "geos#1248",
+      "url": "https://github.com/libgeos/geos/issues/1248",
+      "title": "3.13.1 regression: \"POINT ZM EMPTY\".Union(\"POINT ZM EMPTY\") returns \"POINT EMPTY\" instead of \"MULTIPOINT ZM EMPTY\"",
+      "status": "closed",
+      "fixed_in": "3.14.0",
+      "fixed_in_basis": "PR #1258 merged 2025-04-21 (a0f13d86); NEWS lists GH-1258 under 3.14.0; backport to a 3.13.x release not checked",
+      "geometries": {
+        "g1": "POINT ZM EMPTY"
+      },
+      "original": null,
+      "operations": [
+        "union"
+      ],
+      "reported": "POINT EMPTY (GEOS 3.13.1; GDAL autotest)",
+      "expected": "GDAL test accepts MULTIPOINT ZM EMPTY or POINT ZM EMPTY; maintainers (dr-jts, +1 rouault) chose POINT ZM EMPTY",
+      "notes": "Regression caused by PR #1229 (dr-jts). Coordinate-dimension preservation for EMPTY, not a geometric wrong result.",
+      "check": {
+        "g1": {
+          "parses": true,
+          "geom_type": "Point",
+          "is_valid": true,
+          "explain_validity": null
+        }
+      },
+      "observed_geos_3_14_1": "union=POINT ZM EMPTY has_z=True has_m=True",
+      "reproduces_in_geos_3_14_1": "no"
+    },
+    {
+      "id": "geos#1275",
+      "url": "https://github.com/libgeos/geos/issues/1275",
+      "title": "Relate(g1, g2, pattern) returning different results depending on prepared state",
+      "status": "closed",
+      "fixed_in": null,
+      "fixed_in_basis": "closed 2025-07-05; root cause found in PostGIS (mask not transposed when operands flipped), not GEOS. Milestone 3.13.1 set on the GEOS issue.",
+      "geometries": null,
+      "original": null,
+      "operations": [
+        "relate (pattern)",
+        "prepared relate pattern"
+      ],
+      "reported": "ST_Relate(g1,g2,pattern) result depends on prepared-geometry caching state (postgis-devel 2025-07-04, David Smith)",
+      "expected": "Same result regardless of prepared state",
+      "notes": "No geometry in the GEOS issue itself; the scenario's minimal reproducer is the PostGIS regression test recorded under postgis#5938. Original data (Kansas/Lawrence) in gist e8429f70b74bc97cd2a0a3a6193d5949 (not used). JTS test commit f664e0ff.",
+      "check": null,
+      "observed_geos_3_14_1": null,
+      "reproduces_in_geos_3_14_1": null
+    },
+    {
+      "id": "postgis#5938",
+      "url": "https://trac.osgeo.org/postgis/ticket/5938",
+      "title": "(trac page unreachable: anti-bot wall) ST_Relate(geom,geom,pattern) failure in certain caching situations with RelateNG prepared geometry",
+      "status": "closed",
+      "fixed_in": "PostGIS 3.5.4 / 3.6.0",
+      "fixed_in_basis": "commit a4886d85 (2025-07-04, 'Closes #5938'); PostGIS stable-3.5 NEWS lists #5938 under 3.5.4; compare shows 3.6.0 contains the commit",
+      "geometries": {
+        "a1": "LINESTRING (170 290, 205 272)",
+        "a2": "LINESTRING (120 215, 176 197)",
+        "a3": "LINESTRING (170 290, 205 272)",
+        "b": "POLYGON ((100 200, 140 230, 180 310, 280 310, 390 270, 400 210, 320 140, 215 141, 150 170, 100 200))"
+      },
+      "original": null,
+      "operations": [
+        "relate",
+        "relate_pattern '1FF00F212'",
+        "prepared relate pattern with operands flipped"
+      ],
+      "reported": "Pattern result wrong for rows after the first (cache prepares the polygon, operands swapped, mask not transposed)",
+      "expected": "regress/core/tickets_expected: #5938|1FF00F212|t for all three rows",
+      "notes": "Title/status from PostGIS commits a4886d85 and 74d24bc7 (GitHub mirror) because trac returned an anti-bot page. Geometries from regress/core/tickets.sql in those commits. The defect is in PostGIS's operand handling; GEOS alone is only checked for the consistency the fix relies on (relate_pattern(a,b,P) == relate_pattern(b,a,transpose(P)), with b prepared).",
+      "check": {
+        "a1": {
+          "parses": true,
+          "geom_type": "LineString",
+          "is_valid": true,
+          "explain_validity": null
+        },
+        "a2": {
+          "parses": true,
+          "geom_type": "LineString",
+          "is_valid": true,
+          "explain_validity": null
+        },
+        "a3": {
+          "parses": true,
+          "geom_type": "LineString",
+          "is_valid": true,
+          "explain_validity": null
+        },
+        "b": {
+          "parses": true,
+          "geom_type": "Polygon",
+          "is_valid": true,
+          "explain_validity": null
+        }
+      },
+      "observed_geos_3_14_1": "a1: relate=1FF00F212 pattern=True prepB_transposed=True prepB_untransposed=False; a2: relate=1FF00F212 pattern=True prepB_transposed=True prepB_untransposed=False; a3: relate=1FF00F212 pattern=True prepB_transposed=True prepB_untransposed=False",
+      "reproduces_in_geos_3_14_1": "no"
+    },
+    {
+      "id": "geos#1342",
+      "url": "https://github.com/libgeos/geos/issues/1342",
+      "title": "Intersection between 2 multipolygons results in invalid geometry",
+      "status": "open",
+      "fixed_in": null,
+      "fixed_in_basis": null,
+      "geometries": {
+        "wkt1": "MULTIPOLYGON (((-78.04121599394897 -5.89365988248295, -79.46982124803172 -9.194972039429315, -31.771830845642597 -73.42037355623992, 47.69799040238911 -64.22540151681056, 79.46982124803172 9.194972039429311, 31.771830845642597 73.42037355623992, -47.69799040238911 64.22540151681056, -78.04121599394897 -5.89365988248295), (-44.94414807547773 60.517346154721146, 29.937481933257768 69.18144635507574, 74.88162621931913 8.664099761904156, 44.94414423125503 -60.51734611949454, -29.937485777480447 -69.18144631984912, -74.8816300087355 -8.664100200354595, -44.94414807547773 60.517346154721146)))",
+        "wkt2": "MULTIPOLYGON (((-78.04121599394897 -5.89365988248295, -47.69799040238911 64.22540151681056, -79.22212318407406 -8.622575551695201, -78.04121599394897 -5.89365988248295)), ((79.46982124803172 9.194972039429311, 79.26313658326842 8.717351930944158, 79.46982124803172 9.194972039429313, 79.46982124803172 9.194972039429311)), ((-74.8816300087355 -8.664100200354591, -74.8816300087355 -8.66410020035459, -44.94414807547773 60.517346154721146, -74.8816300087355 -8.664100200354591)))"
+      },
+      "original": null,
+      "operations": [
+        "intersection"
+      ],
+      "reported": "intersection is invalid: 'Hole lies outside shell[-74.8816300087355 -8.66410020035459]' (GEOS 3.14.1, Shapely 2.1.2); geosop isValid=false",
+      "expected": "valid intersection geometry",
+      "notes": "dr-jts: 'Fails in JTS too.' Originally shapely#2077.",
+      "check": {
+        "wkt1": {
+          "parses": true,
+          "geom_type": "MultiPolygon",
+          "is_valid": true,
+          "explain_validity": null
+        },
+        "wkt2": {
+          "parses": true,
+          "geom_type": "MultiPolygon",
+          "is_valid": true,
+          "explain_validity": null
+        }
+      },
+      "observed_geos_3_14_1": "valid=False reason=Hole lies outside shell[-74.8816300087355 -8.66410020035459] result=GEOMETRYCOLLECTION (POLYGON ((-47.69799040238911 64.22540151681056, -79.22212318407406 -8.622575551695201, -78.04121599394897 -5.89365988248295, -47.69799040238911 64.22540151681056)), POLYGON ((-74.8...(truncated, 705 chars)",
+      "reproduces_in_geos_3_14_1": "yes"
+    },
+    {
+      "id": "geos#1343",
+      "url": "https://github.com/libgeos/geos/issues/1343",
+      "title": "Wrong result of unary_union: islands in polygons being unioned get \"lost\"",
+      "status": "open",
+      "fixed_in": null,
+      "fixed_in_basis": null,
+      "geometries": {
+        "poly1": "POLYGON ((-70.1162076595306 -1.534802639761859, -69.11618088109869 0.1972327069961337, -58.117783208841075 -6.152921874253107, -82.91750004113058 -49.107291593330054, -92.53033522436974 -36.35721051634815, -71.84825846863409 -0.5348026424198639, -70.1162076595306 -1.534802639761859), (-70.1162076595306 -1.534802639761859, -90.1362204660169 -36.210482111666536, -83.13912274760473 -45.49115337178261, -60.849818553267646 -6.88494590501217, -70.1162076595306 -1.534802639761859))",
+        "poly2": "POLYGON ((-54.71170009216383 -7.253412859063702, -80.4528216636855 -51.8383434227556, -82.83439152620278 -50.463343426410354, -85.03022855188276 -52.1188795198414, -95.62396528443203 -38.067769761534805, -93.42812825875205 -36.41223366810376, -95.80969812126934 -35.037233671758514, -73.50445135763194 3.59658713514124, -71.12288149511465 2.2215871387959965, -69.76459062209818 4.612726177890158, -69.7335565179279 4.595097198664126, -71.09184739094437 2.2039581595699644, -69.71681057060047 4.585506761362204, -55.718233134337225 -3.4968642609262157, -57.09326995468111 -5.878412862718456, -54.71170009216383 -7.253412859063702), (-60.84981855326765 -6.884945905012167, -70.1162076595306 -1.5348026397618595, -90.1362204660169 -36.210482111666536, -83.13912274760473 -45.4911533717826, -60.84981855326765 -6.884945905012167))"
+      },
+      "original": null,
+      "operations": [
+        "unary_union",
+        "union"
+      ],
+      "reported": "union result has no hole ('islands ... get lost'); figure only, no WKT of the result",
+      "expected": "union keeps the hole (non-covered area between the donuts); script check: area(union) <= area(poly1)+area(poly2)",
+      "notes": "pramsey: replicates in JTS OverlayNGRobust. Originally shapely#1633.",
+      "check": {
+        "poly1": {
+          "parses": true,
+          "geom_type": "Polygon",
+          "is_valid": true,
+          "explain_validity": null
+        },
+        "poly2": {
+          "parses": true,
+          "geom_type": "Polygon",
+          "is_valid": true,
+          "explain_validity": null
+        }
+      },
+      "observed_geos_3_14_1": "unary_union: type=Polygon holes=0 area=1135.550483; union: holes=0 area=1135.550483; area1+area2=909.413630; valid=True",
+      "reproduces_in_geos_3_14_1": "yes"
+    },
+    {
+      "id": "geos#1344",
+      "url": "https://github.com/libgeos/geos/issues/1344",
+      "title": "Union between specific input polygons returns vastly wrong results",
+      "status": "open",
+      "fixed_in": null,
+      "fixed_in_basis": null,
+      "geometries": {
+        "poly1": "POLYGON ((-295.25030351249666 4.236074061427525, -295.08711234218333 -2.301948231163383, -314.64218025800653 -2.7900491087570383, -314.80537142831986 3.7479731838338695, -295.25030351249666 4.236074061427525))",
+        "poly2": "POLYGON ((-275.69523559667346 4.7241749390211805, -275.53204442636013 -1.8138473535697273, -295.08711234218333 -2.3019482311633825, -295.25030351249666 4.236074061427525, -275.69523559667346 4.7241749390211805))"
+      },
+      "original": {
+        "note": "issue builds polygons from Python coordinate lists; the WKT here is the issue's printed poly1.wkt / poly2.wkt output"
+      },
+      "operations": [
+        "union",
+        "unary_union",
+        "intersection",
+        "difference"
+      ],
+      "reported": "union area 127.9311237202268 and union.equals(poly2)=True (unaryUnion same); intersection non-empty ('dodgy'); difference EMPTY",
+      "expected": "union area ~255.86224744 (polygons share an edge); intersection empty",
+      "notes": "mwtoews: normalized inputs give the correct union. pramsey: JTS gives different but also wrong results. Originally shapely#2368.",
+      "check": {
+        "poly1": {
+          "parses": true,
+          "geom_type": "Polygon",
+          "is_valid": true,
+          "explain_validity": null
+        },
+        "poly2": {
+          "parses": true,
+          "geom_type": "Polygon",
+          "is_valid": true,
+          "explain_validity": null
+        }
+      },
+      "observed_geos_3_14_1": "union area=127.9311237 unary_union area=127.9311237 intersection=POLYGON ((-295.08711234218333 -2.301948231163383, -314.64218025800653 -2.7900491087570383, -314.80537142831986 3.7479731...(truncated, 210 chars) (area 127.9) difference area=0",
+      "reproduces_in_geos_3_14_1": "yes"
+    },
+    {
+      "id": "geos#1354",
+      "url": "https://github.com/libgeos/geos/issues/1354",
+      "title": "intersection between polygons results in Point instead of Polygon",
+      "status": "open",
+      "fixed_in": null,
+      "fixed_in_basis": null,
+      "geometries": {
+        "zone": "POLYGON ((79.57006468414316 227.16715306136757, 43.44048377114246 -7.28462320799008, 127.74283932445364 -13.587090929970145, 154.99848808655608 219.60419326741248, 79.57006468414316 227.16715306136757))",
+        "geom_0": "POLYGON ((127.74283932445364 -13.587090929970145, 43.44048377114247 -7.28462320799008, 54.329847263553376 63.37854389007508, 54.61818554266568 63.33040101339976, 135.62637080265046 53.862076963892896, 127.74283932445364 -13.587090929970145))",
+        "geom_1": "POLYGON ((127.74283932445363 -13.587091019377114, 43.44048377114246 -7.284623297862709, 54.32984726350768 63.37854379976558, 54.61818554261504 63.33040092309082, 135.62637080259915 53.862076873508386, 127.74283932445363 -13.587091019377114))"
+      },
+      "original": null,
+      "operations": [
+        "intersection"
+      ],
+      "reported": "geom_0.intersection(zone).geom_type='Point'; zone.intersection(geom_0) also Point",
+      "expected": "Polygon (geom_1, perturbed by ~1e-14..1e-7, gives Polygon)",
+      "notes": "geom_1 is the reporter's nearly identical control geometry. dr-jts: fails in JTS; works with snapping/snap-rounding. Originally shapely#1639.",
+      "check": {
+        "zone": {
+          "parses": true,
+          "geom_type": "Polygon",
+          "is_valid": true,
+          "explain_validity": null
+        },
+        "geom_0": {
+          "parses": true,
+          "geom_type": "Polygon",
+          "is_valid": true,
+          "explain_validity": null
+        },
+        "geom_1": {
+          "parses": true,
+          "geom_type": "Polygon",
+          "is_valid": true,
+          "explain_validity": null
+        }
+      },
+      "observed_geos_3_14_1": "g0∩zone=Point (area 0); zone∩g0=Point; g1∩zone=Polygon (area 5791.47)",
+      "reproduces_in_geos_3_14_1": "yes"
+    },
+    {
+      "id": "geos#1355",
+      "url": "https://github.com/libgeos/geos/issues/1355",
+      "title": "UnaryUnion gives error: found two shells in EdgeRing list",
+      "status": "open",
+      "fixed_in": null,
+      "fixed_in_basis": null,
+      "geometries": {
+        "buffer_0": "POLYGON ((-8.060879443418989 -2.6638274935170196, -8.194659017192153 -33.71089267415941, -11.242630721688515 -33.69775918301853, -11.10885114791535 -2.6506940023761434, -8.060879443418989 -2.6638274935170196))",
+        "buffer_1": "POLYGON ((-84.63155622050482 -2.3338899473058037, -84.61842272936394 0.7140817571905578, -8.047745952278113 0.3841442109793418, -8.06087944341899 -2.6638274935170196, -84.63155622050482 -2.3338899473058037))",
+        "buffer_2": "POLYGON ((-84.63155622050482 -2.3338899473058037, -84.61842272936394 0.7140817571905576, -11.095717656774472 0.3972777021202178, -11.108851147915349 -2.6506940023761434, -84.63155622050482 -2.3338899473058037))"
+      },
+      "original": null,
+      "operations": [
+        "unary_union"
+      ],
+      "reported": "AssertionFailedException: found two shells in EdgeRing list (GEOS 3.14.1)",
+      "expected": "a polygon (CCW-oriented inputs give a POLYGON)",
+      "notes": "Error rather than wrong result. The issue's geosop GEOMETRYCOLLECTION of the three polygons is equivalent.",
+      "check": {
+        "buffer_0": {
+          "parses": true,
+          "geom_type": "Polygon",
+          "is_valid": true,
+          "explain_validity": null
+        },
+        "buffer_1": {
+          "parses": true,
+          "geom_type": "Polygon",
+          "is_valid": true,
+          "explain_validity": null
+        },
+        "buffer_2": {
+          "parses": true,
+          "geom_type": "Polygon",
+          "is_valid": true,
+          "explain_validity": null
+        }
+      },
+      "observed_geos_3_14_1": "EXCEPTION GEOSException: AssertionFailedException: found two shells in EdgeRing list",
+      "reproduces_in_geos_3_14_1": "yes"
+    },
+    {
+      "id": "geos#1383",
+      "url": "https://github.com/libgeos/geos/issues/1383",
+      "title": "Union of two valid (sliver)polygons results in POLYGON EMPTY",
+      "status": "open",
+      "fixed_in": null,
+      "fixed_in_basis": null,
+      "geometries": {
+        "ex0_1": "POLYGON ((184293.20931495726 191412.37075890973, 184293.23465140502 191412.3245224961, 184293.23465140507 191412.324522496, 184293.20931495726 191412.37075890973))",
+        "ex0_2": "POLYGON ((184293.23465140502 191412.3245224961, 184297.14 191403.80000000002, 184293.23465140496 191412.32452249623, 184293.23465140502 191412.3245224961))",
+        "ex1_1": "Polygon ((185537.86885940807405859 192540.71049361632321961, 185537.86885940856882371 192540.71049361626501195, 185561.19000000000232831 192537.80999999999767169, 185537.86885940807405859 192540.71049361632321961))",
+        "ex1_2": "Polygon ((185537.868859409034485 192540.71049361620680429, 185537.66598733825958334 192540.7357251928478945, 185537.8688594093255233 192540.71049361617770046, 185537.868859409034485 192540.71049361620680429))"
+      },
+      "original": null,
+      "operations": [
+        "union"
+      ],
+      "reported": "union_geom=<POLYGON EMPTY> for both examples",
+      "expected": "non-empty result (union of two non-empty valid polygons should never be empty); JTS OverlayNGRobust gives a MULTILINESTRING (collapse after snapping)",
+      "notes": "Second example added by theroggy 2026-02-10 (in the issue body). dr-jts: lower priority than other OverlayNG failures.",
+      "check": {
+        "ex0_1": {
+          "parses": true,
+          "geom_type": "Polygon",
+          "is_valid": true,
+          "explain_validity": null
+        },
+        "ex0_2": {
+          "parses": true,
+          "geom_type": "Polygon",
+          "is_valid": true,
+          "explain_validity": null
+        },
+        "ex1_1": {
+          "parses": true,
+          "geom_type": "Polygon",
+          "is_valid": true,
+          "explain_validity": null
+        },
+        "ex1_2": {
+          "parses": true,
+          "geom_type": "Polygon",
+          "is_valid": true,
+          "explain_validity": null
+        }
+      },
+      "observed_geos_3_14_1": "ex0 union=POLYGON EMPTY | ex1 union=POLYGON EMPTY",
+      "reproduces_in_geos_3_14_1": "yes"
+    },
+    {
+      "id": "geos#1405",
+      "url": "https://github.com/libgeos/geos/issues/1405",
+      "title": "Intersection of polygons gives incorrect results, depending on order of arguments",
+      "status": "closed",
+      "fixed_in": "3.15.0",
+      "fixed_in_basis": "PR #1499 merged 2026-08-12 (737737db); NEWS 3.15.0: 'Fix intersection result for slightly overlapping polygons (GH-1499)'; compare: 3.15.0 contains it, 3.14.1 does not",
+      "geometries": {
+        "shape1": "POLYGON ((0.3081742230052605 0.8574917215741684, 0.3235558676951882 0.959764955575765, 0.3268384579963268 0.9761955555650583, 0.3309851357533714 0.9899402381062132, 0.3364277995673436 1.0032251410108646, 0.3431165154642001 1.015928381315176, 0.3509899175067092 1.0279334125460768, 0.3599757707991199 1.039130093982343, 0.3699916342095888 1.0494157011457903, 0.3809456167302097 1.058695868251819, 0.392737220535371 1.0668854539727242, 0.4052582630037556 1.073909322570786, 0.4183938692448725 1.079703033234622, 0.4320235260241182 1.0842134312944256, 0.4460221874170914 1.0873991358919737, 0.4602614220492758 1.0892309196312477, 0.4746105913957159 1.0896919767265496, 0.4913319068024928 1.0886253811328888, 1.6700718959842467 0.9565165637600046, 1.57979867649902 0.6026736686526396, 1.091045353275972 0.0772874773100065, 1.0880332290753003 0.0751954761072001, 1.0807249769395977 0.0690039561787506, 1.0740426168917647 0.0621416291321494, 1.0680474565569975 0.0546714537082506, 1.063366321369268 0.0475338562857705, 1.0334449647384247 0.0153698445990219, 0.7231700686154534 0.6266171384924346, 0.7149755148483247 0.6410255508351703, 0.7068170547053731 0.6526513145597219, 0.697594844851672 0.6634526894489446, 0.6873916890776646 0.6733326928059559, 0.6762991988285427 0.6822026146859029, 0.6644169706492398 0.6899828143991633, 0.6497523731524246 0.6977095626115124, 0.3081742230052605 0.8574917215741684))",
+        "shape2": "POLYGON ((1.108561208420377086625308038492221385240554809570312500000000 0.096116174702266674034767390821798471733927726745605468750000, 1.579798676499019949304170040704775601625442504882812500000000 0.602673668652639604736975798005005344748497009277343750000000, 1.445650745099990475139861700881738215684890747070312500000000 0.076855572327130111665027811795880552381277084350585937500000, 1.444900805558562373320796723419334739446640014648437500000000 0.076572789294606147247890248763724230229854583740234375000000, 1.429693401346880499147573573281988501548767089843750000000000 0.072597961830626389634346651291707530617713928222656250000000, 1.414153318559506544715986819937825202941894531250000000000000 0.070237829803077911350328577100299298763275146484375000000000, 1.398451511191880936024745096801780164241790771484375000000000 0.069518356651499413345618449966423213481903076171875000000000, 1.380137763162443853559580020373687148094177246093750000000000 0.070602770087456412362314495112514123320579528808593750000000, 1.160083364028043684257340828480664640665054321289062500000000 0.095265653076203160587454021879239007830619812011718750000000, 1.150524405216126089257500098028685897588729858398437500000000 0.095875386407627882778825778586906380951404571533203125000000, 1.140950960368624311769281121087260544300079345703125000000000 0.095567779425867860343402071521268226206302642822265625000000, 1.131450861503619176318125028046779334545135498046875000000000 0.094345654285582614129168632643995806574821472167968750000000, 1.122111267723040706201231841987464576959609985351562500000000 0.092220223431104253464241082838270813226699829101562500000000, 1.113017865567405006999024408287368714809417724609375000000000 0.089210986727341734514595827931771054863929748535156250000000, 1.112913182538546097433140857901889830827713012695312500000000 0.089164814272908357595248673987953225150704383850097656250000, 1.108561208420377086625308038492221385240554809570312500000000 0.096116174702266674034767390821798471733927726745605468750000))",
+        "pr1499_a": "POLYGON ((1 1, 0 0.5, 0 0, 1 1))",
+        "pr1499_b": "POLYGON ((1 1, 0 0.49999999999999994, 0 1, 1 1))"
+      },
+      "original": null,
+      "operations": [
+        "intersection"
+      ],
+      "reported": "intersection(shape1, shape2) wrong (figure 'Wrong behavior'); depends on argument order (GEOS 3.13.1)",
+      "expected": "intersection(shape2, shape1) (figure 'Expected behavior'); order-independent result",
+      "notes": "The reproducer applies buffer(0) then normalize() to both shapes before intersecting; evaluated both raw and with that preprocessing (geometries stored unaltered). Figure only, no result WKT. pr1499_a/pr1499_b: the fix PR's own simpler example (PR body: before the fix intersection area 0.25 instead of ~0; reproduced there with GEOS 3.13.1). In Shapely 2.2.0/GEOS 3.14.1 neither case shows order dependence even though the fix is only in 3.15.0; reason not established (possibly 3.13-only behaviour or platform/compiler dependent).",
+      "check": {
+        "shape1": {
+          "parses": true,
+          "geom_type": "Polygon",
+          "is_valid": true,
+          "explain_validity": null
+        },
+        "shape2": {
+          "parses": true,
+          "geom_type": "Polygon",
+          "is_valid": true,
+          "explain_validity": null
+        },
+        "pr1499_a": {
+          "parses": true,
+          "geom_type": "Polygon",
+          "is_valid": true,
+          "explain_validity": null
+        },
+        "pr1499_b": {
+          "parses": true,
+          "geom_type": "Polygon",
+          "is_valid": true,
+          "explain_validity": null
+        }
+      },
+      "observed_geos_3_14_1": "raw: area(s1∩s2)=2.288906756e-17 area(s2∩s1)=0 area(symdiff of the two results)=0; buffer0+normalize: area(s1∩s2)=2.288906756e-17 area(s2∩s1)=0 area(symdiff of the two results)=0; pr1499: area(a∩b)=0 area(b∩a)=2.78e-17 (bug: 0.25)",
+      "reproduces_in_geos_3_14_1": "no"
+    },
+    {
+      "id": "geos#1523",
+      "url": "https://github.com/libgeos/geos/issues/1523",
+      "title": "Overlay silently wrong when an operand has a zero-width collinear interior ring",
+      "status": "open",
+      "fixed_in": null,
+      "fixed_in_basis": null,
+      "geometries": {
+        "a": "POLYGON ((379.694383 3423, 382 3423, 382 3428, 379.694383 3428, 379.694383 3423))",
+        "b": "POLYGON ((380 3428.3, 382 3429, 388 3422, 377 3422, 378 3427, 380 3428.3),\n         (379.153701 3427.199712952367, 380.736005 3427.1997128766443,\n          379.777158 3427.199712922531, 379.153701 3427.199712952367))"
+      },
+      "original": null,
+      "operations": [
+        "intersection",
+        "difference"
+      ],
+      "reported": "A∩B = POLYGON ((379.694383 3427.1997129264923, 380.736005 3427.1997128766443, 379.777158 3427.199712922531, 379.694383 3427.1997129264923)), area 5.01746e-15; A−B area 11.528085",
+      "expected": "A∩B area ~11.528085; A−B area ~0 (tiny portion of the hole); B−A ~36.571915 (not ~48.1)",
+      "notes": "b WKT spans two lines in the issue (kept with the newline). Fix proposed in open PR #1524. Reproduced by reporter on 3.13.1 and 3.16.0dev 55809ca8d.",
+      "check": {
+        "a": {
+          "parses": true,
+          "geom_type": "Polygon",
+          "is_valid": true,
+          "explain_validity": null
+        },
+        "b": {
+          "parses": true,
+          "geom_type": "Polygon",
+          "is_valid": true,
+          "explain_validity": null
+        }
+      },
+      "observed_geos_3_14_1": "area(A∩B)=5.017455574e-15 area(A−B)=11.528085 area(B−A)=48.1",
+      "reproduces_in_geos_3_14_1": "yes"
+    },
+    {
+      "id": "geos#1540",
+      "url": "https://github.com/libgeos/geos/issues/1540",
+      "title": "RelateOp fails to report interior-interior intersection",
+      "status": "open",
+      "fixed_in": null,
+      "fixed_in_basis": null,
+      "geometries": {
+        "A": "LINESTRING (21.201238197364834 69.67034848885017, 21.202068566871617 69.6703190661492, 21.201299377045427 69.67034632105447)",
+        "B": "LINESTRING (21.201299376871617 69.6703463161492, 21.201299377045427 69.67034632105447)"
+      },
+      "original": {
+        "format": "EWKB hex, SRID 4258",
+        "A": "0102000020A2100000030000005163B45884333540352259FDE66A51406043FEC3BA333540C0BFF081E66A5140831D215B88333540107B41F4E66A5140",
+        "B": "0102000020A210000002000000685E205B88333540B7363CF4E66A5140831D215B88333540107B41F4E66A5140",
+        "A_as_printed_in_jts_1237": "0102000020A2100000030000005163B45884333540352259FDE66A51406043FEC3BA333540C0BFF081E66A5140831D215B883335",
+        "note": "The A hex in JTS #1237 (and #1236) is truncated (104 hex chars; a 3-point EWKB line needs 122) and does not parse; the complete A used here is from strk's geosop command in GEOS #1530 (comment https://github.com/libgeos/geos/issues/1530#issuecomment-5829085530), whose B equals JTS #1237's B."
+      },
+      "operations": [
+        "relate",
+        "crosses",
+        "linemerge+is_simple (context)"
+      ],
+      "reported": "relate(A,B)=FF1F00102 (no interior-interior intersection); geosop crosses=false",
+      "expected": "interior-interior intersection present (II not F), per dr-jts in JTS #1236: B crosses A near a vertex of A; IsSimpleOp detects it",
+      "notes": "Upstream JTS #1237 (open). Root cause per dr-jts: RelateOp uses computed intersection points, which round onto B's endpoint. SRID dropped in WKT.",
+      "check": {
+        "A": {
+          "parses": true,
+          "geom_type": "LineString",
+          "is_valid": true,
+          "explain_validity": null
+        },
+        "B": {
+          "parses": true,
+          "geom_type": "LineString",
+          "is_valid": true,
+          "explain_validity": null
+        }
+      },
+      "observed_geos_3_14_1": "relate(A,B)=FF1F00102 crosses=False relate(B,A)=FF1F00102 line_merge(A,B) is_simple=False",
+      "reproduces_in_geos_3_14_1": "yes"
+    },
+    {
+      "id": "geos#1558",
+      "url": "https://github.com/libgeos/geos/issues/1558",
+      "title": "(issue deleted; API returns 404) RelateNG wrong result for polygon with hole touching the shell (per PR #1565 'tangent-hole containment case')",
+      "status": "deleted",
+      "fixed_in": null,
+      "fixed_in_basis": "Fix PR #1565 'fix(relateng): self-node polygons with holes (fixes #1558)' was closed unmerged 2026-10-20; no later commit to src/operation/relateng/RelateGeometry.cpp on main (last 2025-12-16)",
+      "geometries": {
+        "a": "POLYGON ((0 0,4 0,4 4,0 4,0 0),(2 0,1 1,3 1,2 0))",
+        "b": "POLYGON ((0 0,4 0,4 4,0 4,0 0))"
+      },
+      "original": {
+        "source": "https://github.com/libgeos/geos/pull/1565 tests/unit/operation/relateng/RelateNGTest.cpp test<65>"
+      },
+      "operations": [
+        "relate",
+        "contains/within",
+        "covers/coveredBy",
+        "overlaps"
+      ],
+      "reported": "Not obtainable (issue body deleted). Surviving comments (dr-jts 2026-10-13/14): 'This is indeed a bug, and exists in JTS as well'; fix is to require self-noding for polygons with holes in RelateGeometry.isSelfNodingRequired",
+      "expected": "From test 65: relate(a,b)=2FF11F2F2, relate(b,a)=212F1FFF2, contains(b,a)=true, within(a,b)=true, covers(b,a)=true, coveredBy(a,b)=true, overlaps(a,b)=false",
+      "notes": "Hole touches the shell at (2 0) (valid polygon). Test expectations were written by the PR author and CI-checked per the PR text; the PR was not merged.",
+      "check": {
+        "a": {
+          "parses": true,
+          "geom_type": "Polygon",
+          "is_valid": true,
+          "explain_validity": null
+        },
+        "b": {
+          "parses": true,
+          "geom_type": "Polygon",
+          "is_valid": true,
+          "explain_validity": null
+        }
+      },
+      "observed_geos_3_14_1": "relate_ab=21211F2F2 relate_ba=21211F2F2 contains_ba=False within_ab=False covers_ba=False coveredby_ab=False overlaps_ab=True contains_ba_prep=True covers_ba_prep=True within_ab_prep=False | mismatches vs test 65: ['relate_ab', 'relate_ba', 'contains_ba', 'within_ab', 'covers_ba', 'coveredby_ab', 'overlaps_ab', 'within_ab_prep']",
+      "reproduces_in_geos_3_14_1": "yes"
+    },
+    {
+      "id": "jts#1239",
+      "url": "https://github.com/locationtech/jts/issues/1239",
+      "title": "OverlayNGRobust symDifference returns an inverted polygon: the area check has no lower bound for SYMDIFFERENCE",
+      "status": "open",
+      "fixed_in": null,
+      "fixed_in_basis": null,
+      "geometries": {
+        "a": "POLYGON ((20.58 46.965, 27.52 53.905, 28.52 54.914, 20.58 46.965))",
+        "b": "LINESTRING (27.519999973297118 53.90499997329712, 52.192 78.577, 27.519 53.904, 28.519999999 54.913999999, 39.599 65.984)"
+      },
+      "original": null,
+      "operations": [
+        "symDifference",
+        "union",
+        "difference"
+      ],
+      "reported": "symDifference area -0.031229999995478153, invalid (JTS 1.20); GEOS 3.15.0 and main 7312930: area -0.031229999995477611, invalid (Self-intersection)",
+      "expected": "area 0.03123, valid (areal part of a ⊕ b is a)",
+      "notes": "Found by the reporter's fuzzer (NTS legacy overlay vs OverlayNG with area bounds). Fix proposal: lower bound in OverlayUtil.isResultAreaConsistent for SYMDIFFERENCE.",
+      "check": {
+        "a": {
+          "parses": true,
+          "geom_type": "Polygon",
+          "is_valid": true,
+          "explain_validity": null
+        },
+        "b": {
+          "parses": true,
+          "geom_type": "LineString",
+          "is_valid": true,
+          "explain_validity": null
+        }
+      },
+      "observed_geos_3_14_1": "symdiff area=-0.031229999995478153 valid=False (Self-intersection[28.5199999995825 54.913999999582]); union area=0.03123; difference area=0.03123",
+      "reproduces_in_geos_3_14_1": "yes"
+    },
+    {
+      "id": "jts#1222",
+      "url": "https://github.com/locationtech/jts/issues/1222",
+      "title": "OverlayNG difference operation moves points in outer edge",
+      "status": "open",
+      "fixed_in": null,
+      "fixed_in_basis": null,
+      "geometries": {
+        "polygon": "POLYGON ((412023.08 92158.29, 412021.68 92161.6, 412022.58 92161.96, 412021.45 \n92164.58, 412022.19 92165.38, 412021.43 92167.13, 412018.32 92165.86, 412016.28 \n92165.03, 412019.75 92156.92, 412023.08 92158.29))",
+        "neg_buffer": "POLYGON ((412022.4 92158.6, 412020 92157.6, 412016.9 92164.8, 412021.2 92166.5, \n412021.6 92165.5, 412021.1 92164.9, 412021 92164.8, 412021 92164.7, 412021 \n92164.6, 412021 92164.5, 412021 92164.4, 412021.9 92162.2, 412021.5 92162.1, \n412021.4 92162, 412021.3 92162, 412021.3 92161.9, 412021.2 92161.8, 412021.2 \n92161.7, 412021.2 92161.6, 412021.2 92161.5, 412021.2 92161.4, 412022.4 \n92158.6))"
+      },
+      "original": null,
+      "operations": [
+        "difference"
+      ],
+      "reported": "difference result with outer-ring vertices moved (rounded to 0.1): POLYGON ((412019.8 92156.9, 412016.3 92165, 412018.3 92165.9, 412021.4 92167.1,  412022.2 92165.4, 412021.5 92164.6, 412022.6 92162, 412021.7 92161.6, 412023.1  92158.3, 412019.8 92156.9), (412021.2 92161.4, 412021.2 92161.5, 412021.2  92161.6, 412021.2 92161.7, 412021.2 92161.8, 412021.3 92161.9, 4...",
+      "expected": "outer ring vertices unchanged (equal to the input polygon's)",
+      "notes": "WKT spans several lines in the issue (kept with newlines). dr-jts could not reproduce in 1.20 or master; result is rounded to one decimal; reporter uses a PrecisionModel scale 100 in GeoTools. Likely not an OverlayNG defect.",
+      "check": {
+        "polygon": {
+          "parses": true,
+          "geom_type": "Polygon",
+          "is_valid": true,
+          "explain_validity": null
+        },
+        "neg_buffer": {
+          "parses": true,
+          "geom_type": "Polygon",
+          "is_valid": true,
+          "explain_validity": null
+        }
+      },
+      "observed_geos_3_14_1": "difference type=Polygon holes=1 input exterior vertices missing from result exterior=0 of 9",
+      "reproduces_in_geos_3_14_1": "no"
+    }
+  ]
+}

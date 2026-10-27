@@ -1,0 +1,316 @@
+{
+  "geos_xml_tests": {
+    "repository": "https://github.com/libgeos/geos",
+    "ref": "main",
+    "commit": "a9752091be7ca35f0ffd94c37ef77530ff3dc194",
+    "commit_date": "2026-10-26T20:07:40Z",
+    "retrieved": "2026-10-27",
+    "url_template": "https://raw.githubusercontent.com/libgeos/geos/a9752091be7ca35f0ffd94c37ef77530ff3dc194/{path}",
+    "local_root": "seeds/geos-xml/",
+    "selection": [
+      "tests/xmltester/tests/validate/TestRelate*.xml",
+      "tests/xmltester/tests/general/TestRelate*.xml",
+      "tests/xmltester/tests/general/TestPrepared*.xml",
+      "tests/xmltester/tests/general/TestOverlay*.xml",
+      "tests/xmltester/tests/general/TestNGOverlay*.xml"
+    ],
+    "excluded": [
+      "tests/xmltester/tests/general/TestOverlayCurvesAA.xml",
+      "tests/xmltester/tests/general/TestOverlayCurvesLA.xml"
+    ],
+    "exclusion_rule": "file name contains 'Curve' or 'curve'",
+    "case_count_method": "occurrences of '<case' (regex <case\b) per file",
+    "license": "LGPL-2.1 (GNU Lesser General Public License v2.1; COPYING at the same commit)",
+    "file_count": 40,
+    "total_cases": 965,
+    "files": [
+      {
+        "path": "tests/xmltester/tests/general/TestNGOverlayA.xml",
+        "cases": 20,
+        "bytes": 19031,
+        "git_blob_sha": "7c9089c67ea6ff85490bc04cc6a48a7a910190a6",
+        "blob_matches_tree": true
+      },
+      {
+        "path": "tests/xmltester/tests/general/TestNGOverlayAPrec.xml",
+        "cases": 12,
+        "bytes": 11281,
+        "git_blob_sha": "0eb8934f124cf061c4a980892ca0455bf0a0ea21",
+        "blob_matches_tree": true
+      },
+      {
+        "path": "tests/xmltester/tests/general/TestNGOverlayEmpty.xml",
+        "cases": 16,
+        "bytes": 9359,
+        "git_blob_sha": "d01a09264cf945be500037e23d5789749c14b13d",
+        "blob_matches_tree": true
+      },
+      {
+        "path": "tests/xmltester/tests/general/TestNGOverlayGC.xml",
+        "cases": 4,
+        "bytes": 3219,
+        "git_blob_sha": "1dd39b37d5a4dc519e5f15d61c93d748084de073",
+        "blob_matches_tree": true
+      },
+      {
+        "path": "tests/xmltester/tests/general/TestNGOverlayL.xml",
+        "cases": 10,
+        "bytes": 8240,
+        "git_blob_sha": "1db4001d4ed73667211b70c2350e8ab10103266f",
+        "blob_matches_tree": true
+      },
+      {
+        "path": "tests/xmltester/tests/general/TestNGOverlayLPrec.xml",
+        "cases": 4,
+        "bytes": 3546,
+        "git_blob_sha": "70dabbf808fd6381cd7b4bdb3d6bd657c40f4e29",
+        "blob_matches_tree": true
+      },
+      {
+        "path": "tests/xmltester/tests/general/TestNGOverlayP.xml",
+        "cases": 12,
+        "bytes": 7593,
+        "git_blob_sha": "1a6f400d3ad9e08ba5d331a523bd98021c9edacc",
+        "blob_matches_tree": true
+      },
+      {
+        "path": "tests/xmltester/tests/general/TestNGOverlayPPrec.xml",
+        "cases": 4,
+        "bytes": 2705,
+        "git_blob_sha": "bb3a397422aeaf23d9e03a3d38d23ec87bcf7b74",
+        "blob_matches_tree": true
+      },
+      {
+        "path": "tests/xmltester/tests/general/TestOverlayAA.xml",
+        "cases": 13,
+        "bytes": 15495,
+        "git_blob_sha": "6a93130aa600d4b3fccd90a4a938ab1f3e0878cb",
+        "blob_matches_tree": true
+      },
+      {
+        "path": "tests/xmltester/tests/general/TestOverlayAAPrec.xml",
+        "cases": 18,
+        "bytes": 17477,
+        "git_blob_sha": "c87ce14a204af6c745aa3d1dcf5e217509a48c02",
+        "blob_matches_tree": true
+      },
+      {
+        "path": "tests/xmltester/tests/general/TestOverlayEmpty.xml",
+        "cases": 146,
+        "bytes": 39333,
+        "git_blob_sha": "2c17375c585b0bf242284c656208e467a5f40ae4",
+        "blob_matches_tree": true
+      },
+      {
+        "path": "tests/xmltester/tests/general/TestOverlayLA.xml",
+        "cases": 4,
+        "bytes": 10061,
+        "git_blob_sha": "97cab3b827e76789b22b6bfe82ac0b3e1f2a38dd",
+        "blob_matches_tree": true
+      },
+      {
+        "path": "tests/xmltester/tests/general/TestOverlayLAPrec.xml",
+        "cases": 4,
+        "bytes": 4440,
+        "git_blob_sha": "8862ddd316d0f2ce0e70e8717cd50de24e62b01f",
+        "blob_matches_tree": true
+      },
+      {
+        "path": "tests/xmltester/tests/general/TestOverlayLL.xml",
+        "cases": 7,
+        "bytes": 4438,
+        "git_blob_sha": "3d723abb08bbde351830898e0753af5f4d268842",
+        "blob_matches_tree": true
+      },
+      {
+        "path": "tests/xmltester/tests/general/TestOverlayLLPrec.xml",
+        "cases": 2,
+        "bytes": 2365,
+        "git_blob_sha": "17321cebca1c55b8919dd995c790afec3b0d65c4",
+        "blob_matches_tree": true
+      },
+      {
+        "path": "tests/xmltester/tests/general/TestOverlayPA.xml",
+        "cases": 3,
+        "bytes": 3202,
+        "git_blob_sha": "c9eb8561a70a931669644bb265956c324ecf7b42",
+        "blob_matches_tree": true
+      },
+      {
+        "path": "tests/xmltester/tests/general/TestOverlayPL.xml",
+        "cases": 5,
+        "bytes": 6418,
+        "git_blob_sha": "e47bd6bbf846f58e3a38c3ccccf6b6f718e27e4e",
+        "blob_matches_tree": true
+      },
+      {
+        "path": "tests/xmltester/tests/general/TestOverlayPLPrec.xml",
+        "cases": 1,
+        "bytes": 344,
+        "git_blob_sha": "b25ddde1713c2cd03340a7ad35f9e0239b74d84f",
+        "blob_matches_tree": true
+      },
+      {
+        "path": "tests/xmltester/tests/general/TestOverlayPP.xml",
+        "cases": 8,
+        "bytes": 3856,
+        "git_blob_sha": "2e1ea0cb6b14331a1f9a54a72f9612eeeabfc331",
+        "blob_matches_tree": true
+      },
+      {
+        "path": "tests/xmltester/tests/general/TestPreparedIntersectsPL.xml",
+        "cases": 2,
+        "bytes": 1235,
+        "git_blob_sha": "f77162b8a6f254f93dfa4739fcb03ef07756a869",
+        "blob_matches_tree": true
+      },
+      {
+        "path": "tests/xmltester/tests/general/TestPreparedPointPredicate.xml",
+        "cases": 3,
+        "bytes": 894,
+        "git_blob_sha": "5c353df02f951721eb9d503a670173948fac668f",
+        "blob_matches_tree": true
+      },
+      {
+        "path": "tests/xmltester/tests/general/TestPreparedPolygonPredicate.xml",
+        "cases": 20,
+        "bytes": 8560,
+        "git_blob_sha": "d546a9d628b5f38ca0810f8d333d80a8e5c45fe3",
+        "blob_matches_tree": true
+      },
+      {
+        "path": "tests/xmltester/tests/general/TestPreparedPredicatesWithGeometryCollection.xml",
+        "cases": 6,
+        "bytes": 2573,
+        "git_blob_sha": "a1092a0da86554d6efa4b7ef94ddac95df97f011",
+        "blob_matches_tree": true
+      },
+      {
+        "path": "tests/xmltester/tests/general/TestRelateAA.xml",
+        "cases": 14,
+        "bytes": 6790,
+        "git_blob_sha": "b73c12d077d75b48f1bb3948315d9f0a3dff6d50",
+        "blob_matches_tree": true
+      },
+      {
+        "path": "tests/xmltester/tests/general/TestRelateEmpty.xml",
+        "cases": 52,
+        "bytes": 47214,
+        "git_blob_sha": "6ed6128208fb7036d2ccb8a433c6ca0d4e94b6ab",
+        "blob_matches_tree": true
+      },
+      {
+        "path": "tests/xmltester/tests/general/TestRelateGC.xml",
+        "cases": 28,
+        "bytes": 30214,
+        "git_blob_sha": "a83444a0135f1a5d3e7bcbcd722c54dabf5a56b0",
+        "blob_matches_tree": true
+      },
+      {
+        "path": "tests/xmltester/tests/general/TestRelateLA.xml",
+        "cases": 13,
+        "bytes": 4228,
+        "git_blob_sha": "482dc7b2a492ecd14b362cf1154622b6a8538d79",
+        "blob_matches_tree": true
+      },
+      {
+        "path": "tests/xmltester/tests/general/TestRelateLL.xml",
+        "cases": 25,
+        "bytes": 8375,
+        "git_blob_sha": "592443d1f9da47d3b2b72785386d458a8e600302",
+        "blob_matches_tree": true
+      },
+      {
+        "path": "tests/xmltester/tests/general/TestRelatePA.xml",
+        "cases": 11,
+        "bytes": 10126,
+        "git_blob_sha": "4c2345a7d2d018bab5c5dc8988d4876303944881",
+        "blob_matches_tree": true
+      },
+      {
+        "path": "tests/xmltester/tests/general/TestRelatePL.xml",
+        "cases": 8,
+        "bytes": 1849,
+        "git_blob_sha": "07ddff57ac72079f8a354a6947cd6ef416deeb4d",
+        "blob_matches_tree": true
+      },
+      {
+        "path": "tests/xmltester/tests/general/TestRelatePP.xml",
+        "cases": 4,
+        "bytes": 909,
+        "git_blob_sha": "10bdf362be3fe3a1ec50e24b90e35b601e8e1fdb",
+        "blob_matches_tree": true
+      },
+      {
+        "path": "tests/xmltester/tests/validate/TestRelateAA-big.xml",
+        "cases": 2,
+        "bytes": 967,
+        "git_blob_sha": "2d8e9c6e2e7410d949fbb5bfe4d4807a23985787",
+        "blob_matches_tree": true
+      },
+      {
+        "path": "tests/xmltester/tests/validate/TestRelateAA.xml",
+        "cases": 107,
+        "bytes": 121194,
+        "git_blob_sha": "bb9c3eae1dc071bca69eeb57dbe8d853976ca198",
+        "blob_matches_tree": true
+      },
+      {
+        "path": "tests/xmltester/tests/validate/TestRelateAC.xml",
+        "cases": 1,
+        "bytes": 1209,
+        "git_blob_sha": "526288b468f69e1172248d80f9b2d07d76798e20",
+        "blob_matches_tree": true
+      },
+      {
+        "path": "tests/xmltester/tests/validate/TestRelateLA.xml",
+        "cases": 77,
+        "bytes": 81836,
+        "git_blob_sha": "3be916eae96994ab728dd321c40fcf130a55b71a",
+        "blob_matches_tree": true
+      },
+      {
+        "path": "tests/xmltester/tests/validate/TestRelateLC.xml",
+        "cases": 2,
+        "bytes": 1998,
+        "git_blob_sha": "c002318b336b7c7667593d812da2c59470cda985",
+        "blob_matches_tree": true
+      },
+      {
+        "path": "tests/xmltester/tests/validate/TestRelateLL.xml",
+        "cases": 144,
+        "bytes": 147568,
+        "git_blob_sha": "0308d75e63627b04d97b26fc1178c484e87ba731",
+        "blob_matches_tree": true
+      },
+      {
+        "path": "tests/xmltester/tests/validate/TestRelatePA.xml",
+        "cases": 41,
+        "bytes": 41805,
+        "git_blob_sha": "09f0d8f31aa08018d3626481cf53095d906af289",
+        "blob_matches_tree": true
+      },
+      {
+        "path": "tests/xmltester/tests/validate/TestRelatePL.xml",
+        "cases": 99,
+        "bytes": 100279,
+        "git_blob_sha": "a0d1b9066f9bd8c6508c13bcce678e148d187ef7",
+        "blob_matches_tree": true
+      },
+      {
+        "path": "tests/xmltester/tests/validate/TestRelatePP.xml",
+        "cases": 13,
+        "bytes": 12513,
+        "git_blob_sha": "847908e5baf6ce1220ba601e858e0395a62d4264",
+        "blob_matches_tree": true
+      }
+    ]
+  },
+  "known_bugs_sources": {
+    "github_issues": "fetched with gh api (repos/{owner}/{repo}/issues/N and /comments) on 2026-10-27; raw JSON in seeds/raw/",
+    "postgis_trac_5938": "https://trac.osgeo.org/postgis/ticket/5938 returned an anti-bot page (raw/trac5938.html); used PostGIS GitHub mirror commits a4886d8581d307a132ac19a3f7c5052e6de65657 and 74d24bc78383f8e021cd6300b5aec1d7278b5487 (raw/pg5938_commits.txt) and stable-3.5 NEWS",
+    "geos_1558": "issue deleted (API 404); comments still returned by the comments API (raw/geos_1558_c.json); reproducer from PR #1565 RelateNGTest test<65> (raw/pr1565_test.patch)",
+    "geos_1540": "complete EWKB hex for A from GEOS #1530 comment by strk (raw/geos_1530_c.json); JTS #1237 prints a truncated A",
+    "geos_news": "raw/NEWS.md from libgeos/geos main, used for fixed_in"
+  }
+}

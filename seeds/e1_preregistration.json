@@ -1,0 +1,289 @@
+{
+  "source": "experiment-plan.md, section 'E1 pre-registered seeds' (2026-10-27)",
+  "fired_means": "at least one violation of the rule on at least one of the seed's pairs (boolean rules: any tier; measure rules: band logged or triage)",
+  "silent_means": "none of the seed's expected rules has a violation on that image",
+  "seeds": [
+    {
+      "seed": "tangent-hole",
+      "record": "geos#1558",
+      "pairs": [
+        [
+          "a",
+          "b"
+        ]
+      ],
+      "expected_rules": [
+        "R3",
+        "R1"
+      ],
+      "match": "all",
+      "detail": "R3 lone vs prepared Contains/Covers; R1",
+      "fires_on": [
+        "current",
+        "dev"
+      ],
+      "silent_on": [
+        "old"
+      ]
+    },
+    {
+      "seed": "geos#1405",
+      "record": "geos#1405",
+      "pairs": [
+        [
+          "shape1",
+          "shape2"
+        ],
+        [
+          "pr1499_a",
+          "pr1499_b"
+        ]
+      ],
+      "expected_rules": [
+        "R8"
+      ],
+      "match": "all",
+      "detail": "R8 (intersection order)",
+      "fires_on": [
+        "current"
+      ],
+      "silent_on": [
+        "dev"
+      ],
+      "note": "plan: needs the post-set_precision geometries, which are not in the seed data; raw shapes and the fix PR's example are used"
+    },
+    {
+      "seed": "geos#1383",
+      "record": "geos#1383",
+      "pairs": [
+        [
+          "ex0_1",
+          "ex0_2"
+        ],
+        [
+          "ex1_1",
+          "ex1_2"
+        ]
+      ],
+      "expected_rules": [
+        "R6"
+      ],
+      "match": "all",
+      "detail": "R6 (sliver union empty), binary union",
+      "fires_on": [
+        "current",
+        "dev"
+      ],
+      "silent_on": []
+    },
+    {
+      "seed": "geos#1523",
+      "record": "geos#1523",
+      "pairs": [
+        [
+          "a",
+          "b"
+        ]
+      ],
+      "expected_rules": [
+        "R9",
+        "R11"
+      ],
+      "match": "all",
+      "not_expected": [
+        "R7"
+      ],
+      "detail": "R9, R11 (not R7)",
+      "fires_on": [
+        "current",
+        "dev"
+      ],
+      "silent_on": []
+    },
+    {
+      "seed": "geos#1354",
+      "record": "geos#1354",
+      "pairs": [
+        [
+          "geom_0",
+          "zone"
+        ]
+      ],
+      "expected_rules": [
+        "R10",
+        "R9",
+        "R11"
+      ],
+      "match": "all",
+      "detail": "R10, R9, R11",
+      "fires_on": [
+        "current",
+        "dev"
+      ],
+      "silent_on": []
+    },
+    {
+      "seed": "geos#1343",
+      "record": "geos#1343",
+      "pairs": [
+        [
+          "poly1",
+          "poly2"
+        ]
+      ],
+      "expected_rules": [
+        "R9"
+      ],
+      "match": "all",
+      "detail": "R9 (binary union)",
+      "fires_on": [
+        "current",
+        "dev"
+      ],
+      "silent_on": []
+    },
+    {
+      "seed": "geos#1344",
+      "record": "geos#1344",
+      "pairs": [
+        [
+          "poly1",
+          "poly2"
+        ]
+      ],
+      "expected_rules": [
+        "R5",
+        "R7",
+        "R9"
+      ],
+      "match": "all",
+      "detail": "R5, R7, R9",
+      "fires_on": [
+        "current",
+        "dev"
+      ],
+      "silent_on": []
+    },
+    {
+      "seed": "geos#1342",
+      "record": "geos#1342",
+      "pairs": [
+        [
+          "wkt1",
+          "wkt2"
+        ]
+      ],
+      "expected_rules": [
+        "R6"
+      ],
+      "match": "all",
+      "detail": "R6 candidate (floating mode)",
+      "fires_on": [
+        "current",
+        "dev"
+      ],
+      "silent_on": []
+    },
+    {
+      "seed": "geos#1540",
+      "record": "geos#1540",
+      "pairs": [
+        [
+          "A",
+          "B"
+        ]
+      ],
+      "expected_rules": [
+        "R10",
+        "R1"
+      ],
+      "match": "any",
+      "detail": "R10 or R1 vs overlay",
+      "fires_on": [
+        "current",
+        "dev"
+      ],
+      "silent_on": []
+    },
+    {
+      "seed": "geos#1027",
+      "record": "geos#1027",
+      "pairs": [
+        [
+          "g2",
+          "g1"
+        ]
+      ],
+      "expected_rules": [
+        "R3",
+        "R4"
+      ],
+      "match": "all",
+      "detail": "R3 lone vs prepared Covers, R4",
+      "fires_on": null,
+      "silent_on": []
+    },
+    {
+      "seed": "geos#1053",
+      "record": "geos#1053",
+      "pairs": [
+        [
+          "g1",
+          "g2"
+        ]
+      ],
+      "expected_rules": [
+        "R10"
+      ],
+      "match": "all",
+      "detail": "R10 (old RelateOp dimension)",
+      "fires_on": [
+        "old"
+      ],
+      "silent_on": [
+        "current"
+      ]
+    },
+    {
+      "seed": "geos#1033",
+      "record": "geos#1033",
+      "pairs": [
+        [
+          "a",
+          "b"
+        ]
+      ],
+      "expected_rules": [
+        "R3"
+      ],
+      "match": "all",
+      "detail": "R3 (Contains vs prepared Contains)",
+      "fires_on": [
+        "old"
+      ],
+      "silent_on": [
+        "current"
+      ]
+    },
+    {
+      "seed": "geos#1064",
+      "record": "geos#1064",
+      "pairs": [
+        [
+          "A",
+          "B"
+        ]
+      ],
+      "expected_rules": [
+        "R2"
+      ],
+      "match": "all",
+      "detail": "R2 (known limitation)",
+      "fires_on": [
+        "current",
+        "old"
+      ],
+      "silent_on": []
+    }
+  ]
+}

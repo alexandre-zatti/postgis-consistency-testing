@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> Unexpected behaviour in ST_Relate with PostGIS 3.5 and GEOS 3.13
+   </TITLE>
+   <LINK REL="Index" HREF="index.html" >
+   <LINK REL="made" HREF="mailto:postgis-devel%40lists.osgeo.org?Subject=Re%3A%20Unexpected%20behaviour%20in%20ST_Relate%20with%20PostGIS%203.5%20and%20GEOS%203.13&In-Reply-To=%3CCAHgMAc2WswV_w1qp2_%2BOWk5FGroWkJuU8m-V-TQwjyH1kL%2B3rA%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="030577.html">
+   <LINK REL="Next"  HREF="030579.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>Unexpected behaviour in ST_Relate with PostGIS 3.5 and GEOS 3.13</H1>
+    <B>David Smith</B> 
+    <A HREF="mailto:postgis-devel%40lists.osgeo.org?Subject=Re%3A%20Unexpected%20behaviour%20in%20ST_Relate%20with%20PostGIS%203.5%20and%20GEOS%203.13&In-Reply-To=%3CCAHgMAc2WswV_w1qp2_%2BOWk5FGroWkJuU8m-V-TQwjyH1kL%2B3rA%40mail.gmail.com%3E"
+       TITLE="Unexpected behaviour in ST_Relate with PostGIS 3.5 and GEOS 3.13">smithdc at gmail.com
+       </A><BR>
+    <I>Fri Jul  4 06:56:14 PDT 2025</I>
+    <P><UL>
+        <LI>Previous message (by thread): <A HREF="030577.html">pg_upgrade fails due to lack of dependencies.
+</A></li>
+        <LI>Next message (by thread): <A HREF="030579.html">Unexpected behaviour in ST_Relate with PostGIS 3.5 and GEOS 3.13
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#30578">[ date ]</a>
+              <a href="thread.html#30578">[ thread ]</a>
+              <a href="subject.html#30578">[ subject ]</a>
+              <a href="author.html#30578">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi all,
+
+I was unsure how best to ask this question. If this is the wrong place I'd
+appreciate being pointed in the right direction.
+
+When trying to add support to Django's GeoDjango for PostGIS 3.5 and GEOS
+3.13 there is one test failure. I managed to summarise it to this example
+in sql. I'm not an SQL expert, so I used Claude.ai to help me write this.
+
+Some of the values being input are quite long, so here's a gist:
+
+<A HREF="https://gist.github.com/smithdc1/e8429f70b74bc97cd2a0a3a6193d5949">https://gist.github.com/smithdc1/e8429f70b74bc97cd2a0a3a6193d5949</A>
+
+The first part is set up, which creates two tables and adds some data. The
+two SELECT statements at the end show the issue. `ST_Relate()`, when a
+pattern is provided, seems to only work for the first result.
+
+The first query returns `False` for Lawrence being within Kansas, but is
+`True` (the correct result) if it is the only row the function is applied
+to. `True` is also returned if Lawrence is the first row, rather than the
+second, in the table.
+
+I was wondering if this change in behaviour in PostGIS 3.5 / GEOS 3.13 is
+expected?
+
+Thanks
+David
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="http://lists.osgeo.org/pipermail/postgis-devel/attachments/20250704/4113cf22/attachment.htm">http://lists.osgeo.org/pipermail/postgis-devel/attachments/20250704/4113cf22/attachment.htm</A>&gt;
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message (by thread): <A HREF="030577.html">pg_upgrade fails due to lack of dependencies.
+</A></li>
+	<LI>Next message (by thread): <A HREF="030579.html">Unexpected behaviour in ST_Relate with PostGIS 3.5 and GEOS 3.13
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#30578">[ date ]</a>
+              <a href="thread.html#30578">[ thread ]</a>
+              <a href="subject.html#30578">[ subject ]</a>
+              <a href="author.html#30578">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.osgeo.org/mailman/listinfo/postgis-devel">More information about the postgis-devel
+mailing list</a><br>
+</body></html>
