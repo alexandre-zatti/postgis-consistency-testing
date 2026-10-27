@@ -26,7 +26,8 @@ import shapely
 
 from .db import Target
 from .pair import Pair
-from .rules import Evaluation, Outcome, batch_index_join, evaluate, tier_of
+from .rules import (Evaluation, Outcome, apply_batch, batch_join_lane, crash_list, evaluate,
+                    tier_of)
 from .store import Store
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -122,19 +123,16 @@ def seed_pairs(prereg: dict) -> dict[str, list[Pair]]:
 
 def run_batch(target: Target, store: Store, run_id: int, pairs: list[Pair],
               plan_sink: dict | None = None) -> list[Evaluation]:
-    bj = batch_index_join(target, pairs, explain=plan_sink is not None and not plan_sink)
+    # evaluate first (gives each pair's crash list), then the lane's index join (R3 (d))
+    evs = [evaluate(target, p) for p in pairs]
+    bj = batch_join_lane(target, pairs, [crash_list(ev) for ev in evs],
+                         explain=plan_sink is not None and not plan_sink)
     if plan_sink is not None and not plan_sink and bj["plan"] is not None:
         plan_sink.update(target=target.name, index_used=bj["index_used"], **bj["plan"])
-    evs = []
-    for i, p in enumerate(pairs):
-        ev = evaluate(target, p, bj["results"].get(i))
-        for (pred, o, kind, msg) in bj["errors"]:
-            ev.outcomes.append(Outcome(f"batch:{pred}:{o}", kind, msg))
-        for (j, kind, msg) in bj["failed_rows"]:
-            if j == i:
-                ev.outcomes.append(Outcome("batch:insert", kind, msg))
+    for i, ev in enumerate(evs):
+        apply_batch(ev, bj["results"].get(i), bj["outcomes"].get(i))
+        ev.seconds["batch_lane_share"] = bj["seconds"] / max(len(pairs), 1)
         store.add(run_id, ev, commit=False)
-        evs.append(ev)
     store.commit()
     return evs
 

@@ -486,78 +486,150 @@ def _overlay_exprs(d: int, grid: Optional[float], with_r5_only: bool, M: float =
 # --------------------------------------------------------------------------------------------
 # R3 (d): batch index join
 
-class _BatchCrash(Exception):
-    pass
+def batch_join_lane(target: Target, pairs: list[Pair],
+                    crash_lists: Optional[list] = None, explain: bool = False) -> dict:
+    """R3 (d) for one lane (one seed and kind): each indexed predicate as one GiST index join
+    over the lane's pairs, both orientations, enable_seqscan=off, EMPTY geometries included.
 
+    `crash_lists[i]` holds the functions that crashed on pair i in `evaluate`
+    (`crash_list(ev)`); a (pair, predicate) whose ST_<predicate> is listed is excluded and
+    gets a `skipped` outcome. If a join still fails, its id set is split in halves and each
+    half retried, recursively, down to the single failing pair, which gets a crash (or error)
+    outcome in the index path; a crashing predicate then joins that pair's list for the rest
+    of the lane. All other pairs complete.
 
-def batch_index_join(target: Target, pairs: list[Pair], explain: bool = False) -> dict:
-    """Run each indexed predicate as one GiST index join over all `pairs` (both orientations),
-    with enable_seqscan=off. Returns {"results": {i: {(P, o): bool}}, "errors": [...],
-    "plan": EXPLAIN JSON or None, "index_used": bool or None, "seconds": float}.
-    Pairs are identified by their position i in `pairs`; EMPTY geometries are included."""
+    Returns {"results": {i: {(P, o): bool}}, "outcomes": {i: [Outcome]}, "plan": EXPLAIN JSON
+    or None, "index_used": bool or None, "crashes": int, "seconds": float}."""
     import time
-    out: dict = {"results": {i: {} for i in range(len(pairs))}, "errors": [], "plan": None,
-                 "index_used": None, "seconds": 0.0, "failed_rows": []}
+    n = len(pairs)
+    listed = [set(crash_lists[i]) if crash_lists and crash_lists[i] else set() for i in range(n)]
+    out: dict = {"results": {i: {} for i in range(n)}, "outcomes": {i: [] for i in range(n)},
+                 "plan": None, "index_used": None, "crashes": 0, "seconds": 0.0}
     t0 = time.perf_counter()
-    try:
+    loaded: set[int] = set()
+    first_setup = [True]
+
+    def setup():
+        """(Re)create the session's temp tables; they die with the backend after a crash."""
         conn = target.connect()
         conn.execute("DROP TABLE IF EXISTS tavs_bx, tavs_by")
         conn.execute("CREATE TEMP TABLE tavs_bx (id int, a geometry, b geometry)")
         conn.execute("CREATE TEMP TABLE tavs_by (id int, a geometry, b geometry)")
         for i, p in enumerate(pairs):
+            if not first_setup[0] and i not in loaded:
+                continue
             try:
                 for t in ("tavs_bx", "tavs_by"):
                     conn.execute(f"INSERT INTO {t} VALUES (%s, ST_GeomFromText(%s), "
                                  f"ST_GeomFromText(%s))", (i, p.a, p.b))
+                loaded.add(i)
             except Exception as exc:  # noqa: BLE001
-                out["failed_rows"].append((i, classify_error(exc), str(exc)[:500]))
+                if first_setup[0]:
+                    out["outcomes"][i].append(Outcome("batch:insert", classify_error(exc),
+                                                      str(exc)[:500]))
+        first_setup[0] = False
         conn.execute("CREATE INDEX ON tavs_by USING gist (a)")
         conn.execute("CREATE INDEX ON tavs_by USING gist (b)")
         conn.execute("ANALYZE tavs_bx")
         conn.execute("ANALYZE tavs_by")
         conn.execute("SET enable_seqscan = off")
-        try:
-            for p in INDEXED:
-                for o, (x, y) in ORIENTATIONS.items():
-                    q = (f"SELECT x.id FROM tavs_bx x JOIN tavs_by y "
-                         f"ON ST_{p}(x.{x}, y.{y}) WHERE x.id = y.id")
-                    if explain and out["plan"] is None:
-                        plan = conn.execute(f"EXPLAIN (ANALYZE, FORMAT JSON) {q}").fetchone()[0]
-                        out["plan"] = {"query": q, "plan": plan}
-                        txt = str(plan)
-                        out["index_used"] = ("Index Scan" in txt or "Index Only Scan" in txt
-                                             or "Bitmap Index Scan" in txt) and "tavs_by" in txt
-                    try:
-                        hit = {row[0] for row in conn.execute(q).fetchall()}
-                    except Exception as exc:  # noqa: BLE001
-                        kind = classify_error(exc)
-                        out["errors"].append((p, o, kind, f"{str(exc)[:500]} | statement: {q}"))
-                        if kind == "crash":
-                            raise _BatchCrash() from exc
-                        continue
-                    for i in out["results"]:
-                        out["results"][i][(p, o)] = i in hit
-        finally:
-            try:
-                conn.execute("RESET enable_seqscan")
-                conn.execute("DROP TABLE IF EXISTS tavs_bx, tavs_by")
-            except Exception:  # noqa: BLE001 - connection lost; temp tables died with it
-                pass
-    except _BatchCrash:
-        out["crashed"] = True
-    except Exception as exc:  # noqa: BLE001
-        kind = classify_error(exc)
-        out["errors"].append(("*", "*", kind, str(exc)[:500]))
-        out["crashed"] = kind == "crash"
-    if out.get("crashed"):
-        # the index join is abandoned for this batch (results kept for joins already done)
+        return conn
+
+    def recover():
         target.close_quietly()
-        target.wait_ready()
-    failed = {i for i, *_ in out["failed_rows"]}
-    for i in failed:
-        out["results"][i] = {}
+        waited = target.wait_ready()
+        return setup(), waited
+
+    try:
+        conn = setup()
+    except Exception as exc:  # noqa: BLE001
+        for i in range(n):
+            out["outcomes"][i].append(Outcome("batch:setup", classify_error(exc), str(exc)[:500]))
+        out["seconds"] = time.perf_counter() - t0
+        return out
+
+    for p in INDEXED:
+        for o, (x, y) in ORIENTATIONS.items():
+            q = (f"SELECT x.id FROM tavs_bx x JOIN tavs_by y ON ST_{p}(x.{x}, y.{y}) "
+                 f"WHERE x.id = y.id AND x.id = ANY(%(ids)s)")
+            ids = []
+            for i in sorted(loaded):
+                if f"ST_{p}" in listed[i]:
+                    out["outcomes"][i].append(Outcome(
+                        f"batch:{p}:{o}", "skipped",
+                        f"ST_{p} crashed on this pair; excluded from the index join"))
+                else:
+                    ids.append(i)
+            if explain and out["plan"] is None and ids:
+                try:
+                    plan = conn.execute(f"EXPLAIN (ANALYZE, FORMAT JSON) {q}",
+                                        {"ids": ids}).fetchone()[0]
+                    out["plan"] = {"query": q, "plan": plan}
+                    txt = str(plan)
+                    out["index_used"] = ("Index Scan" in txt or "Index Only Scan" in txt
+                                         or "Bitmap Index Scan" in txt) and "tavs_by" in txt
+                except Exception as exc:  # noqa: BLE001
+                    if classify_error(exc) == "crash":
+                        out["crashes"] += 1
+                    conn, _ = recover()
+            stack = [ids] if ids else []
+            while stack:
+                part = stack.pop()
+                try:
+                    hit = {row[0] for row in conn.execute(q, {"ids": part}).fetchall()}
+                except Exception as exc:  # noqa: BLE001
+                    kind = classify_error(exc)
+                    msg = f"{str(exc)[:500]} | statement: {q}"
+                    if kind == "crash":
+                        out["crashes"] += 1
+                        conn, waited = recover()
+                        msg += f" | server accepting again after {waited:.1f} s"
+                    elif conn.closed or conn.broken:
+                        conn, _ = recover()
+                    if len(part) == 1:
+                        i = part[0]
+                        out["outcomes"][i].append(Outcome(f"batch:{p}:{o}", kind, msg))
+                        if kind == "crash":
+                            listed[i].add(f"ST_{p}")
+                    else:
+                        h = len(part) // 2
+                        stack += [part[h:], part[:h]]
+                    continue
+                for i in part:
+                    out["results"][i][(p, o)] = i in hit
+    try:
+        conn.execute("RESET enable_seqscan")
+        conn.execute("DROP TABLE IF EXISTS tavs_bx, tavs_by")
+    except Exception:  # noqa: BLE001
+        target.close_quietly()
     out["seconds"] = time.perf_counter() - t0
     return out
+
+
+def batch_index_join(target: Target, pairs: list[Pair], explain: bool = False) -> dict:
+    """Compatibility wrapper: `batch_join_lane` with empty crash lists. Keeps the old keys
+    ("results", "plan", "index_used", "seconds"); "errors" and "failed_rows" are now always
+    empty and the per-pair outcomes are under "outcomes"."""
+    out = batch_join_lane(target, pairs, None, explain)
+    out.update(errors=[], failed_rows=[], crashed=out["crashes"] > 0)
+    return out
+
+
+def apply_batch(ev: Evaluation, results: Optional[dict], outcomes: Optional[list] = None
+                ) -> None:
+    """Add R3 (d) to an evaluated pair: compare its lone values (`ev.info["lone_index"]`) with
+    the index-join `results` {(P, o): bool} and attach the lane's `outcomes` for the pair."""
+    ev.outcomes.extend(outcomes or [])
+    lone_index = ev.info.get("lone_index") or {}
+    tier = (ev.info.get("tiers") or {}).get("predicate", "candidate")
+    for (p, o), got in (results or {}).items():
+        lone = lone_index.get(f"{p}_{o}")
+        if lone is not None and got is not None and lone != got:
+            raw = {"lone": lone, "index_join": got}
+            if ev.info.get("path_label"):
+                raw["path_label"] = ev.info["path_label"]
+            ev.violations.append(Violation("R3", "lone vs index join", p,
+                                           "lone vs GiST index join", o, tier, raw=raw))
 
 
 # --------------------------------------------------------------------------------------------
@@ -665,8 +737,13 @@ def evaluate(target: Target, pair: Pair, batch: Optional[dict] = None) -> Evalua
                 if base is not None and got is not None and got != base:
                     V("R4", label, p, f"lone vs {label}", o, raw={"lone": base, "wrapped": got})
 
-    # R3: lone vs prepared shapes, index join, and pattern calls vs Python match
+    # R3: lone vs prepared shapes, index join (apply_batch), pattern calls vs Python match
     ev.rules_run.append("R3")
+    ev.info["path_label"] = path_label
+    ev.info["lone_index"] = {f"{p}_{o}": lv.get(f"lone_{p}_{o}") for p in INDEXED
+                             for o in ORIENTATIONS}
+    if batch is not None:
+        apply_batch(ev, batch)
     for o, (x, y) in ORIENTATIONS.items():
         wx, wy = (pair.a, pair.b) if o == "ab" else (pair.b, pair.a)
         mtx = lv.get(f"rel_{o}")
@@ -728,12 +805,6 @@ def evaluate(target: Target, pair: Pair, batch: Optional[dict] = None) -> Evalua
                     V("R3", f"{ref_label} vs {label}", name, f"{ref_label} vs {label}[{bad[0]}]",
                       o, raw={"lone": lone, "calls": list(arr), "shape": shape,
                               "primer": primer})
-        if batch is not None:
-            for p in INDEXED:
-                lone, got = lv.get(f"lone_{p}_{o}"), batch.get((p, o))
-                if lone is not None and got is not None and lone != got:
-                    V("R3", "lone vs index join", p, "lone vs GiST index join", o,
-                      raw={"lone": lone, "index_join": got})
 
     # ---- overlay rules ---------------------------------------------------------------------
     da, db_ = lv.get("dim_a"), lv.get("dim_b")
