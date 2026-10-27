@@ -280,6 +280,10 @@ def check(p: dict) -> dict:
 def crash_call(p: dict) -> dict:
     fn = p["shapely_fn"]
     x, y = shapely.from_wkt(p["x"]), shapely.from_wkt(p["y"])
+    if p.get("wrap") == 1:          # ST_ForceCollection on one argument, as in the R4 forms
+        x = _force_collection(x)
+    elif p.get("wrap") == 2:
+        y = _force_collection(y)
     if p.get("prepared"):
         shapely.prepare(x)
     if fn == "relate_pattern":

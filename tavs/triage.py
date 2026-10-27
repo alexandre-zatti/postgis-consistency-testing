@@ -297,7 +297,8 @@ def violation_oracle(target: Target, it: dict):
 
 
 def crash_probes(it: dict) -> list[dict]:
-    """Lone SQL probes for a crashed function, both orientations."""
+    """Lone SQL probes for a crashed function, both orientations, plain and with either
+    argument wrapped by ST_ForceCollection (the R4 forms, where most E3 crashes happened)."""
     from .rules import REL_PATTERNS
     fn = it["function"]
     out = []
@@ -307,12 +308,15 @@ def crash_probes(it: dict) -> list[dict]:
             idx = sorted({int(m) for s in it["raw"].get("pattern_stages", [])
                           for m in re.findall(r"pat(\d+)", s)}) or range(len(REL_PATTERNS))
             for i in idx:
-                out.append({"o": o, "fn": fn, "pattern": REL_PATTERNS[i],
+                out.append({"o": o, "fn": fn, "wrap": 0, "pattern": REL_PATTERNS[i],
                             "sql": f"ST_Relate({x},{y},'{REL_PATTERNS[i]}')"})
-        elif fn.startswith("ST_Relate"):
-            out.append({"o": o, "fn": fn, "sql": f"ST_Relate({x},{y})"})
-        elif re.fullmatch(r"ST_\w+", fn):
-            out.append({"o": o, "fn": fn, "sql": f"{fn}({x},{y})"})
+            continue
+        call = "ST_Relate" if fn.startswith("ST_Relate") else fn
+        if not re.fullmatch(r"ST_\w+", call):
+            continue
+        for w, (u, v) in enumerate(((x, y), (f"ST_ForceCollection({x})", y),
+                                    (x, f"ST_ForceCollection({y})"))):
+            out.append({"o": o, "fn": fn, "wrap": w, "sql": f"{call}({u},{v})"})
     return out
 
 
@@ -352,9 +356,9 @@ def shapely_crash_payloads(it: dict, a: str, b: str) -> list[dict]:
     fn = CRASH_FN.get(it["function"])
     if fn is None:
         return []
-    return [{"mode": "crash", "shapely_fn": fn, "o": o,
+    return [{"mode": "crash", "shapely_fn": fn, "o": o, "wrap": w,
              "x": a if o == "ab" else b, "y": b if o == "ab" else a}
-            for o in ("ab", "ba")]
+            for o in ("ab", "ba") for w in (0, 1, 2)]
 
 
 # --------------------------------------------------------------------------------------------
