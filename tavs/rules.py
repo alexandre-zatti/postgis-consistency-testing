@@ -261,27 +261,86 @@ def _deps(sql: str, bases: dict[str, str]) -> dict[str, str]:
     return {n: s for n, s in bases.items() if re.search(rf"\b{n}\b", sql)}
 
 
+# Functions that only reshape, measure or read geometries; a crash is never blamed on them
+# while the expression also calls another function.
+_LIGHT = {"ST_GeomFromText", "ST_AsText", "ST_AsEWKB", "ST_ForceCollection",
+          "ST_CollectionExtract", "ST_CollectionHomogenize", "ST_Multi", "ST_Reverse",
+          "ST_Dimension", "ST_IsEmpty", "ST_X", "ST_Y", "ST_Dump", "ST_DumpPoints",
+          "ST_Envelope", "ST_Collect", "ST_Segmentize", "ST_Area", "ST_Length"}
+
+
+def sql_functions(sql: str) -> set[str]:
+    """SQL functions an expression calls, with ST_Relate split into 'ST_Relate(matrix)' and
+    'ST_Relate(pattern)' (the pattern form carries a quoted pattern literal)."""
+    names = set(re.findall(r"\bST_\w+(?=\()", sql))
+    if "ST_Relate" in names:
+        names.discard("ST_Relate")
+        names.add("ST_Relate(pattern)" if re.search(r"ST_Relate\(.*'[^']*'\s*\)", sql)
+                  else "ST_Relate(matrix)")
+    return names
+
+
+def crash_list(ev: Evaluation) -> list[str]:
+    """Functions that crashed the server on this pair (each on its own)."""
+    return ev.info.setdefault("crashed_functions", [])
+
+
 def run_named(target: Target, stage: str, ev: Evaluation, build: Callable[[dict], str],
-              exprs: dict[str, str], params: Any) -> dict[str, Any]:
-    """Evaluate named expressions in one statement built by `build(exprs)`. If it fails (error,
-    timeout or backend crash; `Target.run` has already waited for recovery after a crash),
-    record the failure and re-run each expression alone, once. An expression that fails alone
-    gets its own outcome and is absent from the result; the others are returned normally."""
-    r = target.run(build(exprs), params)
-    ev.seconds[stage] = ev.seconds.get(stage, 0.0) + r.seconds
+              exprs: dict[str, str], params: Any,
+              deps_sql: Callable[[str], str] = lambda sql: "") -> dict[str, Any]:
+    """Evaluate named expressions in one statement built by `build(exprs)`.
+
+    Crash list (per pair, `ev.info["crashed_functions"]`): an expression that calls a listed
+    function (in its own SQL or in the bases it depends on, `deps_sql`) is not sent; it gets a
+    `skipped` outcome "F crashed on this pair". If the statement fails (error, timeout or
+    backend crash; `Target.run` has already waited for recovery after a crash), the failure is
+    recorded and the remaining expressions are re-run alone, once, again skipping those that
+    call a function listed meanwhile. An expression that crashes alone puts its functions on
+    the list (the non-light ones it calls itself; else those of its bases; else all)."""
+    crashed = crash_list(ev)
+    ev.seconds.setdefault(stage, 0.0)
+
+    def funcs(sql):
+        return sql_functions(sql) | sql_functions(deps_sql(sql))
+
+    def drop_listed(names):
+        keep = {}
+        for name in names:
+            hit = sorted(funcs(exprs[name]) & set(crashed))
+            if hit:
+                ev.outcomes.append(Outcome(f"{stage}:{name}", "skipped",
+                                           f"{', '.join(hit)} crashed on this pair"))
+            else:
+                keep[name] = exprs[name]
+        return keep
+
+    todo = drop_listed(list(exprs))
+    if not todo:
+        return {}
+    r = target.run(build(todo), params)
+    ev.seconds[stage] += r.seconds
     if r.ok:
-        return dict(zip(exprs, r.one()))
+        return dict(zip(todo, r.one()))
     kind = "crash" if r.error == "crash" else "statement_retry"
-    ev.outcomes.append(Outcome(stage, kind, f"{r.error}; re-running each expression alone: "
-                                            f"{r.message}"))
+    ev.outcomes.append(Outcome(stage, kind, f"{r.error}; re-running the remaining expressions "
+                                            f"alone: {r.message}"))
     values: dict[str, Any] = {}
-    for name, sql in exprs.items():
+    for name in list(todo):
+        if not drop_listed([name]):
+            continue
+        sql = todo[name]
         rr = target.run(build({name: sql}), params)
         ev.seconds[stage] += rr.seconds
         if rr.ok:
             values[name] = rr.one()[0]
-        else:
-            ev.outcomes.append(Outcome(f"{stage}:{name}", rr.error, rr.message or ""))
+            continue
+        ev.outcomes.append(Outcome(f"{stage}:{name}", rr.error, rr.message or ""))
+        if rr.error == "crash":
+            own = {f for f in sql_functions(sql) if f not in _LIGHT}
+            dep = {f for f in sql_functions(deps_sql(sql)) if f not in _LIGHT}
+            for f in sorted(own or dep or funcs(sql)):
+                if f not in crashed:
+                    crashed.append(f)
     return values
 
 
@@ -290,7 +349,8 @@ def run_exprs(target: Target, pair: Pair, bases: dict[str, str], exprs: dict[str
     """`run_named` over the pair CTE; each expression alone carries only the bases it uses."""
     return run_named(target, stage, ev, lambda ex: _select(
         {n: s for x in ex.values() for n, s in _deps(x, bases).items()}, ex),
-        exprs, {"a": pair.a, "b": pair.b})
+        exprs, {"a": pair.a, "b": pair.b},
+        deps_sql=lambda sql: " ".join(_deps(sql, bases).values()))
 
 
 # --------------------------------------------------------------------------------------------
