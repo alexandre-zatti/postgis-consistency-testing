@@ -38,7 +38,7 @@ import numpy as np
 from scipy.stats import rankdata, wilcoxon
 
 ROOT = Path(__file__).resolve().parent.parent
-YESNO_RULES = {"R1", "R2", "R3", "R4", "R5", "R10"}   # yes/no rules: candidates carry no band
+YESNO_RULES = {"R1", "R2", "R3", "R4", "R5", "R6", "R10"}   # yes/no rules: candidates carry no band
 HARNESS_KINDS = {"harness_exception", "other_error", "sql_error"}
 ARMS = ["plain-int", "plain-float", "degen-int", "degen-float"]
 CONTRASTS = [
@@ -98,14 +98,15 @@ def load(cdir: Path) -> dict:
 
 def counted(v: dict, sensitivity: bool = False) -> bool:
     """Primary: strict; or a candidate from a yes/no rule (no magnitude, counted as in the
-    triage band); or a measured candidate in the triage band. Candidates flagged
-    precision-limited never count. Sensitivity: strict plus measured triage-band only."""
+    triage band); or a measured candidate in the triage band. Precision-limited removes only
+    measured candidates: yes/no overlay rules stay evaluated on such pairs (advisor, Q1).
+    Sensitivity: strict plus measured triage-band only."""
     if v["tier"] == "strict":
         return True
-    if v["tier"] != "candidate" or v["plim"]:
+    if v["tier"] != "candidate":
         return False
     if v["band"] == "triage":
-        return True
+        return not v["plim"]
     return not sensitivity and v["rule"] in YESNO_RULES and v["band"] is None
 
 
