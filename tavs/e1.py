@@ -26,7 +26,7 @@ import shapely
 
 from .db import Target
 from .pair import Pair
-from .rules import Evaluation, Outcome, batch_index_join, evaluate
+from .rules import Evaluation, Outcome, batch_index_join, evaluate, tier_of
 from .store import Store
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -97,11 +97,7 @@ _DIM = {"Point": 0, "MultiPoint": 0, "LineString": 1, "MultiLineString": 1, "Lin
 
 def make_pair(a: str, b: str, source: str) -> Pair:
     ga, gb = shapely.from_wkt(a), shapely.from_wkt(b)
-    xy = [c for c in (shapely.get_coordinates(ga), shapely.get_coordinates(gb)) if len(c)]
-    coord = "int"
-    for arr in xy:
-        if not (arr == arr.round()).all():
-            coord = "float"
+    coord = tier_of(ga, gb, "predicate")   # evaluate() applies each rule family's own tier
     da, db = _DIM.get(ga.geom_type), _DIM.get(gb.geom_type)
     kind = "overlay" if da is not None and da == db and da in (1, 2) else "predicate"
     return Pair(a=a, b=b, coord=coord, kind=kind, source=source)
@@ -150,7 +146,7 @@ def fired_rules(evs: list[Evaluation]) -> dict[str, list[str]]:
         for v in ev.violations:
             d = f"{v.sub} [{v.function}{', ' + v.orientation if v.orientation else ''}]"
             if v.band:
-                d += f" {v.band} {v.magnitude:.3g}"
+                d += f" {v.band} " + (f"{v.magnitude:.3g}" if v.magnitude is not None else "n/a")
             if d not in out[v.rule]:
                 out[v.rule].append(d)
     return out
@@ -210,7 +206,7 @@ def run_seeds(store: Store, plan_sink: dict) -> list[dict]:
 
 
 def _rk(r: str) -> int:
-    return int(r[1:])
+    return int("".join(ch for ch in r[1:] if ch.isdigit()))
 
 
 def seed_verdicts(rows: list[dict], prereg: dict) -> tuple[int, int, list[str]]:
@@ -303,19 +299,31 @@ def run_xml(store: Store, plan_sink: dict, limit: int | None) -> dict:
     return {"evs": evs_all, "skips": skips, "seconds": time.perf_counter() - t0, "run_id": rid}
 
 
+_BAND_RANK = {"-": 0, "logged": 1, "triage": 2}
+
+
 def xml_summary(res: dict) -> tuple[list[dict], dict]:
     evs = res["evs"]
     rows = []
     per = defaultdict(lambda: Counter())
     for ev in evs:
         f = ev.pair.source.split("#")[0]
-        seen = set()
+        # one pair per (pair, rule): worst tier and band over the rule's violations, and
+        # the pair-level precision-limited flag (constant within a rule)
+        by_rule: dict = {}
         for v in ev.violations:
-            key = (v.rule, v.tier, v.band or "-", v.precision_limited)
-            if key not in seen:
-                seen.add(key)
-                per[(f,) + key]["pairs"] += 1
-            per[(f,) + key]["violations"] += 1
+            k = by_rule.setdefault(v.rule, {"tier": v.tier, "band": v.band or "-",
+                                            "plim": v.precision_limited, "n": 0})
+            k["n"] += 1
+            if v.tier == "strict":
+                k["tier"] = "strict"
+            if _BAND_RANK[v.band or "-"] > _BAND_RANK[k["band"]]:
+                k["band"] = v.band or "-"
+            k["plim"] = k["plim"] or v.precision_limited
+        for rule, k in by_rule.items():
+            key = (rule, k["tier"], k["band"], k["plim"])
+            per[(f,) + key]["pairs"] += 1
+            per[(f,) + key]["violations"] += k["n"]
     for (f, rule, tier, bnd, plim), c in sorted(per.items(), key=lambda x: (x[0][0], _rk(x[0][1]))):
         rows.append({"file": f, "rule": rule, "tier": tier, "band": bnd,
                      "precision_limited": plim, "pairs": c["pairs"], "violations": c["violations"]})

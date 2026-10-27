@@ -81,12 +81,15 @@ class Result:
 class Target:
     """One PostGIS instance. Reconnects after a lost connection."""
 
-    def __init__(self, name: str, timeout_ms: int = STATEMENT_TIMEOUT_MS):
-        if name not in TARGETS:
+    def __init__(self, name: str, timeout_ms: int = STATEMENT_TIMEOUT_MS,
+                 port: Optional[int] = None):
+        """`name` is a registered target, or any label when `port` is given (e.g. a throwaway
+        container for crash probes, which must never run on a shared target)."""
+        if port is None and name not in TARGETS:
             raise KeyError(f"unknown target {name!r}; known: {sorted(TARGETS)}")
         self.name = name
-        self.port = TARGETS[name]["port"]
-        self.image = TARGETS[name]["image"]
+        self.port = port if port is not None else TARGETS[name]["port"]
+        self.image = TARGETS.get(name, {}).get("image", "unregistered")
         self.timeout_ms = timeout_ms
         self._conn: Optional[psycopg.Connection] = None
 
