@@ -243,6 +243,7 @@ class Ctx:
         self.rng = rng
         self.integral = integral
         self.stats = stats if stats is not None else Counter()
+        self.thin = None
 
     def snap(self, p):
         if self.integral:
@@ -568,6 +569,7 @@ def mv_sliver_or_spike(cx, a, b, kind):
         m2 = (m[0] + st[0], m[1] + st[1])
         ap = (int(round(L * out[0])), int(round(L * out[1])))
         spike = [m, (m[0] + ap[0], m[1] + ap[1]), (m2[0] + ap[0], m2[1] + ap[1]), m2]
+        cx.thin = {"type": "spike", "isb": isb, "path": path, "i": i, "m": m, "st": st, "ap": ap}
         shell[i + 1:i + 1] = spike
         new = ("Polygon", [shell] + [list(r) for r in poly[1][1:]])
         ng = set_leaf(g, path, new)
@@ -590,6 +592,7 @@ def mv_sliver_or_spike(cx, a, b, kind):
     r = (m[0] + st[0], m[1] + st[1])
     new = ("Polygon", [[p, q, r]])
     path, _ = rng.choice(_poly_leaves(g))
+    cx.thin = {"type": "sliver", "isb": isb, "path": path, "p": p, "q": q, "m": m, "st": st}
     ng = set_leaf(g, path, new)
     return (a, ng) if isb else (ng, b)
 
@@ -691,12 +694,17 @@ MOVE_FN = {
 # degen-float of one index use the same map. They are recorded in Pair.source, from which
 # `regime_map` rebuilds the map.
 
-REGIMES = ("affine", "rotation", "magnitude-1e15", "scale-2^-k")
+TRANSLATE = {"predicate": "translate-1e15", "overlay": "translate-2^27"}
+REGIME_KEYS = {"s", "ox", "oy", "angle", "cx", "cy", "k"}
+
+
+def regimes(kind: str) -> tuple:
+    return ("affine", "rotation", TRANSLATE[kind], "scale-2^-k")
 MAX_REGIME_TRIES = 20
 
 
-def _draw_regime(rng: random.Random, base_a, base_b) -> dict:
-    name = rng.choice(REGIMES)
+def _draw_regime(rng: random.Random, base_a, base_b, kind: str) -> dict:
+    name = rng.choice(regimes(kind))
     x0, y0, x1, y1 = bbox([base_a, base_b])
     if name == "affine":
         # random non-dyadic factor and random full-precision offset
@@ -705,8 +713,13 @@ def _draw_regime(rng: random.Random, base_a, base_b) -> dict:
     if name == "rotation":
         return {"regime": name, "angle": rng.uniform(0, 2 * math.pi),
                 "cx": (x0 + x1) / 2, "cy": (y0 + y1) / 2}
-    if name == "magnitude-1e15":
-        return {"regime": name, "ox": rng.uniform(1, 9) * 1e15, "oy": rng.uniform(1, 9) * 1e15}
+    if name == "translate-1e15":
+        # integer offsets, so an integral base stays integral (all values stay below 2^53)
+        return {"regime": name, "ox": rng.randint(10 ** 15, 8 * 10 ** 15),
+                "oy": rng.randint(10 ** 15, 8 * 10 ** 15)}
+    if name == "translate-2^27":
+        return {"regime": name, "ox": rng.randint(2 ** 27, 2 ** 27 + 2 ** 26),
+                "oy": rng.randint(2 ** 27, 2 ** 27 + 2 ** 26)}
     M = max(abs(x0), abs(y0), abs(x1), abs(y1))
     k = round(math.log2(M / (rng.uniform(1, 9) * 1e-8)))
     return {"regime": name, "k": k}
@@ -722,8 +735,8 @@ def _regime_fn(par: dict):
         cx_, cy_ = par["cx"], par["cy"]
         return lambda p: (cx_ + (p[0] - cx_) * co - (p[1] - cy_) * si,
                           cy_ + (p[0] - cx_) * si + (p[1] - cy_) * co)
-    if name == "magnitude-1e15":
-        ox, oy = par["ox"], par["oy"]
+    if name in ("translate-1e15", "translate-2^27"):
+        ox, oy = float(par["ox"]), float(par["oy"])
         return lambda p: (float(p[0]) + ox, float(p[1]) + oy)
     if name == "scale-2^-k":
         s = 2.0 ** -int(par["k"])          # exact for the integer base
@@ -750,7 +763,7 @@ def regime_map(source: str):
         return None
     par = {"regime": d["regime"]}
     for k, v in d.items():
-        if k not in ("regime", "form"):
+        if k in REGIME_KEYS:
             par[k] = int(v) if k == "k" else float(v)
     return _regime_fn(par)
 
@@ -822,28 +835,97 @@ def _base_pair(cx: Ctx, kind: str, st: Counter):
     return a, b, near, (fa, fb)
 
 
+def _get_leaf(g, path):
+    for i in path:
+        g = g[1][i]
+    return g
+
+
+def _axis(d):
+    """Unit axis vector (float) most aligned with direction d."""
+    return tuple(float(v) for v in _lattice_step(d))
+
+
+def quantum_thin(fa, fb, f, thin: dict, k: int):
+    """Apply the sliver/spike recorded in `thin` (integer anchor) to the regime-mapped pair
+    (fa, fb) = f(pair before the move), with width k * ulp(M), M = max |coordinate|."""
+    M = max(abs(v) for g in (fa, fb) for q in vertices(g) for v in q)
+    w = k * math.ulp(M)
+    g = fb if thin["isb"] else fa
+    m = thin["m"]
+    mf = f(m)
+    ax = _axis(_vec(mf, f((m[0] + thin["st"][0], m[1] + thin["st"][1]))))
+    if thin["type"] == "spike":
+        leaf = _get_leaf(g, thin["path"])
+        shell = list(leaf[1][0])
+        a1 = f((m[0] + thin["ap"][0], m[1] + thin["ap"][1]))
+        spike = [mf, a1, (a1[0] + w * ax[0], a1[1] + w * ax[1]), (mf[0] + w * ax[0], mf[1] + w * ax[1])]
+        i = thin["i"]
+        shell[i + 1:i + 1] = spike
+        new = ("Polygon", [shell] + [list(r) for r in leaf[1][1:]])
+    else:
+        pf, qf = f(thin["p"]), f(thin["q"])
+        mid = ((pf[0] + qf[0]) / 2, (pf[1] + qf[1]) / 2)
+        new = ("Polygon", [[pf, qf, (mid[0] + w * ax[0], mid[1] + w * ax[1])]])
+    ng = set_leaf(g, thin["path"], new)
+    return (fa, ng) if thin["isb"] else (ng, fb)
+
+
 def _apply_moves(cx: Ctx, kind: str, a, b, st: Counter):
+    """Returns (pre_a, pre_b, a, b, moves, thin): the sliver/spike move, when chosen, is applied
+    last, so (pre_a, pre_b) is the pair before it and `thin` its anchor record."""
     rng = cx.rng
     pool = [m for m in GEOM_MOVES if kind == "predicate" or m not in PRED_ONLY_MOVES]
     want = rng.randint(1, 2)
     order = pool[:]
     rng.shuffle(order)
     chosen = []
-    for m in order:
-        if len(chosen) >= want:
-            break
+    thin_wanted = False
+
+    def try_move(m, a, b):
         for _ in range(MAX_MOVE_TRIES):
+            cx.thin = None
             r = MOVE_FN[m](cx, a, b, kind)
             if r is None:
                 st[f"move_not_applicable:{m}"] += 1
-                break
+                return None
             na, nb = r
             if _in_range(na, True) and _in_range(nb, True) and valid(na) and valid(nb):
-                a, b = na, nb
-                chosen.append(m)
-                break
+                return na, nb
             st[f"move_invalid_retry:{m}"] += 1
-    return a, b, chosen
+        return None
+
+    rest = iter(order)
+    for m in rest:
+        if len(chosen) + thin_wanted >= want:
+            break
+        if m == "sliver-or-spike":
+            if any(_poly_leaves(g) for g in (a, b)):
+                thin_wanted = True          # applied last, after the other moves
+            else:
+                st[f"move_not_applicable:{m}"] += 1
+            continue
+        r = try_move(m, a, b)
+        if r is not None:
+            a, b = r
+            chosen.append(m)
+    pre_a, pre_b, thin = a, b, None
+    if thin_wanted:
+        r = try_move("sliver-or-spike", a, b)
+        if r is not None:
+            a, b = r
+            thin = cx.thin
+            chosen.append("sliver-or-spike")
+        else:   # fill the slot with a later move from the same shuffled order
+            for m in rest:
+                if len(chosen) >= want:
+                    break
+                r = try_move(m, a, b)
+                if r is not None:
+                    a, b = r
+                    chosen.append(m)
+            pre_a, pre_b = a, b
+    return pre_a, pre_b, a, b, chosen, thin
 
 
 def _finite(g) -> bool:
@@ -858,22 +940,57 @@ def build(seed: int, kind: str, index: int) -> dict:
     st["pairs"] += 1
     a, b, near, forms = _base_pair(Ctx(_rng_for(seed, kind, index, "base"), True, st), kind, st)
     st["b_near"] += near
-    da, db, moves = _apply_moves(Ctx(_rng_for(seed, kind, index, "moves"), True, st),
-                                 kind, a, b, st)
+    pa, pb, da, db, moves, thin = _apply_moves(
+        Ctx(_rng_for(seed, kind, index, "moves"), True, st), kind, a, b, st)
     if not moves:
         st["degen_no_move"] += 1
     rrng = _rng_for(seed, kind, index, "regime")
+    qrng = _rng_for(seed, kind, index, "quantum")
+
+    def float_arms(par):
+        """(plain a, plain b, degen a, degen b, k) or None if some geometry is invalid."""
+        f = _regime_fn(par)
+        fl = [apply_regime(g, f) for g in (a, b, pa, pb)]
+        if not all(_finite(g) and valid(g) for g in fl):
+            return None
+        if thin is None:
+            return (*fl, None)
+        ks = [1, 2, 4, 8]
+        qrng.shuffle(ks)
+        for k in ks:
+            qa, qb = quantum_thin(fl[2], fl[3], f, thin, k)
+            if _finite(qa) and _finite(qb) and valid(qa) and valid(qb):
+                return (fl[0], fl[1], qa, qb, k)
+            st["quantum_invalid_retry"] += 1
+        st["quantum_all_k_invalid"] += 1
+        return None
+
     for _ in range(MAX_REGIME_TRIES):
-        par = _draw_regime(rrng, a, b)
-        fl = [apply_regime(g, _regime_fn(par)) for g in (a, b, da, db)]
-        if all(_finite(g) and valid(g) for g in fl):
+        par = _draw_regime(rrng, a, b, kind)
+        fl = float_arms(par)
+        if fl is not None:
             break
         st[f"regime_retry:{par['regime']}"] += 1
-    else:   # exact power-of-two scaling cannot break validity
+    else:   # exact power-of-two scaling cannot break validity of the mapped integer pair
         st["regime_fallback"] += 1
         par = {"regime": "scale-2^-k", "k": 40}
-        fl = [apply_regime(g, _regime_fn(par)) for g in (a, b, da, db)]
+        fl = float_arms(par)
+        if fl is None:      # keep the pair without the quantum feature
+            st["quantum_dropped"] += 1
+            f = _regime_fn(par)
+            fl = (*[apply_regime(g, f) for g in (a, b, pa, pb)], None)
     st[f"regime:{par['regime']}"] += 1
+    qk = fl[4]
+    fmoves = [m if m != "sliver-or-spike" or qk is None else f"{m}(k={qk})" for m in moves
+              if m != "sliver-or-spike" or qk is not None or thin is None]
+    if thin is not None:
+        st[f"thin:{thin['type']}"] += 1
+        if qk is not None:
+            st[f"quantum_k={qk}"] += 1
+        tag = (f";thin={thin['type']};thin_geom={'b' if thin['isb'] else 'a'};"
+               f"thin_anchor={thin['m'][0]} {thin['m'][1]}")
+    else:
+        tag = ""
     common = dict(kind=kind, seed=seed, index=index)
     return {
         "plain-int": Pair(a=to_wkt(a), b=to_wkt(b), coord="int", arm="plain-int", moves=[],
@@ -881,9 +998,10 @@ def build(seed: int, kind: str, index: int) -> dict:
         "plain-float": Pair(a=to_wkt(fl[0]), b=to_wkt(fl[1]), coord="float", arm="plain-float",
                             moves=[], source=_source(forms, par), **common),
         "degen-int": Pair(a=to_wkt(da), b=to_wkt(db), coord="int", arm="degen-int",
-                          moves=list(moves), source=_source(forms, None), **common),
+                          moves=list(moves), source=_source(forms, None) + tag, **common),
         "degen-float": Pair(a=to_wkt(fl[2]), b=to_wkt(fl[3]), coord="float", arm="degen-float",
-                            moves=list(moves), source=_source(forms, par), **common),
+                            moves=fmoves, source=_source(forms, par) + tag
+                            + (f";qk={qk}" if qk is not None else ""), **common),
     }
 
 

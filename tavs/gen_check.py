@@ -7,6 +7,7 @@ import sys
 import time
 from collections import Counter
 
+import numpy as np
 import shapely
 
 from . import gen
@@ -76,21 +77,55 @@ def main(n: int = 1000) -> None:
         m = min(n, 100)
         via_generate = all(p.a == rows[i][a].a and p.b == rows[i][a].b
                            for a in ARMS for i, p in enumerate(generate(a, 1, m, kind)))
-        rebuilt = 0
+        plain_ok = degen_exact = degen_n = thin_ok = thin_n = thin_same = 0
         for r in rows:
-            for src_arm, dst_arm in (("plain-int", "plain-float"), ("degen-int", "degen-float")):
-                f = gen.regime_map(r[dst_arm].source)
-                ga = gen.apply_regime(gen.from_wkt(r[src_arm].a, True), f)
-                gb = gen.apply_regime(gen.from_wkt(r[src_arm].b, True), f)
-                rebuilt += gen.to_wkt(ga) == r[dst_arm].a and gen.to_wkt(gb) == r[dst_arm].b
-        shared_moves = all(r["degen-int"].moves == r["degen-float"].moves for r in rows)
-        same_regime = all(gen.parse_source(r["plain-float"].source) == gen.parse_source(r["degen-float"].source)
-                          for r in rows)
+            f = gen.regime_map(r["plain-float"].source)
+            mapped = [gen.to_wkt(gen.apply_regime(gen.from_wkt(w, True), f)) for w in (r["plain-int"].a, r["plain-int"].b)]
+            plain_ok += mapped == [r["plain-float"].a, r["plain-float"].b]
+            src = gen.parse_source(r["degen-float"].source)
+            f = gen.regime_map(r["degen-float"].source)
+            mi = [gen.apply_regime(gen.from_wkt(w, True), f) for w in (r["degen-int"].a, r["degen-int"].b)]
+            fl = [gen.from_wkt(w, False) for w in (r["degen-float"].a, r["degen-float"].b)]
+            if "qk" not in src:
+                degen_n += 1
+                degen_exact += [gen.to_wkt(g) for g in mi] == [gen.to_wkt(g) for g in fl]
+            else:
+                # regime(degen-int) = degen-float except at the thin feature: the other geometry
+                # is identical; the target keeps its structure and differs in at most the
+                # 2 (spike) or 1 (sliver) vertices that carry the quantum width (0 when
+                # k*ulp(M) equals the mapped integer width, e.g. ulp = 1 above 2^52)
+                thin_n += 1
+                t = 1 if src["thin_geom"] == "b" else 0
+                other_same = gen.to_wkt(mi[1 - t]) == gen.to_wkt(fl[1 - t])
+                vi, vf = gen.vertices(mi[t]), gen.vertices(fl[t])
+                diff = sum(x != y for x, y in zip(vi, vf))
+                limit = 2 if src["thin"] == "spike" else 1
+                thin_ok += other_same and len(vi) == len(vf) and diff <= limit
+                thin_same += diff == 0
+        strip = lambda ms: [x.split("(")[0] for x in ms]
+        shared_moves = sum(strip(r["degen-int"].moves) == strip(r["degen-float"].moves) for r in rows)
+        reg = lambda src: {k2: v for k2, v in gen.parse_source(src).items() if k2 == "regime" or k2 in gen.REGIME_KEYS}
+        same_regime = all(reg(r["plain-float"].source) == reg(r["degen-float"].source) for r in rows)
         print(f"  determinism: rerun {'ok' if same else 'FAIL'}; n=50 prefix {'ok' if prefix else 'FAIL'}; "
               f"lone index {k} {'ok' if lone else 'FAIL'}; generate(arm) = generate_all[arm] (first {m}) "
               f"{'ok' if via_generate else 'FAIL'}")
-        print(f"  pairing: float = recorded regime(int) {rebuilt}/{2 * n}; degen arms share moves "
-              f"{'ok' if shared_moves else 'FAIL'}; float arms share regime {'ok' if same_regime else 'FAIL'}")
+        print(f"  pairing: plain-float = regime(plain-int) {plain_ok}/{n}; degen-float = regime(degen-int) "
+              f"{degen_exact}/{degen_n} (no sliver/spike); equal except the quantum thin feature {thin_ok}/{thin_n} "
+              f"(of which {thin_same} identical: quantum = mapped 1 unit); "
+              f"degen arms share moves {shared_moves}/{n}; float arms share regime {'ok' if same_regime else 'FAIL'}")
+        qs = {k2: v for k2, v in rs.items() if k2.startswith(("thin:", "quantum"))}
+        print("  quantum slivers/spikes: " + ", ".join(f"{k2}={v}" for k2, v in sorted(qs.items()))
+              + f"  (k retries per thin index {rs.get('quantum_invalid_retry', 0) / max(1, thin_n):.3f})")
+        for a in ("plain-float", "degen-float"):
+            tr = [r[a] for r in rows if gen.parse_source(r[a].source)["regime"].startswith("translate")]
+            def integral(p):
+                c = np.concatenate([shapely.get_coordinates(shapely.from_wkt(w)).ravel() for w in (p.a, p.b)])
+                return bool(np.all(np.floor(c) == c) and np.all(np.abs(c) < 2 ** 53))
+            with_thin = [p for p in tr if "qk" in gen.parse_source(p.source)]
+            without = [p for p in tr if "qk" not in gen.parse_source(p.source)]
+            print(f"  integrality, {a}, translation regime: all coordinates integral and < 2^53 in "
+                  f"{sum(map(integral, without))}/{len(without)} pairs without a quantum feature, "
+                  f"{sum(map(integral, with_thin))}/{len(with_thin)} with one")
 
         print(f"  {'arm':12s} {'coords':6s} {'exact':>6s} {'near1e-9':>8s} {'near4ulp':>8s} "
               f"{'shared':>6s} {'v-on-e':>6s} {'colin':>6s} {'self':>6s} {'touch0':>6s} {'inters':>6s} {'empty':>6s}  ms/pair(cs)")
