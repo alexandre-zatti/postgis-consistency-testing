@@ -427,6 +427,56 @@ def _lowdim_exprs(part: str, t: int, M: float, L: float, prefix: str) -> dict[st
     return ex
 
 
+# Line/line R7 and R8 (certified buffer method): container must cover the part.
+# key -> (rule, sub, function, paths, container SQL, part SQL, leftover-length key)
+LINE_COVER = {
+    "c7i": ("R7", "measure(Difference(I,a))", "Intersection", "I vs a",
+            "a", "ST_CollectionExtract(i_ab,2)", "r7_ia"),
+    "c7u": ("R7", "measure(Difference(a,U))", "Union", "a vs U",
+            "u_ab", "a", "r7_au"),
+    "c8i1": ("R8", "SymDifference(I(a,b),I(b,a)): I(a,b) in I(b,a)", "Intersection",
+             "I(a,b) vs I(b,a)", "i_ba", "ST_CollectionExtract(i_ab,2)", "r8_i"),
+    "c8i2": ("R8", "SymDifference(I(a,b),I(b,a)): I(b,a) in I(a,b)", "Intersection",
+             "I(b,a) vs I(a,b)", "i_ab", "ST_CollectionExtract(i_ba,2)", "r8_i"),
+    "c8u1": ("R8", "SymDifference(U(a,b),U(b,a)): U(a,b) in U(b,a)", "Union",
+             "U(a,b) vs U(b,a)", "u_ba", "ST_CollectionExtract(u_ab,2)", "r8_u"),
+    "c8u2": ("R8", "SymDifference(U(a,b),U(b,a)): U(b,a) in U(a,b)", "Union",
+             "U(b,a) vs U(a,b)", "u_ab", "ST_CollectionExtract(u_ba,2)", "r8_u"),
+}
+
+
+def _cover_exprs(container: str, part: str, M: float, L: float, prefix: str) -> dict[str, str]:
+    """Certified containment of a line part: Covers(container, part); where false,
+    Covers(ST_Buffer(container, 1e-12*M), part) (noise), at 1e-9*M (logged), else triage; the
+    magnitude is a lower bound, the max distance of the vertices of
+    ST_Segmentize(part, L/1024) to the container."""
+    e1, e2 = repr(1e-12 * M), repr(1e-9 * M)
+    seg = part if L <= 0 else f"ST_Segmentize({part}, {L / 1024!r})"
+    miss = f"ST_IsEmpty({part}) OR ST_Covers({container},{part})"
+    return {
+        f"{prefix}_c": f"CASE WHEN ST_IsEmpty({part}) THEN NULL ELSE ST_Covers({container},{part}) END",
+        f"{prefix}_n": f"CASE WHEN {miss} THEN NULL ELSE ST_Covers(ST_Buffer({container},{e1}),{part}) END",
+        f"{prefix}_l": f"CASE WHEN {miss} THEN NULL ELSE ST_Covers(ST_Buffer({container},{e2}),{part}) END",
+        f"{prefix}_d": (f"CASE WHEN {miss} THEN NULL ELSE (SELECT max(ST_Distance(dp.geom, {container})) "
+                        f"FROM ST_DumpPoints({seg}) dp) END"),
+    }
+
+
+def cover_class(vals: dict, prefix: str) -> Optional[dict]:
+    """Band of a `_cover_exprs` check: None when covered or noise; else logged or triage
+    (triage also when a buffer value is missing, e.g. the buffer check failed)."""
+    if vals.get(f"{prefix}_c") is not False:
+        return None
+    n, lg = vals.get(f"{prefix}_n"), vals.get(f"{prefix}_l")
+    if n is True:
+        return None
+    d = vals.get(f"{prefix}_d")
+    return {"band": "logged" if (n is False and lg is True) else "triage",
+            "magnitude": abs(d) if d is not None else None,
+            "covers_buffer_1e-12M": n, "covers_buffer_1e-9M": lg,
+            "buffer_check_failed": None if (n is not None and lg is not None) else True}
+
+
 def _r12_expr(seed: int, margin: float, i: str = "i_ab", u: str = "u_ab") -> str:
     """R12 sample: JSON list of points with near-boundary flag and the four point locations.
     I and U are the polygonal extracts of the intersection `i` and union `u` (floating i_ab,
@@ -471,6 +521,9 @@ def _overlay_exprs(d: int, grid: Optional[float], with_r5_only: bool, M: float =
     })
     if d == 1:                      # R9 applies to lines only when both are simple
         exprs.update({"simple_a": "ST_IsSimple(a)", "simple_b": "ST_IsSimple(b)"})
+    if d == 1:                      # R7/R8 for lines: certified buffer containment
+        for key, (_, _, _, _, cont, part, _) in LINE_COVER.items():
+            exprs.update(_cover_exprs(cont, part, M, L, key))
     for t in range(1, ct):          # lower-dimensional parts of the intersection
         exprs.update(_lowdim_exprs(f"ST_CollectionExtract(i_ab,{t})", t, M, L, f"lp{t}"))
     if grid is not None:
@@ -865,12 +918,33 @@ def evaluate(target: Target, pair: Pair, batch: Optional[dict] = None) -> Evalua
               "ST_IsValid(output)", None, t=t,
               raw={"grid": grid, "intersection": ov.get("t_iab"), "union": ov.get("t_uab")})
 
+    def line_cover(rule):
+        """Lines: R7/R8 by certified buffer containment; the leftover length stays in raw
+        (for lines it does not measure the distance to the other result)."""
+        for key, (r, sub, fn, paths, cont, part, left) in LINE_COVER.items():
+            if r != rule:
+                continue
+            c = cover_class(ov, key)
+            if c is None:
+                continue
+            raw = {"leftover_length": ov.get(left), "container": cont, "part": part,
+                   "magnitude_kind": "lower bound: max distance of the vertices of "
+                                     "ST_Segmentize(part, L/1024) to the container",
+                   "covers_buffer_1e-12M": c["covers_buffer_1e-12M"],
+                   "covers_buffer_1e-9M": c["covers_buffer_1e-9M"],
+                   "buffer_check_failed": c["buffer_check_failed"], "L": L, "M": M}
+            V(rule, sub, fn, paths, None, t="candidate", magnitude=c["magnitude"],
+              band=c["band"], raw=raw)
+
     # R7
     ev.rules_run.append("R7")
-    MV("R7", "measure(Difference(I,a))", "Intersection", "I vs a", ov.get("r7_ia"),
-       {"value": ov.get("r7_ia")})
-    MV("R7", "measure(Difference(a,U))", "Union", "a vs U", ov.get("r7_au"),
-       {"value": ov.get("r7_au")})
+    if d == 1:
+        line_cover("R7")
+    else:
+        MV("R7", "measure(Difference(I,a))", "Intersection", "I vs a", ov.get("r7_ia"),
+           {"value": ov.get("r7_ia")})
+        MV("R7", "measure(Difference(a,U))", "Union", "a vs U", ov.get("r7_au"),
+           {"value": ov.get("r7_au")})
     for t in (1, 2):
         for v in lowdim_violations(ov, f"lp{t}", t, M, L, failed_stage_prefix="overlay:",
                                    outcomes=ev.outcomes):
@@ -879,10 +953,13 @@ def evaluate(target: Target, pair: Pair, batch: Optional[dict] = None) -> Evalua
 
     # R8
     ev.rules_run.append("R8")
-    MV("R8", "SymDifference(I(a,b),I(b,a))", "Intersection", "I(a,b) vs I(b,a)",
-       ov.get("r8_i"), {"m_iab": ov.get("m_iab"), "m_iba": ov.get("m_iba")})
-    MV("R8", "SymDifference(U(a,b),U(b,a))", "Union", "U(a,b) vs U(b,a)",
-       ov.get("r8_u"), {"m_uab": ov.get("m_uab"), "m_uba": ov.get("m_uba")})
+    if d == 1:
+        line_cover("R8")
+    else:
+        MV("R8", "SymDifference(I(a,b),I(b,a))", "Intersection", "I(a,b) vs I(b,a)",
+           ov.get("r8_i"), {"m_iab": ov.get("m_iab"), "m_iba": ov.get("m_iba")})
+        MV("R8", "SymDifference(U(a,b),U(b,a))", "Union", "U(a,b) vs U(b,a)",
+           ov.get("r8_u"), {"m_uab": ov.get("m_uab"), "m_uba": ov.get("m_uba")})
 
     # R9
     if d == 1 and not (ov.get("simple_a") is True and ov.get("simple_b") is True):
