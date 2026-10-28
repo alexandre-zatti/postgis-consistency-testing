@@ -96,9 +96,9 @@ class of each finding). A *finding* is one shrunk example. A *family* is one roo
 | Family | Findings | Arms | Class |
 |---|---|---|---|
 | **A** GEOS crash: empty polygon in a collection of touching polygons | 254 | degen-int, degen-float | **new defect** (not found in the GEOS/JTS GitHub trackers as of 2026-10-28; PostGIS's tracker not searched; unreported; not confirmed by maintainers) |
-| **B** prepared Contains wrong for a point plus an empty part | 58 | degen-int, degen-float | **unreported variant of a known cause** (GEOS #1011; #1008 concerns the same function) |
+| **B** prepared Contains wrong for a point plus an empty part | 58 | degen-int, degen-float | **unreported variant of a known cause** (GEOS #1011; PR #1008 fixed the same function for collections with multipoints) |
 | **C** RelateNG rounding vs prepared predicate | 29 | degen-float | consistent with open GEOS #740 |
-| **D** `ST_Relate` not symmetric: self-noding decided by the first argument | 2 | degen-int, degen-float | consistent with GEOS #1558 (fix PR #1565 closed unmerged) |
+| **D** `ST_Relate` not symmetric: self-noding decided by the first argument | 2 | degen-int, degen-float | consistent with GEOS #1558, now deleted (fix PR #1565 closed unmerged) |
 | **E** needle polygon asymmetry | 1 | degen-float | unresolved, likely the #740 class; not counted |
 | **F** hole touching its shell, inside a collection | 2 (1 pair) | degen-int | candidate, by code reading; possibly related to GEOS #1558 |
 | **G1** sliver returned as a line or point in overlay | 11 | plain-float 3, degen-float 8 | rounding effect, not a bug (closest: open GEOS #1383) |
@@ -139,7 +139,7 @@ this takes down the database process serving the query.
   "contains".
 - **Cause.** The empty part raises the collection's dimension, so the prepared code skips its
   point-only branch.
-- **Status.** GEOS #1011 fixed the same cause on the direct path (closed 2024-10-16). GEOS #1008
+- **Status.** GEOS #1011 fixed the same cause on the direct path (closed 2024-10-16). GEOS PR #1008
   concerns the same prepared function. We found nothing about this input on the prepared path.
 - **Old version.** The old version (3.9.0) crashes on all 58 findings, for a reason we did not
   investigate. It cannot be family A, which needs RelateNG. So "absent there" would be wrong.

@@ -17,7 +17,7 @@ Each script names, in a comment, the finding it comes from (its key in
 | [A-relateng-crash-empty-polygon](A-relateng-crash-empty-polygon/) | GEOS crashes (segmentation fault) on a collection holding `POLYGON EMPTY` and two polygons touching at a point; without the empty polygon the answer is `FF20F1FF2` | new defect |
 | [B-prepared-contains-empty-member](B-prepared-contains-empty-member/) | a triangle "contains" a point on its own edge when the point comes with an empty part, but only on the prepared (cached) path | unreported variant of a known cause |
 | [C-relateng-rounding-vs-prepared](C-relateng-rounding-vs-prepared/) | direct and prepared Contains disagree on decimal polygons; an exact check shows the prepared answer is right | consistent with a known open issue (GEOS #740) |
-| [D-relate-not-symmetric-self-noding](D-relate-not-symmetric-self-noding/) | `relate(b, a)` is not the transpose of `relate(a, b)`, on whole-number coordinates | consistent with a known open issue (GEOS #1558) |
+| [D-relate-not-symmetric-self-noding](D-relate-not-symmetric-self-noding/) | `relate(b, a)` is not the transpose of `relate(a, b)`, on whole-number coordinates | consistent with the cause addressed by GEOS PR #1565, closed unmerged (its issue, #1558, has been deleted) |
 | [F-candidate-tangent-hole-collection](F-candidate-tangent-hole-collection/) | wrapping a valid shape in a collection changes its relationship matrix | candidate; possibly related to GEOS #1558 |
 | [G-precision-effects-not-bugs](G-precision-effects-not-bugs/) | two rounding effects: a sliver overlap returned as a point, and a fixed-grid overlay that invents a 44.6-unit overlap where, for the stored doubles, the true one has length 0 (see the note below) | not bugs |
 
