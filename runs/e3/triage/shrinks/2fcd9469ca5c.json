@@ -1,0 +1,70 @@
+{
+ "rep": "2fcd9469ca5c",
+ "item": "lane2:91291:v1872",
+ "group": "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ab | degen-int | MultiPolygon / GeometryCollection(LineString EMPTY,Point)",
+ "steps": 200,
+ "oracle": {
+  "kind": "evaluate on throwaway current: same (rule, sub, function, orientation) counted",
+  "image": "postgis/postgis@sha256:4a43e3c3e5d55b9208240fc71db543b79c638766280c625a425bd0a2390989c4"
+ },
+ "original_reproduces": true,
+ "shrunk_a": "MULTIPOLYGON (((333683 630058, 333677 630066, 333667 630065, 333668 630057, 333683 630058), (333677 630062, 333671 630063, 333671 630060, 333677 630062)))",
+ "shrunk_b": "GEOMETRYCOLLECTION (LINESTRING EMPTY, POINT (333674 630061))",
+ "coord": "int",
+ "chain": [
+  {
+   "step": 1,
+   "call": 2,
+   "geom": "b",
+   "op": "drop part (1,)",
+   "vertices_a": 15,
+   "vertices_b": 1,
+   "a": "MULTIPOLYGON (((333674 630054, 333683 630058, 333677 630066, 333667 630065, 333668 630057, 333674 630054), (333674 630061, 333677 630062, 333676 630063, 333671 630063, 333671 630060, 333674 630061), (333675 630059, 333672 630059, 333674 630057, 333678 630059, 333677 630060, 333675 630059)))",
+   "b": "GEOMETRYCOLLECTION (LINESTRING EMPTY, POINT (333674 630061))"
+  },
+  {
+   "step": 2,
+   "call": 6,
+   "geom": "a",
+   "op": "drop hole (0, 2)",
+   "vertices_a": 10,
+   "vertices_b": 1,
+   "a": "MULTIPOLYGON (((333674 630054, 333683 630058, 333677 630066, 333667 630065, 333668 630057, 333674 630054), (333674 630061, 333677 630062, 333676 630063, 333671 630063, 333671 630060, 333674 630061)))",
+   "b": "GEOMETRYCOLLECTION (LINESTRING EMPTY, POINT (333674 630061))"
+  },
+  {
+   "step": 3,
+   "call": 10,
+   "geom": "a",
+   "op": "drop vertex 0 of (0, 0)",
+   "vertices_a": 9,
+   "vertices_b": 1,
+   "a": "MULTIPOLYGON (((333683 630058, 333677 630066, 333667 630065, 333668 630057, 333683 630058), (333674 630061, 333677 630062, 333676 630063, 333671 630063, 333671 630060, 333674 630061)))",
+   "b": "GEOMETRYCOLLECTION (LINESTRING EMPTY, POINT (333674 630061))"
+  },
+  {
+   "step": 4,
+   "call": 14,
+   "geom": "a",
+   "op": "drop vertex 0 of (0, 1)",
+   "vertices_a": 8,
+   "vertices_b": 1,
+   "a": "MULTIPOLYGON (((333683 630058, 333677 630066, 333667 630065, 333668 630057, 333683 630058), (333677 630062, 333676 630063, 333671 630063, 333671 630060, 333677 630062)))",
+   "b": "GEOMETRYCOLLECTION (LINESTRING EMPTY, POINT (333674 630061))"
+  },
+  {
+   "step": 5,
+   "call": 19,
+   "geom": "a",
+   "op": "drop vertex 1 of (0, 1)",
+   "vertices_a": 7,
+   "vertices_b": 1,
+   "a": "MULTIPOLYGON (((333683 630058, 333677 630066, 333667 630065, 333668 630057, 333683 630058), (333677 630062, 333671 630063, 333671 630060, 333677 630062)))",
+   "b": "GEOMETRYCOLLECTION (LINESTRING EMPTY, POINT (333674 630061))"
+  }
+ ],
+ "oracle_calls": 23,
+ "vertices_before": 17,
+ "vertices_after": 8,
+ "seconds": 0.150488299994322
+}

@@ -1,0 +1,72 @@
+{
+ "rep": "02684e578282",
+ "item": "lane1:76891:crash:ST_Touches",
+ "group": "crash | backend crash | ST_Touches |  | - | degen-int | LineString / GeometryCollection(Polygon,Polygon EMPTY)",
+ "steps": 200,
+ "oracle": {
+  "kind": "throwaway container: lone probe crashes the backend",
+  "image": "postgis/postgis@sha256:4a43e3c3e5d55b9208240fc71db543b79c638766280c625a425bd0a2390989c4",
+  "probes": [
+   {
+    "o": "ab",
+    "fn": "ST_Touches",
+    "sql": "ST_Touches(a,b)"
+   },
+   {
+    "o": "ba",
+    "fn": "ST_Touches",
+    "sql": "ST_Touches(b,a)"
+   }
+  ]
+ },
+ "original_reproduces": true,
+ "shrunk_a": "LINESTRING (902523 703467, 902309 703747)",
+ "shrunk_b": "GEOMETRYCOLLECTION (POLYGON ((902507 703693, 902470 703739, 902397 703721, 902507 703693)), POLYGON EMPTY, POLYGON ((902507 703693, 902532 703704, 902534 703687, 902507 703693)))",
+ "coord": "int",
+ "chain": [
+  {
+   "step": 1,
+   "call": 4,
+   "geom": "b",
+   "op": "drop hole (0, 1)",
+   "vertices_a": 2,
+   "vertices_b": 14,
+   "a": "LINESTRING (902523 703467, 902309 703747)",
+   "b": "GEOMETRYCOLLECTION (POLYGON ((902409 703662, 902486 703625, 902507 703693, 902470 703739, 902397 703721, 902409 703662), (902453 703694, 902461 703667, 902462 703667, 902470 703693, 902456 703711, 902449 703709, 902453 703694)), POLYGON EMPTY, POLYGON ((902507 703693, 902532 703704, 902534 703687, 902507 703693)))"
+  },
+  {
+   "step": 2,
+   "call": 8,
+   "geom": "b",
+   "op": "drop hole (0, 1)",
+   "vertices_a": 2,
+   "vertices_b": 8,
+   "a": "LINESTRING (902523 703467, 902309 703747)",
+   "b": "GEOMETRYCOLLECTION (POLYGON ((902409 703662, 902486 703625, 902507 703693, 902470 703739, 902397 703721, 902409 703662)), POLYGON EMPTY, POLYGON ((902507 703693, 902532 703704, 902534 703687, 902507 703693)))"
+  },
+  {
+   "step": 3,
+   "call": 12,
+   "geom": "b",
+   "op": "drop vertex 0 of (0, 0)",
+   "vertices_a": 2,
+   "vertices_b": 7,
+   "a": "LINESTRING (902523 703467, 902309 703747)",
+   "b": "GEOMETRYCOLLECTION (POLYGON ((902486 703625, 902507 703693, 902470 703739, 902397 703721, 902486 703625)), POLYGON EMPTY, POLYGON ((902507 703693, 902532 703704, 902534 703687, 902507 703693)))"
+  },
+  {
+   "step": 4,
+   "call": 16,
+   "geom": "b",
+   "op": "drop vertex 0 of (0, 0)",
+   "vertices_a": 2,
+   "vertices_b": 6,
+   "a": "LINESTRING (902523 703467, 902309 703747)",
+   "b": "GEOMETRYCOLLECTION (POLYGON ((902507 703693, 902470 703739, 902397 703721, 902507 703693)), POLYGON EMPTY, POLYGON ((902507 703693, 902532 703704, 902534 703687, 902507 703693)))"
+  }
+ ],
+ "oracle_calls": 19,
+ "vertices_before": 21,
+ "vertices_after": 8,
+ "seconds": 14.11005689999729
+}

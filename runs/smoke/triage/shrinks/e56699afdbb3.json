@@ -1,0 +1,19 @@
+{
+ "rep": "e56699afdbb3",
+ "item": "lane0:154:v2",
+ "group": "R7 | measure(Difference(a,U)) | Union | a vs U | - | plain-float | LineString / MultiLineString",
+ "steps": 200,
+ "oracle": {
+  "kind": "evaluate on throwaway current: same (rule, sub, function, orientation) counted",
+  "image": "postgis/postgis@sha256:4a43e3c3e5d55b9208240fc71db543b79c638766280c625a425bd0a2390989c4"
+ },
+ "original_reproduces": false,
+ "shrunk_a": "LINESTRING (190165369.0 135526369.0, 190165391.0 135526349.0, 190165392.0 135526349.0, 190165399.0 135526357.0, 190165408.0 135526360.0, 190165415.0 135526362.0, 190165414.0 135526392.0, 190165436.0 135526373.0)",
+ "shrunk_b": "MULTILINESTRING ((190165379.0 135526359.0, 190165382.0 135526356.0, 190165385.0 135526356.0, 190165380.0 135526353.0, 190165384.0 135526352.0, 190165387.0 135526349.0))",
+ "coord": "float",
+ "chain": [],
+ "oracle_calls": 1,
+ "vertices_before": 14,
+ "vertices_after": 14,
+ "seconds": 0.12283959999695071
+}

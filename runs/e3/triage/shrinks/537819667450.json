@@ -1,0 +1,19 @@
+{
+ "rep": "537819667450",
+ "item": "lane1:126288:v3639",
+ "group": "R3 | lone vs prepared arg2 | Within | lone vs prepared arg2[2] | ba | degen-float | MultiPolygon / MultiPolygon",
+ "steps": 200,
+ "oracle": {
+  "kind": "evaluate on throwaway current: same (rule, sub, function, orientation) counted",
+  "image": "postgis/postgis@sha256:4a43e3c3e5d55b9208240fc71db543b79c638766280c625a425bd0a2390989c4"
+ },
+ "original_reproduces": true,
+ "shrunk_a": "MULTIPOLYGON (((649699.0868034831 -655237.4204505894, 649716.83771495 -655210.7940833892, 649692.1132311212 -655213.9638890083, 649699.0868034831 -655237.4204505894)))",
+ "shrunk_b": "MULTIPOLYGON (((649707.9622592166 -655220.9374613703, 649710.4981037118 -655217.1336946273, 649710.4981037118 -655220.3035002465, 649707.9622592166 -655220.9374613703)))",
+ "coord": "float",
+ "chain": [],
+ "oracle_calls": 32,
+ "vertices_before": 6,
+ "vertices_after": 6,
+ "seconds": 1.1364925999951083
+}

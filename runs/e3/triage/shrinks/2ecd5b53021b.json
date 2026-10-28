@@ -1,0 +1,30 @@
+{
+ "rep": "2ecd5b53021b",
+ "item": "lane1:42092:v585",
+ "group": "R10 | dim(Intersection) = max(II,IB,BI,BB) | Intersection/Relate | ST_Dimension(ST_Intersection) vs ST_Relate cells | - | degen-float | LineString / MultiLineString",
+ "steps": 200,
+ "oracle": {
+  "kind": "evaluate on throwaway current: same (rule, sub, function, orientation) counted",
+  "image": "postgis/postgis@sha256:4a43e3c3e5d55b9208240fc71db543b79c638766280c625a425bd0a2390989c4"
+ },
+ "original_reproduces": true,
+ "shrunk_a": "LINESTRING (-275294.2645757407 622544.2066286074, -274960.3941170473 622646.9360005129)",
+ "shrunk_b": "MULTILINESTRING ((-275220.0711404755 622567.0353779197, -274997.4908346799 622635.5216258568, -274777.7641225484 622558.4745969275))",
+ "coord": "float",
+ "chain": [
+  {
+   "step": 1,
+   "call": 17,
+   "geom": "ab",
+   "op": "round to 16 significant digits",
+   "vertices_a": 2,
+   "vertices_b": 3,
+   "a": "LINESTRING (-275294.2645757407 622544.2066286074, -274960.3941170473 622646.9360005129)",
+   "b": "MULTILINESTRING ((-275220.0711404755 622567.0353779197, -274997.4908346799 622635.5216258568, -274777.7641225484 622558.4745969275))"
+  }
+ ],
+ "oracle_calls": 60,
+ "vertices_before": 5,
+ "vertices_after": 5,
+ "seconds": 2.297242999993614
+}

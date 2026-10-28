@@ -1,0 +1,44 @@
+{
+ "rep": "ce9e11566ec2",
+ "item": "lane1:95003:crash:ST_Touches",
+ "group": "crash | backend crash | ST_Touches |  | - | degen-int | MultiPolygon / LineString",
+ "steps": 200,
+ "oracle": {
+  "kind": "throwaway container: lone probe crashes the backend",
+  "image": "postgis/postgis@sha256:4a43e3c3e5d55b9208240fc71db543b79c638766280c625a425bd0a2390989c4",
+  "probes": [
+   {
+    "o": "ab",
+    "fn": "ST_Touches",
+    "wrap": 1,
+    "sql": "ST_Touches(ST_ForceCollection(a),b)"
+   },
+   {
+    "o": "ba",
+    "fn": "ST_Touches",
+    "wrap": 2,
+    "sql": "ST_Touches(b,ST_ForceCollection(a))"
+   }
+  ]
+ },
+ "original_reproduces": true,
+ "shrunk_a": "MULTIPOLYGON (((153772 319713, 153767 319720, 153762 319709, 153772 319713)), EMPTY, ((153772 319713, 153774 319713, 153774 319712, 153772 319713)))",
+ "shrunk_b": "LINESTRING (153730 319698, 153773 319713)",
+ "coord": "int",
+ "chain": [
+  {
+   "step": 1,
+   "call": 4,
+   "geom": "b",
+   "op": "drop vertex 0 of ()",
+   "vertices_a": 6,
+   "vertices_b": 2,
+   "a": "MULTIPOLYGON (((153772 319713, 153767 319720, 153762 319709, 153772 319713)), EMPTY, ((153772 319713, 153774 319713, 153774 319712, 153772 319713)))",
+   "b": "LINESTRING (153730 319698, 153773 319713)"
+  }
+ ],
+ "oracle_calls": 7,
+ "vertices_before": 9,
+ "vertices_after": 8,
+ "seconds": 7.862768999999389
+}

@@ -1,0 +1,80 @@
+{
+ "rep": "d6d2d338ca34",
+ "item": "lane1:74251:v1883",
+ "group": "R3 | lone vs prepared arg2 | Within | lone vs prepared arg2[2] | ba | degen-int | MultiPolygon / GeometryCollection(Point,Polygon EMPTY)",
+ "steps": 200,
+ "oracle": {
+  "kind": "evaluate on throwaway current: same (rule, sub, function, orientation) counted",
+  "image": "postgis/postgis@sha256:4a43e3c3e5d55b9208240fc71db543b79c638766280c625a425bd0a2390989c4"
+ },
+ "original_reproduces": true,
+ "shrunk_a": "MULTIPOLYGON (((981787 1041598, 981828 1041648, 981730 1041727, 981787 1041598)))",
+ "shrunk_b": "GEOMETRYCOLLECTION (POINT (981787 1041598), POINT (981828 1041648), POLYGON EMPTY)",
+ "coord": "int",
+ "chain": [
+  {
+   "step": 1,
+   "call": 1,
+   "geom": "b",
+   "op": "drop part (0,)",
+   "vertices_a": 8,
+   "vertices_b": 2,
+   "a": "MULTIPOLYGON (((981663 1041673, 981729 1041624, 981787 1041598, 981828 1041648, 981852 1041702, 981839 1041771, 981775 1041790, 981730 1041727, 981663 1041673)))",
+   "b": "GEOMETRYCOLLECTION (POINT (981787 1041598), POINT (981828 1041648), POLYGON EMPTY)"
+  },
+  {
+   "step": 2,
+   "call": 5,
+   "geom": "a",
+   "op": "drop vertex 0 of (0, 0)",
+   "vertices_a": 7,
+   "vertices_b": 2,
+   "a": "MULTIPOLYGON (((981729 1041624, 981787 1041598, 981828 1041648, 981852 1041702, 981839 1041771, 981775 1041790, 981730 1041727, 981729 1041624)))",
+   "b": "GEOMETRYCOLLECTION (POINT (981787 1041598), POINT (981828 1041648), POLYGON EMPTY)"
+  },
+  {
+   "step": 3,
+   "call": 9,
+   "geom": "a",
+   "op": "drop vertex 0 of (0, 0)",
+   "vertices_a": 6,
+   "vertices_b": 2,
+   "a": "MULTIPOLYGON (((981787 1041598, 981828 1041648, 981852 1041702, 981839 1041771, 981775 1041790, 981730 1041727, 981787 1041598)))",
+   "b": "GEOMETRYCOLLECTION (POINT (981787 1041598), POINT (981828 1041648), POLYGON EMPTY)"
+  },
+  {
+   "step": 4,
+   "call": 15,
+   "geom": "a",
+   "op": "drop vertex 2 of (0, 0)",
+   "vertices_a": 5,
+   "vertices_b": 2,
+   "a": "MULTIPOLYGON (((981787 1041598, 981828 1041648, 981839 1041771, 981775 1041790, 981730 1041727, 981787 1041598)))",
+   "b": "GEOMETRYCOLLECTION (POINT (981787 1041598), POINT (981828 1041648), POLYGON EMPTY)"
+  },
+  {
+   "step": 5,
+   "call": 21,
+   "geom": "a",
+   "op": "drop vertex 2 of (0, 0)",
+   "vertices_a": 4,
+   "vertices_b": 2,
+   "a": "MULTIPOLYGON (((981787 1041598, 981828 1041648, 981775 1041790, 981730 1041727, 981787 1041598)))",
+   "b": "GEOMETRYCOLLECTION (POINT (981787 1041598), POINT (981828 1041648), POLYGON EMPTY)"
+  },
+  {
+   "step": 6,
+   "call": 27,
+   "geom": "a",
+   "op": "drop vertex 2 of (0, 0)",
+   "vertices_a": 3,
+   "vertices_b": 2,
+   "a": "MULTIPOLYGON (((981787 1041598, 981828 1041648, 981730 1041727, 981787 1041598)))",
+   "b": "GEOMETRYCOLLECTION (POINT (981787 1041598), POINT (981828 1041648), POLYGON EMPTY)"
+  }
+ ],
+ "oracle_calls": 31,
+ "vertices_before": 11,
+ "vertices_after": 5,
+ "seconds": 0.17931379999936325
+}

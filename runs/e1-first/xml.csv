@@ -1,0 +1,8 @@
+file,rule,tier,band,precision_limited,pairs,violations
+general/TestNGOverlayLPrec.xml,R7,candidate,-,False,1,2
+general/TestOverlayLLPrec.xml,R7,strict,-,False,2,3
+general/TestRelateLL.xml,R9,candidate,triage,False,5,5
+validate/TestRelateLC.xml,R9,candidate,triage,False,1,1
+validate/TestRelateLL.xml,R7,strict,-,False,4,5
+validate/TestRelateLL.xml,R7,candidate,triage,False,1,1
+validate/TestRelateLL.xml,R9,candidate,triage,False,17,17

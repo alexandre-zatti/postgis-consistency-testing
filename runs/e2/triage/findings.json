@@ -1,0 +1,38 @@
+{
+ "meta": {
+  "campaign_dir": "C:\\Users\\Ale\\masters\\coursework\\MCET063 - Tópicos em Testes Automatizados e Verificação de Software (2026-2)\\final-project\\experiment\\runs\\e2",
+  "finished": "2026-10-27 16:52:48",
+  "args": {
+   "campaign": "e2",
+   "campaign_dir": null,
+   "k": 3,
+   "cap": 300,
+   "steps": 200,
+   "crash_oracle": "container",
+   "rules": null,
+   "select_only": false
+  },
+  "shrinks": 0,
+  "reproduced": 0,
+  "wall_s_this_run": 0.00016210000103455968,
+  "versions": {},
+  "digests": {
+   "current": "postgis/postgis@sha256:4a43e3c3e5d55b9208240fc71db543b79c638766280c625a425bd0a2390989c4",
+   "dev": "postgis/postgis@sha256:620f1f1ffb479ffbda686dbfde113557a9859cdf9de0f86683b0702846915107",
+   "old": "postgis/postgis@sha256:01a6a70e41e6c4467c8f55f6063555ed72db2d6662cd0d571040d42eadaeb6f6"
+  },
+  "shapely": "2.2.0",
+  "geos": "3.14.1",
+  "containers": []
+ },
+ "selection": {
+  "items": 0,
+  "groups": 0,
+  "k": 3,
+  "cap": 300,
+  "representatives": 0,
+  "per_group": {},
+  "left_out_by_cap": {}
+ },
+ "findings": []
+}

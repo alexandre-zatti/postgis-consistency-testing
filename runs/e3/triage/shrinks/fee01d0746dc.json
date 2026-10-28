@@ -1,0 +1,74 @@
+{
+ "rep": "fee01d0746dc",
+ "item": "lane0:94531:crash:ST_Relate(matrix)",
+ "group": "crash | backend crash | ST_Relate(matrix) |  | - | degen-int | GeometryCollection(LineString) / MultiPolygon",
+ "steps": 200,
+ "oracle": {
+  "kind": "throwaway container: lone probe crashes the backend",
+  "image": "postgis/postgis@sha256:4a43e3c3e5d55b9208240fc71db543b79c638766280c625a425bd0a2390989c4",
+  "probes": [
+   {
+    "o": "ab",
+    "fn": "ST_Relate(matrix)",
+    "wrap": 2,
+    "sql": "ST_Relate(a,ST_ForceCollection(b))"
+   },
+   {
+    "o": "ba",
+    "fn": "ST_Relate(matrix)",
+    "wrap": 1,
+    "sql": "ST_Relate(ST_ForceCollection(b),a)"
+   }
+  ]
+ },
+ "original_reproduces": true,
+ "shrunk_a": "GEOMETRYCOLLECTION (LINESTRING (854852 1033994, 854913 1033708))",
+ "shrunk_b": "MULTIPOLYGON (((854876 1033881, 854883 1033897, 854878 1033914, 854876 1033881)), ((854876 1033881, 854881 1033876, 854876 1033874, 854876 1033881)), EMPTY)",
+ "coord": "int",
+ "chain": [
+  {
+   "step": 1,
+   "call": 5,
+   "geom": "a",
+   "op": "drop vertex 1 of (0,)",
+   "vertices_a": 2,
+   "vertices_b": 9,
+   "a": "GEOMETRYCOLLECTION (LINESTRING (854852 1033994, 854913 1033708))",
+   "b": "MULTIPOLYGON (((854860 1033911, 854857 1033898, 854865 1033884, 854876 1033881, 854883 1033897, 854878 1033914, 854860 1033911)), ((854876 1033881, 854881 1033876, 854876 1033874, 854876 1033881)), EMPTY)"
+  },
+  {
+   "step": 2,
+   "call": 9,
+   "geom": "b",
+   "op": "drop vertex 0 of (0, 0)",
+   "vertices_a": 2,
+   "vertices_b": 8,
+   "a": "GEOMETRYCOLLECTION (LINESTRING (854852 1033994, 854913 1033708))",
+   "b": "MULTIPOLYGON (((854857 1033898, 854865 1033884, 854876 1033881, 854883 1033897, 854878 1033914, 854857 1033898)), ((854876 1033881, 854881 1033876, 854876 1033874, 854876 1033881)), EMPTY)"
+  },
+  {
+   "step": 3,
+   "call": 13,
+   "geom": "b",
+   "op": "drop vertex 0 of (0, 0)",
+   "vertices_a": 2,
+   "vertices_b": 7,
+   "a": "GEOMETRYCOLLECTION (LINESTRING (854852 1033994, 854913 1033708))",
+   "b": "MULTIPOLYGON (((854865 1033884, 854876 1033881, 854883 1033897, 854878 1033914, 854865 1033884)), ((854876 1033881, 854881 1033876, 854876 1033874, 854876 1033881)), EMPTY)"
+  },
+  {
+   "step": 4,
+   "call": 17,
+   "geom": "b",
+   "op": "drop vertex 0 of (0, 0)",
+   "vertices_a": 2,
+   "vertices_b": 6,
+   "a": "GEOMETRYCOLLECTION (LINESTRING (854852 1033994, 854913 1033708))",
+   "b": "MULTIPOLYGON (((854876 1033881, 854883 1033897, 854878 1033914, 854876 1033881)), ((854876 1033881, 854881 1033876, 854876 1033874, 854876 1033881)), EMPTY)"
+  }
+ ],
+ "oracle_calls": 20,
+ "vertices_before": 12,
+ "vertices_after": 8,
+ "seconds": 16.886085199999798
+}

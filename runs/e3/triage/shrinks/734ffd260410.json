@@ -1,0 +1,50 @@
+{
+ "rep": "734ffd260410",
+ "item": "lane0:86827:v1909",
+ "group": "R3 | lone vs prepared arg2 | Within | lone vs prepared arg2[2] | ab | degen-int | GeometryCollection(LineString EMPTY,Point) / Polygon",
+ "steps": 200,
+ "oracle": {
+  "kind": "evaluate on throwaway current: same (rule, sub, function, orientation) counted",
+  "image": "postgis/postgis@sha256:4a43e3c3e5d55b9208240fc71db543b79c638766280c625a425bd0a2390989c4"
+ },
+ "original_reproduces": true,
+ "shrunk_a": "GEOMETRYCOLLECTION (LINESTRING EMPTY, POINT (178015 513060))",
+ "shrunk_b": "POLYGON ((178145 513473, 177822 513283, 178015 513060, 178145 513473))",
+ "coord": "int",
+ "chain": [
+  {
+   "step": 1,
+   "call": 2,
+   "geom": "a",
+   "op": "drop part (1,)",
+   "vertices_a": 1,
+   "vertices_b": 5,
+   "a": "GEOMETRYCOLLECTION (LINESTRING EMPTY, POINT (178015 513060))",
+   "b": "POLYGON ((178342 513051, 178371 513311, 178145 513473, 177822 513283, 178015 513060, 178342 513051))"
+  },
+  {
+   "step": 2,
+   "call": 5,
+   "geom": "b",
+   "op": "drop vertex 0 of (0,)",
+   "vertices_a": 1,
+   "vertices_b": 4,
+   "a": "GEOMETRYCOLLECTION (LINESTRING EMPTY, POINT (178015 513060))",
+   "b": "POLYGON ((178371 513311, 178145 513473, 177822 513283, 178015 513060, 178371 513311))"
+  },
+  {
+   "step": 3,
+   "call": 8,
+   "geom": "b",
+   "op": "drop vertex 0 of (0,)",
+   "vertices_a": 1,
+   "vertices_b": 3,
+   "a": "GEOMETRYCOLLECTION (LINESTRING EMPTY, POINT (178015 513060))",
+   "b": "POLYGON ((178145 513473, 177822 513283, 178015 513060, 178145 513473))"
+  }
+ ],
+ "oracle_calls": 11,
+ "vertices_before": 7,
+ "vertices_after": 4,
+ "seconds": 0.06343829999968875
+}

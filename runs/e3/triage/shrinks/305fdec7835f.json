@@ -1,0 +1,50 @@
+{
+ "rep": "305fdec7835f",
+ "item": "lane0:14447:v15",
+ "group": "R3 | lone vs prepared arg2 | Within | lone vs prepared arg2[2] | ba | degen-int | Polygon / GeometryCollection(LineString EMPTY,Point)",
+ "steps": 200,
+ "oracle": {
+  "kind": "evaluate on throwaway current: same (rule, sub, function, orientation) counted",
+  "image": "postgis/postgis@sha256:4a43e3c3e5d55b9208240fc71db543b79c638766280c625a425bd0a2390989c4"
+ },
+ "original_reproduces": true,
+ "shrunk_a": "POLYGON ((715859 698591, 715909 698721, 715749 698756, 715859 698591))",
+ "shrunk_b": "GEOMETRYCOLLECTION (LINESTRING EMPTY, POINT (715749 698756))",
+ "coord": "int",
+ "chain": [
+  {
+   "step": 1,
+   "call": 1,
+   "geom": "b",
+   "op": "drop part (0,)",
+   "vertices_a": 4,
+   "vertices_b": 2,
+   "a": "POLYGON ((715694 698582, 715859 698591, 715909 698721, 715749 698756, 715694 698582))",
+   "b": "GEOMETRYCOLLECTION (LINESTRING EMPTY, POINT (715749 698756), POINT (715749 698756))"
+  },
+  {
+   "step": 2,
+   "call": 3,
+   "geom": "b",
+   "op": "drop part (1,)",
+   "vertices_a": 4,
+   "vertices_b": 1,
+   "a": "POLYGON ((715694 698582, 715859 698591, 715909 698721, 715749 698756, 715694 698582))",
+   "b": "GEOMETRYCOLLECTION (LINESTRING EMPTY, POINT (715749 698756))"
+  },
+  {
+   "step": 3,
+   "call": 6,
+   "geom": "a",
+   "op": "drop vertex 0 of (0,)",
+   "vertices_a": 3,
+   "vertices_b": 1,
+   "a": "POLYGON ((715859 698591, 715909 698721, 715749 698756, 715859 698591))",
+   "b": "GEOMETRYCOLLECTION (LINESTRING EMPTY, POINT (715749 698756))"
+  }
+ ],
+ "oracle_calls": 9,
+ "vertices_before": 7,
+ "vertices_after": 4,
+ "seconds": 0.05508840000402415
+}

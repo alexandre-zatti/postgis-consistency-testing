@@ -1,0 +1,42 @@
+=== python -s reproduce.py (2026-10-28)
+Shapely 2.2.0 GEOS 3.14.1
+a = POLYGON ((699317.1 244195.2, 699309.1 244173.4, 699351.3 244184.3, 699317.1 244195.2)) 
+b = POLYGON ((699313.1 244162.7, 699370.8 244179, 699315.8 244199.1, 699305.1 244184.1, 699313.1 244162.7))
+relate(b, a) = 212F01FF2  contains(b, a) = True  prepared contains(b, a) = False
+exact cross product of a's vertex (699309.1 244173.4) on b's edge: -1.1641532182693481e-10 (< 0: outside b)
+expected: contains(b, a) = False, because one vertex of a lies outside b by about 1e-10
+verdict: BUG reproduced, unprepared (RelateNG) is wrong, prepared is right
+
+=== psql < reproduce.sql, current (container tavs-current-1)
+ postgis |        geos        
+---------+--------------------
+ 3.6.4   | 3.14.1-CAPI-1.20.5
+(1 row)
+
+ relate_b_a | contains_b_a 
+------------+--------------
+ 212F01FF2  | t
+(1 row)
+
+ plain_prepared_prepared 
+-------------------------
+ {t,f,f}
+(1 row)
+
+
+=== psql < reproduce.sql, dev (container tavs-dev-1)
+ postgis  |         geos          
+----------+-----------------------
+ 3.7.0dev | 3.16.0dev-CAPI-1.23.0
+(1 row)
+
+ relate_b_a | contains_b_a 
+------------+--------------
+ 212F01FF2  | t
+(1 row)
+
+ plain_prepared_prepared 
+-------------------------
+ {t,f,f}
+(1 row)
+

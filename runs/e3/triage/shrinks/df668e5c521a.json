@@ -1,0 +1,60 @@
+{
+ "rep": "df668e5c521a",
+ "item": "lane0:86828:v1911",
+ "group": "R3 | lone vs prepared arg2 | Within | lone vs prepared arg2[2] | ab | degen-float | GeometryCollection(LineString EMPTY,Point) / Polygon",
+ "steps": 200,
+ "oracle": {
+  "kind": "evaluate on throwaway current: same (rule, sub, function, orientation) counted",
+  "image": "postgis/postgis@sha256:4a43e3c3e5d55b9208240fc71db543b79c638766280c625a425bd0a2390989c4"
+ },
+ "original_reproduces": true,
+ "shrunk_a": "GEOMETRYCOLLECTION (LINESTRING EMPTY, POINT (177900.0 513400.0))",
+ "shrunk_b": "POLYGON ((178300.0 513200.0, 178100.0 513600.0, 177900.0 513400.0, 178300.0 513200.0))",
+ "coord": "float",
+ "chain": [
+  {
+   "step": 1,
+   "call": 2,
+   "geom": "a",
+   "op": "drop part (1,)",
+   "vertices_a": 1,
+   "vertices_b": 5,
+   "a": "GEOMETRYCOLLECTION (LINESTRING EMPTY, POINT (177870.58978143043 513360.04487586854))",
+   "b": "POLYGON ((177869.52095751005 513032.9227922126, 178130.14766349082 513010.235347896, 178286.6203811067 513240.0968032162, 178088.84469292485 513558.3950551187, 177870.58978143043 513360.04487586854, 177869.52095751005 513032.9227922126))"
+  },
+  {
+   "step": 2,
+   "call": 5,
+   "geom": "b",
+   "op": "drop vertex 0 of (0,)",
+   "vertices_a": 1,
+   "vertices_b": 4,
+   "a": "GEOMETRYCOLLECTION (LINESTRING EMPTY, POINT (177870.58978143043 513360.04487586854))",
+   "b": "POLYGON ((178130.14766349082 513010.235347896, 178286.6203811067 513240.0968032162, 178088.84469292485 513558.3950551187, 177870.58978143043 513360.04487586854, 178130.14766349082 513010.235347896))"
+  },
+  {
+   "step": 3,
+   "call": 8,
+   "geom": "b",
+   "op": "drop vertex 0 of (0,)",
+   "vertices_a": 1,
+   "vertices_b": 3,
+   "a": "GEOMETRYCOLLECTION (LINESTRING EMPTY, POINT (177870.58978143043 513360.04487586854))",
+   "b": "POLYGON ((178286.6203811067 513240.0968032162, 178088.84469292485 513558.3950551187, 177870.58978143043 513360.04487586854, 178286.6203811067 513240.0968032162))"
+  },
+  {
+   "step": 4,
+   "call": 11,
+   "geom": "ab",
+   "op": "round to 4 significant digits",
+   "vertices_a": 1,
+   "vertices_b": 3,
+   "a": "GEOMETRYCOLLECTION (LINESTRING EMPTY, POINT (177900.0 513400.0))",
+   "b": "POLYGON ((178300.0 513200.0, 178100.0 513600.0, 177900.0 513400.0, 178300.0 513200.0))"
+  }
+ ],
+ "oracle_calls": 17,
+ "vertices_before": 7,
+ "vertices_after": 4,
+ "seconds": 0.10167490000458201
+}

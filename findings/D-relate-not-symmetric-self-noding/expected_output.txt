@@ -1,0 +1,33 @@
+=== python -s reproduce.py (2026-10-28)
+Shapely 2.2.0 GEOS 3.14.1
+a = POLYGON ((632510 596465, 632512 596476, 632503 596468, 632510 596465)) 
+b = GEOMETRYCOLLECTION (POLYGON ((632512 596457, 632523 596483, 632485 596477, 632512 596457), (632510 596469, 632514 596476, 632506 596475, 632510 596469)), POLYGON ((632510 596465, 632512 596476, 632510 596470, 632510 596465)))
+relate(a, b)            = 212101212
+relate(b, a)            = 212111212
+transpose(relate(a, b)) = 212101212
+expected: relate(b, a) = transpose(relate(a, b))
+verdict: BUG reproduced, the matrices are not transposes
+
+=== psql < reproduce.sql, current (container tavs-current-1)
+ postgis |        geos        
+---------+--------------------
+ 3.6.4   | 3.14.1-CAPI-1.20.5
+(1 row)
+
+   r_ab    |   r_ba    | transposed_r_ab | symmetric_expected_true 
+-----------+-----------+-----------------+-------------------------
+ 212101212 | 212111212 | 212101212       | f
+(1 row)
+
+
+=== psql < reproduce.sql, dev (container tavs-dev-1)
+ postgis  |         geos          
+----------+-----------------------
+ 3.7.0dev | 3.16.0dev-CAPI-1.23.0
+(1 row)
+
+   r_ab    |   r_ba    | transposed_r_ab | symmetric_expected_true 
+-----------+-----------+-----------------+-------------------------
+ 212101212 | 212111212 | 212101212       | f
+(1 row)
+

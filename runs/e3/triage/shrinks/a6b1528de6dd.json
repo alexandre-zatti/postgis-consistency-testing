@@ -1,0 +1,48 @@
+{
+ "rep": "a6b1528de6dd",
+ "item": "lane4:80684:crash:ST_Touches",
+ "group": "crash | backend crash | ST_Touches |  | - | degen-float | LineString / MultiPolygon",
+ "steps": 200,
+ "oracle": {
+  "kind": "throwaway container: lone probe crashes the backend",
+  "image": "postgis/postgis@sha256:4a43e3c3e5d55b9208240fc71db543b79c638766280c625a425bd0a2390989c4",
+  "probes": [
+   {
+    "o": "ab",
+    "fn": "ST_Touches",
+    "wrap": 2,
+    "sql": "ST_Touches(a,ST_ForceCollection(b))"
+   }
+  ]
+ },
+ "original_reproduces": true,
+ "shrunk_a": "LINESTRING (2.9952e-08 5.434e-08, 2.9951e-08 5.4341e-08)",
+ "shrunk_b": "MULTIPOLYGON (((2.9951e-08 5.4342e-08, 2.99504e-08 5.43403e-08, 2.9952e-08 5.43409e-08, 2.9951e-08 5.4342e-08)), EMPTY, ((2.9951e-08 5.4342e-08, 2.99508e-08 5.43423e-08, 2.99512e-08 5.43423e-08, 2.9951e-08 5.4342e-08)))",
+ "coord": "float",
+ "chain": [
+  {
+   "step": 1,
+   "call": 4,
+   "geom": "ab",
+   "op": "round to 6 significant digits",
+   "vertices_a": 2,
+   "vertices_b": 6,
+   "a": "LINESTRING (2.99517e-08 5.43403e-08, 2.9951e-08 5.43413e-08)",
+   "b": "MULTIPOLYGON (((2.9951e-08 5.4342e-08, 2.99504e-08 5.43403e-08, 2.9952e-08 5.43409e-08, 2.9951e-08 5.4342e-08)), EMPTY, ((2.9951e-08 5.4342e-08, 2.99508e-08 5.43423e-08, 2.99512e-08 5.43423e-08, 2.9951e-08 5.4342e-08)))"
+  },
+  {
+   "step": 2,
+   "call": 8,
+   "geom": "a",
+   "op": "round to 5 significant digits",
+   "vertices_a": 2,
+   "vertices_b": 6,
+   "a": "LINESTRING (2.9952e-08 5.434e-08, 2.9951e-08 5.4341e-08)",
+   "b": "MULTIPOLYGON (((2.9951e-08 5.4342e-08, 2.99504e-08 5.43403e-08, 2.9952e-08 5.43409e-08, 2.9951e-08 5.4342e-08)), EMPTY, ((2.9951e-08 5.4342e-08, 2.99508e-08 5.43423e-08, 2.99512e-08 5.43423e-08, 2.9951e-08 5.4342e-08)))"
+  }
+ ],
+ "oracle_calls": 11,
+ "vertices_before": 8,
+ "vertices_after": 8,
+ "seconds": 6.926046900000074
+}

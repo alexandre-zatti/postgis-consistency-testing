@@ -1,0 +1,154 @@
+{
+ "images": {
+  "current": {
+   "present": true,
+   "present_counted": true,
+   "violations": [
+    {
+     "rule": "R3",
+     "sub": "lone vs prepared arg1",
+     "function": "Contains",
+     "paths": "lone vs prepared arg1[2]",
+     "orientation": "ba",
+     "tier": "candidate",
+     "band": null,
+     "magnitude": null,
+     "plim": false,
+     "raw": {
+      "lone": false,
+      "calls": [
+       false,
+       true,
+       true
+      ],
+      "shape": "b",
+      "primer": null
+     }
+    }
+   ],
+   "fixed_precision_analog_violated": null,
+   "outcomes": {
+    "skipped": 1
+   },
+   "outcome_messages": [],
+   "info": {
+    "L": 3.099999999999545e-11,
+    "M": 7.2735e-08,
+    "grid": null,
+    "tiers": {
+     "predicate": "candidate",
+     "overlay": "candidate"
+    },
+    "types": [
+     "GeometryCollection",
+     "MultiPolygon"
+    ],
+    "precision_limited": false,
+    "crashed_functions": []
+   },
+   "seconds": 0.03569769999739947
+  },
+  "dev": {
+   "present": true,
+   "present_counted": true,
+   "violations": [
+    {
+     "rule": "R3",
+     "sub": "lone vs prepared arg1",
+     "function": "Contains",
+     "paths": "lone vs prepared arg1[2]",
+     "orientation": "ba",
+     "tier": "candidate",
+     "band": null,
+     "magnitude": null,
+     "plim": false,
+     "raw": {
+      "lone": false,
+      "calls": [
+       false,
+       true,
+       true
+      ],
+      "shape": "b",
+      "primer": null
+     }
+    }
+   ],
+   "fixed_precision_analog_violated": null,
+   "outcomes": {
+    "skipped": 1
+   },
+   "outcome_messages": [],
+   "info": {
+    "L": 3.099999999999545e-11,
+    "M": 7.2735e-08,
+    "grid": null,
+    "tiers": {
+     "predicate": "candidate",
+     "overlay": "candidate"
+    },
+    "types": [
+     "GeometryCollection",
+     "MultiPolygon"
+    ],
+    "precision_limited": false,
+    "crashed_functions": []
+   },
+   "seconds": 0.012185499996121507
+  },
+  "old": {
+   "present": false,
+   "present_counted": false,
+   "violations": [],
+   "fixed_precision_analog_violated": null,
+   "outcomes": {
+    "skipped": 1,
+    "crash": 3
+   },
+   "outcome_messages": [
+    "prep_b_ba: crash: crash; re-running the remaining expressions alone: backend crash: consuming input failed: server closed the connection unexpectedly\n\tThis probably means the server terminated abnormally\n\tbefore or whi",
+    "prep_b_ba:Contains: crash: backend crash: consuming input failed: server closed the connection unexpectedly\n\tThis probably means the server terminated abnormally\n\tbefore or while processing the request. | statement: SELECT arra",
+    "prep_b_ba:Covers: crash: backend crash: consuming input failed: server closed the connection unexpectedly\n\tThis probably means the server terminated abnormally\n\tbefore or while processing the request. | statement: SELECT arra"
+   ],
+   "info": {
+    "L": 3.099999999999545e-11,
+    "M": 7.2735e-08,
+    "grid": null,
+    "tiers": {
+     "predicate": "candidate",
+     "overlay": "candidate"
+    },
+    "types": [
+     "GeometryCollection",
+     "MultiPolygon"
+    ],
+    "precision_limited": false,
+    "crashed_functions": [
+     "ST_Contains",
+     "ST_Covers"
+    ]
+   },
+   "seconds": 7.274721200003114
+  }
+ },
+ "versions": {
+  "current": "POSTGIS=\"3.6.4 94d984b\" [EXTENSION] PGSQL=\"180\" GEOS=\"3.14.1-CAPI-1.20.5\" (compiled against GEOS 3.13.1) PROJ=\"9.8.1 NETWORK_ENABLED=OFF URL_ENDPOINT=https://cdn.proj.org USER_WRITABLE_DIRECTORY=/var/lib/postgresql/.local/share/proj DATABASE_PATH=/usr/share/proj/proj.db\" (compiled against PROJ 9.6.0) LIBXML=\"2.9.14\" LIBJSON=\"0.18\" LIBPROTOBUF=\"1.5.1\" WAGYU=\"0.5.0 (Internal)\" TOPOLOGY",
+  "dev": "POSTGIS=\"3.7.0dev 3.7.0rc3-1-g4db4d8050\" [EXTENSION] PGSQL=\"180\" GEOS=\"3.16.0dev-CAPI-1.23.0 3.15.0rc1-41-g283e82726\" PROJ=\"9.10.0 NETWORK_ENABLED=OFF URL_ENDPOINT=https://cdn.proj.org USER_WRITABLE_DIRECTORY=/var/lib/postgresql/.local/share/proj DATABASE_PATH=/usr/local/share/proj/proj.db\" (compiled against PROJ 9.10.0) LIBXML=\"2.9.14\" LIBJSON=\"0.18\" LIBPROTOBUF=\"1.5.1\" WAGYU=\"0.5.0 (Internal)\" TOPOLOGY",
+  "old": "POSTGIS=\"3.5.2 dea6d0a\" [EXTENSION] PGSQL=\"170\" GEOS=\"3.9.0-CAPI-1.16.2\" PROJ=\"7.2.1 NETWORK_ENABLED=OFF URL_ENDPOINT=https://cdn.proj.org USER_WRITABLE_DIRECTORY=/var/lib/postgresql/.local/share/proj DATABASE_PATH=/usr/share/proj/proj.db\" (compiled against PROJ 7.2.1) LIBXML=\"2.9.10\" LIBJSON=\"0.15\" LIBPROTOBUF=\"1.3.3\" WAGYU=\"0.5.0 (Internal)\" TOPOLOGY"
+ },
+ "shapely": {
+  "applicable": true,
+  "violated": true,
+  "band": null,
+  "detail": {
+   "unprepared": false,
+   "prepared": true,
+   "how": "prepare(x); P(x, y)"
+  },
+  "fixed": null,
+  "shapely": "2.2.0",
+  "geos": "3.14.1"
+ },
+ "shapely_seconds": 0.7214187999998103,
+ "margin_check": null
+}

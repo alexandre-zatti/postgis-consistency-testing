@@ -1,0 +1,50 @@
+{
+ "rep": "c5ba87e2c1fa",
+ "item": "lane4:97568:v1909",
+ "group": "R10 | dim(Intersection) = max(II,IB,BI,BB) | Intersection/Relate | ST_Dimension(ST_Intersection) vs ST_Relate cells | - | degen-float | MultiLineString / MultiLineString",
+ "steps": 200,
+ "oracle": {
+  "kind": "evaluate on throwaway current: same (rule, sub, function, orientation) counted",
+  "image": "postgis/postgis@sha256:4a43e3c3e5d55b9208240fc71db543b79c638766280c625a425bd0a2390989c4"
+ },
+ "original_reproduces": true,
+ "shrunk_a": "MULTILINESTRING ((811741.3556110617 456984.0962511185, 811715.4383128583 456925.1933006566, 811774.3412633203 456942.8641857952))",
+ "shrunk_b": "MULTILINESTRING ((811754.3142601631 457013.5477263493, 811702.4796637568 456895.74182542576))",
+ "coord": "float",
+ "chain": [
+  {
+   "step": 1,
+   "call": 6,
+   "geom": "b",
+   "op": "drop vertex 2 of (0,)",
+   "vertices_a": 3,
+   "vertices_b": 3,
+   "a": "MULTILINESTRING ((811741.3556110617 456984.09625111846, 811715.4383128583 456925.1933006566, 811774.3412633203 456942.8641857952))",
+   "b": "MULTILINESTRING ((811754.3142601631 457013.5477263493, 811702.4796637568 456895.74182542576, 811632.9741822118 456648.3494334861))"
+  },
+  {
+   "step": 2,
+   "call": 12,
+   "geom": "b",
+   "op": "drop vertex 2 of (0,)",
+   "vertices_a": 3,
+   "vertices_b": 2,
+   "a": "MULTILINESTRING ((811741.3556110617 456984.09625111846, 811715.4383128583 456925.1933006566, 811774.3412633203 456942.8641857952))",
+   "b": "MULTILINESTRING ((811754.3142601631 457013.5477263493, 811702.4796637568 456895.74182542576))"
+  },
+  {
+   "step": 3,
+   "call": 41,
+   "geom": "a",
+   "op": "round to 16 significant digits",
+   "vertices_a": 3,
+   "vertices_b": 2,
+   "a": "MULTILINESTRING ((811741.3556110617 456984.0962511185, 811715.4383128583 456925.1933006566, 811774.3412633203 456942.8641857952))",
+   "b": "MULTILINESTRING ((811754.3142601631 457013.5477263493, 811702.4796637568 456895.74182542576))"
+  }
+ ],
+ "oracle_calls": 82,
+ "vertices_before": 7,
+ "vertices_after": 5,
+ "seconds": 3.347381999999925
+}

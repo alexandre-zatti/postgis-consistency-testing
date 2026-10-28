@@ -109,7 +109,14 @@ def assign(seeds: list[int], lanes: int) -> list[list[int]]:
 
 
 def available_mb() -> tuple[float, float]:
-    """(available, total) physical memory of the Windows host in MB."""
+    """(available, total) physical memory of the host in MB."""
+    if os.name != "nt":
+        page, total = os.sysconf("SC_PAGE_SIZE"), os.sysconf("SC_PHYS_PAGES")
+        try:
+            avail = os.sysconf("SC_AVPHYS_PAGES")      # Linux; macOS has no such name
+        except (ValueError, OSError):
+            avail = total // 2                          # unknown: assume half is free
+        return avail * page / 2**20, total * page / 2**20
     class MS(ctypes.Structure):
         _fields_ = [("dwLength", ctypes.c_ulong), ("dwMemoryLoad", ctypes.c_ulong),
                     ("ullTotalPhys", ctypes.c_ulonglong), ("ullAvailPhys", ctypes.c_ulonglong),

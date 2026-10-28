@@ -1,0 +1,40 @@
+{
+ "rep": "c9509793fe9b",
+ "item": "lane0:66095:v1879",
+ "group": "R3 | lone vs prepared arg2 | Within | lone vs prepared arg2[2] | ba | degen-int | Polygon / GeometryCollection(Point,Polygon EMPTY)",
+ "steps": 200,
+ "oracle": {
+  "kind": "evaluate on throwaway current: same (rule, sub, function, orientation) counted",
+  "image": "postgis/postgis@sha256:4a43e3c3e5d55b9208240fc71db543b79c638766280c625a425bd0a2390989c4"
+ },
+ "original_reproduces": true,
+ "shrunk_a": "POLYGON ((427915 711408, 427883 711359, 427936 711350, 427915 711408))",
+ "shrunk_b": "GEOMETRYCOLLECTION (POLYGON EMPTY, POINT (427915 711408))",
+ "coord": "int",
+ "chain": [
+  {
+   "step": 1,
+   "call": 3,
+   "geom": "a",
+   "op": "drop vertex 0 of (0,)",
+   "vertices_a": 4,
+   "vertices_b": 1,
+   "a": "POLYGON ((427915 711408, 427884 711401, 427883 711359, 427936 711350, 427915 711408))",
+   "b": "GEOMETRYCOLLECTION (POLYGON EMPTY, POINT (427915 711408))"
+  },
+  {
+   "step": 2,
+   "call": 7,
+   "geom": "a",
+   "op": "drop vertex 1 of (0,)",
+   "vertices_a": 3,
+   "vertices_b": 1,
+   "a": "POLYGON ((427915 711408, 427883 711359, 427936 711350, 427915 711408))",
+   "b": "GEOMETRYCOLLECTION (POLYGON EMPTY, POINT (427915 711408))"
+  }
+ ],
+ "oracle_calls": 10,
+ "vertices_before": 6,
+ "vertices_after": 4,
+ "seconds": 0.05853499999648193
+}

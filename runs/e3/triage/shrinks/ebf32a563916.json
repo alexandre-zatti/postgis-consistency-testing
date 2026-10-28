@@ -1,0 +1,90 @@
+{
+ "rep": "ebf32a563916",
+ "item": "lane3:64307:v1808",
+ "group": "R3 | lone vs prepared arg2 | Within | lone vs prepared arg2[2] | ab | degen-int | GeometryCollection(Point,Polygon EMPTY) / MultiPolygon",
+ "steps": 200,
+ "oracle": {
+  "kind": "evaluate on throwaway current: same (rule, sub, function, orientation) counted",
+  "image": "postgis/postgis@sha256:4a43e3c3e5d55b9208240fc71db543b79c638766280c625a425bd0a2390989c4"
+ },
+ "original_reproduces": true,
+ "shrunk_a": "GEOMETRYCOLLECTION (POLYGON EMPTY, POINT (720624 94653))",
+ "shrunk_b": "MULTIPOLYGON (((720608 94643, 720640 94663, 720540 94701, 720608 94643)))",
+ "coord": "int",
+ "chain": [
+  {
+   "step": 1,
+   "call": 2,
+   "geom": "a",
+   "op": "drop part (1,)",
+   "vertices_a": 1,
+   "vertices_b": 19,
+   "a": "GEOMETRYCOLLECTION (POLYGON EMPTY, POINT (720624 94653))",
+   "b": "MULTIPOLYGON (((720547 94647, 720608 94643, 720640 94663, 720665 94709, 720602 94750, 720565 94746, 720540 94701, 720547 94647), (720599 94689, 720572 94667, 720602 94665, 720621 94676, 720636 94703, 720629 94708, 720599 94689), (720588 94704, 720610 94719, 720599 94727, 720578 94725, 720563 94699, 720565 94687, 720588 94704)))"
+  },
+  {
+   "step": 2,
+   "call": 5,
+   "geom": "b",
+   "op": "drop hole (0, 1)",
+   "vertices_a": 1,
+   "vertices_b": 13,
+   "a": "GEOMETRYCOLLECTION (POLYGON EMPTY, POINT (720624 94653))",
+   "b": "MULTIPOLYGON (((720547 94647, 720608 94643, 720640 94663, 720665 94709, 720602 94750, 720565 94746, 720540 94701, 720547 94647), (720588 94704, 720610 94719, 720599 94727, 720578 94725, 720563 94699, 720565 94687, 720588 94704)))"
+  },
+  {
+   "step": 3,
+   "call": 8,
+   "geom": "b",
+   "op": "drop hole (0, 1)",
+   "vertices_a": 1,
+   "vertices_b": 7,
+   "a": "GEOMETRYCOLLECTION (POLYGON EMPTY, POINT (720624 94653))",
+   "b": "MULTIPOLYGON (((720547 94647, 720608 94643, 720640 94663, 720665 94709, 720602 94750, 720565 94746, 720540 94701, 720547 94647)))"
+  },
+  {
+   "step": 4,
+   "call": 11,
+   "geom": "b",
+   "op": "drop vertex 0 of (0, 0)",
+   "vertices_a": 1,
+   "vertices_b": 6,
+   "a": "GEOMETRYCOLLECTION (POLYGON EMPTY, POINT (720624 94653))",
+   "b": "MULTIPOLYGON (((720608 94643, 720640 94663, 720665 94709, 720602 94750, 720565 94746, 720540 94701, 720608 94643)))"
+  },
+  {
+   "step": 5,
+   "call": 16,
+   "geom": "b",
+   "op": "drop vertex 2 of (0, 0)",
+   "vertices_a": 1,
+   "vertices_b": 5,
+   "a": "GEOMETRYCOLLECTION (POLYGON EMPTY, POINT (720624 94653))",
+   "b": "MULTIPOLYGON (((720608 94643, 720640 94663, 720602 94750, 720565 94746, 720540 94701, 720608 94643)))"
+  },
+  {
+   "step": 6,
+   "call": 21,
+   "geom": "b",
+   "op": "drop vertex 2 of (0, 0)",
+   "vertices_a": 1,
+   "vertices_b": 4,
+   "a": "GEOMETRYCOLLECTION (POLYGON EMPTY, POINT (720624 94653))",
+   "b": "MULTIPOLYGON (((720608 94643, 720640 94663, 720565 94746, 720540 94701, 720608 94643)))"
+  },
+  {
+   "step": 7,
+   "call": 26,
+   "geom": "b",
+   "op": "drop vertex 2 of (0, 0)",
+   "vertices_a": 1,
+   "vertices_b": 3,
+   "a": "GEOMETRYCOLLECTION (POLYGON EMPTY, POINT (720624 94653))",
+   "b": "MULTIPOLYGON (((720608 94643, 720640 94663, 720540 94701, 720608 94643)))"
+  }
+ ],
+ "oracle_calls": 29,
+ "vertices_before": 21,
+ "vertices_after": 4,
+ "seconds": 0.4420054000001983
+}

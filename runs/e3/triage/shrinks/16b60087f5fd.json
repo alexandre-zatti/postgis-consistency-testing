@@ -1,0 +1,40 @@
+{
+ "rep": "16b60087f5fd",
+ "item": "lane1:5159:v3",
+ "group": "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ab | degen-int | MultiPolygon / GeometryCollection(Point,Polygon EMPTY)",
+ "steps": 200,
+ "oracle": {
+  "kind": "evaluate on throwaway current: same (rule, sub, function, orientation) counted",
+  "image": "postgis/postgis@sha256:4a43e3c3e5d55b9208240fc71db543b79c638766280c625a425bd0a2390989c4"
+ },
+ "original_reproduces": true,
+ "shrunk_a": "MULTIPOLYGON (((1030010 796329, 1030061 796229, 1030150 796313, 1030010 796329)))",
+ "shrunk_b": "GEOMETRYCOLLECTION (POINT (1030010 796329), POLYGON EMPTY)",
+ "coord": "int",
+ "chain": [
+  {
+   "step": 1,
+   "call": 3,
+   "geom": "a",
+   "op": "drop hole (0, 1)",
+   "vertices_a": 7,
+   "vertices_b": 1,
+   "a": "MULTIPOLYGON (((1030010 796329, 1030061 796229, 1030150 796313, 1030010 796329), (1030072 796298, 1030068 796272, 1030104 796305, 1030068 796310, 1030072 796298)))",
+   "b": "GEOMETRYCOLLECTION (POINT (1030010 796329), POLYGON EMPTY)"
+  },
+  {
+   "step": 2,
+   "call": 6,
+   "geom": "a",
+   "op": "drop hole (0, 1)",
+   "vertices_a": 3,
+   "vertices_b": 1,
+   "a": "MULTIPOLYGON (((1030010 796329, 1030061 796229, 1030150 796313, 1030010 796329)))",
+   "b": "GEOMETRYCOLLECTION (POINT (1030010 796329), POLYGON EMPTY)"
+  }
+ ],
+ "oracle_calls": 9,
+ "vertices_before": 12,
+ "vertices_after": 4,
+ "seconds": 0.037721199994848575
+}

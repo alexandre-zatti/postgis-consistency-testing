@@ -1,0 +1,244 @@
+{
+  "campaign": "e2",
+  "files": [
+    "lane0.sqlite"
+  ],
+  "definition": {
+    "campaign": "e2",
+    "seeds": [
+      100
+    ],
+    "kinds": [
+      "predicate",
+      "overlay"
+    ],
+    "n": 500,
+    "arms": [
+      "plain-int"
+    ],
+    "lanes": 1,
+    "chunk": 25,
+    "assignment": [
+      [
+        100
+      ]
+    ],
+    "created": "2026-10-27 16:36:56",
+    "digest": "postgis/postgis@sha256:4a43e3c3e5d55b9208240fc71db543b79c638766280c625a425bd0a2390989c4"
+  },
+  "pairs_loaded": 1000,
+  "pairs_expected": 1000,
+  "duplicate_keys": 0,
+  "seeds": [
+    100
+  ],
+  "kinds": [
+    "overlay",
+    "predicate"
+  ],
+  "arms": [
+    "plain-int"
+  ],
+  "harness_error_pairs": {
+    "plain-int": 0
+  },
+  "definitions": {
+    "harness_kinds": [
+      "harness_exception",
+      "other_error",
+      "sql_error"
+    ],
+    "violating": "strict; or candidate from a yes/no rule (R1-R5, R10), counted as triage; or measured candidate in band triage; candidates flagged precision-limited excluded",
+    "sensitivity": "strict plus measured triage-band candidates only",
+    "pooling": "mean of per-kind rates (equal weight per kind)",
+    "wilcoxon": "scipy.stats.wilcoxon exact two-sided, zero_method=wilcox (zeros dropped)",
+    "holm": "m = 4 fixed; untested contrasts enter with p = 1"
+  },
+  "rates": {
+    "plain-int": {
+      "100": {
+        "pooled": 0.0,
+        "n": 1000,
+        "k": 0,
+        "by_kind": {
+          "overlay": {
+            "n": 500,
+            "k": 0,
+            "rate": 0.0
+          },
+          "predicate": {
+            "n": 500,
+            "k": 0,
+            "rate": 0.0
+          }
+        }
+      }
+    }
+  },
+  "contrasts": [
+    {
+      "contrast": "degen vs plain within int",
+      "first": "degen-int",
+      "second": "plain-int",
+      "tested": false,
+      "note": "arm missing from the campaign",
+      "p": null,
+      "p_holm": null
+    },
+    {
+      "contrast": "degen vs plain within float",
+      "first": "degen-float",
+      "second": "plain-float",
+      "tested": false,
+      "note": "arm missing from the campaign",
+      "p": null,
+      "p_holm": null
+    },
+    {
+      "contrast": "float vs int within plain",
+      "first": "plain-float",
+      "second": "plain-int",
+      "tested": false,
+      "note": "arm missing from the campaign",
+      "p": null,
+      "p_holm": null
+    },
+    {
+      "contrast": "float vs int within degen",
+      "first": "degen-float",
+      "second": "degen-int",
+      "tested": false,
+      "note": "arm missing from the campaign",
+      "p": null,
+      "p_holm": null
+    }
+  ],
+  "secondary": {
+    "rule_rates": {
+      "plain-int": {
+        "R7": {
+          "pairs_any": 1,
+          "pairs_counted": 0,
+          "counted_per10k": 0.0
+        }
+      }
+    },
+    "by_form": {
+      "plain-int": {
+        "collection/collection": {
+          "n": 27,
+          "violating": 0,
+          "per10k": 0.0
+        },
+        "collection/multi": {
+          "n": 27,
+          "violating": 0,
+          "per10k": 0.0
+        },
+        "collection/single": {
+          "n": 42,
+          "violating": 0,
+          "per10k": 0.0
+        },
+        "multi/collection": {
+          "n": 37,
+          "violating": 0,
+          "per10k": 0.0
+        },
+        "multi/multi": {
+          "n": 127,
+          "violating": 0,
+          "per10k": 0.0
+        },
+        "multi/single": {
+          "n": 216,
+          "violating": 0,
+          "per10k": 0.0
+        },
+        "single/collection": {
+          "n": 57,
+          "violating": 0,
+          "per10k": 0.0
+        },
+        "single/multi": {
+          "n": 177,
+          "violating": 0,
+          "per10k": 0.0
+        },
+        "single/single": {
+          "n": 290,
+          "violating": 0,
+          "per10k": 0.0
+        }
+      }
+    },
+    "by_regime_float": {},
+    "band_counts": {
+      "plain-int": {
+        "R7|logged|ok": 1
+      }
+    },
+    "crashes": {
+      "events_in_pairs": 0,
+      "pairs_with_crash": 0,
+      "recovery_wait_s": 0,
+      "wall_s_of_pairs_with_crash": 0,
+      "batch_crashes": 0,
+      "batch_crash_s": 0,
+      "by_arm": {
+        "plain-int": 0
+      },
+      "unique_signatures": 0,
+      "signatures": {},
+      "by_lane": {
+        "lane0": {
+          "events": 0,
+          "recovery_wait_s": 0.0
+        }
+      }
+    },
+    "timing": {
+      "plain-int": {
+        "pairs": 1000,
+        "wall_s": 53.946317300051305,
+        "pairs_per_h": 66733.00755595,
+        "median_ms": 69.10730000163312
+      },
+      "batch_join_s": 5.986729500000365
+    },
+    "tier_differs": {
+      "plain-int": {
+        "pairs": 1000,
+        "differ": 0,
+        "share": 0.0
+      }
+    },
+    "outcome_kinds": {
+      "plain-int": {}
+    },
+    "other_unbanded_candidate_pairs": {
+      "plain-int": 0
+    },
+    "sensitivity_strict_plus_measured_triage": {
+      "plain-int": {
+        "100": {
+          "pooled": 0.0,
+          "n": 1000,
+          "k": 0,
+          "by_kind": {
+            "overlay": {
+              "n": 500,
+              "k": 0,
+              "rate": 0.0
+            },
+            "predicate": {
+              "n": 500,
+              "k": 0,
+              "rate": 0.0
+            }
+          }
+        }
+      }
+    }
+  }
+}

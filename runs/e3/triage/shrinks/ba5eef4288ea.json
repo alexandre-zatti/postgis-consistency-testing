@@ -1,0 +1,27 @@
+{
+ "rep": "ba5eef4288ea",
+ "item": "lane4:80683:crash:ST_Touches",
+ "group": "crash | backend crash | ST_Touches |  | - | degen-int | LineString / MultiPolygon",
+ "steps": 200,
+ "oracle": {
+  "kind": "throwaway container: lone probe crashes the backend",
+  "image": "postgis/postgis@sha256:4a43e3c3e5d55b9208240fc71db543b79c638766280c625a425bd0a2390989c4",
+  "probes": [
+   {
+    "o": "ab",
+    "fn": "ST_Touches",
+    "wrap": 2,
+    "sql": "ST_Touches(a,ST_ForceCollection(b))"
+   }
+  ]
+ },
+ "original_reproduces": true,
+ "shrunk_a": "LINESTRING (526916 955965, 526904 955982)",
+ "shrunk_b": "MULTIPOLYGON (((526904 955994, 526893 955964, 526921 955975, 526904 955994)), EMPTY, ((526904 955994, 526900 955999, 526907 955999, 526904 955994)))",
+ "coord": "int",
+ "chain": [],
+ "oracle_calls": 3,
+ "vertices_before": 8,
+ "vertices_after": 8,
+ "seconds": 2.052645100004156
+}

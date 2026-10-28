@@ -1,0 +1,37 @@
+Campaign e2: 1000 pairs loaded (expected 1000), duplicate keys 0, files lane0.sqlite
+Harness-error pairs removed: {'plain-int': 0}
+
+Primary: violating pairs per 10k, per seed (kinds pooled with equal weight)
+  plain-int    100:0.0 (0/1000)
+  per kind (descriptive):
+    plain-int    seed 100: overlay 0.0 (0/500), predicate 0.0 (0/500)
+
+Planned contrasts (paired by seed; exact Wilcoxon, zeros dropped; Holm m=4)
+  contrast                         k1   k2  n!=0      W        p   p_holm   r_rb     b     c  note
+  degen vs plain within int         -    -     -      -        -        -      -     -     -  arm missing from the campaign
+  degen vs plain within float       -    -     -      -        -        -      -     -     -  arm missing from the campaign
+  float vs int within plain         -    -     -      -        -        -      -     -     -  arm missing from the campaign
+  float vs int within degen         -    -     -      -        -        -      -     -     -  arm missing from the campaign
+
+Rule-level (pairs with a counted violation / any violation):
+  plain-int    R7 0/1
+
+By form within arm (violating/n):
+  plain-int    collection/collection 0/27, collection/multi 0/27, collection/single 0/42, multi/collection 0/37, multi/multi 0/127, multi/single 0/216, single/collection 0/57, single/multi 0/177, single/single 0/290
+By regime within float arms (violating/n):
+
+Candidate magnitude bands (rule|band|precision-limited: violations):
+  plain-int    R7|logged|ok: 1
+
+Crashes: 0 events in 0 pairs (by arm {'plain-int': 0}), recovery wait 0.0 s, wall of crashed pairs 0.0 s; batch crashes 0 (0.0 s); unique signatures 0
+  by lane: {'lane0': {'events': 0, 'recovery_wait_s': 0.0}}
+
+Timing (evaluate wall time; batch joins separate):
+  plain-int    1000 pairs, 53.9 s, 66733 pairs/h, median 69.1 ms
+  batch joins: 6.0 s
+
+Predicate tier differs from overlay tier: plain-int 0/1000
+Sensitivity (strict + measured triage only), per 10k per seed:
+  plain-int    100:0.0 (0/1000)
+Unbanded candidate pairs from rules outside R1-R5/R10 (not counted): plain-int 0
+Outcome kinds: plain-int {}

@@ -1,0 +1,30 @@
+{
+ "rep": "44b9a12e5577",
+ "item": "lane2:26811:v30",
+ "group": "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ba | degen-int | GeometryCollection(Point,Polygon EMPTY) / Polygon",
+ "steps": 200,
+ "oracle": {
+  "kind": "evaluate on throwaway current: same (rule, sub, function, orientation) counted",
+  "image": "postgis/postgis@sha256:4a43e3c3e5d55b9208240fc71db543b79c638766280c625a425bd0a2390989c4"
+ },
+ "original_reproduces": true,
+ "shrunk_a": "GEOMETRYCOLLECTION (POINT (655294 729952), POLYGON EMPTY)",
+ "shrunk_b": "POLYGON ((655302 729956, 655296 729956, 655294 729952, 655302 729956))",
+ "coord": "int",
+ "chain": [
+  {
+   "step": 1,
+   "call": 3,
+   "geom": "b",
+   "op": "drop vertex 0 of (0,)",
+   "vertices_a": 1,
+   "vertices_b": 3,
+   "a": "GEOMETRYCOLLECTION (POINT (655294 729952), POLYGON EMPTY)",
+   "b": "POLYGON ((655302 729956, 655296 729956, 655294 729952, 655302 729956))"
+  }
+ ],
+ "oracle_calls": 6,
+ "vertices_before": 5,
+ "vertices_after": 4,
+ "seconds": 0.028352000001177657
+}

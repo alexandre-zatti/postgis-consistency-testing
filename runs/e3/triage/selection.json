@@ -1,0 +1,4925 @@
+{
+ "selection": {
+  "items": 11367,
+  "groups": 326,
+  "k": 3,
+  "cap": 400,
+  "representatives": 400,
+  "per_group": {
+   "R11 | Intersection floating vs fixed | Intersection | Intersection(a,b) vs Intersection(a,b,g) | - | degen-float | LineString / LineString": {
+    "size": 1966,
+    "representatives": 2,
+    "wanted": 3,
+    "left_out_by_cap": 1
+   },
+   "R11 | Union floating vs fixed | Union | Union(a,b) vs Union(a,b,g) | - | degen-float | LineString / LineString": {
+    "size": 1966,
+    "representatives": 2,
+    "wanted": 3,
+    "left_out_by_cap": 1
+   },
+   "R11 | Intersection floating vs fixed | Intersection | Intersection(a,b) vs Intersection(a,b,g) | - | degen-float | LineString / MultiLineString": {
+    "size": 1137,
+    "representatives": 2,
+    "wanted": 3,
+    "left_out_by_cap": 1
+   },
+   "R11 | Union floating vs fixed | Union | Union(a,b) vs Union(a,b,g) | - | degen-float | LineString / MultiLineString": {
+    "size": 1137,
+    "representatives": 2,
+    "wanted": 3,
+    "left_out_by_cap": 1
+   },
+   "R11 | Intersection floating vs fixed | Intersection | Intersection(a,b) vs Intersection(a,b,g) | - | degen-float | MultiLineString / LineString": {
+    "size": 1102,
+    "representatives": 2,
+    "wanted": 3,
+    "left_out_by_cap": 1
+   },
+   "R11 | Union floating vs fixed | Union | Union(a,b) vs Union(a,b,g) | - | degen-float | MultiLineString / LineString": {
+    "size": 1102,
+    "representatives": 2,
+    "wanted": 3,
+    "left_out_by_cap": 1
+   },
+   "R11 | Intersection floating vs fixed | Intersection | Intersection(a,b) vs Intersection(a,b,g) | - | degen-float | MultiLineString / MultiLineString": {
+    "size": 691,
+    "representatives": 2,
+    "wanted": 3,
+    "left_out_by_cap": 1
+   },
+   "R11 | Union floating vs fixed | Union | Union(a,b) vs Union(a,b,g) | - | degen-float | MultiLineString / MultiLineString": {
+    "size": 691,
+    "representatives": 2,
+    "wanted": 3,
+    "left_out_by_cap": 1
+   },
+   "R10 | dim(Intersection) = max(II,IB,BI,BB) | Intersection/Relate | ST_Dimension(ST_Intersection) vs ST_Relate cells | - | degen-float | LineString / LineString": {
+    "size": 115,
+    "representatives": 2,
+    "wanted": 3,
+    "left_out_by_cap": 1
+   },
+   "R10 | dim(Intersection) = max(II,IB,BI,BB) | Intersection/Relate | ST_Dimension(ST_Intersection) vs ST_Relate cells | - | degen-float | LineString / MultiLineString": {
+    "size": 110,
+    "representatives": 2,
+    "wanted": 3,
+    "left_out_by_cap": 1
+   },
+   "R10 | dim(Intersection) = max(II,IB,BI,BB) | Intersection/Relate | ST_Dimension(ST_Intersection) vs ST_Relate cells | - | degen-float | MultiLineString / LineString": {
+    "size": 99,
+    "representatives": 2,
+    "wanted": 3,
+    "left_out_by_cap": 1
+   },
+   "R10 | dim(Intersection) = max(II,IB,BI,BB) | Intersection/Relate | ST_Dimension(ST_Intersection) vs ST_Relate cells | - | degen-float | Polygon / Polygon": {
+    "size": 80,
+    "representatives": 2,
+    "wanted": 3,
+    "left_out_by_cap": 1
+   },
+   "R10 | dim(Intersection) = max(II,IB,BI,BB) | Intersection/Relate | ST_Dimension(ST_Intersection) vs ST_Relate cells | - | degen-float | MultiPolygon / Polygon": {
+    "size": 59,
+    "representatives": 2,
+    "wanted": 3,
+    "left_out_by_cap": 1
+   },
+   "R10 | dim(Intersection) = max(II,IB,BI,BB) | Intersection/Relate | ST_Dimension(ST_Intersection) vs ST_Relate cells | - | degen-float | Polygon / MultiPolygon": {
+    "size": 57,
+    "representatives": 2,
+    "wanted": 3,
+    "left_out_by_cap": 1
+   },
+   "R10 | dim(Intersection) = max(II,IB,BI,BB) | Intersection/Relate | ST_Dimension(ST_Intersection) vs ST_Relate cells | - | degen-float | MultiLineString / MultiLineString": {
+    "size": 51,
+    "representatives": 2,
+    "wanted": 3,
+    "left_out_by_cap": 1
+   },
+   "R10 | dim(Intersection) = max(II,IB,BI,BB) | Intersection/Relate | ST_Dimension(ST_Intersection) vs ST_Relate cells | - | degen-float | MultiPolygon / MultiPolygon": {
+    "size": 39,
+    "representatives": 2,
+    "wanted": 3,
+    "left_out_by_cap": 1
+   },
+   "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ba | degen-int | GeometryCollection(LineString EMPTY,Point) / Polygon": {
+    "size": 34,
+    "representatives": 2,
+    "wanted": 3,
+    "left_out_by_cap": 1
+   },
+   "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ba | degen-int | GeometryCollection(Point,Polygon EMPTY) / Polygon": {
+    "size": 33,
+    "representatives": 2,
+    "wanted": 3,
+    "left_out_by_cap": 1
+   },
+   "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ba | degen-float | GeometryCollection(Point,Polygon EMPTY) / Polygon": {
+    "size": 27,
+    "representatives": 2,
+    "wanted": 3,
+    "left_out_by_cap": 1
+   },
+   "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ba | degen-float | GeometryCollection(LineString EMPTY,Point) / Polygon": {
+    "size": 26,
+    "representatives": 2,
+    "wanted": 3,
+    "left_out_by_cap": 1
+   },
+   "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ab | degen-int | Polygon / GeometryCollection(LineString EMPTY,Point)": {
+    "size": 19,
+    "representatives": 2,
+    "wanted": 3,
+    "left_out_by_cap": 1
+   },
+   "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ab | degen-int | Polygon / GeometryCollection(Point,Polygon EMPTY)": {
+    "size": 17,
+    "representatives": 2,
+    "wanted": 3,
+    "left_out_by_cap": 1
+   },
+   "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ba | degen-int | GeometryCollection(Point,Polygon EMPTY) / MultiPolygon": {
+    "size": 17,
+    "representatives": 2,
+    "wanted": 3,
+    "left_out_by_cap": 1
+   },
+   "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ab | degen-float | Polygon / GeometryCollection(Point,Polygon EMPTY)": {
+    "size": 15,
+    "representatives": 2,
+    "wanted": 3,
+    "left_out_by_cap": 1
+   },
+   "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ab | degen-float | Polygon / GeometryCollection(LineString EMPTY,Point)": {
+    "size": 13,
+    "representatives": 2,
+    "wanted": 3,
+    "left_out_by_cap": 1
+   },
+   "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ba | degen-float | GeometryCollection(Point,Polygon EMPTY) / MultiPolygon": {
+    "size": 11,
+    "representatives": 2,
+    "wanted": 3,
+    "left_out_by_cap": 1
+   },
+   "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ba | degen-int | GeometryCollection(LineString EMPTY,Point) / MultiPolygon": {
+    "size": 11,
+    "representatives": 2,
+    "wanted": 3,
+    "left_out_by_cap": 1
+   },
+   "R3 | lone vs prepared arg2 | Within | lone vs prepared arg2[2] | ab | degen-float | GeometryCollection(LineString EMPTY,Point) / Polygon": {
+    "size": 11,
+    "representatives": 2,
+    "wanted": 3,
+    "left_out_by_cap": 1
+   },
+   "R3 | lone vs prepared arg2 | Within | lone vs prepared arg2[2] | ab | degen-int | GeometryCollection(LineString EMPTY,Point) / Polygon": {
+    "size": 11,
+    "representatives": 2,
+    "wanted": 3,
+    "left_out_by_cap": 1
+   },
+   "crash | backend crash | ST_Relate(matrix) |  | - | degen-float | LineString / MultiPolygon": {
+    "size": 11,
+    "representatives": 2,
+    "wanted": 3,
+    "left_out_by_cap": 1
+   },
+   "crash | backend crash | ST_Relate(matrix) |  | - | degen-int | LineString / MultiPolygon": {
+    "size": 11,
+    "representatives": 2,
+    "wanted": 3,
+    "left_out_by_cap": 1
+   },
+   "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ba | degen-float | GeometryCollection(LineString EMPTY,Point) / MultiPolygon": {
+    "size": 10,
+    "representatives": 2,
+    "wanted": 3,
+    "left_out_by_cap": 1
+   },
+   "crash | backend crash | ST_Relate(matrix) |  | - | degen-int | MultiPolygon / MultiPolygon": {
+    "size": 10,
+    "representatives": 2,
+    "wanted": 3,
+    "left_out_by_cap": 1
+   },
+   "crash | backend crash | ST_Touches |  | - | degen-float | LineString / MultiPolygon": {
+    "size": 10,
+    "representatives": 2,
+    "wanted": 3,
+    "left_out_by_cap": 1
+   },
+   "crash | backend crash | ST_Touches |  | - | degen-int | LineString / MultiPolygon": {
+    "size": 10,
+    "representatives": 2,
+    "wanted": 3,
+    "left_out_by_cap": 1
+   },
+   "crash | backend crash | ST_Relate(matrix) |  | - | degen-float | MultiLineString / MultiPolygon": {
+    "size": 9,
+    "representatives": 2,
+    "wanted": 3,
+    "left_out_by_cap": 1
+   },
+   "crash | backend crash | ST_Relate(matrix) |  | - | degen-float | MultiPolygon / LineString": {
+    "size": 9,
+    "representatives": 2,
+    "wanted": 3,
+    "left_out_by_cap": 1
+   },
+   "crash | backend crash | ST_Relate(matrix) |  | - | degen-float | MultiPolygon / MultiPolygon": {
+    "size": 9,
+    "representatives": 2,
+    "wanted": 3,
+    "left_out_by_cap": 1
+   },
+   "crash | backend crash | ST_Relate(matrix) |  | - | degen-float | Polygon / MultiPolygon": {
+    "size": 9,
+    "representatives": 2,
+    "wanted": 3,
+    "left_out_by_cap": 1
+   },
+   "crash | backend crash | ST_Relate(matrix) |  | - | degen-int | MultiPolygon / LineString": {
+    "size": 9,
+    "representatives": 2,
+    "wanted": 3,
+    "left_out_by_cap": 1
+   },
+   "crash | backend crash | ST_Relate(matrix) |  | - | degen-int | Polygon / MultiPolygon": {
+    "size": 9,
+    "representatives": 2,
+    "wanted": 3,
+    "left_out_by_cap": 1
+   },
+   "R3 | lone vs prepared arg2 | Within | lone vs prepared arg2[2] | ab | degen-int | GeometryCollection(Point,Polygon EMPTY) / Polygon": {
+    "size": 8,
+    "representatives": 2,
+    "wanted": 3,
+    "left_out_by_cap": 1
+   },
+   "R3 | lone vs prepared arg2 | Within | lone vs prepared arg2[2] | ba | degen-float | Polygon / GeometryCollection(Point,Polygon EMPTY)": {
+    "size": 8,
+    "representatives": 2,
+    "wanted": 3,
+    "left_out_by_cap": 1
+   },
+   "R3 | lone vs prepared arg2 | Within | lone vs prepared arg2[2] | ba | degen-int | Polygon / GeometryCollection(Point,Polygon EMPTY)": {
+    "size": 8,
+    "representatives": 2,
+    "wanted": 3,
+    "left_out_by_cap": 1
+   },
+   "crash | backend crash | ST_Relate(matrix) |  | - | degen-int | MultiLineString / MultiPolygon": {
+    "size": 8,
+    "representatives": 2,
+    "wanted": 3,
+    "left_out_by_cap": 1
+   },
+   "crash | backend crash | ST_Touches |  | - | degen-float | MultiLineString / MultiPolygon": {
+    "size": 8,
+    "representatives": 2,
+    "wanted": 3,
+    "left_out_by_cap": 1
+   },
+   "crash | backend crash | ST_Touches |  | - | degen-float | MultiPolygon / LineString": {
+    "size": 8,
+    "representatives": 2,
+    "wanted": 3,
+    "left_out_by_cap": 1
+   },
+   "crash | backend crash | ST_Touches |  | - | degen-int | MultiLineString / MultiPolygon": {
+    "size": 8,
+    "representatives": 2,
+    "wanted": 3,
+    "left_out_by_cap": 1
+   },
+   "crash | backend crash | ST_Touches |  | - | degen-int | MultiPolygon / LineString": {
+    "size": 8,
+    "representatives": 2,
+    "wanted": 3,
+    "left_out_by_cap": 1
+   },
+   "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ab | degen-int | MultiPolygon / GeometryCollection(LineString EMPTY,Point)": {
+    "size": 7,
+    "representatives": 2,
+    "wanted": 3,
+    "left_out_by_cap": 1
+   },
+   "R3 | lone vs prepared arg2 | Within | lone vs prepared arg2[2] | ab | degen-float | GeometryCollection(Point,Polygon EMPTY) / Polygon": {
+    "size": 7,
+    "representatives": 2,
+    "wanted": 3,
+    "left_out_by_cap": 1
+   },
+   "R3 | lone vs prepared arg2 | Within | lone vs prepared arg2[2] | ba | degen-int | Polygon / GeometryCollection(LineString EMPTY,Point)": {
+    "size": 7,
+    "representatives": 2,
+    "wanted": 3,
+    "left_out_by_cap": 1
+   },
+   "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ab | degen-float | MultiPolygon / GeometryCollection(LineString EMPTY,Point)": {
+    "size": 6,
+    "representatives": 2,
+    "wanted": 3,
+    "left_out_by_cap": 1
+   },
+   "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ab | degen-float | MultiPolygon / GeometryCollection(Point,Polygon EMPTY)": {
+    "size": 6,
+    "representatives": 2,
+    "wanted": 3,
+    "left_out_by_cap": 1
+   },
+   "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ab | degen-int | MultiPolygon / GeometryCollection(Point,Polygon EMPTY)": {
+    "size": 6,
+    "representatives": 2,
+    "wanted": 3,
+    "left_out_by_cap": 1
+   },
+   "crash | backend crash | ST_Disjoint |  | - | degen-float | Polygon / MultiPolygon": {
+    "size": 6,
+    "representatives": 2,
+    "wanted": 3,
+    "left_out_by_cap": 1
+   },
+   "crash | backend crash | ST_Disjoint |  | - | degen-int | Polygon / MultiPolygon": {
+    "size": 6,
+    "representatives": 2,
+    "wanted": 3,
+    "left_out_by_cap": 1
+   },
+   "crash | backend crash | ST_Intersects |  | - | degen-float | Polygon / MultiPolygon": {
+    "size": 6,
+    "representatives": 2,
+    "wanted": 3,
+    "left_out_by_cap": 1
+   },
+   "crash | backend crash | ST_Intersects |  | - | degen-int | Polygon / MultiPolygon": {
+    "size": 6,
+    "representatives": 2,
+    "wanted": 3,
+    "left_out_by_cap": 1
+   },
+   "crash | backend crash | ST_Relate(matrix) |  | - | degen-float | MultiPolygon / Polygon": {
+    "size": 6,
+    "representatives": 2,
+    "wanted": 3,
+    "left_out_by_cap": 1
+   },
+   "crash | backend crash | ST_Relate(matrix) |  | - | degen-int | MultiPolygon / Polygon": {
+    "size": 6,
+    "representatives": 2,
+    "wanted": 3,
+    "left_out_by_cap": 1
+   },
+   "crash | backend crash | ST_Touches |  | - | degen-float | Polygon / MultiPolygon": {
+    "size": 6,
+    "representatives": 2,
+    "wanted": 3,
+    "left_out_by_cap": 1
+   },
+   "crash | backend crash | ST_Touches |  | - | degen-int | Polygon / MultiPolygon": {
+    "size": 6,
+    "representatives": 2,
+    "wanted": 3,
+    "left_out_by_cap": 1
+   },
+   "R11 | Intersection floating vs fixed | Intersection | Intersection(a,b) vs Intersection(a,b,g) | - | plain-float | LineString / LineString": {
+    "size": 5,
+    "representatives": 2,
+    "wanted": 3,
+    "left_out_by_cap": 1
+   },
+   "R11 | Intersection floating vs fixed | Intersection | Intersection(a,b) vs Intersection(a,b,g) | - | plain-float | LineString / MultiLineString": {
+    "size": 5,
+    "representatives": 2,
+    "wanted": 3,
+    "left_out_by_cap": 1
+   },
+   "R11 | Intersection floating vs fixed | Intersection | Intersection(a,b) vs Intersection(a,b,g) | - | plain-float | MultiLineString / LineString": {
+    "size": 5,
+    "representatives": 2,
+    "wanted": 3,
+    "left_out_by_cap": 1
+   },
+   "R11 | Union floating vs fixed | Union | Union(a,b) vs Union(a,b,g) | - | plain-float | LineString / LineString": {
+    "size": 5,
+    "representatives": 2,
+    "wanted": 3,
+    "left_out_by_cap": 1
+   },
+   "R11 | Union floating vs fixed | Union | Union(a,b) vs Union(a,b,g) | - | plain-float | LineString / MultiLineString": {
+    "size": 5,
+    "representatives": 2,
+    "wanted": 3,
+    "left_out_by_cap": 1
+   },
+   "R11 | Union floating vs fixed | Union | Union(a,b) vs Union(a,b,g) | - | plain-float | MultiLineString / LineString": {
+    "size": 5,
+    "representatives": 2,
+    "wanted": 3,
+    "left_out_by_cap": 1
+   },
+   "R3 | lone vs prepared arg2 | Within | lone vs prepared arg2[2] | ab | degen-int | GeometryCollection(LineString EMPTY,Point) / MultiPolygon": {
+    "size": 5,
+    "representatives": 2,
+    "wanted": 3,
+    "left_out_by_cap": 1
+   },
+   "R3 | lone vs prepared arg2 | Within | lone vs prepared arg2[2] | ab | degen-int | GeometryCollection(Point,Polygon EMPTY) / MultiPolygon": {
+    "size": 5,
+    "representatives": 2,
+    "wanted": 3,
+    "left_out_by_cap": 1
+   },
+   "R3 | lone vs prepared arg2 | Within | lone vs prepared arg2[2] | ba | degen-float | Polygon / GeometryCollection(LineString EMPTY,Point)": {
+    "size": 5,
+    "representatives": 2,
+    "wanted": 3,
+    "left_out_by_cap": 1
+   },
+   "crash | backend crash | ST_Disjoint |  | - | degen-int | MultiPolygon / MultiPolygon": {
+    "size": 5,
+    "representatives": 2,
+    "wanted": 3,
+    "left_out_by_cap": 1
+   },
+   "crash | backend crash | ST_Intersects |  | - | degen-int | MultiPolygon / MultiPolygon": {
+    "size": 5,
+    "representatives": 2,
+    "wanted": 3,
+    "left_out_by_cap": 1
+   },
+   "crash | backend crash | ST_Touches |  | - | degen-int | MultiPolygon / MultiPolygon": {
+    "size": 5,
+    "representatives": 1,
+    "wanted": 3,
+    "left_out_by_cap": 2
+   },
+   "R11 | Intersection floating vs fixed | Intersection | Intersection(a,b) vs Intersection(a,b,g) | - | plain-float | MultiLineString / MultiLineString": {
+    "size": 4,
+    "representatives": 1,
+    "wanted": 3,
+    "left_out_by_cap": 2
+   },
+   "R11 | Union floating vs fixed | Union | Union(a,b) vs Union(a,b,g) | - | plain-float | MultiLineString / MultiLineString": {
+    "size": 4,
+    "representatives": 1,
+    "wanted": 3,
+    "left_out_by_cap": 2
+   },
+   "R3 | lone vs prepared arg2 | Within | lone vs prepared arg2[2] | ab | degen-float | GeometryCollection(LineString EMPTY,Point) / MultiPolygon": {
+    "size": 4,
+    "representatives": 1,
+    "wanted": 3,
+    "left_out_by_cap": 2
+   },
+   "R3 | lone vs prepared arg2 | Within | lone vs prepared arg2[2] | ab | degen-float | GeometryCollection(Point,Polygon EMPTY) / MultiPolygon": {
+    "size": 4,
+    "representatives": 1,
+    "wanted": 3,
+    "left_out_by_cap": 2
+   },
+   "R3 | lone vs prepared arg2 | Within | lone vs prepared arg2[2] | ba | degen-float | MultiPolygon / GeometryCollection(LineString EMPTY,Point)": {
+    "size": 4,
+    "representatives": 1,
+    "wanted": 3,
+    "left_out_by_cap": 2
+   },
+   "R3 | lone vs prepared arg2 | Within | lone vs prepared arg2[2] | ba | degen-int | MultiPolygon / GeometryCollection(LineString EMPTY,Point)": {
+    "size": 4,
+    "representatives": 1,
+    "wanted": 3,
+    "left_out_by_cap": 2
+   },
+   "crash | backend crash | ST_Disjoint |  | - | degen-float | MultiPolygon / MultiPolygon": {
+    "size": 4,
+    "representatives": 1,
+    "wanted": 3,
+    "left_out_by_cap": 2
+   },
+   "crash | backend crash | ST_Intersects |  | - | degen-float | MultiPolygon / MultiPolygon": {
+    "size": 4,
+    "representatives": 1,
+    "wanted": 3,
+    "left_out_by_cap": 2
+   },
+   "crash | backend crash | ST_Relate(matrix) |  | - | degen-float | GeometryCollection(LineString) / MultiPolygon": {
+    "size": 4,
+    "representatives": 1,
+    "wanted": 3,
+    "left_out_by_cap": 2
+   },
+   "crash | backend crash | ST_Relate(matrix) |  | - | degen-float | MultiPolygon / MultiLineString": {
+    "size": 4,
+    "representatives": 1,
+    "wanted": 3,
+    "left_out_by_cap": 2
+   },
+   "crash | backend crash | ST_Relate(matrix) |  | - | degen-int | GeometryCollection(LineString) / MultiPolygon": {
+    "size": 4,
+    "representatives": 1,
+    "wanted": 3,
+    "left_out_by_cap": 2
+   },
+   "crash | backend crash | ST_Relate(matrix) |  | - | degen-int | MultiPolygon / MultiLineString": {
+    "size": 4,
+    "representatives": 1,
+    "wanted": 3,
+    "left_out_by_cap": 2
+   },
+   "crash | backend crash | ST_Touches |  | - | degen-float | MultiPolygon / MultiLineString": {
+    "size": 4,
+    "representatives": 1,
+    "wanted": 3,
+    "left_out_by_cap": 2
+   },
+   "crash | backend crash | ST_Touches |  | - | degen-float | MultiPolygon / MultiPolygon": {
+    "size": 4,
+    "representatives": 1,
+    "wanted": 3,
+    "left_out_by_cap": 2
+   },
+   "crash | backend crash | ST_Touches |  | - | degen-int | GeometryCollection(LineString) / MultiPolygon": {
+    "size": 4,
+    "representatives": 1,
+    "wanted": 3,
+    "left_out_by_cap": 2
+   },
+   "crash | backend crash | ST_Touches |  | - | degen-int | MultiPolygon / MultiLineString": {
+    "size": 4,
+    "representatives": 1,
+    "wanted": 3,
+    "left_out_by_cap": 2
+   },
+   "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ab | degen-float | MultiPolygon / Polygon": {
+    "size": 3,
+    "representatives": 1,
+    "wanted": 3,
+    "left_out_by_cap": 2
+   },
+   "R3 | lone vs prepared arg1 | Covers | lone vs prepared arg1[2] | ab | degen-float | MultiPolygon / Polygon": {
+    "size": 3,
+    "representatives": 1,
+    "wanted": 3,
+    "left_out_by_cap": 2
+   },
+   "R3 | lone vs prepared arg2 | Within | lone vs prepared arg2[2] | ba | degen-float | MultiPolygon / GeometryCollection(Point,Polygon EMPTY)": {
+    "size": 3,
+    "representatives": 1,
+    "wanted": 3,
+    "left_out_by_cap": 2
+   },
+   "R3 | lone vs prepared arg2 | Within | lone vs prepared arg2[2] | ba | degen-float | MultiPolygon / Polygon": {
+    "size": 3,
+    "representatives": 1,
+    "wanted": 3,
+    "left_out_by_cap": 2
+   },
+   "R3 | lone vs prepared arg2 | Within | lone vs prepared arg2[2] | ba | degen-int | MultiPolygon / GeometryCollection(Point,Polygon EMPTY)": {
+    "size": 3,
+    "representatives": 1,
+    "wanted": 3,
+    "left_out_by_cap": 2
+   },
+   "R4 | ForceCollection(arg1) | Relate | lone vs ForceCollection(arg1) | ba | degen-float | MultiPolygon / MultiPolygon": {
+    "size": 3,
+    "representatives": 1,
+    "wanted": 3,
+    "left_out_by_cap": 2
+   },
+   "crash | backend crash | ST_Covers |  | - | degen-float | MultiPolygon / LineString": {
+    "size": 3,
+    "representatives": 1,
+    "wanted": 3,
+    "left_out_by_cap": 2
+   },
+   "crash | backend crash | ST_Covers |  | - | degen-float | Polygon / MultiPolygon": {
+    "size": 3,
+    "representatives": 1,
+    "wanted": 3,
+    "left_out_by_cap": 2
+   },
+   "crash | backend crash | ST_Disjoint |  | - | degen-float | GeometryCollection(Polygon) / MultiPolygon": {
+    "size": 3,
+    "representatives": 1,
+    "wanted": 3,
+    "left_out_by_cap": 2
+   },
+   "crash | backend crash | ST_Disjoint |  | - | degen-float | MultiPolygon / GeometryCollection(Polygon)": {
+    "size": 3,
+    "representatives": 1,
+    "wanted": 3,
+    "left_out_by_cap": 2
+   },
+   "crash | backend crash | ST_Disjoint |  | - | degen-int | GeometryCollection(Polygon) / MultiPolygon": {
+    "size": 3,
+    "representatives": 1,
+    "wanted": 3,
+    "left_out_by_cap": 2
+   },
+   "crash | backend crash | ST_Disjoint |  | - | degen-int | MultiPolygon / GeometryCollection(Polygon)": {
+    "size": 3,
+    "representatives": 1,
+    "wanted": 3,
+    "left_out_by_cap": 2
+   },
+   "crash | backend crash | ST_Intersects |  | - | degen-float | GeometryCollection(Polygon) / MultiPolygon": {
+    "size": 3,
+    "representatives": 1,
+    "wanted": 3,
+    "left_out_by_cap": 2
+   },
+   "crash | backend crash | ST_Intersects |  | - | degen-float | MultiPolygon / GeometryCollection(Polygon)": {
+    "size": 3,
+    "representatives": 1,
+    "wanted": 3,
+    "left_out_by_cap": 2
+   },
+   "crash | backend crash | ST_Intersects |  | - | degen-int | GeometryCollection(Polygon) / MultiPolygon": {
+    "size": 3,
+    "representatives": 1,
+    "wanted": 3,
+    "left_out_by_cap": 2
+   },
+   "crash | backend crash | ST_Intersects |  | - | degen-int | MultiPolygon / GeometryCollection(Polygon)": {
+    "size": 3,
+    "representatives": 1,
+    "wanted": 3,
+    "left_out_by_cap": 2
+   },
+   "crash | backend crash | ST_Relate(matrix) |  | - | degen-float | GeometryCollection(Polygon) / MultiPolygon": {
+    "size": 3,
+    "representatives": 1,
+    "wanted": 3,
+    "left_out_by_cap": 2
+   },
+   "crash | backend crash | ST_Relate(matrix) |  | - | degen-float | LineString / GeometryCollection(Polygon,Polygon EMPTY)": {
+    "size": 3,
+    "representatives": 1,
+    "wanted": 3,
+    "left_out_by_cap": 2
+   },
+   "crash | backend crash | ST_Relate(matrix) |  | - | degen-float | MultiPolygon / GeometryCollection(Polygon)": {
+    "size": 3,
+    "representatives": 1,
+    "wanted": 3,
+    "left_out_by_cap": 2
+   },
+   "crash | backend crash | ST_Relate(matrix) |  | - | degen-int | GeometryCollection(Polygon) / MultiPolygon": {
+    "size": 3,
+    "representatives": 1,
+    "wanted": 3,
+    "left_out_by_cap": 2
+   },
+   "crash | backend crash | ST_Relate(matrix) |  | - | degen-int | LineString / GeometryCollection(Polygon,Polygon EMPTY)": {
+    "size": 3,
+    "representatives": 1,
+    "wanted": 3,
+    "left_out_by_cap": 2
+   },
+   "crash | backend crash | ST_Relate(matrix) |  | - | degen-int | MultiPolygon / GeometryCollection(Polygon)": {
+    "size": 3,
+    "representatives": 1,
+    "wanted": 3,
+    "left_out_by_cap": 2
+   },
+   "crash | backend crash | ST_Relate(pattern) |  | - | degen-float | LineString / GeometryCollection(Polygon,Polygon EMPTY)": {
+    "size": 3,
+    "representatives": 1,
+    "wanted": 3,
+    "left_out_by_cap": 2
+   },
+   "crash | backend crash | ST_Relate(pattern) |  | - | degen-int | LineString / GeometryCollection(Polygon,Polygon EMPTY)": {
+    "size": 3,
+    "representatives": 1,
+    "wanted": 3,
+    "left_out_by_cap": 2
+   },
+   "crash | backend crash | ST_Touches |  | - | degen-float | GeometryCollection(LineString) / MultiPolygon": {
+    "size": 3,
+    "representatives": 1,
+    "wanted": 3,
+    "left_out_by_cap": 2
+   },
+   "crash | backend crash | ST_Touches |  | - | degen-float | GeometryCollection(Polygon) / MultiPolygon": {
+    "size": 3,
+    "representatives": 1,
+    "wanted": 3,
+    "left_out_by_cap": 2
+   },
+   "crash | backend crash | ST_Touches |  | - | degen-float | LineString / GeometryCollection(Polygon,Polygon EMPTY)": {
+    "size": 3,
+    "representatives": 1,
+    "wanted": 3,
+    "left_out_by_cap": 2
+   },
+   "crash | backend crash | ST_Touches |  | - | degen-float | MultiPolygon / GeometryCollection(Polygon)": {
+    "size": 3,
+    "representatives": 1,
+    "wanted": 3,
+    "left_out_by_cap": 2
+   },
+   "crash | backend crash | ST_Touches |  | - | degen-int | GeometryCollection(Polygon) / MultiPolygon": {
+    "size": 3,
+    "representatives": 1,
+    "wanted": 3,
+    "left_out_by_cap": 2
+   },
+   "crash | backend crash | ST_Touches |  | - | degen-int | LineString / GeometryCollection(Polygon,Polygon EMPTY)": {
+    "size": 3,
+    "representatives": 1,
+    "wanted": 3,
+    "left_out_by_cap": 2
+   },
+   "crash | backend crash | ST_Touches |  | - | degen-int | MultiPolygon / GeometryCollection(Polygon)": {
+    "size": 3,
+    "representatives": 1,
+    "wanted": 3,
+    "left_out_by_cap": 2
+   },
+   "R10 | dim(Intersection) = max(II,IB,BI,BB) | Intersection/Relate | ST_Dimension(ST_Intersection) vs ST_Relate cells | - | plain-float | LineString / MultiLineString": {
+    "size": 2,
+    "representatives": 1,
+    "wanted": 2,
+    "left_out_by_cap": 1
+   },
+   "R10 | dim(Intersection) = max(II,IB,BI,BB) | Intersection/Relate | ST_Dimension(ST_Intersection) vs ST_Relate cells | - | plain-float | MultiLineString / LineString": {
+    "size": 2,
+    "representatives": 1,
+    "wanted": 2,
+    "left_out_by_cap": 1
+   },
+   "R10 | dim(Intersection) = max(II,IB,BI,BB) | Intersection/Relate | ST_Dimension(ST_Intersection) vs ST_Relate cells | - | plain-float | MultiPolygon / Polygon": {
+    "size": 2,
+    "representatives": 1,
+    "wanted": 2,
+    "left_out_by_cap": 1
+   },
+   "R10 | dim(Intersection) = max(II,IB,BI,BB) | Intersection/Relate | ST_Dimension(ST_Intersection) vs ST_Relate cells | - | plain-float | Polygon / MultiPolygon": {
+    "size": 2,
+    "representatives": 1,
+    "wanted": 2,
+    "left_out_by_cap": 1
+   },
+   "R10 | dim(Intersection) = max(II,IB,BI,BB) | Intersection/Relate | ST_Dimension(ST_Intersection) vs ST_Relate cells | - | plain-float | Polygon / Polygon": {
+    "size": 2,
+    "representatives": 1,
+    "wanted": 2,
+    "left_out_by_cap": 1
+   },
+   "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ab | degen-float | MultiPolygon / MultiPolygon": {
+    "size": 2,
+    "representatives": 1,
+    "wanted": 2,
+    "left_out_by_cap": 1
+   },
+   "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ab | degen-float | Polygon / MultiPolygon": {
+    "size": 2,
+    "representatives": 1,
+    "wanted": 2,
+    "left_out_by_cap": 1
+   },
+   "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ab | degen-float | Polygon / Polygon": {
+    "size": 2,
+    "representatives": 1,
+    "wanted": 2,
+    "left_out_by_cap": 1
+   },
+   "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ba | degen-float | Polygon / MultiPolygon": {
+    "size": 2,
+    "representatives": 1,
+    "wanted": 2,
+    "left_out_by_cap": 1
+   },
+   "R3 | lone vs prepared arg1 | Covers | lone vs prepared arg1[2] | ab | degen-float | MultiPolygon / MultiPolygon": {
+    "size": 2,
+    "representatives": 1,
+    "wanted": 2,
+    "left_out_by_cap": 1
+   },
+   "R3 | lone vs prepared arg1 | Covers | lone vs prepared arg1[2] | ab | degen-float | Polygon / MultiPolygon": {
+    "size": 2,
+    "representatives": 1,
+    "wanted": 2,
+    "left_out_by_cap": 1
+   },
+   "R3 | lone vs prepared arg1 | Covers | lone vs prepared arg1[2] | ab | degen-float | Polygon / Polygon": {
+    "size": 2,
+    "representatives": 1,
+    "wanted": 2,
+    "left_out_by_cap": 1
+   },
+   "R3 | lone vs prepared arg1 | Covers | lone vs prepared arg1[2] | ba | degen-float | Polygon / MultiPolygon": {
+    "size": 2,
+    "representatives": 1,
+    "wanted": 2,
+    "left_out_by_cap": 1
+   },
+   "R3 | lone vs prepared arg2 | Within | lone vs prepared arg2[2] | ab | degen-float | Polygon / MultiPolygon": {
+    "size": 2,
+    "representatives": 1,
+    "wanted": 2,
+    "left_out_by_cap": 1
+   },
+   "R3 | lone vs prepared arg2 | Within | lone vs prepared arg2[2] | ba | degen-float | MultiPolygon / MultiPolygon": {
+    "size": 2,
+    "representatives": 1,
+    "wanted": 2,
+    "left_out_by_cap": 1
+   },
+   "R3 | lone vs prepared arg2 | Within | lone vs prepared arg2[2] | ba | degen-float | Polygon / MultiPolygon": {
+    "size": 2,
+    "representatives": 1,
+    "wanted": 2,
+    "left_out_by_cap": 1
+   },
+   "R3 | lone vs prepared arg2 | Within | lone vs prepared arg2[2] | ba | degen-float | Polygon / Polygon": {
+    "size": 2,
+    "representatives": 1,
+    "wanted": 2,
+    "left_out_by_cap": 1
+   },
+   "R4 | ForceCollection(arg1) | Relate | lone vs ForceCollection(arg1) | ab | degen-float | MultiPolygon / MultiPolygon": {
+    "size": 2,
+    "representatives": 1,
+    "wanted": 2,
+    "left_out_by_cap": 1
+   },
+   "R4 | ForceCollection(arg1) | Relate | lone vs ForceCollection(arg1) | ba | degen-float | Polygon / MultiPolygon": {
+    "size": 2,
+    "representatives": 1,
+    "wanted": 2,
+    "left_out_by_cap": 1
+   },
+   "R5 | Intersects<=>not IsEmpty(Intersection) | Intersects/Intersection | lone Intersects vs IsEmpty(ST_Intersection) | ab | degen-float | MultiLineString / MultiLineString": {
+    "size": 2,
+    "representatives": 1,
+    "wanted": 2,
+    "left_out_by_cap": 1
+   },
+   "R5 | Intersects<=>not IsEmpty(Intersection) | Intersects/Intersection | lone Intersects vs IsEmpty(ST_Intersection) | ba | degen-float | MultiLineString / MultiLineString": {
+    "size": 2,
+    "representatives": 1,
+    "wanted": 2,
+    "left_out_by_cap": 1
+   },
+   "crash | backend crash | ST_CoveredBy |  | - | degen-int | MultiPolygon / MultiPolygon": {
+    "size": 2,
+    "representatives": 1,
+    "wanted": 2,
+    "left_out_by_cap": 1
+   },
+   "crash | backend crash | ST_Covers |  | - | degen-float | MultiLineString / MultiPolygon": {
+    "size": 2,
+    "representatives": 1,
+    "wanted": 2,
+    "left_out_by_cap": 1
+   },
+   "crash | backend crash | ST_Covers |  | - | degen-float | MultiPolygon / MultiPolygon": {
+    "size": 2,
+    "representatives": 1,
+    "wanted": 2,
+    "left_out_by_cap": 1
+   },
+   "crash | backend crash | ST_Relate(matrix) |  | - | degen-float | GeometryCollection(Polygon,Polygon EMPTY) / LineString": {
+    "size": 2,
+    "representatives": 1,
+    "wanted": 2,
+    "left_out_by_cap": 1
+   },
+   "crash | backend crash | ST_Relate(matrix) |  | - | degen-float | MultiPolygon / GeometryCollection(LineString)": {
+    "size": 2,
+    "representatives": 1,
+    "wanted": 2,
+    "left_out_by_cap": 1
+   },
+   "crash | backend crash | ST_Relate(matrix) |  | - | degen-int | MultiPolygon / GeometryCollection(LineString)": {
+    "size": 2,
+    "representatives": 1,
+    "wanted": 2,
+    "left_out_by_cap": 1
+   },
+   "crash | backend crash | ST_Relate(pattern) |  | - | degen-float | GeometryCollection(Polygon,Polygon EMPTY) / LineString": {
+    "size": 2,
+    "representatives": 1,
+    "wanted": 2,
+    "left_out_by_cap": 1
+   },
+   "crash | backend crash | ST_Touches |  | - | degen-float | GeometryCollection(Polygon,Polygon EMPTY) / LineString": {
+    "size": 2,
+    "representatives": 1,
+    "wanted": 2,
+    "left_out_by_cap": 1
+   },
+   "crash | backend crash | ST_Touches |  | - | degen-float | MultiPolygon / GeometryCollection(LineString)": {
+    "size": 2,
+    "representatives": 1,
+    "wanted": 2,
+    "left_out_by_cap": 1
+   },
+   "crash | backend crash | ST_Touches |  | - | degen-int | MultiPolygon / GeometryCollection(LineString)": {
+    "size": 2,
+    "representatives": 1,
+    "wanted": 2,
+    "left_out_by_cap": 1
+   },
+   "crash | backend crash | ST_Within |  | - | degen-int | MultiPolygon / MultiPolygon": {
+    "size": 2,
+    "representatives": 1,
+    "wanted": 2,
+    "left_out_by_cap": 1
+   },
+   "R10 | dim(Intersection) = max(II,IB,BI,BB) | Intersection/Relate | ST_Dimension(ST_Intersection) vs ST_Relate cells | - | plain-float | LineString / LineString": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "R2 | Relate transpose | Relate | ST_Relate(b,a) vs transpose(ST_Relate(a,b)) | - | degen-float | MultiLineString / GeometryCollection(Polygon)": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "R2 | Relate transpose | Relate | ST_Relate(b,a) vs transpose(ST_Relate(a,b)) | - | degen-float | MultiPolygon / Polygon": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "R2 | Relate transpose | Relate | ST_Relate(b,a) vs transpose(ST_Relate(a,b)) | - | degen-float | Polygon / GeometryCollection(Polygon)": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "R2 | Relate transpose | Relate | ST_Relate(b,a) vs transpose(ST_Relate(a,b)) | - | degen-float | Polygon / MultiLineString": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "R2 | Relate transpose | Relate | ST_Relate(b,a) vs transpose(ST_Relate(a,b)) | - | degen-int | Polygon / GeometryCollection(Polygon)": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ab | degen-float | Polygon / LineString": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ba | degen-float | MultiPolygon / MultiPolygon": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ba | degen-float | Polygon / Polygon": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "R3 | lone vs prepared arg1 | Covers | lone vs prepared arg1[2] | ab | degen-float | Polygon / LineString": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "R3 | lone vs prepared arg1 | Covers | lone vs prepared arg1[2] | ba | degen-float | MultiPolygon / MultiPolygon": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "R3 | lone vs prepared arg1 | Covers | lone vs prepared arg1[2] | ba | degen-float | Polygon / Polygon": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "R3 | lone vs prepared arg2 | Within | lone vs prepared arg2[2] | ab | degen-float | MultiPolygon / MultiPolygon": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "R3 | lone vs prepared arg2 | Within | lone vs prepared arg2[2] | ab | degen-float | Polygon / Polygon": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "R3 | lone vs prepared arg2 | Within | lone vs prepared arg2[2] | ba | degen-float | Polygon / LineString": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "R4 | ForceCollection(arg1) | Relate | lone vs ForceCollection(arg1) | ab | degen-int | MultiPolygon / MultiPolygon": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "R4 | ForceCollection(arg2) | Relate | lone vs ForceCollection(arg2) | ba | degen-int | MultiPolygon / MultiPolygon": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Contains |  | - | degen-float | GeometryCollection(Polygon,Polygon EMPTY) / MultiPolygon": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Contains |  | - | degen-float | GeometryCollection(Polygon,Polygon EMPTY) / Polygon": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Contains |  | - | degen-float | MultiLineString / MultiPolygon": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Contains |  | - | degen-float | MultiPolygon / GeometryCollection(Polygon)": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Contains |  | - | degen-float | MultiPolygon / MultiPolygon": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Contains |  | - | degen-float | MultiPolygon / Polygon": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Contains |  | - | degen-int | GeometryCollection(Polygon,Polygon EMPTY) / MultiPolygon": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Contains |  | - | degen-int | GeometryCollection(Polygon,Polygon EMPTY) / Polygon": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Contains |  | - | degen-int | MultiPolygon / GeometryCollection(Polygon)": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Contains |  | - | degen-int | MultiPolygon / MultiPolygon": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Contains |  | - | degen-int | MultiPolygon / Polygon": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_CoveredBy |  | - | degen-float | GeometryCollection(Polygon) / GeometryCollection(Polygon,Polygon EMPTY)": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_CoveredBy |  | - | degen-float | GeometryCollection(Polygon,Polygon EMPTY) / Polygon": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_CoveredBy |  | - | degen-float | MultiLineString / MultiPolygon": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_CoveredBy |  | - | degen-float | MultiPolygon / GeometryCollection(Point,Polygon)": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_CoveredBy |  | - | degen-float | MultiPolygon / GeometryCollection(Polygon)": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_CoveredBy |  | - | degen-float | MultiPolygon / MultiPolygon": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_CoveredBy |  | - | degen-float | MultiPolygon / Polygon": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_CoveredBy |  | - | degen-int | GeometryCollection(Polygon) / GeometryCollection(Polygon,Polygon EMPTY)": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_CoveredBy |  | - | degen-int | GeometryCollection(Polygon,Polygon EMPTY) / Polygon": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_CoveredBy |  | - | degen-int | MultiPolygon / GeometryCollection(Polygon)": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_CoveredBy |  | - | degen-int | MultiPolygon / Polygon": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_CoveredBy |  | - | degen-int | Polygon / MultiPolygon": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Covers |  | - | degen-float | GeometryCollection(LineString,Point) / MultiPolygon": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Covers |  | - | degen-float | GeometryCollection(Polygon,Polygon EMPTY) / MultiPolygon": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Covers |  | - | degen-float | GeometryCollection(Polygon,Polygon EMPTY) / Polygon": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Covers |  | - | degen-float | MultiPolygon / GeometryCollection(LineString)": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Covers |  | - | degen-float | MultiPolygon / GeometryCollection(Polygon)": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Covers |  | - | degen-float | MultiPolygon / Polygon": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Covers |  | - | degen-int | GeometryCollection(Polygon,Polygon EMPTY) / MultiPolygon": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Covers |  | - | degen-int | GeometryCollection(Polygon,Polygon EMPTY) / Polygon": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Covers |  | - | degen-int | MultiPolygon / GeometryCollection(LineString)": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Covers |  | - | degen-int | MultiPolygon / GeometryCollection(Polygon)": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Covers |  | - | degen-int | MultiPolygon / MultiPolygon": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Covers |  | - | degen-int | MultiPolygon / Polygon": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Disjoint |  | - | degen-float | GeometryCollection(Polygon) / GeometryCollection(Polygon,Polygon EMPTY)": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Disjoint |  | - | degen-float | GeometryCollection(Polygon,Polygon EMPTY) / GeometryCollection(Polygon)": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Disjoint |  | - | degen-float | GeometryCollection(Polygon,Polygon EMPTY) / LineString": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Disjoint |  | - | degen-float | GeometryCollection(Polygon,Polygon EMPTY) / MultiPolygon": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Disjoint |  | - | degen-float | GeometryCollection(Polygon,Polygon EMPTY) / Polygon": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Disjoint |  | - | degen-float | MultiPolygon / GeometryCollection(LineString,Polygon)": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Disjoint |  | - | degen-float | MultiPolygon / GeometryCollection(Point,Polygon)": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Disjoint |  | - | degen-float | MultiPolygon / GeometryCollection(Point,Polygon,Polygon EMPTY)": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Disjoint |  | - | degen-int | GeometryCollection(Polygon) / GeometryCollection(Polygon,Polygon EMPTY)": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Disjoint |  | - | degen-int | GeometryCollection(Polygon,Polygon EMPTY) / GeometryCollection(Polygon)": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Disjoint |  | - | degen-int | GeometryCollection(Polygon,Polygon EMPTY) / LineString": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Disjoint |  | - | degen-int | GeometryCollection(Polygon,Polygon EMPTY) / MultiPolygon": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Disjoint |  | - | degen-int | GeometryCollection(Polygon,Polygon EMPTY) / Polygon": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Disjoint |  | - | degen-int | MultiPolygon / GeometryCollection(LineString,Polygon)": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Disjoint |  | - | degen-int | MultiPolygon / GeometryCollection(Point,Polygon)": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Disjoint |  | - | degen-int | MultiPolygon / GeometryCollection(Point,Polygon,Polygon EMPTY)": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Intersects |  | - | degen-float | GeometryCollection(Polygon) / GeometryCollection(Polygon,Polygon EMPTY)": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Intersects |  | - | degen-float | GeometryCollection(Polygon,Polygon EMPTY) / GeometryCollection(Polygon)": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Intersects |  | - | degen-float | GeometryCollection(Polygon,Polygon EMPTY) / LineString": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Intersects |  | - | degen-float | GeometryCollection(Polygon,Polygon EMPTY) / MultiPolygon": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Intersects |  | - | degen-float | GeometryCollection(Polygon,Polygon EMPTY) / Polygon": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Intersects |  | - | degen-float | MultiPolygon / GeometryCollection(LineString,Polygon)": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Intersects |  | - | degen-float | MultiPolygon / GeometryCollection(Point,Polygon)": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Intersects |  | - | degen-float | MultiPolygon / GeometryCollection(Point,Polygon,Polygon EMPTY)": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Intersects |  | - | degen-int | GeometryCollection(Polygon) / GeometryCollection(Polygon,Polygon EMPTY)": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Intersects |  | - | degen-int | GeometryCollection(Polygon,Polygon EMPTY) / GeometryCollection(Polygon)": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Intersects |  | - | degen-int | GeometryCollection(Polygon,Polygon EMPTY) / LineString": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Intersects |  | - | degen-int | GeometryCollection(Polygon,Polygon EMPTY) / MultiPolygon": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Intersects |  | - | degen-int | GeometryCollection(Polygon,Polygon EMPTY) / Polygon": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Intersects |  | - | degen-int | MultiPolygon / GeometryCollection(LineString,Polygon)": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Intersects |  | - | degen-int | MultiPolygon / GeometryCollection(Point,Polygon)": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Intersects |  | - | degen-int | MultiPolygon / GeometryCollection(Point,Polygon,Polygon EMPTY)": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Relate(matrix) |  | - | degen-float | GeometryCollection(LineString,Point) / MultiPolygon": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Relate(matrix) |  | - | degen-float | GeometryCollection(LineString,Point,Polygon,Polygon EMPTY) / Polygon": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Relate(matrix) |  | - | degen-float | GeometryCollection(Point,Polygon) / MultiPolygon": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Relate(matrix) |  | - | degen-float | GeometryCollection(Polygon) / GeometryCollection(Polygon,Polygon EMPTY)": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Relate(matrix) |  | - | degen-float | GeometryCollection(Polygon,Polygon EMPTY) / GeometryCollection(Polygon)": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Relate(matrix) |  | - | degen-float | GeometryCollection(Polygon,Polygon EMPTY) / MultiLineString": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Relate(matrix) |  | - | degen-float | GeometryCollection(Polygon,Polygon EMPTY) / MultiPolygon": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Relate(matrix) |  | - | degen-float | GeometryCollection(Polygon,Polygon EMPTY) / Polygon": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Relate(matrix) |  | - | degen-float | LineString / GeometryCollection(LineString,Polygon,Polygon EMPTY)": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Relate(matrix) |  | - | degen-float | MultiLineString / GeometryCollection(Polygon,Polygon EMPTY)": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Relate(matrix) |  | - | degen-float | MultiPolygon / GeometryCollection(LineString,Point)": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Relate(matrix) |  | - | degen-float | MultiPolygon / GeometryCollection(LineString,Polygon)": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Relate(matrix) |  | - | degen-float | MultiPolygon / GeometryCollection(Point,Polygon)": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Relate(matrix) |  | - | degen-float | MultiPolygon / GeometryCollection(Point,Polygon,Polygon EMPTY)": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Relate(matrix) |  | - | degen-float | Polygon / GeometryCollection(Polygon,Polygon EMPTY)": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Relate(matrix) |  | - | degen-int | GeometryCollection(LineString,Point) / MultiPolygon": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Relate(matrix) |  | - | degen-int | GeometryCollection(LineString,Point,Polygon,Polygon EMPTY) / Polygon": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Relate(matrix) |  | - | degen-int | GeometryCollection(Polygon) / GeometryCollection(Polygon,Polygon EMPTY)": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Relate(matrix) |  | - | degen-int | GeometryCollection(Polygon,Polygon EMPTY) / GeometryCollection(Polygon)": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Relate(matrix) |  | - | degen-int | GeometryCollection(Polygon,Polygon EMPTY) / LineString": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Relate(matrix) |  | - | degen-int | GeometryCollection(Polygon,Polygon EMPTY) / MultiLineString": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Relate(matrix) |  | - | degen-int | GeometryCollection(Polygon,Polygon EMPTY) / MultiPolygon": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Relate(matrix) |  | - | degen-int | GeometryCollection(Polygon,Polygon EMPTY) / Polygon": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Relate(matrix) |  | - | degen-int | LineString / GeometryCollection(LineString,Polygon,Polygon EMPTY)": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Relate(matrix) |  | - | degen-int | MultiLineString / GeometryCollection(Polygon,Polygon EMPTY)": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Relate(matrix) |  | - | degen-int | MultiPolygon / GeometryCollection(LineString,Point)": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Relate(matrix) |  | - | degen-int | MultiPolygon / GeometryCollection(LineString,Polygon)": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Relate(matrix) |  | - | degen-int | MultiPolygon / GeometryCollection(Point,Polygon)": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Relate(matrix) |  | - | degen-int | MultiPolygon / GeometryCollection(Point,Polygon,Polygon EMPTY)": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Relate(matrix) |  | - | degen-int | Polygon / GeometryCollection(Polygon,Polygon EMPTY)": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Relate(pattern) |  | - | degen-float | GeometryCollection(LineString,Point,Polygon,Polygon EMPTY) / Polygon": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Relate(pattern) |  | - | degen-float | GeometryCollection(Polygon) / GeometryCollection(Polygon,Polygon EMPTY)": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Relate(pattern) |  | - | degen-float | GeometryCollection(Polygon,Polygon EMPTY) / GeometryCollection(Polygon)": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Relate(pattern) |  | - | degen-float | GeometryCollection(Polygon,Polygon EMPTY) / MultiLineString": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Relate(pattern) |  | - | degen-float | GeometryCollection(Polygon,Polygon EMPTY) / MultiPolygon": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Relate(pattern) |  | - | degen-float | GeometryCollection(Polygon,Polygon EMPTY) / Polygon": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Relate(pattern) |  | - | degen-float | LineString / GeometryCollection(LineString,Polygon,Polygon EMPTY)": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Relate(pattern) |  | - | degen-float | MultiLineString / GeometryCollection(Polygon,Polygon EMPTY)": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Relate(pattern) |  | - | degen-float | MultiPolygon / GeometryCollection(Point,Polygon,Polygon EMPTY)": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Relate(pattern) |  | - | degen-float | Polygon / GeometryCollection(Polygon,Polygon EMPTY)": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Relate(pattern) |  | - | degen-int | GeometryCollection(LineString,Point,Polygon,Polygon EMPTY) / Polygon": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Relate(pattern) |  | - | degen-int | GeometryCollection(Polygon) / GeometryCollection(Polygon,Polygon EMPTY)": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Relate(pattern) |  | - | degen-int | GeometryCollection(Polygon,Polygon EMPTY) / GeometryCollection(Polygon)": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Relate(pattern) |  | - | degen-int | GeometryCollection(Polygon,Polygon EMPTY) / LineString": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Relate(pattern) |  | - | degen-int | GeometryCollection(Polygon,Polygon EMPTY) / MultiLineString": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Relate(pattern) |  | - | degen-int | GeometryCollection(Polygon,Polygon EMPTY) / MultiPolygon": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Relate(pattern) |  | - | degen-int | GeometryCollection(Polygon,Polygon EMPTY) / Polygon": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Relate(pattern) |  | - | degen-int | LineString / GeometryCollection(LineString,Polygon,Polygon EMPTY)": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Relate(pattern) |  | - | degen-int | MultiLineString / GeometryCollection(Polygon,Polygon EMPTY)": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Relate(pattern) |  | - | degen-int | MultiPolygon / GeometryCollection(Point,Polygon,Polygon EMPTY)": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Relate(pattern) |  | - | degen-int | Polygon / GeometryCollection(Polygon,Polygon EMPTY)": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Touches |  | - | degen-float | GeometryCollection(LineString,Point) / MultiPolygon": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Touches |  | - | degen-float | GeometryCollection(Polygon) / GeometryCollection(Polygon,Polygon EMPTY)": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Touches |  | - | degen-float | GeometryCollection(Polygon,Polygon EMPTY) / GeometryCollection(Polygon)": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Touches |  | - | degen-float | GeometryCollection(Polygon,Polygon EMPTY) / MultiLineString": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Touches |  | - | degen-float | GeometryCollection(Polygon,Polygon EMPTY) / MultiPolygon": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Touches |  | - | degen-float | GeometryCollection(Polygon,Polygon EMPTY) / Polygon": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Touches |  | - | degen-float | LineString / GeometryCollection(LineString,Polygon,Polygon EMPTY)": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Touches |  | - | degen-float | MultiLineString / GeometryCollection(Polygon,Polygon EMPTY)": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Touches |  | - | degen-float | MultiPolygon / GeometryCollection(LineString,Point)": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Touches |  | - | degen-float | MultiPolygon / GeometryCollection(LineString,Polygon)": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Touches |  | - | degen-float | MultiPolygon / GeometryCollection(Point,Polygon)": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Touches |  | - | degen-float | MultiPolygon / GeometryCollection(Point,Polygon,Polygon EMPTY)": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Touches |  | - | degen-int | GeometryCollection(LineString,Point) / MultiPolygon": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Touches |  | - | degen-int | GeometryCollection(Polygon) / GeometryCollection(Polygon,Polygon EMPTY)": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Touches |  | - | degen-int | GeometryCollection(Polygon,Polygon EMPTY) / GeometryCollection(Polygon)": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Touches |  | - | degen-int | GeometryCollection(Polygon,Polygon EMPTY) / LineString": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Touches |  | - | degen-int | GeometryCollection(Polygon,Polygon EMPTY) / MultiLineString": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Touches |  | - | degen-int | GeometryCollection(Polygon,Polygon EMPTY) / MultiPolygon": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Touches |  | - | degen-int | GeometryCollection(Polygon,Polygon EMPTY) / Polygon": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Touches |  | - | degen-int | LineString / GeometryCollection(LineString,Polygon,Polygon EMPTY)": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Touches |  | - | degen-int | MultiLineString / GeometryCollection(Polygon,Polygon EMPTY)": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Touches |  | - | degen-int | MultiPolygon / GeometryCollection(LineString,Point)": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Touches |  | - | degen-int | MultiPolygon / GeometryCollection(LineString,Polygon)": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Touches |  | - | degen-int | MultiPolygon / GeometryCollection(Point,Polygon)": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Touches |  | - | degen-int | MultiPolygon / GeometryCollection(Point,Polygon,Polygon EMPTY)": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Within |  | - | degen-float | GeometryCollection(Polygon) / GeometryCollection(Polygon,Polygon EMPTY)": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Within |  | - | degen-float | GeometryCollection(Polygon,Polygon EMPTY) / Polygon": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Within |  | - | degen-float | MultiLineString / MultiPolygon": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Within |  | - | degen-float | MultiPolygon / GeometryCollection(Point,Polygon)": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Within |  | - | degen-float | MultiPolygon / GeometryCollection(Polygon)": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Within |  | - | degen-float | MultiPolygon / MultiPolygon": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Within |  | - | degen-float | MultiPolygon / Polygon": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Within |  | - | degen-int | GeometryCollection(Polygon) / GeometryCollection(Polygon,Polygon EMPTY)": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Within |  | - | degen-int | GeometryCollection(Polygon,Polygon EMPTY) / Polygon": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Within |  | - | degen-int | MultiPolygon / GeometryCollection(Polygon)": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Within |  | - | degen-int | MultiPolygon / Polygon": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "crash | backend crash | ST_Within |  | - | degen-int | Polygon / MultiPolygon": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   }
+  },
+  "left_out_by_cap": {
+   "R11 | Intersection floating vs fixed | Intersection | Intersection(a,b) vs Intersection(a,b,g) | - | degen-float | LineString / LineString": 1,
+   "R11 | Union floating vs fixed | Union | Union(a,b) vs Union(a,b,g) | - | degen-float | LineString / LineString": 1,
+   "R11 | Intersection floating vs fixed | Intersection | Intersection(a,b) vs Intersection(a,b,g) | - | degen-float | LineString / MultiLineString": 1,
+   "R11 | Union floating vs fixed | Union | Union(a,b) vs Union(a,b,g) | - | degen-float | LineString / MultiLineString": 1,
+   "R11 | Intersection floating vs fixed | Intersection | Intersection(a,b) vs Intersection(a,b,g) | - | degen-float | MultiLineString / LineString": 1,
+   "R11 | Union floating vs fixed | Union | Union(a,b) vs Union(a,b,g) | - | degen-float | MultiLineString / LineString": 1,
+   "R11 | Intersection floating vs fixed | Intersection | Intersection(a,b) vs Intersection(a,b,g) | - | degen-float | MultiLineString / MultiLineString": 1,
+   "R11 | Union floating vs fixed | Union | Union(a,b) vs Union(a,b,g) | - | degen-float | MultiLineString / MultiLineString": 1,
+   "R10 | dim(Intersection) = max(II,IB,BI,BB) | Intersection/Relate | ST_Dimension(ST_Intersection) vs ST_Relate cells | - | degen-float | LineString / LineString": 1,
+   "R10 | dim(Intersection) = max(II,IB,BI,BB) | Intersection/Relate | ST_Dimension(ST_Intersection) vs ST_Relate cells | - | degen-float | LineString / MultiLineString": 1,
+   "R10 | dim(Intersection) = max(II,IB,BI,BB) | Intersection/Relate | ST_Dimension(ST_Intersection) vs ST_Relate cells | - | degen-float | MultiLineString / LineString": 1,
+   "R10 | dim(Intersection) = max(II,IB,BI,BB) | Intersection/Relate | ST_Dimension(ST_Intersection) vs ST_Relate cells | - | degen-float | Polygon / Polygon": 1,
+   "R10 | dim(Intersection) = max(II,IB,BI,BB) | Intersection/Relate | ST_Dimension(ST_Intersection) vs ST_Relate cells | - | degen-float | MultiPolygon / Polygon": 1,
+   "R10 | dim(Intersection) = max(II,IB,BI,BB) | Intersection/Relate | ST_Dimension(ST_Intersection) vs ST_Relate cells | - | degen-float | Polygon / MultiPolygon": 1,
+   "R10 | dim(Intersection) = max(II,IB,BI,BB) | Intersection/Relate | ST_Dimension(ST_Intersection) vs ST_Relate cells | - | degen-float | MultiLineString / MultiLineString": 1,
+   "R10 | dim(Intersection) = max(II,IB,BI,BB) | Intersection/Relate | ST_Dimension(ST_Intersection) vs ST_Relate cells | - | degen-float | MultiPolygon / MultiPolygon": 1,
+   "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ba | degen-int | GeometryCollection(LineString EMPTY,Point) / Polygon": 1,
+   "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ba | degen-int | GeometryCollection(Point,Polygon EMPTY) / Polygon": 1,
+   "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ba | degen-float | GeometryCollection(Point,Polygon EMPTY) / Polygon": 1,
+   "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ba | degen-float | GeometryCollection(LineString EMPTY,Point) / Polygon": 1,
+   "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ab | degen-int | Polygon / GeometryCollection(LineString EMPTY,Point)": 1,
+   "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ab | degen-int | Polygon / GeometryCollection(Point,Polygon EMPTY)": 1,
+   "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ba | degen-int | GeometryCollection(Point,Polygon EMPTY) / MultiPolygon": 1,
+   "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ab | degen-float | Polygon / GeometryCollection(Point,Polygon EMPTY)": 1,
+   "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ab | degen-float | Polygon / GeometryCollection(LineString EMPTY,Point)": 1,
+   "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ba | degen-float | GeometryCollection(Point,Polygon EMPTY) / MultiPolygon": 1,
+   "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ba | degen-int | GeometryCollection(LineString EMPTY,Point) / MultiPolygon": 1,
+   "R3 | lone vs prepared arg2 | Within | lone vs prepared arg2[2] | ab | degen-float | GeometryCollection(LineString EMPTY,Point) / Polygon": 1,
+   "R3 | lone vs prepared arg2 | Within | lone vs prepared arg2[2] | ab | degen-int | GeometryCollection(LineString EMPTY,Point) / Polygon": 1,
+   "crash | backend crash | ST_Relate(matrix) |  | - | degen-float | LineString / MultiPolygon": 1,
+   "crash | backend crash | ST_Relate(matrix) |  | - | degen-int | LineString / MultiPolygon": 1,
+   "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ba | degen-float | GeometryCollection(LineString EMPTY,Point) / MultiPolygon": 1,
+   "crash | backend crash | ST_Relate(matrix) |  | - | degen-int | MultiPolygon / MultiPolygon": 1,
+   "crash | backend crash | ST_Touches |  | - | degen-float | LineString / MultiPolygon": 1,
+   "crash | backend crash | ST_Touches |  | - | degen-int | LineString / MultiPolygon": 1,
+   "crash | backend crash | ST_Relate(matrix) |  | - | degen-float | MultiLineString / MultiPolygon": 1,
+   "crash | backend crash | ST_Relate(matrix) |  | - | degen-float | MultiPolygon / LineString": 1,
+   "crash | backend crash | ST_Relate(matrix) |  | - | degen-float | MultiPolygon / MultiPolygon": 1,
+   "crash | backend crash | ST_Relate(matrix) |  | - | degen-float | Polygon / MultiPolygon": 1,
+   "crash | backend crash | ST_Relate(matrix) |  | - | degen-int | MultiPolygon / LineString": 1,
+   "crash | backend crash | ST_Relate(matrix) |  | - | degen-int | Polygon / MultiPolygon": 1,
+   "R3 | lone vs prepared arg2 | Within | lone vs prepared arg2[2] | ab | degen-int | GeometryCollection(Point,Polygon EMPTY) / Polygon": 1,
+   "R3 | lone vs prepared arg2 | Within | lone vs prepared arg2[2] | ba | degen-float | Polygon / GeometryCollection(Point,Polygon EMPTY)": 1,
+   "R3 | lone vs prepared arg2 | Within | lone vs prepared arg2[2] | ba | degen-int | Polygon / GeometryCollection(Point,Polygon EMPTY)": 1,
+   "crash | backend crash | ST_Relate(matrix) |  | - | degen-int | MultiLineString / MultiPolygon": 1,
+   "crash | backend crash | ST_Touches |  | - | degen-float | MultiLineString / MultiPolygon": 1,
+   "crash | backend crash | ST_Touches |  | - | degen-float | MultiPolygon / LineString": 1,
+   "crash | backend crash | ST_Touches |  | - | degen-int | MultiLineString / MultiPolygon": 1,
+   "crash | backend crash | ST_Touches |  | - | degen-int | MultiPolygon / LineString": 1,
+   "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ab | degen-int | MultiPolygon / GeometryCollection(LineString EMPTY,Point)": 1,
+   "R3 | lone vs prepared arg2 | Within | lone vs prepared arg2[2] | ab | degen-float | GeometryCollection(Point,Polygon EMPTY) / Polygon": 1,
+   "R3 | lone vs prepared arg2 | Within | lone vs prepared arg2[2] | ba | degen-int | Polygon / GeometryCollection(LineString EMPTY,Point)": 1,
+   "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ab | degen-float | MultiPolygon / GeometryCollection(LineString EMPTY,Point)": 1,
+   "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ab | degen-float | MultiPolygon / GeometryCollection(Point,Polygon EMPTY)": 1,
+   "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ab | degen-int | MultiPolygon / GeometryCollection(Point,Polygon EMPTY)": 1,
+   "crash | backend crash | ST_Disjoint |  | - | degen-float | Polygon / MultiPolygon": 1,
+   "crash | backend crash | ST_Disjoint |  | - | degen-int | Polygon / MultiPolygon": 1,
+   "crash | backend crash | ST_Intersects |  | - | degen-float | Polygon / MultiPolygon": 1,
+   "crash | backend crash | ST_Intersects |  | - | degen-int | Polygon / MultiPolygon": 1,
+   "crash | backend crash | ST_Relate(matrix) |  | - | degen-float | MultiPolygon / Polygon": 1,
+   "crash | backend crash | ST_Relate(matrix) |  | - | degen-int | MultiPolygon / Polygon": 1,
+   "crash | backend crash | ST_Touches |  | - | degen-float | Polygon / MultiPolygon": 1,
+   "crash | backend crash | ST_Touches |  | - | degen-int | Polygon / MultiPolygon": 1,
+   "R11 | Intersection floating vs fixed | Intersection | Intersection(a,b) vs Intersection(a,b,g) | - | plain-float | LineString / LineString": 1,
+   "R11 | Intersection floating vs fixed | Intersection | Intersection(a,b) vs Intersection(a,b,g) | - | plain-float | LineString / MultiLineString": 1,
+   "R11 | Intersection floating vs fixed | Intersection | Intersection(a,b) vs Intersection(a,b,g) | - | plain-float | MultiLineString / LineString": 1,
+   "R11 | Union floating vs fixed | Union | Union(a,b) vs Union(a,b,g) | - | plain-float | LineString / LineString": 1,
+   "R11 | Union floating vs fixed | Union | Union(a,b) vs Union(a,b,g) | - | plain-float | LineString / MultiLineString": 1,
+   "R11 | Union floating vs fixed | Union | Union(a,b) vs Union(a,b,g) | - | plain-float | MultiLineString / LineString": 1,
+   "R3 | lone vs prepared arg2 | Within | lone vs prepared arg2[2] | ab | degen-int | GeometryCollection(LineString EMPTY,Point) / MultiPolygon": 1,
+   "R3 | lone vs prepared arg2 | Within | lone vs prepared arg2[2] | ab | degen-int | GeometryCollection(Point,Polygon EMPTY) / MultiPolygon": 1,
+   "R3 | lone vs prepared arg2 | Within | lone vs prepared arg2[2] | ba | degen-float | Polygon / GeometryCollection(LineString EMPTY,Point)": 1,
+   "crash | backend crash | ST_Disjoint |  | - | degen-int | MultiPolygon / MultiPolygon": 1,
+   "crash | backend crash | ST_Intersects |  | - | degen-int | MultiPolygon / MultiPolygon": 1,
+   "crash | backend crash | ST_Touches |  | - | degen-int | MultiPolygon / MultiPolygon": 2,
+   "R11 | Intersection floating vs fixed | Intersection | Intersection(a,b) vs Intersection(a,b,g) | - | plain-float | MultiLineString / MultiLineString": 2,
+   "R11 | Union floating vs fixed | Union | Union(a,b) vs Union(a,b,g) | - | plain-float | MultiLineString / MultiLineString": 2,
+   "R3 | lone vs prepared arg2 | Within | lone vs prepared arg2[2] | ab | degen-float | GeometryCollection(LineString EMPTY,Point) / MultiPolygon": 2,
+   "R3 | lone vs prepared arg2 | Within | lone vs prepared arg2[2] | ab | degen-float | GeometryCollection(Point,Polygon EMPTY) / MultiPolygon": 2,
+   "R3 | lone vs prepared arg2 | Within | lone vs prepared arg2[2] | ba | degen-float | MultiPolygon / GeometryCollection(LineString EMPTY,Point)": 2,
+   "R3 | lone vs prepared arg2 | Within | lone vs prepared arg2[2] | ba | degen-int | MultiPolygon / GeometryCollection(LineString EMPTY,Point)": 2,
+   "crash | backend crash | ST_Disjoint |  | - | degen-float | MultiPolygon / MultiPolygon": 2,
+   "crash | backend crash | ST_Intersects |  | - | degen-float | MultiPolygon / MultiPolygon": 2,
+   "crash | backend crash | ST_Relate(matrix) |  | - | degen-float | GeometryCollection(LineString) / MultiPolygon": 2,
+   "crash | backend crash | ST_Relate(matrix) |  | - | degen-float | MultiPolygon / MultiLineString": 2,
+   "crash | backend crash | ST_Relate(matrix) |  | - | degen-int | GeometryCollection(LineString) / MultiPolygon": 2,
+   "crash | backend crash | ST_Relate(matrix) |  | - | degen-int | MultiPolygon / MultiLineString": 2,
+   "crash | backend crash | ST_Touches |  | - | degen-float | MultiPolygon / MultiLineString": 2,
+   "crash | backend crash | ST_Touches |  | - | degen-float | MultiPolygon / MultiPolygon": 2,
+   "crash | backend crash | ST_Touches |  | - | degen-int | GeometryCollection(LineString) / MultiPolygon": 2,
+   "crash | backend crash | ST_Touches |  | - | degen-int | MultiPolygon / MultiLineString": 2,
+   "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ab | degen-float | MultiPolygon / Polygon": 2,
+   "R3 | lone vs prepared arg1 | Covers | lone vs prepared arg1[2] | ab | degen-float | MultiPolygon / Polygon": 2,
+   "R3 | lone vs prepared arg2 | Within | lone vs prepared arg2[2] | ba | degen-float | MultiPolygon / GeometryCollection(Point,Polygon EMPTY)": 2,
+   "R3 | lone vs prepared arg2 | Within | lone vs prepared arg2[2] | ba | degen-float | MultiPolygon / Polygon": 2,
+   "R3 | lone vs prepared arg2 | Within | lone vs prepared arg2[2] | ba | degen-int | MultiPolygon / GeometryCollection(Point,Polygon EMPTY)": 2,
+   "R4 | ForceCollection(arg1) | Relate | lone vs ForceCollection(arg1) | ba | degen-float | MultiPolygon / MultiPolygon": 2,
+   "crash | backend crash | ST_Covers |  | - | degen-float | MultiPolygon / LineString": 2,
+   "crash | backend crash | ST_Covers |  | - | degen-float | Polygon / MultiPolygon": 2,
+   "crash | backend crash | ST_Disjoint |  | - | degen-float | GeometryCollection(Polygon) / MultiPolygon": 2,
+   "crash | backend crash | ST_Disjoint |  | - | degen-float | MultiPolygon / GeometryCollection(Polygon)": 2,
+   "crash | backend crash | ST_Disjoint |  | - | degen-int | GeometryCollection(Polygon) / MultiPolygon": 2,
+   "crash | backend crash | ST_Disjoint |  | - | degen-int | MultiPolygon / GeometryCollection(Polygon)": 2,
+   "crash | backend crash | ST_Intersects |  | - | degen-float | GeometryCollection(Polygon) / MultiPolygon": 2,
+   "crash | backend crash | ST_Intersects |  | - | degen-float | MultiPolygon / GeometryCollection(Polygon)": 2,
+   "crash | backend crash | ST_Intersects |  | - | degen-int | GeometryCollection(Polygon) / MultiPolygon": 2,
+   "crash | backend crash | ST_Intersects |  | - | degen-int | MultiPolygon / GeometryCollection(Polygon)": 2,
+   "crash | backend crash | ST_Relate(matrix) |  | - | degen-float | GeometryCollection(Polygon) / MultiPolygon": 2,
+   "crash | backend crash | ST_Relate(matrix) |  | - | degen-float | LineString / GeometryCollection(Polygon,Polygon EMPTY)": 2,
+   "crash | backend crash | ST_Relate(matrix) |  | - | degen-float | MultiPolygon / GeometryCollection(Polygon)": 2,
+   "crash | backend crash | ST_Relate(matrix) |  | - | degen-int | GeometryCollection(Polygon) / MultiPolygon": 2,
+   "crash | backend crash | ST_Relate(matrix) |  | - | degen-int | LineString / GeometryCollection(Polygon,Polygon EMPTY)": 2,
+   "crash | backend crash | ST_Relate(matrix) |  | - | degen-int | MultiPolygon / GeometryCollection(Polygon)": 2,
+   "crash | backend crash | ST_Relate(pattern) |  | - | degen-float | LineString / GeometryCollection(Polygon,Polygon EMPTY)": 2,
+   "crash | backend crash | ST_Relate(pattern) |  | - | degen-int | LineString / GeometryCollection(Polygon,Polygon EMPTY)": 2,
+   "crash | backend crash | ST_Touches |  | - | degen-float | GeometryCollection(LineString) / MultiPolygon": 2,
+   "crash | backend crash | ST_Touches |  | - | degen-float | GeometryCollection(Polygon) / MultiPolygon": 2,
+   "crash | backend crash | ST_Touches |  | - | degen-float | LineString / GeometryCollection(Polygon,Polygon EMPTY)": 2,
+   "crash | backend crash | ST_Touches |  | - | degen-float | MultiPolygon / GeometryCollection(Polygon)": 2,
+   "crash | backend crash | ST_Touches |  | - | degen-int | GeometryCollection(Polygon) / MultiPolygon": 2,
+   "crash | backend crash | ST_Touches |  | - | degen-int | LineString / GeometryCollection(Polygon,Polygon EMPTY)": 2,
+   "crash | backend crash | ST_Touches |  | - | degen-int | MultiPolygon / GeometryCollection(Polygon)": 2,
+   "R10 | dim(Intersection) = max(II,IB,BI,BB) | Intersection/Relate | ST_Dimension(ST_Intersection) vs ST_Relate cells | - | plain-float | LineString / MultiLineString": 1,
+   "R10 | dim(Intersection) = max(II,IB,BI,BB) | Intersection/Relate | ST_Dimension(ST_Intersection) vs ST_Relate cells | - | plain-float | MultiLineString / LineString": 1,
+   "R10 | dim(Intersection) = max(II,IB,BI,BB) | Intersection/Relate | ST_Dimension(ST_Intersection) vs ST_Relate cells | - | plain-float | MultiPolygon / Polygon": 1,
+   "R10 | dim(Intersection) = max(II,IB,BI,BB) | Intersection/Relate | ST_Dimension(ST_Intersection) vs ST_Relate cells | - | plain-float | Polygon / MultiPolygon": 1,
+   "R10 | dim(Intersection) = max(II,IB,BI,BB) | Intersection/Relate | ST_Dimension(ST_Intersection) vs ST_Relate cells | - | plain-float | Polygon / Polygon": 1,
+   "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ab | degen-float | MultiPolygon / MultiPolygon": 1,
+   "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ab | degen-float | Polygon / MultiPolygon": 1,
+   "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ab | degen-float | Polygon / Polygon": 1,
+   "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ba | degen-float | Polygon / MultiPolygon": 1,
+   "R3 | lone vs prepared arg1 | Covers | lone vs prepared arg1[2] | ab | degen-float | MultiPolygon / MultiPolygon": 1,
+   "R3 | lone vs prepared arg1 | Covers | lone vs prepared arg1[2] | ab | degen-float | Polygon / MultiPolygon": 1,
+   "R3 | lone vs prepared arg1 | Covers | lone vs prepared arg1[2] | ab | degen-float | Polygon / Polygon": 1,
+   "R3 | lone vs prepared arg1 | Covers | lone vs prepared arg1[2] | ba | degen-float | Polygon / MultiPolygon": 1,
+   "R3 | lone vs prepared arg2 | Within | lone vs prepared arg2[2] | ab | degen-float | Polygon / MultiPolygon": 1,
+   "R3 | lone vs prepared arg2 | Within | lone vs prepared arg2[2] | ba | degen-float | MultiPolygon / MultiPolygon": 1,
+   "R3 | lone vs prepared arg2 | Within | lone vs prepared arg2[2] | ba | degen-float | Polygon / MultiPolygon": 1,
+   "R3 | lone vs prepared arg2 | Within | lone vs prepared arg2[2] | ba | degen-float | Polygon / Polygon": 1,
+   "R4 | ForceCollection(arg1) | Relate | lone vs ForceCollection(arg1) | ab | degen-float | MultiPolygon / MultiPolygon": 1,
+   "R4 | ForceCollection(arg1) | Relate | lone vs ForceCollection(arg1) | ba | degen-float | Polygon / MultiPolygon": 1,
+   "R5 | Intersects<=>not IsEmpty(Intersection) | Intersects/Intersection | lone Intersects vs IsEmpty(ST_Intersection) | ab | degen-float | MultiLineString / MultiLineString": 1,
+   "R5 | Intersects<=>not IsEmpty(Intersection) | Intersects/Intersection | lone Intersects vs IsEmpty(ST_Intersection) | ba | degen-float | MultiLineString / MultiLineString": 1,
+   "crash | backend crash | ST_CoveredBy |  | - | degen-int | MultiPolygon / MultiPolygon": 1,
+   "crash | backend crash | ST_Covers |  | - | degen-float | MultiLineString / MultiPolygon": 1,
+   "crash | backend crash | ST_Covers |  | - | degen-float | MultiPolygon / MultiPolygon": 1,
+   "crash | backend crash | ST_Relate(matrix) |  | - | degen-float | GeometryCollection(Polygon,Polygon EMPTY) / LineString": 1,
+   "crash | backend crash | ST_Relate(matrix) |  | - | degen-float | MultiPolygon / GeometryCollection(LineString)": 1,
+   "crash | backend crash | ST_Relate(matrix) |  | - | degen-int | MultiPolygon / GeometryCollection(LineString)": 1,
+   "crash | backend crash | ST_Relate(pattern) |  | - | degen-float | GeometryCollection(Polygon,Polygon EMPTY) / LineString": 1,
+   "crash | backend crash | ST_Touches |  | - | degen-float | GeometryCollection(Polygon,Polygon EMPTY) / LineString": 1,
+   "crash | backend crash | ST_Touches |  | - | degen-float | MultiPolygon / GeometryCollection(LineString)": 1,
+   "crash | backend crash | ST_Touches |  | - | degen-int | MultiPolygon / GeometryCollection(LineString)": 1,
+   "crash | backend crash | ST_Within |  | - | degen-int | MultiPolygon / MultiPolygon": 1
+  }
+ },
+ "representatives": [
+  {
+   "rep": "a1c985081ced",
+   "item": "lane0:102736:v2323",
+   "group": "R11 | Intersection floating vs fixed | Intersection | Intersection(a,b) vs Intersection(a,b,g) | - | degen-float | LineString / LineString",
+   "rank": 0,
+   "vertices": 4
+  },
+  {
+   "rep": "07a9266c7ed0",
+   "item": "lane0:102736:v2324",
+   "group": "R11 | Union floating vs fixed | Union | Union(a,b) vs Union(a,b,g) | - | degen-float | LineString / LineString",
+   "rank": 0,
+   "vertices": 4
+  },
+  {
+   "rep": "0a77b2f0019a",
+   "item": "lane0:124496:v3580",
+   "group": "R11 | Intersection floating vs fixed | Intersection | Intersection(a,b) vs Intersection(a,b,g) | - | degen-float | LineString / MultiLineString",
+   "rank": 0,
+   "vertices": 4
+  },
+  {
+   "rep": "434a6592c67c",
+   "item": "lane0:124496:v3581",
+   "group": "R11 | Union floating vs fixed | Union | Union(a,b) vs Union(a,b,g) | - | degen-float | LineString / MultiLineString",
+   "rank": 0,
+   "vertices": 4
+  },
+  {
+   "rep": "dc49c51ad2c4",
+   "item": "lane0:101032:v2237",
+   "group": "R11 | Intersection floating vs fixed | Intersection | Intersection(a,b) vs Intersection(a,b,g) | - | degen-float | MultiLineString / LineString",
+   "rank": 0,
+   "vertices": 4
+  },
+  {
+   "rep": "832a4ce051c8",
+   "item": "lane0:101032:v2238",
+   "group": "R11 | Union floating vs fixed | Union | Union(a,b) vs Union(a,b,g) | - | degen-float | MultiLineString / LineString",
+   "rank": 0,
+   "vertices": 4
+  },
+  {
+   "rep": "b380f1878822",
+   "item": "lane0:111668:v2854",
+   "group": "R11 | Intersection floating vs fixed | Intersection | Intersection(a,b) vs Intersection(a,b,g) | - | degen-float | MultiLineString / MultiLineString",
+   "rank": 0,
+   "vertices": 4
+  },
+  {
+   "rep": "5dd66777b32f",
+   "item": "lane0:111668:v2855",
+   "group": "R11 | Union floating vs fixed | Union | Union(a,b) vs Union(a,b,g) | - | degen-float | MultiLineString / MultiLineString",
+   "rank": 0,
+   "vertices": 4
+  },
+  {
+   "rep": "645a42b000b1",
+   "item": "lane0:58760:v1524",
+   "group": "R10 | dim(Intersection) = max(II,IB,BI,BB) | Intersection/Relate | ST_Dimension(ST_Intersection) vs ST_Relate cells | - | degen-float | LineString / LineString",
+   "rank": 0,
+   "vertices": 5
+  },
+  {
+   "rep": "befcbe7795b0",
+   "item": "lane1:38280:v371",
+   "group": "R10 | dim(Intersection) = max(II,IB,BI,BB) | Intersection/Relate | ST_Dimension(ST_Intersection) vs ST_Relate cells | - | degen-float | LineString / MultiLineString",
+   "rank": 0,
+   "vertices": 5
+  },
+  {
+   "rep": "628a230e64db",
+   "item": "lane3:108636:v2548",
+   "group": "R10 | dim(Intersection) = max(II,IB,BI,BB) | Intersection/Relate | ST_Dimension(ST_Intersection) vs ST_Relate cells | - | degen-float | MultiLineString / LineString",
+   "rank": 0,
+   "vertices": 5
+  },
+  {
+   "rep": "11df7ba0a31a",
+   "item": "lane3:41256:v559",
+   "group": "R10 | dim(Intersection) = max(II,IB,BI,BB) | Intersection/Relate | ST_Dimension(ST_Intersection) vs ST_Relate cells | - | degen-float | Polygon / Polygon",
+   "rank": 0,
+   "vertices": 6
+  },
+  {
+   "rep": "c827d5e384e6",
+   "item": "lane2:61868:v1709",
+   "group": "R10 | dim(Intersection) = max(II,IB,BI,BB) | Intersection/Relate | ST_Dimension(ST_Intersection) vs ST_Relate cells | - | degen-float | MultiPolygon / Polygon",
+   "rank": 0,
+   "vertices": 7
+  },
+  {
+   "rep": "f1b9975b16e3",
+   "item": "lane2:118640:v3159",
+   "group": "R10 | dim(Intersection) = max(II,IB,BI,BB) | Intersection/Relate | ST_Dimension(ST_Intersection) vs ST_Relate cells | - | degen-float | Polygon / MultiPolygon",
+   "rank": 0,
+   "vertices": 6
+  },
+  {
+   "rep": "c5ba87e2c1fa",
+   "item": "lane4:97568:v1909",
+   "group": "R10 | dim(Intersection) = max(II,IB,BI,BB) | Intersection/Relate | ST_Dimension(ST_Intersection) vs ST_Relate cells | - | degen-float | MultiLineString / MultiLineString",
+   "rank": 0,
+   "vertices": 7
+  },
+  {
+   "rep": "f25c53ad21f1",
+   "item": "lane1:33216:v61",
+   "group": "R10 | dim(Intersection) = max(II,IB,BI,BB) | Intersection/Relate | ST_Dimension(ST_Intersection) vs ST_Relate cells | - | degen-float | MultiPolygon / MultiPolygon",
+   "rank": 0,
+   "vertices": 8
+  },
+  {
+   "rep": "af50a041e675",
+   "item": "lane1:66475:v1870",
+   "group": "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ba | degen-int | GeometryCollection(LineString EMPTY,Point) / Polygon",
+   "rank": 0,
+   "vertices": 5
+  },
+  {
+   "rep": "d801d78e394a",
+   "item": "lane1:69911:v1877",
+   "group": "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ba | degen-int | GeometryCollection(Point,Polygon EMPTY) / Polygon",
+   "rank": 0,
+   "vertices": 5
+  },
+  {
+   "rep": "913e0fb75ec6",
+   "item": "lane2:26812:v31",
+   "group": "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ba | degen-float | GeometryCollection(Point,Polygon EMPTY) / Polygon",
+   "rank": 0,
+   "vertices": 5
+  },
+  {
+   "rep": "b5fd95934b6e",
+   "item": "lane1:66476:v1871",
+   "group": "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ba | degen-float | GeometryCollection(LineString EMPTY,Point) / Polygon",
+   "rank": 0,
+   "vertices": 5
+  },
+  {
+   "rep": "98e9cb6600f5",
+   "item": "lane0:14447:v14",
+   "group": "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ab | degen-int | Polygon / GeometryCollection(LineString EMPTY,Point)",
+   "rank": 0,
+   "vertices": 7
+  },
+  {
+   "rep": "bb12815560c8",
+   "item": "lane1:93455:v1909",
+   "group": "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ab | degen-int | Polygon / GeometryCollection(Point,Polygon EMPTY)",
+   "rank": 0,
+   "vertices": 5
+  },
+  {
+   "rep": "816149e0483c",
+   "item": "lane4:11935:v6",
+   "group": "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ba | degen-int | GeometryCollection(Point,Polygon EMPTY) / MultiPolygon",
+   "rank": 0,
+   "vertices": 7
+  },
+  {
+   "rep": "e5dc8c475bbe",
+   "item": "lane1:93456:v1910",
+   "group": "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ab | degen-float | Polygon / GeometryCollection(Point,Polygon EMPTY)",
+   "rank": 0,
+   "vertices": 5
+  },
+  {
+   "rep": "17176c718609",
+   "item": "lane0:14448:v16",
+   "group": "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ab | degen-float | Polygon / GeometryCollection(LineString EMPTY,Point)",
+   "rank": 0,
+   "vertices": 7
+  },
+  {
+   "rep": "6ed314e65db3",
+   "item": "lane4:11936:v7",
+   "group": "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ba | degen-float | GeometryCollection(Point,Polygon EMPTY) / MultiPolygon",
+   "rank": 0,
+   "vertices": 7
+  },
+  {
+   "rep": "e03baa920fab",
+   "item": "lane4:93443:v1806",
+   "group": "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ba | degen-int | GeometryCollection(LineString EMPTY,Point) / MultiPolygon",
+   "rank": 0,
+   "vertices": 12
+  },
+  {
+   "rep": "df668e5c521a",
+   "item": "lane0:86828:v1911",
+   "group": "R3 | lone vs prepared arg2 | Within | lone vs prepared arg2[2] | ab | degen-float | GeometryCollection(LineString EMPTY,Point) / Polygon",
+   "rank": 0,
+   "vertices": 7
+  },
+  {
+   "rep": "734ffd260410",
+   "item": "lane0:86827:v1909",
+   "group": "R3 | lone vs prepared arg2 | Within | lone vs prepared arg2[2] | ab | degen-int | GeometryCollection(LineString EMPTY,Point) / Polygon",
+   "rank": 0,
+   "vertices": 7
+  },
+  {
+   "rep": "bcdd54eabe87",
+   "item": "lane4:80684:crash:ST_Relate(matrix)",
+   "group": "crash | backend crash | ST_Relate(matrix) |  | - | degen-float | LineString / MultiPolygon",
+   "rank": 0,
+   "vertices": 8
+  },
+  {
+   "rep": "5c04fcb97b0b",
+   "item": "lane4:80683:crash:ST_Relate(matrix)",
+   "group": "crash | backend crash | ST_Relate(matrix) |  | - | degen-int | LineString / MultiPolygon",
+   "rank": 0,
+   "vertices": 8
+  },
+  {
+   "rep": "8e72405aeb76",
+   "item": "lane4:93444:v1808",
+   "group": "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ba | degen-float | GeometryCollection(LineString EMPTY,Point) / MultiPolygon",
+   "rank": 0,
+   "vertices": 12
+  },
+  {
+   "rep": "88369e5d7f51",
+   "item": "lane0:19999:crash:ST_Relate(matrix)",
+   "group": "crash | backend crash | ST_Relate(matrix) |  | - | degen-int | MultiPolygon / MultiPolygon",
+   "rank": 0,
+   "vertices": 37
+  },
+  {
+   "rep": "a6b1528de6dd",
+   "item": "lane4:80684:crash:ST_Touches",
+   "group": "crash | backend crash | ST_Touches |  | - | degen-float | LineString / MultiPolygon",
+   "rank": 0,
+   "vertices": 8
+  },
+  {
+   "rep": "ba5eef4288ea",
+   "item": "lane4:80683:crash:ST_Touches",
+   "group": "crash | backend crash | ST_Touches |  | - | degen-int | LineString / MultiPolygon",
+   "rank": 0,
+   "vertices": 8
+  },
+  {
+   "rep": "dc118bb4c696",
+   "item": "lane4:12200:crash:ST_Relate(matrix)",
+   "group": "crash | backend crash | ST_Relate(matrix) |  | - | degen-float | MultiLineString / MultiPolygon",
+   "rank": 0,
+   "vertices": 18
+  },
+  {
+   "rep": "55f1983e70ae",
+   "item": "lane1:95004:crash:ST_Relate(matrix)",
+   "group": "crash | backend crash | ST_Relate(matrix) |  | - | degen-float | MultiPolygon / LineString",
+   "rank": 0,
+   "vertices": 9
+  },
+  {
+   "rep": "bfbec34cc656",
+   "item": "lane0:20000:crash:ST_Relate(matrix)",
+   "group": "crash | backend crash | ST_Relate(matrix) |  | - | degen-float | MultiPolygon / MultiPolygon",
+   "rank": 0,
+   "vertices": 37
+  },
+  {
+   "rep": "8719220d637c",
+   "item": "lane1:1736:crash:ST_Relate(matrix)",
+   "group": "crash | backend crash | ST_Relate(matrix) |  | - | degen-float | Polygon / MultiPolygon",
+   "rank": 0,
+   "vertices": 17
+  },
+  {
+   "rep": "ddcb87d326b9",
+   "item": "lane1:95003:crash:ST_Relate(matrix)",
+   "group": "crash | backend crash | ST_Relate(matrix) |  | - | degen-int | MultiPolygon / LineString",
+   "rank": 0,
+   "vertices": 9
+  },
+  {
+   "rep": "ca1506611166",
+   "item": "lane1:1735:crash:ST_Relate(matrix)",
+   "group": "crash | backend crash | ST_Relate(matrix) |  | - | degen-int | Polygon / MultiPolygon",
+   "rank": 0,
+   "vertices": 17
+  },
+  {
+   "rep": "a7289d046ddf",
+   "item": "lane2:17979:v22",
+   "group": "R3 | lone vs prepared arg2 | Within | lone vs prepared arg2[2] | ab | degen-int | GeometryCollection(Point,Polygon EMPTY) / Polygon",
+   "rank": 0,
+   "vertices": 7
+  },
+  {
+   "rep": "e28d0db0c13f",
+   "item": "lane0:66096:v1881",
+   "group": "R3 | lone vs prepared arg2 | Within | lone vs prepared arg2[2] | ba | degen-float | Polygon / GeometryCollection(Point,Polygon EMPTY)",
+   "rank": 0,
+   "vertices": 6
+  },
+  {
+   "rep": "c9509793fe9b",
+   "item": "lane0:66095:v1879",
+   "group": "R3 | lone vs prepared arg2 | Within | lone vs prepared arg2[2] | ba | degen-int | Polygon / GeometryCollection(Point,Polygon EMPTY)",
+   "rank": 0,
+   "vertices": 6
+  },
+  {
+   "rep": "dbf24931ee29",
+   "item": "lane4:12199:crash:ST_Relate(matrix)",
+   "group": "crash | backend crash | ST_Relate(matrix) |  | - | degen-int | MultiLineString / MultiPolygon",
+   "rank": 0,
+   "vertices": 18
+  },
+  {
+   "rep": "9f17a73d757b",
+   "item": "lane4:12200:crash:ST_Touches",
+   "group": "crash | backend crash | ST_Touches |  | - | degen-float | MultiLineString / MultiPolygon",
+   "rank": 0,
+   "vertices": 18
+  },
+  {
+   "rep": "b55a3454a71c",
+   "item": "lane1:95004:crash:ST_Touches",
+   "group": "crash | backend crash | ST_Touches |  | - | degen-float | MultiPolygon / LineString",
+   "rank": 0,
+   "vertices": 9
+  },
+  {
+   "rep": "f3f0f8903359",
+   "item": "lane4:12199:crash:ST_Touches",
+   "group": "crash | backend crash | ST_Touches |  | - | degen-int | MultiLineString / MultiPolygon",
+   "rank": 0,
+   "vertices": 18
+  },
+  {
+   "rep": "ce9e11566ec2",
+   "item": "lane1:95003:crash:ST_Touches",
+   "group": "crash | backend crash | ST_Touches |  | - | degen-int | MultiPolygon / LineString",
+   "rank": 0,
+   "vertices": 9
+  },
+  {
+   "rep": "ead19dbdd22c",
+   "item": "lane0:74727:v1900",
+   "group": "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ab | degen-int | MultiPolygon / GeometryCollection(LineString EMPTY,Point)",
+   "rank": 0,
+   "vertices": 11
+  },
+  {
+   "rep": "7253e672a07b",
+   "item": "lane2:17980:v24",
+   "group": "R3 | lone vs prepared arg2 | Within | lone vs prepared arg2[2] | ab | degen-float | GeometryCollection(Point,Polygon EMPTY) / Polygon",
+   "rank": 0,
+   "vertices": 7
+  },
+  {
+   "rep": "305fdec7835f",
+   "item": "lane0:14447:v15",
+   "group": "R3 | lone vs prepared arg2 | Within | lone vs prepared arg2[2] | ba | degen-int | Polygon / GeometryCollection(LineString EMPTY,Point)",
+   "rank": 0,
+   "vertices": 7
+  },
+  {
+   "rep": "a49ffd354be4",
+   "item": "lane0:74728:v1901",
+   "group": "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ab | degen-float | MultiPolygon / GeometryCollection(LineString EMPTY,Point)",
+   "rank": 0,
+   "vertices": 11
+  },
+  {
+   "rep": "19d07ab077cb",
+   "item": "lane1:74252:v1884",
+   "group": "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ab | degen-float | MultiPolygon / GeometryCollection(Point,Polygon EMPTY)",
+   "rank": 0,
+   "vertices": 11
+  },
+  {
+   "rep": "b6782bf360c5",
+   "item": "lane1:74251:v1882",
+   "group": "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ab | degen-int | MultiPolygon / GeometryCollection(Point,Polygon EMPTY)",
+   "rank": 0,
+   "vertices": 11
+  },
+  {
+   "rep": "a2c248e1f0cf",
+   "item": "lane2:2476:crash:ST_Disjoint",
+   "group": "crash | backend crash | ST_Disjoint |  | - | degen-float | Polygon / MultiPolygon",
+   "rank": 0,
+   "vertices": 20
+  },
+  {
+   "rep": "5b2b132cddc6",
+   "item": "lane2:2475:crash:ST_Disjoint",
+   "group": "crash | backend crash | ST_Disjoint |  | - | degen-int | Polygon / MultiPolygon",
+   "rank": 0,
+   "vertices": 20
+  },
+  {
+   "rep": "9c6d19a9cd72",
+   "item": "lane2:2476:crash:ST_Intersects",
+   "group": "crash | backend crash | ST_Intersects |  | - | degen-float | Polygon / MultiPolygon",
+   "rank": 0,
+   "vertices": 20
+  },
+  {
+   "rep": "a91ea4a7ade9",
+   "item": "lane2:2475:crash:ST_Intersects",
+   "group": "crash | backend crash | ST_Intersects |  | - | degen-int | Polygon / MultiPolygon",
+   "rank": 0,
+   "vertices": 20
+  },
+  {
+   "rep": "581a880e9db0",
+   "item": "lane1:21492:crash:ST_Relate(matrix)",
+   "group": "crash | backend crash | ST_Relate(matrix) |  | - | degen-float | MultiPolygon / Polygon",
+   "rank": 0,
+   "vertices": 14
+  },
+  {
+   "rep": "0323047113b9",
+   "item": "lane1:21491:crash:ST_Relate(matrix)",
+   "group": "crash | backend crash | ST_Relate(matrix) |  | - | degen-int | MultiPolygon / Polygon",
+   "rank": 0,
+   "vertices": 14
+  },
+  {
+   "rep": "bd3303ce6e63",
+   "item": "lane2:2476:crash:ST_Touches",
+   "group": "crash | backend crash | ST_Touches |  | - | degen-float | Polygon / MultiPolygon",
+   "rank": 0,
+   "vertices": 20
+  },
+  {
+   "rep": "5777ae9fef67",
+   "item": "lane2:2475:crash:ST_Touches",
+   "group": "crash | backend crash | ST_Touches |  | - | degen-int | Polygon / MultiPolygon",
+   "rank": 0,
+   "vertices": 20
+  },
+  {
+   "rep": "75c82b9aed8e",
+   "item": "lane3:52562:v1187",
+   "group": "R11 | Intersection floating vs fixed | Intersection | Intersection(a,b) vs Intersection(a,b,g) | - | plain-float | LineString / LineString",
+   "rank": 0,
+   "vertices": 8
+  },
+  {
+   "rep": "498fbaee50dc",
+   "item": "lane3:55386:v1361",
+   "group": "R11 | Intersection floating vs fixed | Intersection | Intersection(a,b) vs Intersection(a,b,g) | - | plain-float | LineString / MultiLineString",
+   "rank": 0,
+   "vertices": 14
+  },
+  {
+   "rep": "2ca407735b77",
+   "item": "lane2:114810:v2954",
+   "group": "R11 | Intersection floating vs fixed | Intersection | Intersection(a,b) vs Intersection(a,b,g) | - | plain-float | MultiLineString / LineString",
+   "rank": 0,
+   "vertices": 10
+  },
+  {
+   "rep": "2c516e03e1fb",
+   "item": "lane3:52562:v1188",
+   "group": "R11 | Union floating vs fixed | Union | Union(a,b) vs Union(a,b,g) | - | plain-float | LineString / LineString",
+   "rank": 0,
+   "vertices": 8
+  },
+  {
+   "rep": "b076a6860b43",
+   "item": "lane3:55386:v1362",
+   "group": "R11 | Union floating vs fixed | Union | Union(a,b) vs Union(a,b,g) | - | plain-float | LineString / MultiLineString",
+   "rank": 0,
+   "vertices": 14
+  },
+  {
+   "rep": "d664a9e2d63e",
+   "item": "lane2:114810:v2955",
+   "group": "R11 | Union floating vs fixed | Union | Union(a,b) vs Union(a,b,g) | - | plain-float | MultiLineString / LineString",
+   "rank": 0,
+   "vertices": 10
+  },
+  {
+   "rep": "713a05b864ff",
+   "item": "lane4:93443:v1805",
+   "group": "R3 | lone vs prepared arg2 | Within | lone vs prepared arg2[2] | ab | degen-int | GeometryCollection(LineString EMPTY,Point) / MultiPolygon",
+   "rank": 0,
+   "vertices": 12
+  },
+  {
+   "rep": "5d3dcc5db1f4",
+   "item": "lane0:87455:v1913",
+   "group": "R3 | lone vs prepared arg2 | Within | lone vs prepared arg2[2] | ab | degen-int | GeometryCollection(Point,Polygon EMPTY) / MultiPolygon",
+   "rank": 0,
+   "vertices": 9
+  },
+  {
+   "rep": "80830442d39c",
+   "item": "lane0:14448:v17",
+   "group": "R3 | lone vs prepared arg2 | Within | lone vs prepared arg2[2] | ba | degen-float | Polygon / GeometryCollection(LineString EMPTY,Point)",
+   "rank": 0,
+   "vertices": 7
+  },
+  {
+   "rep": "7aadea548cfd",
+   "item": "lane1:22595:crash:ST_Disjoint",
+   "group": "crash | backend crash | ST_Disjoint |  | - | degen-int | MultiPolygon / MultiPolygon",
+   "rank": 0,
+   "vertices": 46
+  },
+  {
+   "rep": "47f679a8d9c1",
+   "item": "lane1:22595:crash:ST_Intersects",
+   "group": "crash | backend crash | ST_Intersects |  | - | degen-int | MultiPolygon / MultiPolygon",
+   "rank": 0,
+   "vertices": 46
+  },
+  {
+   "rep": "2d473ade3122",
+   "item": "lane1:22595:crash:ST_Touches",
+   "group": "crash | backend crash | ST_Touches |  | - | degen-int | MultiPolygon / MultiPolygon",
+   "rank": 0,
+   "vertices": 46
+  },
+  {
+   "rep": "8df411d94665",
+   "item": "lane0:111242:v2834",
+   "group": "R11 | Intersection floating vs fixed | Intersection | Intersection(a,b) vs Intersection(a,b,g) | - | plain-float | MultiLineString / MultiLineString",
+   "rank": 0,
+   "vertices": 19
+  },
+  {
+   "rep": "f4659c173f1f",
+   "item": "lane0:111242:v2835",
+   "group": "R11 | Union floating vs fixed | Union | Union(a,b) vs Union(a,b,g) | - | plain-float | MultiLineString / MultiLineString",
+   "rank": 0,
+   "vertices": 19
+  },
+  {
+   "rep": "8f1bbaf6ad45",
+   "item": "lane4:93444:v1807",
+   "group": "R3 | lone vs prepared arg2 | Within | lone vs prepared arg2[2] | ab | degen-float | GeometryCollection(LineString EMPTY,Point) / MultiPolygon",
+   "rank": 0,
+   "vertices": 12
+  },
+  {
+   "rep": "fcf86663b3de",
+   "item": "lane0:87456:v1915",
+   "group": "R3 | lone vs prepared arg2 | Within | lone vs prepared arg2[2] | ab | degen-float | GeometryCollection(Point,Polygon EMPTY) / MultiPolygon",
+   "rank": 0,
+   "vertices": 9
+  },
+  {
+   "rep": "707e2597b5c0",
+   "item": "lane2:91292:v1875",
+   "group": "R3 | lone vs prepared arg2 | Within | lone vs prepared arg2[2] | ba | degen-float | MultiPolygon / GeometryCollection(LineString EMPTY,Point)",
+   "rank": 0,
+   "vertices": 17
+  },
+  {
+   "rep": "cfaa9190489d",
+   "item": "lane2:91291:v1873",
+   "group": "R3 | lone vs prepared arg2 | Within | lone vs prepared arg2[2] | ba | degen-int | MultiPolygon / GeometryCollection(LineString EMPTY,Point)",
+   "rank": 0,
+   "vertices": 17
+  },
+  {
+   "rep": "1bae91c41052",
+   "item": "lane1:77744:crash:ST_Disjoint",
+   "group": "crash | backend crash | ST_Disjoint |  | - | degen-float | MultiPolygon / MultiPolygon",
+   "rank": 0,
+   "vertices": 58
+  },
+  {
+   "rep": "1ee47bb9e68b",
+   "item": "lane1:77744:crash:ST_Intersects",
+   "group": "crash | backend crash | ST_Intersects |  | - | degen-float | MultiPolygon / MultiPolygon",
+   "rank": 0,
+   "vertices": 58
+  },
+  {
+   "rep": "8c0dd125d3d6",
+   "item": "lane0:94532:crash:ST_Relate(matrix)",
+   "group": "crash | backend crash | ST_Relate(matrix) |  | - | degen-float | GeometryCollection(LineString) / MultiPolygon",
+   "rank": 0,
+   "vertices": 12
+  },
+  {
+   "rep": "8ea823d5e352",
+   "item": "lane0:79588:crash:ST_Relate(matrix)",
+   "group": "crash | backend crash | ST_Relate(matrix) |  | - | degen-float | MultiPolygon / MultiLineString",
+   "rank": 0,
+   "vertices": 18
+  },
+  {
+   "rep": "fee01d0746dc",
+   "item": "lane0:94531:crash:ST_Relate(matrix)",
+   "group": "crash | backend crash | ST_Relate(matrix) |  | - | degen-int | GeometryCollection(LineString) / MultiPolygon",
+   "rank": 0,
+   "vertices": 12
+  },
+  {
+   "rep": "572ae23b50a9",
+   "item": "lane0:79587:crash:ST_Relate(matrix)",
+   "group": "crash | backend crash | ST_Relate(matrix) |  | - | degen-int | MultiPolygon / MultiLineString",
+   "rank": 0,
+   "vertices": 18
+  },
+  {
+   "rep": "a0f7707a650f",
+   "item": "lane0:79588:crash:ST_Touches",
+   "group": "crash | backend crash | ST_Touches |  | - | degen-float | MultiPolygon / MultiLineString",
+   "rank": 0,
+   "vertices": 18
+  },
+  {
+   "rep": "8d08a755060b",
+   "item": "lane1:77744:crash:ST_Touches",
+   "group": "crash | backend crash | ST_Touches |  | - | degen-float | MultiPolygon / MultiPolygon",
+   "rank": 0,
+   "vertices": 58
+  },
+  {
+   "rep": "76c5f4b45438",
+   "item": "lane0:94531:crash:ST_Touches",
+   "group": "crash | backend crash | ST_Touches |  | - | degen-int | GeometryCollection(LineString) / MultiPolygon",
+   "rank": 0,
+   "vertices": 12
+  },
+  {
+   "rep": "63dd17671afe",
+   "item": "lane0:79587:crash:ST_Touches",
+   "group": "crash | backend crash | ST_Touches |  | - | degen-int | MultiPolygon / MultiLineString",
+   "rank": 0,
+   "vertices": 18
+  },
+  {
+   "rep": "6bff8e9deea3",
+   "item": "lane2:100060:v2085",
+   "group": "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ab | degen-float | MultiPolygon / Polygon",
+   "rank": 0,
+   "vertices": 25
+  },
+  {
+   "rep": "c1347a9f087e",
+   "item": "lane2:100060:v2086",
+   "group": "R3 | lone vs prepared arg1 | Covers | lone vs prepared arg1[2] | ab | degen-float | MultiPolygon / Polygon",
+   "rank": 0,
+   "vertices": 25
+  },
+  {
+   "rep": "2b4e31974f51",
+   "item": "lane1:74252:v1885",
+   "group": "R3 | lone vs prepared arg2 | Within | lone vs prepared arg2[2] | ba | degen-float | MultiPolygon / GeometryCollection(Point,Polygon EMPTY)",
+   "rank": 0,
+   "vertices": 11
+  },
+  {
+   "rep": "9f6724ab4628",
+   "item": "lane2:100060:v2087",
+   "group": "R3 | lone vs prepared arg2 | Within | lone vs prepared arg2[2] | ba | degen-float | MultiPolygon / Polygon",
+   "rank": 0,
+   "vertices": 25
+  },
+  {
+   "rep": "d6d2d338ca34",
+   "item": "lane1:74251:v1883",
+   "group": "R3 | lone vs prepared arg2 | Within | lone vs prepared arg2[2] | ba | degen-int | MultiPolygon / GeometryCollection(Point,Polygon EMPTY)",
+   "rank": 0,
+   "vertices": 11
+  },
+  {
+   "rep": "26c14bd4dc10",
+   "item": "lane3:112112:v2751",
+   "group": "R4 | ForceCollection(arg1) | Relate | lone vs ForceCollection(arg1) | ba | degen-float | MultiPolygon / MultiPolygon",
+   "rank": 0,
+   "vertices": 26
+  },
+  {
+   "rep": "c53ee53e0ce9",
+   "item": "lane1:95004:crash:ST_Covers",
+   "group": "crash | backend crash | ST_Covers |  | - | degen-float | MultiPolygon / LineString",
+   "rank": 0,
+   "vertices": 9
+  },
+  {
+   "rep": "4886a58a2123",
+   "item": "lane1:1736:crash:ST_Covers",
+   "group": "crash | backend crash | ST_Covers |  | - | degen-float | Polygon / MultiPolygon",
+   "rank": 0,
+   "vertices": 17
+  },
+  {
+   "rep": "7b0ba446acfe",
+   "item": "lane4:72548:crash:ST_Disjoint",
+   "group": "crash | backend crash | ST_Disjoint |  | - | degen-float | GeometryCollection(Polygon) / MultiPolygon",
+   "rank": 0,
+   "vertices": 21
+  },
+  {
+   "rep": "fc93eb9c98f9",
+   "item": "lane3:9208:crash:ST_Disjoint",
+   "group": "crash | backend crash | ST_Disjoint |  | - | degen-float | MultiPolygon / GeometryCollection(Polygon)",
+   "rank": 0,
+   "vertices": 33
+  },
+  {
+   "rep": "cca0e032c805",
+   "item": "lane4:72547:crash:ST_Disjoint",
+   "group": "crash | backend crash | ST_Disjoint |  | - | degen-int | GeometryCollection(Polygon) / MultiPolygon",
+   "rank": 0,
+   "vertices": 21
+  },
+  {
+   "rep": "f0fe291c7d0f",
+   "item": "lane3:9207:crash:ST_Disjoint",
+   "group": "crash | backend crash | ST_Disjoint |  | - | degen-int | MultiPolygon / GeometryCollection(Polygon)",
+   "rank": 0,
+   "vertices": 33
+  },
+  {
+   "rep": "0c0d50a55b0b",
+   "item": "lane4:72548:crash:ST_Intersects",
+   "group": "crash | backend crash | ST_Intersects |  | - | degen-float | GeometryCollection(Polygon) / MultiPolygon",
+   "rank": 0,
+   "vertices": 21
+  },
+  {
+   "rep": "5c89d644b584",
+   "item": "lane3:9208:crash:ST_Intersects",
+   "group": "crash | backend crash | ST_Intersects |  | - | degen-float | MultiPolygon / GeometryCollection(Polygon)",
+   "rank": 0,
+   "vertices": 33
+  },
+  {
+   "rep": "e6d00d340c54",
+   "item": "lane4:72547:crash:ST_Intersects",
+   "group": "crash | backend crash | ST_Intersects |  | - | degen-int | GeometryCollection(Polygon) / MultiPolygon",
+   "rank": 0,
+   "vertices": 21
+  },
+  {
+   "rep": "76148505e282",
+   "item": "lane3:9207:crash:ST_Intersects",
+   "group": "crash | backend crash | ST_Intersects |  | - | degen-int | MultiPolygon / GeometryCollection(Polygon)",
+   "rank": 0,
+   "vertices": 33
+  },
+  {
+   "rep": "5f113f522193",
+   "item": "lane4:72548:crash:ST_Relate(matrix)",
+   "group": "crash | backend crash | ST_Relate(matrix) |  | - | degen-float | GeometryCollection(Polygon) / MultiPolygon",
+   "rank": 0,
+   "vertices": 21
+  },
+  {
+   "rep": "aff7b4a434ed",
+   "item": "lane1:76892:crash:ST_Relate(matrix)",
+   "group": "crash | backend crash | ST_Relate(matrix) |  | - | degen-float | LineString / GeometryCollection(Polygon,Polygon EMPTY)",
+   "rank": 0,
+   "vertices": 21
+  },
+  {
+   "rep": "bf7cce357cb0",
+   "item": "lane3:9208:crash:ST_Relate(matrix)",
+   "group": "crash | backend crash | ST_Relate(matrix) |  | - | degen-float | MultiPolygon / GeometryCollection(Polygon)",
+   "rank": 0,
+   "vertices": 33
+  },
+  {
+   "rep": "4a0f1be144d6",
+   "item": "lane4:72547:crash:ST_Relate(matrix)",
+   "group": "crash | backend crash | ST_Relate(matrix) |  | - | degen-int | GeometryCollection(Polygon) / MultiPolygon",
+   "rank": 0,
+   "vertices": 21
+  },
+  {
+   "rep": "6337aef2c361",
+   "item": "lane1:76891:crash:ST_Relate(matrix)",
+   "group": "crash | backend crash | ST_Relate(matrix) |  | - | degen-int | LineString / GeometryCollection(Polygon,Polygon EMPTY)",
+   "rank": 0,
+   "vertices": 21
+  },
+  {
+   "rep": "52e0f0b62f7c",
+   "item": "lane3:9207:crash:ST_Relate(matrix)",
+   "group": "crash | backend crash | ST_Relate(matrix) |  | - | degen-int | MultiPolygon / GeometryCollection(Polygon)",
+   "rank": 0,
+   "vertices": 33
+  },
+  {
+   "rep": "98ceb94cc288",
+   "item": "lane1:76892:crash:ST_Relate(pattern)",
+   "group": "crash | backend crash | ST_Relate(pattern) |  | - | degen-float | LineString / GeometryCollection(Polygon,Polygon EMPTY)",
+   "rank": 0,
+   "vertices": 21
+  },
+  {
+   "rep": "e6b46ba3db5d",
+   "item": "lane1:76891:crash:ST_Relate(pattern)",
+   "group": "crash | backend crash | ST_Relate(pattern) |  | - | degen-int | LineString / GeometryCollection(Polygon,Polygon EMPTY)",
+   "rank": 0,
+   "vertices": 21
+  },
+  {
+   "rep": "bd09c03025e2",
+   "item": "lane0:94532:crash:ST_Touches",
+   "group": "crash | backend crash | ST_Touches |  | - | degen-float | GeometryCollection(LineString) / MultiPolygon",
+   "rank": 0,
+   "vertices": 12
+  },
+  {
+   "rep": "b15a694ce748",
+   "item": "lane4:72548:crash:ST_Touches",
+   "group": "crash | backend crash | ST_Touches |  | - | degen-float | GeometryCollection(Polygon) / MultiPolygon",
+   "rank": 0,
+   "vertices": 21
+  },
+  {
+   "rep": "5a376dd23156",
+   "item": "lane1:76892:crash:ST_Touches",
+   "group": "crash | backend crash | ST_Touches |  | - | degen-float | LineString / GeometryCollection(Polygon,Polygon EMPTY)",
+   "rank": 0,
+   "vertices": 21
+  },
+  {
+   "rep": "1d91da737835",
+   "item": "lane3:9208:crash:ST_Touches",
+   "group": "crash | backend crash | ST_Touches |  | - | degen-float | MultiPolygon / GeometryCollection(Polygon)",
+   "rank": 0,
+   "vertices": 33
+  },
+  {
+   "rep": "70a8df20b0c4",
+   "item": "lane4:72547:crash:ST_Touches",
+   "group": "crash | backend crash | ST_Touches |  | - | degen-int | GeometryCollection(Polygon) / MultiPolygon",
+   "rank": 0,
+   "vertices": 21
+  },
+  {
+   "rep": "02684e578282",
+   "item": "lane1:76891:crash:ST_Touches",
+   "group": "crash | backend crash | ST_Touches |  | - | degen-int | LineString / GeometryCollection(Polygon,Polygon EMPTY)",
+   "rank": 0,
+   "vertices": 21
+  },
+  {
+   "rep": "41a85f0df205",
+   "item": "lane3:9207:crash:ST_Touches",
+   "group": "crash | backend crash | ST_Touches |  | - | degen-int | MultiPolygon / GeometryCollection(Polygon)",
+   "rank": 0,
+   "vertices": 33
+  },
+  {
+   "rep": "a8abcb1dd1e1",
+   "item": "lane4:54970:v1311",
+   "group": "R10 | dim(Intersection) = max(II,IB,BI,BB) | Intersection/Relate | ST_Dimension(ST_Intersection) vs ST_Relate cells | - | plain-float | LineString / MultiLineString",
+   "rank": 0,
+   "vertices": 18
+  },
+  {
+   "rep": "0e256ca8a85e",
+   "item": "lane2:100674:v2127",
+   "group": "R10 | dim(Intersection) = max(II,IB,BI,BB) | Intersection/Relate | ST_Dimension(ST_Intersection) vs ST_Relate cells | - | plain-float | MultiLineString / LineString",
+   "rank": 0,
+   "vertices": 12
+  },
+  {
+   "rep": "85ab8b273285",
+   "item": "lane3:54070:v1287",
+   "group": "R10 | dim(Intersection) = max(II,IB,BI,BB) | Intersection/Relate | ST_Dimension(ST_Intersection) vs ST_Relate cells | - | plain-float | MultiPolygon / Polygon",
+   "rank": 0,
+   "vertices": 35
+  },
+  {
+   "rep": "b28f116f2639",
+   "item": "lane1:56810:v1404",
+   "group": "R10 | dim(Intersection) = max(II,IB,BI,BB) | Intersection/Relate | ST_Dimension(ST_Intersection) vs ST_Relate cells | - | plain-float | Polygon / MultiPolygon",
+   "rank": 0,
+   "vertices": 38
+  },
+  {
+   "rep": "67dd6c88f33d",
+   "item": "lane2:60726:v1622",
+   "group": "R10 | dim(Intersection) = max(II,IB,BI,BB) | Intersection/Relate | ST_Dimension(ST_Intersection) vs ST_Relate cells | - | plain-float | Polygon / Polygon",
+   "rank": 0,
+   "vertices": 25
+  },
+  {
+   "rep": "0fb1a44f654c",
+   "item": "lane1:126288:v3637",
+   "group": "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ab | degen-float | MultiPolygon / MultiPolygon",
+   "rank": 0,
+   "vertices": 6
+  },
+  {
+   "rep": "a28dd1916693",
+   "item": "lane1:50964:v1091",
+   "group": "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ab | degen-float | Polygon / MultiPolygon",
+   "rank": 0,
+   "vertices": 23
+  },
+  {
+   "rep": "2d452d58cf0e",
+   "item": "lane3:57540:v1485",
+   "group": "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ab | degen-float | Polygon / Polygon",
+   "rank": 0,
+   "vertices": 17
+  },
+  {
+   "rep": "7b2a7de6f7b1",
+   "item": "lane1:75320:v1889",
+   "group": "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ba | degen-float | Polygon / MultiPolygon",
+   "rank": 0,
+   "vertices": 24
+  },
+  {
+   "rep": "39c7a072828e",
+   "item": "lane1:126288:v3638",
+   "group": "R3 | lone vs prepared arg1 | Covers | lone vs prepared arg1[2] | ab | degen-float | MultiPolygon / MultiPolygon",
+   "rank": 0,
+   "vertices": 6
+  },
+  {
+   "rep": "9ceae0cfe8a8",
+   "item": "lane1:50964:v1092",
+   "group": "R3 | lone vs prepared arg1 | Covers | lone vs prepared arg1[2] | ab | degen-float | Polygon / MultiPolygon",
+   "rank": 0,
+   "vertices": 23
+  },
+  {
+   "rep": "e6294e230fcc",
+   "item": "lane3:57540:v1486",
+   "group": "R3 | lone vs prepared arg1 | Covers | lone vs prepared arg1[2] | ab | degen-float | Polygon / Polygon",
+   "rank": 0,
+   "vertices": 17
+  },
+  {
+   "rep": "ad31be3e4f9c",
+   "item": "lane1:75320:v1890",
+   "group": "R3 | lone vs prepared arg1 | Covers | lone vs prepared arg1[2] | ba | degen-float | Polygon / MultiPolygon",
+   "rank": 0,
+   "vertices": 24
+  },
+  {
+   "rep": "a54cbb5c1513",
+   "item": "lane1:75320:v1888",
+   "group": "R3 | lone vs prepared arg2 | Within | lone vs prepared arg2[2] | ab | degen-float | Polygon / MultiPolygon",
+   "rank": 0,
+   "vertices": 24
+  },
+  {
+   "rep": "537819667450",
+   "item": "lane1:126288:v3639",
+   "group": "R3 | lone vs prepared arg2 | Within | lone vs prepared arg2[2] | ba | degen-float | MultiPolygon / MultiPolygon",
+   "rank": 0,
+   "vertices": 6
+  },
+  {
+   "rep": "dbfd78aa728e",
+   "item": "lane1:50964:v1093",
+   "group": "R3 | lone vs prepared arg2 | Within | lone vs prepared arg2[2] | ba | degen-float | Polygon / MultiPolygon",
+   "rank": 0,
+   "vertices": 23
+  },
+  {
+   "rep": "23321f518fe1",
+   "item": "lane3:57540:v1487",
+   "group": "R3 | lone vs prepared arg2 | Within | lone vs prepared arg2[2] | ba | degen-float | Polygon / Polygon",
+   "rank": 0,
+   "vertices": 17
+  },
+  {
+   "rep": "169b4b86930d",
+   "item": "lane0:113500:v2956",
+   "group": "R4 | ForceCollection(arg1) | Relate | lone vs ForceCollection(arg1) | ab | degen-float | MultiPolygon / MultiPolygon",
+   "rank": 0,
+   "vertices": 48
+  },
+  {
+   "rep": "dd3caec1678f",
+   "item": "lane1:97812:v1988",
+   "group": "R4 | ForceCollection(arg1) | Relate | lone vs ForceCollection(arg1) | ba | degen-float | Polygon / MultiPolygon",
+   "rank": 0,
+   "vertices": 12
+  },
+  {
+   "rep": "ac8ba496c8e3",
+   "item": "lane0:54412:v1265",
+   "group": "R5 | Intersects<=>not IsEmpty(Intersection) | Intersects/Intersection | lone Intersects vs IsEmpty(ST_Intersection) | ab | degen-float | MultiLineString / MultiLineString",
+   "rank": 0,
+   "vertices": 12
+  },
+  {
+   "rep": "429fb33686b6",
+   "item": "lane0:54412:v1266",
+   "group": "R5 | Intersects<=>not IsEmpty(Intersection) | Intersects/Intersection | lone Intersects vs IsEmpty(ST_Intersection) | ba | degen-float | MultiLineString / MultiLineString",
+   "rank": 0,
+   "vertices": 12
+  },
+  {
+   "rep": "9a0868e70246",
+   "item": "lane1:22595:crash:ST_CoveredBy",
+   "group": "crash | backend crash | ST_CoveredBy |  | - | degen-int | MultiPolygon / MultiPolygon",
+   "rank": 0,
+   "vertices": 46
+  },
+  {
+   "rep": "efc402490cf4",
+   "item": "lane1:76664:crash:ST_Covers",
+   "group": "crash | backend crash | ST_Covers |  | - | degen-float | MultiLineString / MultiPolygon",
+   "rank": 0,
+   "vertices": 28
+  },
+  {
+   "rep": "4475e605d36f",
+   "item": "lane1:77744:crash:ST_Covers",
+   "group": "crash | backend crash | ST_Covers |  | - | degen-float | MultiPolygon / MultiPolygon",
+   "rank": 0,
+   "vertices": 58
+  },
+  {
+   "rep": "876fb73fd364",
+   "item": "lane0:93052:crash:ST_Relate(matrix)",
+   "group": "crash | backend crash | ST_Relate(matrix) |  | - | degen-float | GeometryCollection(Polygon,Polygon EMPTY) / LineString",
+   "rank": 0,
+   "vertices": 12
+  },
+  {
+   "rep": "73d548451700",
+   "item": "lane1:31448:crash:ST_Relate(matrix)",
+   "group": "crash | backend crash | ST_Relate(matrix) |  | - | degen-float | MultiPolygon / GeometryCollection(LineString)",
+   "rank": 0,
+   "vertices": 16
+  },
+  {
+   "rep": "811ce7705e89",
+   "item": "lane1:31447:crash:ST_Relate(matrix)",
+   "group": "crash | backend crash | ST_Relate(matrix) |  | - | degen-int | MultiPolygon / GeometryCollection(LineString)",
+   "rank": 0,
+   "vertices": 16
+  },
+  {
+   "rep": "f5869c8446ea",
+   "item": "lane0:93052:crash:ST_Relate(pattern)",
+   "group": "crash | backend crash | ST_Relate(pattern) |  | - | degen-float | GeometryCollection(Polygon,Polygon EMPTY) / LineString",
+   "rank": 0,
+   "vertices": 12
+  },
+  {
+   "rep": "903a8b6479bb",
+   "item": "lane0:93052:crash:ST_Touches",
+   "group": "crash | backend crash | ST_Touches |  | - | degen-float | GeometryCollection(Polygon,Polygon EMPTY) / LineString",
+   "rank": 0,
+   "vertices": 12
+  },
+  {
+   "rep": "2ef3270f7923",
+   "item": "lane1:31448:crash:ST_Touches",
+   "group": "crash | backend crash | ST_Touches |  | - | degen-float | MultiPolygon / GeometryCollection(LineString)",
+   "rank": 0,
+   "vertices": 16
+  },
+  {
+   "rep": "2aef4c85e434",
+   "item": "lane1:31447:crash:ST_Touches",
+   "group": "crash | backend crash | ST_Touches |  | - | degen-int | MultiPolygon / GeometryCollection(LineString)",
+   "rank": 0,
+   "vertices": 16
+  },
+  {
+   "rep": "ca359a462a96",
+   "item": "lane1:22595:crash:ST_Within",
+   "group": "crash | backend crash | ST_Within |  | - | degen-int | MultiPolygon / MultiPolygon",
+   "rank": 0,
+   "vertices": 46
+  },
+  {
+   "rep": "5ce409044caa",
+   "item": "lane4:59206:v1546",
+   "group": "R10 | dim(Intersection) = max(II,IB,BI,BB) | Intersection/Relate | ST_Dimension(ST_Intersection) vs ST_Relate cells | - | plain-float | LineString / LineString",
+   "rank": 0,
+   "vertices": 11
+  },
+  {
+   "rep": "324ec35dfd20",
+   "item": "lane0:64524:v1869",
+   "group": "R2 | Relate transpose | Relate | ST_Relate(b,a) vs transpose(ST_Relate(a,b)) | - | degen-float | MultiLineString / GeometryCollection(Polygon)",
+   "rank": 0,
+   "vertices": 29
+  },
+  {
+   "rep": "824fdde66fde",
+   "item": "lane1:98624:v2037",
+   "group": "R2 | Relate transpose | Relate | ST_Relate(b,a) vs transpose(ST_Relate(a,b)) | - | degen-float | MultiPolygon / Polygon",
+   "rank": 0,
+   "vertices": 39
+  },
+  {
+   "rep": "f0e553a273c4",
+   "item": "lane4:17932:v21",
+   "group": "R2 | Relate transpose | Relate | ST_Relate(b,a) vs transpose(ST_Relate(a,b)) | - | degen-float | Polygon / GeometryCollection(Polygon)",
+   "rank": 0,
+   "vertices": 34
+  },
+  {
+   "rep": "56a04b86cad1",
+   "item": "lane3:1820:v3",
+   "group": "R2 | Relate transpose | Relate | ST_Relate(b,a) vs transpose(ST_Relate(a,b)) | - | degen-float | Polygon / MultiLineString",
+   "rank": 0,
+   "vertices": 28
+  },
+  {
+   "rep": "5760aaf66af4",
+   "item": "lane4:17931:v20",
+   "group": "R2 | Relate transpose | Relate | ST_Relate(b,a) vs transpose(ST_Relate(a,b)) | - | degen-int | Polygon / GeometryCollection(Polygon)",
+   "rank": 0,
+   "vertices": 34
+  },
+  {
+   "rep": "e0f81ff0a095",
+   "item": "lane2:7820:v8",
+   "group": "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ab | degen-float | Polygon / LineString",
+   "rank": 0,
+   "vertices": 20
+  },
+  {
+   "rep": "cbe24654f881",
+   "item": "lane4:24032:v24",
+   "group": "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ba | degen-float | MultiPolygon / MultiPolygon",
+   "rank": 0,
+   "vertices": 19
+  },
+  {
+   "rep": "d3f7bafc3287",
+   "item": "lane3:54552:v1305",
+   "group": "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ba | degen-float | Polygon / Polygon",
+   "rank": 0,
+   "vertices": 18
+  },
+  {
+   "rep": "b5b972e6700e",
+   "item": "lane2:7820:v9",
+   "group": "R3 | lone vs prepared arg1 | Covers | lone vs prepared arg1[2] | ab | degen-float | Polygon / LineString",
+   "rank": 0,
+   "vertices": 20
+  },
+  {
+   "rep": "51bfe1d0a4d3",
+   "item": "lane4:24032:v25",
+   "group": "R3 | lone vs prepared arg1 | Covers | lone vs prepared arg1[2] | ba | degen-float | MultiPolygon / MultiPolygon",
+   "rank": 0,
+   "vertices": 19
+  },
+  {
+   "rep": "032db4dbf208",
+   "item": "lane3:54552:v1306",
+   "group": "R3 | lone vs prepared arg1 | Covers | lone vs prepared arg1[2] | ba | degen-float | Polygon / Polygon",
+   "rank": 0,
+   "vertices": 18
+  },
+  {
+   "rep": "7c1ca9b674f2",
+   "item": "lane4:24032:v23",
+   "group": "R3 | lone vs prepared arg2 | Within | lone vs prepared arg2[2] | ab | degen-float | MultiPolygon / MultiPolygon",
+   "rank": 0,
+   "vertices": 19
+  },
+  {
+   "rep": "0934797fb9a5",
+   "item": "lane3:54552:v1304",
+   "group": "R3 | lone vs prepared arg2 | Within | lone vs prepared arg2[2] | ab | degen-float | Polygon / Polygon",
+   "rank": 0,
+   "vertices": 18
+  },
+  {
+   "rep": "793c90fe4026",
+   "item": "lane2:7820:v10",
+   "group": "R3 | lone vs prepared arg2 | Within | lone vs prepared arg2[2] | ba | degen-float | Polygon / LineString",
+   "rank": 0,
+   "vertices": 20
+  },
+  {
+   "rep": "c2295dc8481a",
+   "item": "lane3:50263:v1068",
+   "group": "R4 | ForceCollection(arg1) | Relate | lone vs ForceCollection(arg1) | ab | degen-int | MultiPolygon / MultiPolygon",
+   "rank": 0,
+   "vertices": 46
+  },
+  {
+   "rep": "ebf0d8d3aace",
+   "item": "lane3:50263:v1069",
+   "group": "R4 | ForceCollection(arg2) | Relate | lone vs ForceCollection(arg2) | ba | degen-int | MultiPolygon / MultiPolygon",
+   "rank": 0,
+   "vertices": 46
+  },
+  {
+   "rep": "c1bdddc8c75e",
+   "item": "lane3:12320:crash:ST_Contains",
+   "group": "crash | backend crash | ST_Contains |  | - | degen-float | GeometryCollection(Polygon,Polygon EMPTY) / MultiPolygon",
+   "rank": 0,
+   "vertices": 40
+  },
+  {
+   "rep": "253447a0508b",
+   "item": "lane1:81968:crash:ST_Contains",
+   "group": "crash | backend crash | ST_Contains |  | - | degen-float | GeometryCollection(Polygon,Polygon EMPTY) / Polygon",
+   "rank": 0,
+   "vertices": 27
+  },
+  {
+   "rep": "09bc79b80cd4",
+   "item": "lane1:76664:crash:ST_Contains",
+   "group": "crash | backend crash | ST_Contains |  | - | degen-float | MultiLineString / MultiPolygon",
+   "rank": 0,
+   "vertices": 28
+  },
+  {
+   "rep": "e856661c6e30",
+   "item": "lane0:94008:crash:ST_Contains",
+   "group": "crash | backend crash | ST_Contains |  | - | degen-float | MultiPolygon / GeometryCollection(Polygon)",
+   "rank": 0,
+   "vertices": 44
+  },
+  {
+   "rep": "a49b63a9ad03",
+   "item": "lane3:95724:crash:ST_Contains",
+   "group": "crash | backend crash | ST_Contains |  | - | degen-float | MultiPolygon / MultiPolygon",
+   "rank": 0,
+   "vertices": 60
+  },
+  {
+   "rep": "090791efd39c",
+   "item": "lane4:67536:crash:ST_Contains",
+   "group": "crash | backend crash | ST_Contains |  | - | degen-float | MultiPolygon / Polygon",
+   "rank": 0,
+   "vertices": 28
+  },
+  {
+   "rep": "9ff1d4b2fd3c",
+   "item": "lane3:12319:crash:ST_Contains",
+   "group": "crash | backend crash | ST_Contains |  | - | degen-int | GeometryCollection(Polygon,Polygon EMPTY) / MultiPolygon",
+   "rank": 0,
+   "vertices": 40
+  },
+  {
+   "rep": "99b10b8eaa3b",
+   "item": "lane1:81967:crash:ST_Contains",
+   "group": "crash | backend crash | ST_Contains |  | - | degen-int | GeometryCollection(Polygon,Polygon EMPTY) / Polygon",
+   "rank": 0,
+   "vertices": 27
+  },
+  {
+   "rep": "20b64b23ac3c",
+   "item": "lane0:94007:crash:ST_Contains",
+   "group": "crash | backend crash | ST_Contains |  | - | degen-int | MultiPolygon / GeometryCollection(Polygon)",
+   "rank": 0,
+   "vertices": 44
+  },
+  {
+   "rep": "99d17921c632",
+   "item": "lane3:95723:crash:ST_Contains",
+   "group": "crash | backend crash | ST_Contains |  | - | degen-int | MultiPolygon / MultiPolygon",
+   "rank": 0,
+   "vertices": 60
+  },
+  {
+   "rep": "bb0ecd12d81f",
+   "item": "lane4:67535:crash:ST_Contains",
+   "group": "crash | backend crash | ST_Contains |  | - | degen-int | MultiPolygon / Polygon",
+   "rank": 0,
+   "vertices": 28
+  },
+  {
+   "rep": "dd1fe7e9044c",
+   "item": "lane4:208:crash:ST_CoveredBy",
+   "group": "crash | backend crash | ST_CoveredBy |  | - | degen-float | GeometryCollection(Polygon) / GeometryCollection(Polygon,Polygon EMPTY)",
+   "rank": 0,
+   "vertices": 49
+  },
+  {
+   "rep": "f1af423cabc9",
+   "item": "lane1:81968:crash:ST_CoveredBy",
+   "group": "crash | backend crash | ST_CoveredBy |  | - | degen-float | GeometryCollection(Polygon,Polygon EMPTY) / Polygon",
+   "rank": 0,
+   "vertices": 27
+  },
+  {
+   "rep": "ddf70bdcca9d",
+   "item": "lane1:76664:crash:ST_CoveredBy",
+   "group": "crash | backend crash | ST_CoveredBy |  | - | degen-float | MultiLineString / MultiPolygon",
+   "rank": 0,
+   "vertices": 28
+  },
+  {
+   "rep": "83d8b4cf0091",
+   "item": "lane2:69240:crash:ST_CoveredBy",
+   "group": "crash | backend crash | ST_CoveredBy |  | - | degen-float | MultiPolygon / GeometryCollection(Point,Polygon)",
+   "rank": 0,
+   "vertices": 65
+  },
+  {
+   "rep": "59b29122e55e",
+   "item": "lane0:94008:crash:ST_CoveredBy",
+   "group": "crash | backend crash | ST_CoveredBy |  | - | degen-float | MultiPolygon / GeometryCollection(Polygon)",
+   "rank": 0,
+   "vertices": 44
+  },
+  {
+   "rep": "dc24661a5f68",
+   "item": "lane3:95724:crash:ST_CoveredBy",
+   "group": "crash | backend crash | ST_CoveredBy |  | - | degen-float | MultiPolygon / MultiPolygon",
+   "rank": 0,
+   "vertices": 60
+  },
+  {
+   "rep": "619fbf39d283",
+   "item": "lane4:67536:crash:ST_CoveredBy",
+   "group": "crash | backend crash | ST_CoveredBy |  | - | degen-float | MultiPolygon / Polygon",
+   "rank": 0,
+   "vertices": 28
+  },
+  {
+   "rep": "a32a390a291a",
+   "item": "lane4:207:crash:ST_CoveredBy",
+   "group": "crash | backend crash | ST_CoveredBy |  | - | degen-int | GeometryCollection(Polygon) / GeometryCollection(Polygon,Polygon EMPTY)",
+   "rank": 0,
+   "vertices": 49
+  },
+  {
+   "rep": "6dc132781b18",
+   "item": "lane1:81967:crash:ST_CoveredBy",
+   "group": "crash | backend crash | ST_CoveredBy |  | - | degen-int | GeometryCollection(Polygon,Polygon EMPTY) / Polygon",
+   "rank": 0,
+   "vertices": 27
+  },
+  {
+   "rep": "f652597c1d85",
+   "item": "lane0:94007:crash:ST_CoveredBy",
+   "group": "crash | backend crash | ST_CoveredBy |  | - | degen-int | MultiPolygon / GeometryCollection(Polygon)",
+   "rank": 0,
+   "vertices": 44
+  },
+  {
+   "rep": "bddeca719f5f",
+   "item": "lane4:67535:crash:ST_CoveredBy",
+   "group": "crash | backend crash | ST_CoveredBy |  | - | degen-int | MultiPolygon / Polygon",
+   "rank": 0,
+   "vertices": 28
+  },
+  {
+   "rep": "43139abe83ec",
+   "item": "lane0:85059:crash:ST_CoveredBy",
+   "group": "crash | backend crash | ST_CoveredBy |  | - | degen-int | Polygon / MultiPolygon",
+   "rank": 0,
+   "vertices": 30
+  },
+  {
+   "rep": "438c2e1e3042",
+   "item": "lane4:20700:crash:ST_Covers",
+   "group": "crash | backend crash | ST_Covers |  | - | degen-float | GeometryCollection(LineString,Point) / MultiPolygon",
+   "rank": 0,
+   "vertices": 24
+  },
+  {
+   "rep": "0b6c6ca5086c",
+   "item": "lane3:12320:crash:ST_Covers",
+   "group": "crash | backend crash | ST_Covers |  | - | degen-float | GeometryCollection(Polygon,Polygon EMPTY) / MultiPolygon",
+   "rank": 0,
+   "vertices": 40
+  },
+  {
+   "rep": "c32d0fd06fb3",
+   "item": "lane1:81968:crash:ST_Covers",
+   "group": "crash | backend crash | ST_Covers |  | - | degen-float | GeometryCollection(Polygon,Polygon EMPTY) / Polygon",
+   "rank": 0,
+   "vertices": 27
+  },
+  {
+   "rep": "c470f573444e",
+   "item": "lane1:31448:crash:ST_Covers",
+   "group": "crash | backend crash | ST_Covers |  | - | degen-float | MultiPolygon / GeometryCollection(LineString)",
+   "rank": 0,
+   "vertices": 16
+  },
+  {
+   "rep": "d27b91bff097",
+   "item": "lane0:94008:crash:ST_Covers",
+   "group": "crash | backend crash | ST_Covers |  | - | degen-float | MultiPolygon / GeometryCollection(Polygon)",
+   "rank": 0,
+   "vertices": 44
+  },
+  {
+   "rep": "b9d8f6674386",
+   "item": "lane4:67536:crash:ST_Covers",
+   "group": "crash | backend crash | ST_Covers |  | - | degen-float | MultiPolygon / Polygon",
+   "rank": 0,
+   "vertices": 28
+  },
+  {
+   "rep": "7ca966a26b67",
+   "item": "lane3:12319:crash:ST_Covers",
+   "group": "crash | backend crash | ST_Covers |  | - | degen-int | GeometryCollection(Polygon,Polygon EMPTY) / MultiPolygon",
+   "rank": 0,
+   "vertices": 40
+  },
+  {
+   "rep": "86893ae1928c",
+   "item": "lane1:81967:crash:ST_Covers",
+   "group": "crash | backend crash | ST_Covers |  | - | degen-int | GeometryCollection(Polygon,Polygon EMPTY) / Polygon",
+   "rank": 0,
+   "vertices": 27
+  },
+  {
+   "rep": "5d353f8f994a",
+   "item": "lane1:31447:crash:ST_Covers",
+   "group": "crash | backend crash | ST_Covers |  | - | degen-int | MultiPolygon / GeometryCollection(LineString)",
+   "rank": 0,
+   "vertices": 16
+  },
+  {
+   "rep": "45c1457e35de",
+   "item": "lane0:94007:crash:ST_Covers",
+   "group": "crash | backend crash | ST_Covers |  | - | degen-int | MultiPolygon / GeometryCollection(Polygon)",
+   "rank": 0,
+   "vertices": 44
+  },
+  {
+   "rep": "882c697e2e6a",
+   "item": "lane3:95723:crash:ST_Covers",
+   "group": "crash | backend crash | ST_Covers |  | - | degen-int | MultiPolygon / MultiPolygon",
+   "rank": 0,
+   "vertices": 60
+  },
+  {
+   "rep": "8201d350a7d9",
+   "item": "lane4:67535:crash:ST_Covers",
+   "group": "crash | backend crash | ST_Covers |  | - | degen-int | MultiPolygon / Polygon",
+   "rank": 0,
+   "vertices": 28
+  },
+  {
+   "rep": "80bb09db3e84",
+   "item": "lane4:208:crash:ST_Disjoint",
+   "group": "crash | backend crash | ST_Disjoint |  | - | degen-float | GeometryCollection(Polygon) / GeometryCollection(Polygon,Polygon EMPTY)",
+   "rank": 0,
+   "vertices": 49
+  },
+  {
+   "rep": "6f482e9d0f45",
+   "item": "lane0:73976:crash:ST_Disjoint",
+   "group": "crash | backend crash | ST_Disjoint |  | - | degen-float | GeometryCollection(Polygon,Polygon EMPTY) / GeometryCollection(Polygon)",
+   "rank": 0,
+   "vertices": 63
+  },
+  {
+   "rep": "55742f038fbc",
+   "item": "lane4:8772:crash:ST_Disjoint",
+   "group": "crash | backend crash | ST_Disjoint |  | - | degen-float | GeometryCollection(Polygon,Polygon EMPTY) / LineString",
+   "rank": 0,
+   "vertices": 32
+  },
+  {
+   "rep": "0be97b72de7a",
+   "item": "lane3:12320:crash:ST_Disjoint",
+   "group": "crash | backend crash | ST_Disjoint |  | - | degen-float | GeometryCollection(Polygon,Polygon EMPTY) / MultiPolygon",
+   "rank": 0,
+   "vertices": 40
+  },
+  {
+   "rep": "9464b54d3ab5",
+   "item": "lane1:81968:crash:ST_Disjoint",
+   "group": "crash | backend crash | ST_Disjoint |  | - | degen-float | GeometryCollection(Polygon,Polygon EMPTY) / Polygon",
+   "rank": 0,
+   "vertices": 27
+  },
+  {
+   "rep": "e78b09504492",
+   "item": "lane1:22684:crash:ST_Disjoint",
+   "group": "crash | backend crash | ST_Disjoint |  | - | degen-float | MultiPolygon / GeometryCollection(LineString,Polygon)",
+   "rank": 0,
+   "vertices": 29
+  },
+  {
+   "rep": "40b8914276a7",
+   "item": "lane2:69240:crash:ST_Disjoint",
+   "group": "crash | backend crash | ST_Disjoint |  | - | degen-float | MultiPolygon / GeometryCollection(Point,Polygon)",
+   "rank": 0,
+   "vertices": 65
+  },
+  {
+   "rep": "cdd5d5a232f3",
+   "item": "lane2:12296:crash:ST_Disjoint",
+   "group": "crash | backend crash | ST_Disjoint |  | - | degen-float | MultiPolygon / GeometryCollection(Point,Polygon,Polygon EMPTY)",
+   "rank": 0,
+   "vertices": 80
+  },
+  {
+   "rep": "6a9bcfb41100",
+   "item": "lane4:207:crash:ST_Disjoint",
+   "group": "crash | backend crash | ST_Disjoint |  | - | degen-int | GeometryCollection(Polygon) / GeometryCollection(Polygon,Polygon EMPTY)",
+   "rank": 0,
+   "vertices": 49
+  },
+  {
+   "rep": "612c4bd475e9",
+   "item": "lane0:73975:crash:ST_Disjoint",
+   "group": "crash | backend crash | ST_Disjoint |  | - | degen-int | GeometryCollection(Polygon,Polygon EMPTY) / GeometryCollection(Polygon)",
+   "rank": 0,
+   "vertices": 63
+  },
+  {
+   "rep": "348a885809cc",
+   "item": "lane4:8771:crash:ST_Disjoint",
+   "group": "crash | backend crash | ST_Disjoint |  | - | degen-int | GeometryCollection(Polygon,Polygon EMPTY) / LineString",
+   "rank": 0,
+   "vertices": 32
+  },
+  {
+   "rep": "32678923681d",
+   "item": "lane3:12319:crash:ST_Disjoint",
+   "group": "crash | backend crash | ST_Disjoint |  | - | degen-int | GeometryCollection(Polygon,Polygon EMPTY) / MultiPolygon",
+   "rank": 0,
+   "vertices": 40
+  },
+  {
+   "rep": "739cc43996e7",
+   "item": "lane1:81967:crash:ST_Disjoint",
+   "group": "crash | backend crash | ST_Disjoint |  | - | degen-int | GeometryCollection(Polygon,Polygon EMPTY) / Polygon",
+   "rank": 0,
+   "vertices": 27
+  },
+  {
+   "rep": "e0858a445693",
+   "item": "lane1:22683:crash:ST_Disjoint",
+   "group": "crash | backend crash | ST_Disjoint |  | - | degen-int | MultiPolygon / GeometryCollection(LineString,Polygon)",
+   "rank": 0,
+   "vertices": 29
+  },
+  {
+   "rep": "a5909963dcbc",
+   "item": "lane2:69239:crash:ST_Disjoint",
+   "group": "crash | backend crash | ST_Disjoint |  | - | degen-int | MultiPolygon / GeometryCollection(Point,Polygon)",
+   "rank": 0,
+   "vertices": 65
+  },
+  {
+   "rep": "a4cc7991fef9",
+   "item": "lane2:12295:crash:ST_Disjoint",
+   "group": "crash | backend crash | ST_Disjoint |  | - | degen-int | MultiPolygon / GeometryCollection(Point,Polygon,Polygon EMPTY)",
+   "rank": 0,
+   "vertices": 80
+  },
+  {
+   "rep": "1700086ca76b",
+   "item": "lane4:208:crash:ST_Intersects",
+   "group": "crash | backend crash | ST_Intersects |  | - | degen-float | GeometryCollection(Polygon) / GeometryCollection(Polygon,Polygon EMPTY)",
+   "rank": 0,
+   "vertices": 49
+  },
+  {
+   "rep": "e7c934e8961b",
+   "item": "lane0:73976:crash:ST_Intersects",
+   "group": "crash | backend crash | ST_Intersects |  | - | degen-float | GeometryCollection(Polygon,Polygon EMPTY) / GeometryCollection(Polygon)",
+   "rank": 0,
+   "vertices": 63
+  },
+  {
+   "rep": "9becb5e9d433",
+   "item": "lane4:8772:crash:ST_Intersects",
+   "group": "crash | backend crash | ST_Intersects |  | - | degen-float | GeometryCollection(Polygon,Polygon EMPTY) / LineString",
+   "rank": 0,
+   "vertices": 32
+  },
+  {
+   "rep": "5d5d60306357",
+   "item": "lane3:12320:crash:ST_Intersects",
+   "group": "crash | backend crash | ST_Intersects |  | - | degen-float | GeometryCollection(Polygon,Polygon EMPTY) / MultiPolygon",
+   "rank": 0,
+   "vertices": 40
+  },
+  {
+   "rep": "e6c85cbee22a",
+   "item": "lane1:81968:crash:ST_Intersects",
+   "group": "crash | backend crash | ST_Intersects |  | - | degen-float | GeometryCollection(Polygon,Polygon EMPTY) / Polygon",
+   "rank": 0,
+   "vertices": 27
+  },
+  {
+   "rep": "9eaf93a87cfa",
+   "item": "lane1:22684:crash:ST_Intersects",
+   "group": "crash | backend crash | ST_Intersects |  | - | degen-float | MultiPolygon / GeometryCollection(LineString,Polygon)",
+   "rank": 0,
+   "vertices": 29
+  },
+  {
+   "rep": "f4a2e7c78064",
+   "item": "lane2:69240:crash:ST_Intersects",
+   "group": "crash | backend crash | ST_Intersects |  | - | degen-float | MultiPolygon / GeometryCollection(Point,Polygon)",
+   "rank": 0,
+   "vertices": 65
+  },
+  {
+   "rep": "6b02ce91f8aa",
+   "item": "lane2:12296:crash:ST_Intersects",
+   "group": "crash | backend crash | ST_Intersects |  | - | degen-float | MultiPolygon / GeometryCollection(Point,Polygon,Polygon EMPTY)",
+   "rank": 0,
+   "vertices": 80
+  },
+  {
+   "rep": "f512b261e49b",
+   "item": "lane4:207:crash:ST_Intersects",
+   "group": "crash | backend crash | ST_Intersects |  | - | degen-int | GeometryCollection(Polygon) / GeometryCollection(Polygon,Polygon EMPTY)",
+   "rank": 0,
+   "vertices": 49
+  },
+  {
+   "rep": "735436bc89e2",
+   "item": "lane0:73975:crash:ST_Intersects",
+   "group": "crash | backend crash | ST_Intersects |  | - | degen-int | GeometryCollection(Polygon,Polygon EMPTY) / GeometryCollection(Polygon)",
+   "rank": 0,
+   "vertices": 63
+  },
+  {
+   "rep": "dcd79c9cc04e",
+   "item": "lane4:8771:crash:ST_Intersects",
+   "group": "crash | backend crash | ST_Intersects |  | - | degen-int | GeometryCollection(Polygon,Polygon EMPTY) / LineString",
+   "rank": 0,
+   "vertices": 32
+  },
+  {
+   "rep": "b6bfbd022ee5",
+   "item": "lane3:12319:crash:ST_Intersects",
+   "group": "crash | backend crash | ST_Intersects |  | - | degen-int | GeometryCollection(Polygon,Polygon EMPTY) / MultiPolygon",
+   "rank": 0,
+   "vertices": 40
+  },
+  {
+   "rep": "4c1fc4948d49",
+   "item": "lane1:81967:crash:ST_Intersects",
+   "group": "crash | backend crash | ST_Intersects |  | - | degen-int | GeometryCollection(Polygon,Polygon EMPTY) / Polygon",
+   "rank": 0,
+   "vertices": 27
+  },
+  {
+   "rep": "171f2d379035",
+   "item": "lane1:22683:crash:ST_Intersects",
+   "group": "crash | backend crash | ST_Intersects |  | - | degen-int | MultiPolygon / GeometryCollection(LineString,Polygon)",
+   "rank": 0,
+   "vertices": 29
+  },
+  {
+   "rep": "35a3e3635448",
+   "item": "lane2:69239:crash:ST_Intersects",
+   "group": "crash | backend crash | ST_Intersects |  | - | degen-int | MultiPolygon / GeometryCollection(Point,Polygon)",
+   "rank": 0,
+   "vertices": 65
+  },
+  {
+   "rep": "49b28f072af4",
+   "item": "lane2:12295:crash:ST_Intersects",
+   "group": "crash | backend crash | ST_Intersects |  | - | degen-int | MultiPolygon / GeometryCollection(Point,Polygon,Polygon EMPTY)",
+   "rank": 0,
+   "vertices": 80
+  },
+  {
+   "rep": "a9f45749b90e",
+   "item": "lane4:20700:crash:ST_Relate(matrix)",
+   "group": "crash | backend crash | ST_Relate(matrix) |  | - | degen-float | GeometryCollection(LineString,Point) / MultiPolygon",
+   "rank": 0,
+   "vertices": 24
+  },
+  {
+   "rep": "8911dcf65712",
+   "item": "lane3:10624:crash:ST_Relate(matrix)",
+   "group": "crash | backend crash | ST_Relate(matrix) |  | - | degen-float | GeometryCollection(LineString,Point,Polygon,Polygon EMPTY) / Polygon",
+   "rank": 0,
+   "vertices": 48
+  },
+  {
+   "rep": "635d25b687dc",
+   "item": "lane0:8740:crash:ST_Relate(matrix)",
+   "group": "crash | backend crash | ST_Relate(matrix) |  | - | degen-float | GeometryCollection(Point,Polygon) / MultiPolygon",
+   "rank": 0,
+   "vertices": 62
+  },
+  {
+   "rep": "027a7bad8af3",
+   "item": "lane4:208:crash:ST_Relate(matrix)",
+   "group": "crash | backend crash | ST_Relate(matrix) |  | - | degen-float | GeometryCollection(Polygon) / GeometryCollection(Polygon,Polygon EMPTY)",
+   "rank": 0,
+   "vertices": 49
+  },
+  {
+   "rep": "6627509a8afd",
+   "item": "lane0:73976:crash:ST_Relate(matrix)",
+   "group": "crash | backend crash | ST_Relate(matrix) |  | - | degen-float | GeometryCollection(Polygon,Polygon EMPTY) / GeometryCollection(Polygon)",
+   "rank": 0,
+   "vertices": 63
+  },
+  {
+   "rep": "fe936626edd9",
+   "item": "lane2:7856:crash:ST_Relate(matrix)",
+   "group": "crash | backend crash | ST_Relate(matrix) |  | - | degen-float | GeometryCollection(Polygon,Polygon EMPTY) / MultiLineString",
+   "rank": 0,
+   "vertices": 31
+  },
+  {
+   "rep": "8be1fd571cae",
+   "item": "lane3:12320:crash:ST_Relate(matrix)",
+   "group": "crash | backend crash | ST_Relate(matrix) |  | - | degen-float | GeometryCollection(Polygon,Polygon EMPTY) / MultiPolygon",
+   "rank": 0,
+   "vertices": 40
+  },
+  {
+   "rep": "940e9e6e4b3c",
+   "item": "lane1:81968:crash:ST_Relate(matrix)",
+   "group": "crash | backend crash | ST_Relate(matrix) |  | - | degen-float | GeometryCollection(Polygon,Polygon EMPTY) / Polygon",
+   "rank": 0,
+   "vertices": 27
+  },
+  {
+   "rep": "a3ce9c969496",
+   "item": "lane2:84280:crash:ST_Relate(matrix)",
+   "group": "crash | backend crash | ST_Relate(matrix) |  | - | degen-float | LineString / GeometryCollection(LineString,Polygon,Polygon EMPTY)",
+   "rank": 0,
+   "vertices": 27
+  },
+  {
+   "rep": "45bd35935cae",
+   "item": "lane2:94424:crash:ST_Relate(matrix)",
+   "group": "crash | backend crash | ST_Relate(matrix) |  | - | degen-float | MultiLineString / GeometryCollection(Polygon,Polygon EMPTY)",
+   "rank": 0,
+   "vertices": 24
+  },
+  {
+   "rep": "43ab2e8fca1f",
+   "item": "lane3:92208:crash:ST_Relate(matrix)",
+   "group": "crash | backend crash | ST_Relate(matrix) |  | - | degen-float | MultiPolygon / GeometryCollection(LineString,Point)",
+   "rank": 0,
+   "vertices": 28
+  },
+  {
+   "rep": "82d7ba2d0da4",
+   "item": "lane1:22684:crash:ST_Relate(matrix)",
+   "group": "crash | backend crash | ST_Relate(matrix) |  | - | degen-float | MultiPolygon / GeometryCollection(LineString,Polygon)",
+   "rank": 0,
+   "vertices": 29
+  },
+  {
+   "rep": "60242eaf784b",
+   "item": "lane2:69240:crash:ST_Relate(matrix)",
+   "group": "crash | backend crash | ST_Relate(matrix) |  | - | degen-float | MultiPolygon / GeometryCollection(Point,Polygon)",
+   "rank": 0,
+   "vertices": 65
+  },
+  {
+   "rep": "48952ba51b4a",
+   "item": "lane2:12296:crash:ST_Relate(matrix)",
+   "group": "crash | backend crash | ST_Relate(matrix) |  | - | degen-float | MultiPolygon / GeometryCollection(Point,Polygon,Polygon EMPTY)",
+   "rank": 0,
+   "vertices": 80
+  },
+  {
+   "rep": "8fb09ca42a75",
+   "item": "lane2:73612:crash:ST_Relate(matrix)",
+   "group": "crash | backend crash | ST_Relate(matrix) |  | - | degen-float | Polygon / GeometryCollection(Polygon,Polygon EMPTY)",
+   "rank": 0,
+   "vertices": 25
+  },
+  {
+   "rep": "44b77a8b2f44",
+   "item": "lane4:20699:crash:ST_Relate(matrix)",
+   "group": "crash | backend crash | ST_Relate(matrix) |  | - | degen-int | GeometryCollection(LineString,Point) / MultiPolygon",
+   "rank": 0,
+   "vertices": 24
+  },
+  {
+   "rep": "f056e8a799ed",
+   "item": "lane3:10623:crash:ST_Relate(matrix)",
+   "group": "crash | backend crash | ST_Relate(matrix) |  | - | degen-int | GeometryCollection(LineString,Point,Polygon,Polygon EMPTY) / Polygon",
+   "rank": 0,
+   "vertices": 48
+  },
+  {
+   "rep": "beab1a304d43",
+   "item": "lane4:207:crash:ST_Relate(matrix)",
+   "group": "crash | backend crash | ST_Relate(matrix) |  | - | degen-int | GeometryCollection(Polygon) / GeometryCollection(Polygon,Polygon EMPTY)",
+   "rank": 0,
+   "vertices": 49
+  },
+  {
+   "rep": "1a0e29771863",
+   "item": "lane0:73975:crash:ST_Relate(matrix)",
+   "group": "crash | backend crash | ST_Relate(matrix) |  | - | degen-int | GeometryCollection(Polygon,Polygon EMPTY) / GeometryCollection(Polygon)",
+   "rank": 0,
+   "vertices": 63
+  },
+  {
+   "rep": "05c32f2967dc",
+   "item": "lane4:8771:crash:ST_Relate(matrix)",
+   "group": "crash | backend crash | ST_Relate(matrix) |  | - | degen-int | GeometryCollection(Polygon,Polygon EMPTY) / LineString",
+   "rank": 0,
+   "vertices": 32
+  },
+  {
+   "rep": "69c839b9994c",
+   "item": "lane2:7855:crash:ST_Relate(matrix)",
+   "group": "crash | backend crash | ST_Relate(matrix) |  | - | degen-int | GeometryCollection(Polygon,Polygon EMPTY) / MultiLineString",
+   "rank": 0,
+   "vertices": 31
+  },
+  {
+   "rep": "d445eab0da6d",
+   "item": "lane3:12319:crash:ST_Relate(matrix)",
+   "group": "crash | backend crash | ST_Relate(matrix) |  | - | degen-int | GeometryCollection(Polygon,Polygon EMPTY) / MultiPolygon",
+   "rank": 0,
+   "vertices": 40
+  },
+  {
+   "rep": "85a407e552c9",
+   "item": "lane1:81967:crash:ST_Relate(matrix)",
+   "group": "crash | backend crash | ST_Relate(matrix) |  | - | degen-int | GeometryCollection(Polygon,Polygon EMPTY) / Polygon",
+   "rank": 0,
+   "vertices": 27
+  },
+  {
+   "rep": "ae1e83243eab",
+   "item": "lane2:84279:crash:ST_Relate(matrix)",
+   "group": "crash | backend crash | ST_Relate(matrix) |  | - | degen-int | LineString / GeometryCollection(LineString,Polygon,Polygon EMPTY)",
+   "rank": 0,
+   "vertices": 27
+  },
+  {
+   "rep": "353fc5825520",
+   "item": "lane2:94423:crash:ST_Relate(matrix)",
+   "group": "crash | backend crash | ST_Relate(matrix) |  | - | degen-int | MultiLineString / GeometryCollection(Polygon,Polygon EMPTY)",
+   "rank": 0,
+   "vertices": 24
+  },
+  {
+   "rep": "c02fecf2b1eb",
+   "item": "lane3:92207:crash:ST_Relate(matrix)",
+   "group": "crash | backend crash | ST_Relate(matrix) |  | - | degen-int | MultiPolygon / GeometryCollection(LineString,Point)",
+   "rank": 0,
+   "vertices": 28
+  },
+  {
+   "rep": "4778b25ecb69",
+   "item": "lane1:22683:crash:ST_Relate(matrix)",
+   "group": "crash | backend crash | ST_Relate(matrix) |  | - | degen-int | MultiPolygon / GeometryCollection(LineString,Polygon)",
+   "rank": 0,
+   "vertices": 29
+  },
+  {
+   "rep": "67ef629a59a1",
+   "item": "lane2:69239:crash:ST_Relate(matrix)",
+   "group": "crash | backend crash | ST_Relate(matrix) |  | - | degen-int | MultiPolygon / GeometryCollection(Point,Polygon)",
+   "rank": 0,
+   "vertices": 65
+  },
+  {
+   "rep": "aec1b08698b6",
+   "item": "lane2:12295:crash:ST_Relate(matrix)",
+   "group": "crash | backend crash | ST_Relate(matrix) |  | - | degen-int | MultiPolygon / GeometryCollection(Point,Polygon,Polygon EMPTY)",
+   "rank": 0,
+   "vertices": 80
+  },
+  {
+   "rep": "767376ed77e6",
+   "item": "lane2:73611:crash:ST_Relate(matrix)",
+   "group": "crash | backend crash | ST_Relate(matrix) |  | - | degen-int | Polygon / GeometryCollection(Polygon,Polygon EMPTY)",
+   "rank": 0,
+   "vertices": 25
+  },
+  {
+   "rep": "d3d3192c4f24",
+   "item": "lane3:10624:crash:ST_Relate(pattern)",
+   "group": "crash | backend crash | ST_Relate(pattern) |  | - | degen-float | GeometryCollection(LineString,Point,Polygon,Polygon EMPTY) / Polygon",
+   "rank": 0,
+   "vertices": 48
+  },
+  {
+   "rep": "7159248c60f7",
+   "item": "lane4:208:crash:ST_Relate(pattern)",
+   "group": "crash | backend crash | ST_Relate(pattern) |  | - | degen-float | GeometryCollection(Polygon) / GeometryCollection(Polygon,Polygon EMPTY)",
+   "rank": 0,
+   "vertices": 49
+  },
+  {
+   "rep": "ac647b288164",
+   "item": "lane0:73976:crash:ST_Relate(pattern)",
+   "group": "crash | backend crash | ST_Relate(pattern) |  | - | degen-float | GeometryCollection(Polygon,Polygon EMPTY) / GeometryCollection(Polygon)",
+   "rank": 0,
+   "vertices": 63
+  },
+  {
+   "rep": "e2038e7bc209",
+   "item": "lane2:7856:crash:ST_Relate(pattern)",
+   "group": "crash | backend crash | ST_Relate(pattern) |  | - | degen-float | GeometryCollection(Polygon,Polygon EMPTY) / MultiLineString",
+   "rank": 0,
+   "vertices": 31
+  },
+  {
+   "rep": "4beddab32896",
+   "item": "lane3:12320:crash:ST_Relate(pattern)",
+   "group": "crash | backend crash | ST_Relate(pattern) |  | - | degen-float | GeometryCollection(Polygon,Polygon EMPTY) / MultiPolygon",
+   "rank": 0,
+   "vertices": 40
+  },
+  {
+   "rep": "0ba9d27d2a52",
+   "item": "lane1:81968:crash:ST_Relate(pattern)",
+   "group": "crash | backend crash | ST_Relate(pattern) |  | - | degen-float | GeometryCollection(Polygon,Polygon EMPTY) / Polygon",
+   "rank": 0,
+   "vertices": 27
+  },
+  {
+   "rep": "0278b7ab9cd5",
+   "item": "lane2:84280:crash:ST_Relate(pattern)",
+   "group": "crash | backend crash | ST_Relate(pattern) |  | - | degen-float | LineString / GeometryCollection(LineString,Polygon,Polygon EMPTY)",
+   "rank": 0,
+   "vertices": 27
+  },
+  {
+   "rep": "13592a58ccad",
+   "item": "lane2:94424:crash:ST_Relate(pattern)",
+   "group": "crash | backend crash | ST_Relate(pattern) |  | - | degen-float | MultiLineString / GeometryCollection(Polygon,Polygon EMPTY)",
+   "rank": 0,
+   "vertices": 24
+  },
+  {
+   "rep": "191d364849d5",
+   "item": "lane2:12296:crash:ST_Relate(pattern)",
+   "group": "crash | backend crash | ST_Relate(pattern) |  | - | degen-float | MultiPolygon / GeometryCollection(Point,Polygon,Polygon EMPTY)",
+   "rank": 0,
+   "vertices": 80
+  },
+  {
+   "rep": "62d0ef98d6ff",
+   "item": "lane2:73612:crash:ST_Relate(pattern)",
+   "group": "crash | backend crash | ST_Relate(pattern) |  | - | degen-float | Polygon / GeometryCollection(Polygon,Polygon EMPTY)",
+   "rank": 0,
+   "vertices": 25
+  },
+  {
+   "rep": "c2b963f7ebee",
+   "item": "lane3:10623:crash:ST_Relate(pattern)",
+   "group": "crash | backend crash | ST_Relate(pattern) |  | - | degen-int | GeometryCollection(LineString,Point,Polygon,Polygon EMPTY) / Polygon",
+   "rank": 0,
+   "vertices": 48
+  },
+  {
+   "rep": "a470b7f49212",
+   "item": "lane4:207:crash:ST_Relate(pattern)",
+   "group": "crash | backend crash | ST_Relate(pattern) |  | - | degen-int | GeometryCollection(Polygon) / GeometryCollection(Polygon,Polygon EMPTY)",
+   "rank": 0,
+   "vertices": 49
+  },
+  {
+   "rep": "d605d6bafec5",
+   "item": "lane0:73975:crash:ST_Relate(pattern)",
+   "group": "crash | backend crash | ST_Relate(pattern) |  | - | degen-int | GeometryCollection(Polygon,Polygon EMPTY) / GeometryCollection(Polygon)",
+   "rank": 0,
+   "vertices": 63
+  },
+  {
+   "rep": "05058ec7fa5d",
+   "item": "lane4:8771:crash:ST_Relate(pattern)",
+   "group": "crash | backend crash | ST_Relate(pattern) |  | - | degen-int | GeometryCollection(Polygon,Polygon EMPTY) / LineString",
+   "rank": 0,
+   "vertices": 32
+  },
+  {
+   "rep": "6f0a07049775",
+   "item": "lane2:7855:crash:ST_Relate(pattern)",
+   "group": "crash | backend crash | ST_Relate(pattern) |  | - | degen-int | GeometryCollection(Polygon,Polygon EMPTY) / MultiLineString",
+   "rank": 0,
+   "vertices": 31
+  },
+  {
+   "rep": "14f9478d9b8d",
+   "item": "lane3:12319:crash:ST_Relate(pattern)",
+   "group": "crash | backend crash | ST_Relate(pattern) |  | - | degen-int | GeometryCollection(Polygon,Polygon EMPTY) / MultiPolygon",
+   "rank": 0,
+   "vertices": 40
+  },
+  {
+   "rep": "c790c4380159",
+   "item": "lane1:81967:crash:ST_Relate(pattern)",
+   "group": "crash | backend crash | ST_Relate(pattern) |  | - | degen-int | GeometryCollection(Polygon,Polygon EMPTY) / Polygon",
+   "rank": 0,
+   "vertices": 27
+  },
+  {
+   "rep": "f2c635e24405",
+   "item": "lane2:84279:crash:ST_Relate(pattern)",
+   "group": "crash | backend crash | ST_Relate(pattern) |  | - | degen-int | LineString / GeometryCollection(LineString,Polygon,Polygon EMPTY)",
+   "rank": 0,
+   "vertices": 27
+  },
+  {
+   "rep": "3fc2c136dc45",
+   "item": "lane2:94423:crash:ST_Relate(pattern)",
+   "group": "crash | backend crash | ST_Relate(pattern) |  | - | degen-int | MultiLineString / GeometryCollection(Polygon,Polygon EMPTY)",
+   "rank": 0,
+   "vertices": 24
+  },
+  {
+   "rep": "168021ba0040",
+   "item": "lane2:12295:crash:ST_Relate(pattern)",
+   "group": "crash | backend crash | ST_Relate(pattern) |  | - | degen-int | MultiPolygon / GeometryCollection(Point,Polygon,Polygon EMPTY)",
+   "rank": 0,
+   "vertices": 80
+  },
+  {
+   "rep": "4710ef625e9a",
+   "item": "lane2:73611:crash:ST_Relate(pattern)",
+   "group": "crash | backend crash | ST_Relate(pattern) |  | - | degen-int | Polygon / GeometryCollection(Polygon,Polygon EMPTY)",
+   "rank": 0,
+   "vertices": 25
+  },
+  {
+   "rep": "cbdea19a6177",
+   "item": "lane4:20700:crash:ST_Touches",
+   "group": "crash | backend crash | ST_Touches |  | - | degen-float | GeometryCollection(LineString,Point) / MultiPolygon",
+   "rank": 0,
+   "vertices": 24
+  },
+  {
+   "rep": "4ec4c51d5ba5",
+   "item": "lane4:208:crash:ST_Touches",
+   "group": "crash | backend crash | ST_Touches |  | - | degen-float | GeometryCollection(Polygon) / GeometryCollection(Polygon,Polygon EMPTY)",
+   "rank": 0,
+   "vertices": 49
+  },
+  {
+   "rep": "8244ef3cc379",
+   "item": "lane0:73976:crash:ST_Touches",
+   "group": "crash | backend crash | ST_Touches |  | - | degen-float | GeometryCollection(Polygon,Polygon EMPTY) / GeometryCollection(Polygon)",
+   "rank": 0,
+   "vertices": 63
+  },
+  {
+   "rep": "d58e6f57407a",
+   "item": "lane2:7856:crash:ST_Touches",
+   "group": "crash | backend crash | ST_Touches |  | - | degen-float | GeometryCollection(Polygon,Polygon EMPTY) / MultiLineString",
+   "rank": 0,
+   "vertices": 31
+  },
+  {
+   "rep": "cd5b3a371536",
+   "item": "lane3:12320:crash:ST_Touches",
+   "group": "crash | backend crash | ST_Touches |  | - | degen-float | GeometryCollection(Polygon,Polygon EMPTY) / MultiPolygon",
+   "rank": 0,
+   "vertices": 40
+  },
+  {
+   "rep": "573aa395b66b",
+   "item": "lane1:81968:crash:ST_Touches",
+   "group": "crash | backend crash | ST_Touches |  | - | degen-float | GeometryCollection(Polygon,Polygon EMPTY) / Polygon",
+   "rank": 0,
+   "vertices": 27
+  },
+  {
+   "rep": "5e4a65e07fd2",
+   "item": "lane2:84280:crash:ST_Touches",
+   "group": "crash | backend crash | ST_Touches |  | - | degen-float | LineString / GeometryCollection(LineString,Polygon,Polygon EMPTY)",
+   "rank": 0,
+   "vertices": 27
+  },
+  {
+   "rep": "74ffd6dec336",
+   "item": "lane2:94424:crash:ST_Touches",
+   "group": "crash | backend crash | ST_Touches |  | - | degen-float | MultiLineString / GeometryCollection(Polygon,Polygon EMPTY)",
+   "rank": 0,
+   "vertices": 24
+  },
+  {
+   "rep": "cf09573de848",
+   "item": "lane3:92208:crash:ST_Touches",
+   "group": "crash | backend crash | ST_Touches |  | - | degen-float | MultiPolygon / GeometryCollection(LineString,Point)",
+   "rank": 0,
+   "vertices": 28
+  },
+  {
+   "rep": "41739b17bc2f",
+   "item": "lane1:22684:crash:ST_Touches",
+   "group": "crash | backend crash | ST_Touches |  | - | degen-float | MultiPolygon / GeometryCollection(LineString,Polygon)",
+   "rank": 0,
+   "vertices": 29
+  },
+  {
+   "rep": "d0a9a6c8a444",
+   "item": "lane2:69240:crash:ST_Touches",
+   "group": "crash | backend crash | ST_Touches |  | - | degen-float | MultiPolygon / GeometryCollection(Point,Polygon)",
+   "rank": 0,
+   "vertices": 65
+  },
+  {
+   "rep": "2b88341316fb",
+   "item": "lane2:12296:crash:ST_Touches",
+   "group": "crash | backend crash | ST_Touches |  | - | degen-float | MultiPolygon / GeometryCollection(Point,Polygon,Polygon EMPTY)",
+   "rank": 0,
+   "vertices": 80
+  },
+  {
+   "rep": "73f0b03bccaf",
+   "item": "lane4:20699:crash:ST_Touches",
+   "group": "crash | backend crash | ST_Touches |  | - | degen-int | GeometryCollection(LineString,Point) / MultiPolygon",
+   "rank": 0,
+   "vertices": 24
+  },
+  {
+   "rep": "ad4a20df46be",
+   "item": "lane4:207:crash:ST_Touches",
+   "group": "crash | backend crash | ST_Touches |  | - | degen-int | GeometryCollection(Polygon) / GeometryCollection(Polygon,Polygon EMPTY)",
+   "rank": 0,
+   "vertices": 49
+  },
+  {
+   "rep": "f20b224f4e09",
+   "item": "lane0:73975:crash:ST_Touches",
+   "group": "crash | backend crash | ST_Touches |  | - | degen-int | GeometryCollection(Polygon,Polygon EMPTY) / GeometryCollection(Polygon)",
+   "rank": 0,
+   "vertices": 63
+  },
+  {
+   "rep": "b193f3456e82",
+   "item": "lane4:8771:crash:ST_Touches",
+   "group": "crash | backend crash | ST_Touches |  | - | degen-int | GeometryCollection(Polygon,Polygon EMPTY) / LineString",
+   "rank": 0,
+   "vertices": 32
+  },
+  {
+   "rep": "fda2e4f7220a",
+   "item": "lane2:7855:crash:ST_Touches",
+   "group": "crash | backend crash | ST_Touches |  | - | degen-int | GeometryCollection(Polygon,Polygon EMPTY) / MultiLineString",
+   "rank": 0,
+   "vertices": 31
+  },
+  {
+   "rep": "8dfe3625f268",
+   "item": "lane3:12319:crash:ST_Touches",
+   "group": "crash | backend crash | ST_Touches |  | - | degen-int | GeometryCollection(Polygon,Polygon EMPTY) / MultiPolygon",
+   "rank": 0,
+   "vertices": 40
+  },
+  {
+   "rep": "d5b997d93ebd",
+   "item": "lane1:81967:crash:ST_Touches",
+   "group": "crash | backend crash | ST_Touches |  | - | degen-int | GeometryCollection(Polygon,Polygon EMPTY) / Polygon",
+   "rank": 0,
+   "vertices": 27
+  },
+  {
+   "rep": "541f75f0a388",
+   "item": "lane2:84279:crash:ST_Touches",
+   "group": "crash | backend crash | ST_Touches |  | - | degen-int | LineString / GeometryCollection(LineString,Polygon,Polygon EMPTY)",
+   "rank": 0,
+   "vertices": 27
+  },
+  {
+   "rep": "96bf12e87057",
+   "item": "lane2:94423:crash:ST_Touches",
+   "group": "crash | backend crash | ST_Touches |  | - | degen-int | MultiLineString / GeometryCollection(Polygon,Polygon EMPTY)",
+   "rank": 0,
+   "vertices": 24
+  },
+  {
+   "rep": "c58ada1986dc",
+   "item": "lane3:92207:crash:ST_Touches",
+   "group": "crash | backend crash | ST_Touches |  | - | degen-int | MultiPolygon / GeometryCollection(LineString,Point)",
+   "rank": 0,
+   "vertices": 28
+  },
+  {
+   "rep": "636c299e06af",
+   "item": "lane1:22683:crash:ST_Touches",
+   "group": "crash | backend crash | ST_Touches |  | - | degen-int | MultiPolygon / GeometryCollection(LineString,Polygon)",
+   "rank": 0,
+   "vertices": 29
+  },
+  {
+   "rep": "3ebc40d20f8b",
+   "item": "lane2:69239:crash:ST_Touches",
+   "group": "crash | backend crash | ST_Touches |  | - | degen-int | MultiPolygon / GeometryCollection(Point,Polygon)",
+   "rank": 0,
+   "vertices": 65
+  },
+  {
+   "rep": "7e1b403d0340",
+   "item": "lane2:12295:crash:ST_Touches",
+   "group": "crash | backend crash | ST_Touches |  | - | degen-int | MultiPolygon / GeometryCollection(Point,Polygon,Polygon EMPTY)",
+   "rank": 0,
+   "vertices": 80
+  },
+  {
+   "rep": "b5602d789d8d",
+   "item": "lane4:208:crash:ST_Within",
+   "group": "crash | backend crash | ST_Within |  | - | degen-float | GeometryCollection(Polygon) / GeometryCollection(Polygon,Polygon EMPTY)",
+   "rank": 0,
+   "vertices": 49
+  },
+  {
+   "rep": "9bfa0e24f344",
+   "item": "lane1:81968:crash:ST_Within",
+   "group": "crash | backend crash | ST_Within |  | - | degen-float | GeometryCollection(Polygon,Polygon EMPTY) / Polygon",
+   "rank": 0,
+   "vertices": 27
+  },
+  {
+   "rep": "f352b2c8c9ba",
+   "item": "lane1:76664:crash:ST_Within",
+   "group": "crash | backend crash | ST_Within |  | - | degen-float | MultiLineString / MultiPolygon",
+   "rank": 0,
+   "vertices": 28
+  },
+  {
+   "rep": "15cda558a947",
+   "item": "lane2:69240:crash:ST_Within",
+   "group": "crash | backend crash | ST_Within |  | - | degen-float | MultiPolygon / GeometryCollection(Point,Polygon)",
+   "rank": 0,
+   "vertices": 65
+  },
+  {
+   "rep": "965699c1575c",
+   "item": "lane0:94008:crash:ST_Within",
+   "group": "crash | backend crash | ST_Within |  | - | degen-float | MultiPolygon / GeometryCollection(Polygon)",
+   "rank": 0,
+   "vertices": 44
+  },
+  {
+   "rep": "89cf5bc6d4ab",
+   "item": "lane3:95724:crash:ST_Within",
+   "group": "crash | backend crash | ST_Within |  | - | degen-float | MultiPolygon / MultiPolygon",
+   "rank": 0,
+   "vertices": 60
+  },
+  {
+   "rep": "eee5358e30ca",
+   "item": "lane4:67536:crash:ST_Within",
+   "group": "crash | backend crash | ST_Within |  | - | degen-float | MultiPolygon / Polygon",
+   "rank": 0,
+   "vertices": 28
+  },
+  {
+   "rep": "08458fbc6b1b",
+   "item": "lane4:207:crash:ST_Within",
+   "group": "crash | backend crash | ST_Within |  | - | degen-int | GeometryCollection(Polygon) / GeometryCollection(Polygon,Polygon EMPTY)",
+   "rank": 0,
+   "vertices": 49
+  },
+  {
+   "rep": "b3bb3a32711c",
+   "item": "lane1:81967:crash:ST_Within",
+   "group": "crash | backend crash | ST_Within |  | - | degen-int | GeometryCollection(Polygon,Polygon EMPTY) / Polygon",
+   "rank": 0,
+   "vertices": 27
+  },
+  {
+   "rep": "92d8b9256d98",
+   "item": "lane0:94007:crash:ST_Within",
+   "group": "crash | backend crash | ST_Within |  | - | degen-int | MultiPolygon / GeometryCollection(Polygon)",
+   "rank": 0,
+   "vertices": 44
+  },
+  {
+   "rep": "4d6fd4788f9b",
+   "item": "lane4:67535:crash:ST_Within",
+   "group": "crash | backend crash | ST_Within |  | - | degen-int | MultiPolygon / Polygon",
+   "rank": 0,
+   "vertices": 28
+  },
+  {
+   "rep": "4f5fdaa67dd1",
+   "item": "lane0:85059:crash:ST_Within",
+   "group": "crash | backend crash | ST_Within |  | - | degen-int | Polygon / MultiPolygon",
+   "rank": 0,
+   "vertices": 30
+  },
+  {
+   "rep": "f8ff85acd66b",
+   "item": "lane0:103748:v2391",
+   "group": "R11 | Intersection floating vs fixed | Intersection | Intersection(a,b) vs Intersection(a,b,g) | - | degen-float | LineString / LineString",
+   "rank": 1,
+   "vertices": 4
+  },
+  {
+   "rep": "9768d4a83381",
+   "item": "lane0:103748:v2392",
+   "group": "R11 | Union floating vs fixed | Union | Union(a,b) vs Union(a,b,g) | - | degen-float | LineString / LineString",
+   "rank": 1,
+   "vertices": 4
+  },
+  {
+   "rep": "0bc49d74dc0c",
+   "item": "lane0:48436:v932",
+   "group": "R11 | Intersection floating vs fixed | Intersection | Intersection(a,b) vs Intersection(a,b,g) | - | degen-float | LineString / MultiLineString",
+   "rank": 1,
+   "vertices": 4
+  },
+  {
+   "rep": "9660b9a46b6d",
+   "item": "lane0:48436:v933",
+   "group": "R11 | Union floating vs fixed | Union | Union(a,b) vs Union(a,b,g) | - | degen-float | LineString / MultiLineString",
+   "rank": 1,
+   "vertices": 4
+  },
+  {
+   "rep": "2785c9004f78",
+   "item": "lane0:101624:v2268",
+   "group": "R11 | Intersection floating vs fixed | Intersection | Intersection(a,b) vs Intersection(a,b,g) | - | degen-float | MultiLineString / LineString",
+   "rank": 1,
+   "vertices": 4
+  },
+  {
+   "rep": "966ba7098415",
+   "item": "lane0:101624:v2269",
+   "group": "R11 | Union floating vs fixed | Union | Union(a,b) vs Union(a,b,g) | - | degen-float | MultiLineString / LineString",
+   "rank": 1,
+   "vertices": 4
+  },
+  {
+   "rep": "541b188d298a",
+   "item": "lane0:63440:v1832",
+   "group": "R11 | Intersection floating vs fixed | Intersection | Intersection(a,b) vs Intersection(a,b,g) | - | degen-float | MultiLineString / MultiLineString",
+   "rank": 1,
+   "vertices": 4
+  },
+  {
+   "rep": "18678bec4a4f",
+   "item": "lane0:63440:v1833",
+   "group": "R11 | Union floating vs fixed | Union | Union(a,b) vs Union(a,b,g) | - | degen-float | MultiLineString / MultiLineString",
+   "rank": 1,
+   "vertices": 4
+  },
+  {
+   "rep": "b7b705f93cb3",
+   "item": "lane2:49892:v1066",
+   "group": "R10 | dim(Intersection) = max(II,IB,BI,BB) | Intersection/Relate | ST_Dimension(ST_Intersection) vs ST_Relate cells | - | degen-float | LineString / LineString",
+   "rank": 1,
+   "vertices": 5
+  },
+  {
+   "rep": "2ecd5b53021b",
+   "item": "lane1:42092:v585",
+   "group": "R10 | dim(Intersection) = max(II,IB,BI,BB) | Intersection/Relate | ST_Dimension(ST_Intersection) vs ST_Relate cells | - | degen-float | LineString / MultiLineString",
+   "rank": 1,
+   "vertices": 5
+  },
+  {
+   "rep": "a00bddc5d445",
+   "item": "lane3:59892:v1602",
+   "group": "R10 | dim(Intersection) = max(II,IB,BI,BB) | Intersection/Relate | ST_Dimension(ST_Intersection) vs ST_Relate cells | - | degen-float | MultiLineString / LineString",
+   "rank": 1,
+   "vertices": 5
+  },
+  {
+   "rep": "6d12be97fb46",
+   "item": "lane0:105924:v2539",
+   "group": "R10 | dim(Intersection) = max(II,IB,BI,BB) | Intersection/Relate | ST_Dimension(ST_Intersection) vs ST_Relate cells | - | degen-float | Polygon / Polygon",
+   "rank": 1,
+   "vertices": 7
+  },
+  {
+   "rep": "be3d3b86b520",
+   "item": "lane3:100588:v2094",
+   "group": "R10 | dim(Intersection) = max(II,IB,BI,BB) | Intersection/Relate | ST_Dimension(ST_Intersection) vs ST_Relate cells | - | degen-float | MultiPolygon / Polygon",
+   "rank": 1,
+   "vertices": 7
+  },
+  {
+   "rep": "3d60bfee304b",
+   "item": "lane4:48552:v943",
+   "group": "R10 | dim(Intersection) = max(II,IB,BI,BB) | Intersection/Relate | ST_Dimension(ST_Intersection) vs ST_Relate cells | - | degen-float | Polygon / MultiPolygon",
+   "rank": 1,
+   "vertices": 9
+  },
+  {
+   "rep": "abd4595205ac",
+   "item": "lane1:49952:v1023",
+   "group": "R10 | dim(Intersection) = max(II,IB,BI,BB) | Intersection/Relate | ST_Dimension(ST_Intersection) vs ST_Relate cells | - | degen-float | MultiLineString / MultiLineString",
+   "rank": 1,
+   "vertices": 9
+  },
+  {
+   "rep": "20d6bae458b8",
+   "item": "lane1:55584:v1347",
+   "group": "R10 | dim(Intersection) = max(II,IB,BI,BB) | Intersection/Relate | ST_Dimension(ST_Intersection) vs ST_Relate cells | - | degen-float | MultiPolygon / MultiPolygon",
+   "rank": 1,
+   "vertices": 9
+  },
+  {
+   "rep": "0be6c09a22ae",
+   "item": "lane2:82975:v1860",
+   "group": "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ba | degen-int | GeometryCollection(LineString EMPTY,Point) / Polygon",
+   "rank": 1,
+   "vertices": 6
+  },
+  {
+   "rep": "44b9a12e5577",
+   "item": "lane2:26811:v30",
+   "group": "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ba | degen-int | GeometryCollection(Point,Polygon EMPTY) / Polygon",
+   "rank": 1,
+   "vertices": 5
+  },
+  {
+   "rep": "c20a8cfd8f2a",
+   "item": "lane2:17980:v25",
+   "group": "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ba | degen-float | GeometryCollection(Point,Polygon EMPTY) / Polygon",
+   "rank": 1,
+   "vertices": 7
+  },
+  {
+   "rep": "62d6c71f14e9",
+   "item": "lane2:82976:v1861",
+   "group": "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ba | degen-float | GeometryCollection(LineString EMPTY,Point) / Polygon",
+   "rank": 1,
+   "vertices": 6
+  },
+  {
+   "rep": "ffa213731cd2",
+   "item": "lane4:21291:v22",
+   "group": "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ab | degen-int | Polygon / GeometryCollection(LineString EMPTY,Point)",
+   "rank": 1,
+   "vertices": 7
+  },
+  {
+   "rep": "db810267a1fe",
+   "item": "lane0:66095:v1878",
+   "group": "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ab | degen-int | Polygon / GeometryCollection(Point,Polygon EMPTY)",
+   "rank": 1,
+   "vertices": 6
+  },
+  {
+   "rep": "e79cdc2035dc",
+   "item": "lane0:87455:v1914",
+   "group": "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ba | degen-int | GeometryCollection(Point,Polygon EMPTY) / MultiPolygon",
+   "rank": 1,
+   "vertices": 9
+  },
+  {
+   "rep": "4aa403a85a47",
+   "item": "lane0:66096:v1880",
+   "group": "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ab | degen-float | Polygon / GeometryCollection(Point,Polygon EMPTY)",
+   "rank": 1,
+   "vertices": 6
+  },
+  {
+   "rep": "90e81ea3b365",
+   "item": "lane0:72456:v1894",
+   "group": "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ab | degen-float | Polygon / GeometryCollection(LineString EMPTY,Point)",
+   "rank": 1,
+   "vertices": 9
+  },
+  {
+   "rep": "c517a9328c99",
+   "item": "lane0:87456:v1916",
+   "group": "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ba | degen-float | GeometryCollection(Point,Polygon EMPTY) / MultiPolygon",
+   "rank": 1,
+   "vertices": 9
+  },
+  {
+   "rep": "620e6d14ea3b",
+   "item": "lane0:69723:v1886",
+   "group": "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ba | degen-int | GeometryCollection(LineString EMPTY,Point) / MultiPolygon",
+   "rank": 1,
+   "vertices": 15
+  },
+  {
+   "rep": "70d60857c4b3",
+   "item": "lane0:72100:v1890",
+   "group": "R3 | lone vs prepared arg2 | Within | lone vs prepared arg2[2] | ab | degen-float | GeometryCollection(LineString EMPTY,Point) / Polygon",
+   "rank": 1,
+   "vertices": 8
+  },
+  {
+   "rep": "8365e389313e",
+   "item": "lane0:72099:v1888",
+   "group": "R3 | lone vs prepared arg2 | Within | lone vs prepared arg2[2] | ab | degen-int | GeometryCollection(LineString EMPTY,Point) / Polygon",
+   "rank": 1,
+   "vertices": 8
+  },
+  {
+   "rep": "411eb3ebc733",
+   "item": "lane1:68544:crash:ST_Relate(matrix)",
+   "group": "crash | backend crash | ST_Relate(matrix) |  | - | degen-float | LineString / MultiPolygon",
+   "rank": 1,
+   "vertices": 13
+  },
+  {
+   "rep": "1d5bdb3259e7",
+   "item": "lane1:68543:crash:ST_Relate(matrix)",
+   "group": "crash | backend crash | ST_Relate(matrix) |  | - | degen-int | LineString / MultiPolygon",
+   "rank": 1,
+   "vertices": 13
+  },
+  {
+   "rep": "64dd5a27b2ac",
+   "item": "lane0:69724:v1887",
+   "group": "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ba | degen-float | GeometryCollection(LineString EMPTY,Point) / MultiPolygon",
+   "rank": 1,
+   "vertices": 15
+  },
+  {
+   "rep": "631e9702d3aa",
+   "item": "lane1:84243:crash:ST_Relate(matrix)",
+   "group": "crash | backend crash | ST_Relate(matrix) |  | - | degen-int | MultiPolygon / MultiPolygon",
+   "rank": 1,
+   "vertices": 42
+  },
+  {
+   "rep": "d350d4d1e3b6",
+   "item": "lane1:68544:crash:ST_Touches",
+   "group": "crash | backend crash | ST_Touches |  | - | degen-float | LineString / MultiPolygon",
+   "rank": 1,
+   "vertices": 13
+  },
+  {
+   "rep": "75a2243db80a",
+   "item": "lane1:68543:crash:ST_Touches",
+   "group": "crash | backend crash | ST_Touches |  | - | degen-int | LineString / MultiPolygon",
+   "rank": 1,
+   "vertices": 13
+  },
+  {
+   "rep": "c16ddfdfc265",
+   "item": "lane3:87608:crash:ST_Relate(matrix)",
+   "group": "crash | backend crash | ST_Relate(matrix) |  | - | degen-float | MultiLineString / MultiPolygon",
+   "rank": 1,
+   "vertices": 27
+  },
+  {
+   "rep": "02683f21ff4a",
+   "item": "lane1:68964:crash:ST_Relate(matrix)",
+   "group": "crash | backend crash | ST_Relate(matrix) |  | - | degen-float | MultiPolygon / LineString",
+   "rank": 1,
+   "vertices": 15
+  },
+  {
+   "rep": "088f10ba533c",
+   "item": "lane1:84244:crash:ST_Relate(matrix)",
+   "group": "crash | backend crash | ST_Relate(matrix) |  | - | degen-float | MultiPolygon / MultiPolygon",
+   "rank": 1,
+   "vertices": 42
+  },
+  {
+   "rep": "fe104878cd88",
+   "item": "lane2:2476:crash:ST_Relate(matrix)",
+   "group": "crash | backend crash | ST_Relate(matrix) |  | - | degen-float | Polygon / MultiPolygon",
+   "rank": 1,
+   "vertices": 20
+  },
+  {
+   "rep": "400ea547a91e",
+   "item": "lane1:68963:crash:ST_Relate(matrix)",
+   "group": "crash | backend crash | ST_Relate(matrix) |  | - | degen-int | MultiPolygon / LineString",
+   "rank": 1,
+   "vertices": 15
+  },
+  {
+   "rep": "8d2ad575c4ec",
+   "item": "lane2:2475:crash:ST_Relate(matrix)",
+   "group": "crash | backend crash | ST_Relate(matrix) |  | - | degen-int | Polygon / MultiPolygon",
+   "rank": 1,
+   "vertices": 20
+  },
+  {
+   "rep": "0566d6d75116",
+   "item": "lane4:16003:v14",
+   "group": "R3 | lone vs prepared arg2 | Within | lone vs prepared arg2[2] | ab | degen-int | GeometryCollection(Point,Polygon EMPTY) / Polygon",
+   "rank": 1,
+   "vertices": 7
+  },
+  {
+   "rep": "4f998a85866c",
+   "item": "lane2:80360:v1857",
+   "group": "R3 | lone vs prepared arg2 | Within | lone vs prepared arg2[2] | ba | degen-float | Polygon / GeometryCollection(Point,Polygon EMPTY)",
+   "rank": 1,
+   "vertices": 11
+  },
+  {
+   "rep": "6737d2072082",
+   "item": "lane2:80359:v1855",
+   "group": "R3 | lone vs prepared arg2 | Within | lone vs prepared arg2[2] | ba | degen-int | Polygon / GeometryCollection(Point,Polygon EMPTY)",
+   "rank": 1,
+   "vertices": 11
+  },
+  {
+   "rep": "71ee91bf9cb8",
+   "item": "lane3:87607:crash:ST_Relate(matrix)",
+   "group": "crash | backend crash | ST_Relate(matrix) |  | - | degen-int | MultiLineString / MultiPolygon",
+   "rank": 1,
+   "vertices": 27
+  },
+  {
+   "rep": "e478b4a66642",
+   "item": "lane3:87608:crash:ST_Touches",
+   "group": "crash | backend crash | ST_Touches |  | - | degen-float | MultiLineString / MultiPolygon",
+   "rank": 1,
+   "vertices": 27
+  },
+  {
+   "rep": "353497a9ffb2",
+   "item": "lane0:22524:crash:ST_Touches",
+   "group": "crash | backend crash | ST_Touches |  | - | degen-float | MultiPolygon / LineString",
+   "rank": 1,
+   "vertices": 16
+  },
+  {
+   "rep": "96ef3c47dd09",
+   "item": "lane3:87607:crash:ST_Touches",
+   "group": "crash | backend crash | ST_Touches |  | - | degen-int | MultiLineString / MultiPolygon",
+   "rank": 1,
+   "vertices": 27
+  },
+  {
+   "rep": "746da68ebcc9",
+   "item": "lane0:22523:crash:ST_Touches",
+   "group": "crash | backend crash | ST_Touches |  | - | degen-int | MultiPolygon / LineString",
+   "rank": 1,
+   "vertices": 16
+  },
+  {
+   "rep": "2fcd9469ca5c",
+   "item": "lane2:91291:v1872",
+   "group": "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ab | degen-int | MultiPolygon / GeometryCollection(LineString EMPTY,Point)",
+   "rank": 1,
+   "vertices": 17
+  },
+  {
+   "rep": "7bac68f3a670",
+   "item": "lane1:82700:v1904",
+   "group": "R3 | lone vs prepared arg2 | Within | lone vs prepared arg2[2] | ab | degen-float | GeometryCollection(Point,Polygon EMPTY) / Polygon",
+   "rank": 1,
+   "vertices": 12
+  },
+  {
+   "rep": "165bbd67c2c1",
+   "item": "lane0:72455:v1893",
+   "group": "R3 | lone vs prepared arg2 | Within | lone vs prepared arg2[2] | ba | degen-int | Polygon / GeometryCollection(LineString EMPTY,Point)",
+   "rank": 1,
+   "vertices": 9
+  },
+  {
+   "rep": "dcf759a3dc60",
+   "item": "lane2:91292:v1874",
+   "group": "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ab | degen-float | MultiPolygon / GeometryCollection(LineString EMPTY,Point)",
+   "rank": 1,
+   "vertices": 17
+  },
+  {
+   "rep": "f8b871f930bf",
+   "item": "lane1:5160:v4",
+   "group": "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ab | degen-float | MultiPolygon / GeometryCollection(Point,Polygon EMPTY)",
+   "rank": 1,
+   "vertices": 12
+  },
+  {
+   "rep": "16b60087f5fd",
+   "item": "lane1:5159:v3",
+   "group": "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ab | degen-int | MultiPolygon / GeometryCollection(Point,Polygon EMPTY)",
+   "rank": 1,
+   "vertices": 12
+  },
+  {
+   "rep": "bdd12359c6de",
+   "item": "lane0:74132:crash:ST_Disjoint",
+   "group": "crash | backend crash | ST_Disjoint |  | - | degen-float | Polygon / MultiPolygon",
+   "rank": 1,
+   "vertices": 26
+  },
+  {
+   "rep": "fd4fb68883b9",
+   "item": "lane0:74131:crash:ST_Disjoint",
+   "group": "crash | backend crash | ST_Disjoint |  | - | degen-int | Polygon / MultiPolygon",
+   "rank": 1,
+   "vertices": 26
+  },
+  {
+   "rep": "36829582f8fd",
+   "item": "lane0:74132:crash:ST_Intersects",
+   "group": "crash | backend crash | ST_Intersects |  | - | degen-float | Polygon / MultiPolygon",
+   "rank": 1,
+   "vertices": 26
+  },
+  {
+   "rep": "0aa6f060e2de",
+   "item": "lane0:74131:crash:ST_Intersects",
+   "group": "crash | backend crash | ST_Intersects |  | - | degen-int | Polygon / MultiPolygon",
+   "rank": 1,
+   "vertices": 26
+  },
+  {
+   "rep": "399b92834a7a",
+   "item": "lane1:17132:crash:ST_Relate(matrix)",
+   "group": "crash | backend crash | ST_Relate(matrix) |  | - | degen-float | MultiPolygon / Polygon",
+   "rank": 1,
+   "vertices": 21
+  },
+  {
+   "rep": "cc9ae5326c22",
+   "item": "lane1:17131:crash:ST_Relate(matrix)",
+   "group": "crash | backend crash | ST_Relate(matrix) |  | - | degen-int | MultiPolygon / Polygon",
+   "rank": 1,
+   "vertices": 21
+  },
+  {
+   "rep": "8f5a945a5e44",
+   "item": "lane0:74132:crash:ST_Touches",
+   "group": "crash | backend crash | ST_Touches |  | - | degen-float | Polygon / MultiPolygon",
+   "rank": 1,
+   "vertices": 26
+  },
+  {
+   "rep": "d5f83d2fbf47",
+   "item": "lane0:74131:crash:ST_Touches",
+   "group": "crash | backend crash | ST_Touches |  | - | degen-int | Polygon / MultiPolygon",
+   "rank": 1,
+   "vertices": 26
+  },
+  {
+   "rep": "e851d2e96ea2",
+   "item": "lane1:120238:v3260",
+   "group": "R11 | Intersection floating vs fixed | Intersection | Intersection(a,b) vs Intersection(a,b,g) | - | plain-float | LineString / LineString",
+   "rank": 1,
+   "vertices": 10
+  },
+  {
+   "rep": "8eca2c9854f4",
+   "item": "lane2:50798:v1104",
+   "group": "R11 | Intersection floating vs fixed | Intersection | Intersection(a,b) vs Intersection(a,b,g) | - | plain-float | LineString / MultiLineString",
+   "rank": 1,
+   "vertices": 17
+  },
+  {
+   "rep": "0af97d6c0734",
+   "item": "lane1:99634:v2090",
+   "group": "R11 | Intersection floating vs fixed | Intersection | Intersection(a,b) vs Intersection(a,b,g) | - | plain-float | MultiLineString / LineString",
+   "rank": 1,
+   "vertices": 12
+  },
+  {
+   "rep": "8de980772dff",
+   "item": "lane1:120238:v3261",
+   "group": "R11 | Union floating vs fixed | Union | Union(a,b) vs Union(a,b,g) | - | plain-float | LineString / LineString",
+   "rank": 1,
+   "vertices": 10
+  },
+  {
+   "rep": "4f1932eb62f1",
+   "item": "lane2:50798:v1105",
+   "group": "R11 | Union floating vs fixed | Union | Union(a,b) vs Union(a,b,g) | - | plain-float | LineString / MultiLineString",
+   "rank": 1,
+   "vertices": 17
+  },
+  {
+   "rep": "ca06986cfcce",
+   "item": "lane1:99634:v2091",
+   "group": "R11 | Union floating vs fixed | Union | Union(a,b) vs Union(a,b,g) | - | plain-float | MultiLineString / LineString",
+   "rank": 1,
+   "vertices": 12
+  },
+  {
+   "rep": "1494b94ef356",
+   "item": "lane3:89543:v1835",
+   "group": "R3 | lone vs prepared arg2 | Within | lone vs prepared arg2[2] | ab | degen-int | GeometryCollection(LineString EMPTY,Point) / MultiPolygon",
+   "rank": 1,
+   "vertices": 17
+  },
+  {
+   "rep": "ebf32a563916",
+   "item": "lane3:64307:v1808",
+   "group": "R3 | lone vs prepared arg2 | Within | lone vs prepared arg2[2] | ab | degen-int | GeometryCollection(Point,Polygon EMPTY) / MultiPolygon",
+   "rank": 1,
+   "vertices": 21
+  },
+  {
+   "rep": "f89d7d79d86f",
+   "item": "lane0:72456:v1895",
+   "group": "R3 | lone vs prepared arg2 | Within | lone vs prepared arg2[2] | ba | degen-float | Polygon / GeometryCollection(LineString EMPTY,Point)",
+   "rank": 1,
+   "vertices": 9
+  },
+  {
+   "rep": "23e5f6c4f610",
+   "item": "lane1:77743:crash:ST_Disjoint",
+   "group": "crash | backend crash | ST_Disjoint |  | - | degen-int | MultiPolygon / MultiPolygon",
+   "rank": 1,
+   "vertices": 58
+  },
+  {
+   "rep": "ab80ae31c242",
+   "item": "lane1:77743:crash:ST_Intersects",
+   "group": "crash | backend crash | ST_Intersects |  | - | degen-int | MultiPolygon / MultiPolygon",
+   "rank": 1,
+   "vertices": 58
+  }
+ ]
+}

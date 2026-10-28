@@ -1,0 +1,19 @@
+{
+ "rep": "b7b705f93cb3",
+ "item": "lane2:49892:v1066",
+ "group": "R10 | dim(Intersection) = max(II,IB,BI,BB) | Intersection/Relate | ST_Dimension(ST_Intersection) vs ST_Relate cells | - | degen-float | LineString / LineString",
+ "steps": 200,
+ "oracle": {
+  "kind": "evaluate on throwaway current: same (rule, sub, function, orientation) counted",
+  "image": "postgis/postgis@sha256:4a43e3c3e5d55b9208240fc71db543b79c638766280c625a425bd0a2390989c4"
+ },
+ "original_reproduces": true,
+ "shrunk_a": "LINESTRING (1464943.6312279054 503605.82995457004, 1464945.495783174 503606.76223220443, 1464949.224893711 503603.9653993015)",
+ "shrunk_b": "LINESTRING (1464941.7666726368 503604.89767693577, 1464947.3603384425 503607.6945098387)",
+ "coord": "float",
+ "chain": [],
+ "oracle_calls": 40,
+ "vertices_before": 5,
+ "vertices_after": 5,
+ "seconds": 1.5422559000071487
+}

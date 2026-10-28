@@ -1,0 +1,7 @@
+2026-10-27 16:32:48 start lanes=2 assignment=[[100], [2]] n=20 kinds=['predicate', 'overlay'] arms=['plain-int', 'plain-float', 'degen-int', 'degen-float']
+2026-10-27 16:32:49 lane1 done=0 remaining=160 pairs_per_h=0 crashes=0 crash_s=0.0 strict_violations=0 strict_pairs=0
+2026-10-27 16:32:49 lane0 done=0 remaining=160 pairs_per_h=0 crashes=0 crash_s=0.0 strict_violations=0 strict_pairs=0
+2026-10-27 16:32:54 start lanes=2 assignment=[[100], [2]] n=20 kinds=['predicate', 'overlay'] arms=['plain-int', 'plain-float', 'degen-int', 'degen-float']
+2026-10-27 16:32:55 lane0 done=80 remaining=80 pairs_per_h=0 crashes=0 crash_s=0.0 strict_violations=0 strict_pairs=0
+2026-10-27 16:33:01 lane0 FINAL done=160 remaining=0 pairs_per_h=51953 crashes=0 crash_s=0.0 strict_violations=0 strict_pairs=0
+2026-10-27 16:33:01 lane1 FINAL done=160 remaining=0 pairs_per_h=50987 crashes=0 crash_s=0.0 strict_violations=0 strict_pairs=0

@@ -1,0 +1,23 @@
+{
+  "campaign": "e2",
+  "seeds": [
+    100
+  ],
+  "kinds": [
+    "predicate",
+    "overlay"
+  ],
+  "n": 500,
+  "arms": [
+    "plain-int"
+  ],
+  "lanes": 1,
+  "chunk": 25,
+  "assignment": [
+    [
+      100
+    ]
+  ],
+  "created": "2026-10-27 16:36:56",
+  "digest": "postgis/postgis@sha256:4a43e3c3e5d55b9208240fc71db543b79c638766280c625a425bd0a2390989c4"
+}

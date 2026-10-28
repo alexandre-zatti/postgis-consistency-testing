@@ -1,0 +1,6 @@
+# Python 3.14 (runs used 3.14.7). Shapely 2.2.0 bundles GEOS 3.14.1.
+numpy==2.5.4
+psycopg[binary]==3.3.6
+scipy==1.18.1
+shapely==2.2.0
+tzdata==2026.5

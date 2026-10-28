@@ -1,0 +1,11 @@
+E4 triage of C:\Users\Ale\masters\coursework\MCET063 - Tópicos em Testes Automatizados e Verificação de Software (2026-2)\final-project\experiment\runs\e2  (2026-10-27 16:52:48)
+selected items 0 in 0 groups; representatives 0 (K=3, cap=300)
+left out by the cap: 0 representatives in 0 groups
+shrinks: 0  (reproduced originally: 0)
+unique findings: 0
+
+Draft classes (lead decides):
+
+Findings:
+
+Containers:

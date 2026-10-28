@@ -1,0 +1,1816 @@
+{
+ "meta": {
+  "campaign_dir": "C:\\Users\\Ale\\masters\\coursework\\MCET063 - Tópicos em Testes Automatizados e Verificação de Software (2026-2)\\final-project\\experiment\\runs\\smoke",
+  "finished": "2026-10-27 17:03:55",
+  "args": {
+   "campaign": "smoke",
+   "campaign_dir": null,
+   "k": 3,
+   "cap": 300,
+   "steps": 200,
+   "crash_oracle": "container",
+   "rules": null,
+   "select_only": false
+  },
+  "shrinks": 7,
+  "reproduced": 2,
+  "wall_s_this_run": 55.24808689999918,
+  "versions": {
+   "current": "POSTGIS=\"3.6.4 94d984b\" [EXTENSION] PGSQL=\"180\" GEOS=\"3.14.1-CAPI-1.20.5\" (compiled against GEOS 3.13.1) PROJ=\"9.8.1 NETWORK_ENABLED=OFF URL_ENDPOINT=https://cdn.proj.org USER_WRITABLE_DIRECTORY=/var/lib/postgresql/.local/share/proj DATABASE_PATH=/usr/share/proj/proj.db\" (compiled against PROJ 9.6.0) LIBXML=\"2.9.14\" LIBJSON=\"0.18\" LIBPROTOBUF=\"1.5.1\" WAGYU=\"0.5.0 (Internal)\" TOPOLOGY",
+   "dev": "POSTGIS=\"3.7.0dev 3.7.0rc3-1-g4db4d8050\" [EXTENSION] PGSQL=\"180\" GEOS=\"3.16.0dev-CAPI-1.23.0 3.15.0rc1-41-g283e82726\" PROJ=\"9.10.0 NETWORK_ENABLED=OFF URL_ENDPOINT=https://cdn.proj.org USER_WRITABLE_DIRECTORY=/var/lib/postgresql/.local/share/proj DATABASE_PATH=/usr/local/share/proj/proj.db\" (compiled against PROJ 9.10.0) LIBXML=\"2.9.14\" LIBJSON=\"0.18\" LIBPROTOBUF=\"1.5.1\" WAGYU=\"0.5.0 (Internal)\" TOPOLOGY",
+   "old": "POSTGIS=\"3.5.2 dea6d0a\" [EXTENSION] PGSQL=\"170\" GEOS=\"3.9.0-CAPI-1.16.2\" PROJ=\"7.2.1 NETWORK_ENABLED=OFF URL_ENDPOINT=https://cdn.proj.org USER_WRITABLE_DIRECTORY=/var/lib/postgresql/.local/share/proj DATABASE_PATH=/usr/share/proj/proj.db\" (compiled against PROJ 7.2.1) LIBXML=\"2.9.10\" LIBJSON=\"0.15\" LIBPROTOBUF=\"1.3.3\" WAGYU=\"0.5.0 (Internal)\" TOPOLOGY"
+  },
+  "digests": {
+   "current": "postgis/postgis@sha256:4a43e3c3e5d55b9208240fc71db543b79c638766280c625a425bd0a2390989c4",
+   "dev": "postgis/postgis@sha256:620f1f1ffb479ffbda686dbfde113557a9859cdf9de0f86683b0702846915107",
+   "old": "postgis/postgis@sha256:01a6a70e41e6c4467c8f55f6063555ed72db2d6662cd0d571040d42eadaeb6f6"
+  },
+  "shapely": "2.2.0",
+  "geos": "3.14.1",
+  "containers": [
+   "started tavs-triage-current-15944 from postgis/postgis@sha256:4a43e3c3e5d55b9208240fc71db543b79c638766280c625a425bd0a2390989c4 on 127.0.0.1:62290",
+   "started tavs-triage-dev-15944 from postgis/postgis@sha256:620f1f1ffb479ffbda686dbfde113557a9859cdf9de0f86683b0702846915107 on 127.0.0.1:62302",
+   "started tavs-triage-old-15944 from postgis/postgis@sha256:01a6a70e41e6c4467c8f55f6063555ed72db2d6662cd0d571040d42eadaeb6f6 on 127.0.0.1:62311",
+   "removed tavs-triage-current-15944: rc=0",
+   "removed tavs-triage-dev-15944: rc=0",
+   "removed tavs-triage-old-15944: rc=0"
+  ]
+ },
+ "selection": {
+  "items": 7,
+  "groups": 7,
+  "k": 3,
+  "cap": 300,
+  "representatives": 7,
+  "per_group": {
+   "R11 | Intersection floating vs fixed | Intersection | Intersection(a,b) vs Intersection(a,b,g) | - | degen-float | MultiLineString / MultiLineString": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "R11 | Union floating vs fixed | Union | Union(a,b) vs Union(a,b,g) | - | degen-float | MultiLineString / MultiLineString": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "R7 | measure(Difference(a,U)) | Union | a vs U | - | degen-float | LineString / MultiLineString": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "R7 | measure(Difference(a,U)) | Union | a vs U | - | degen-float | MultiLineString / MultiLineString": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "R7 | measure(Difference(a,U)) | Union | a vs U | - | degen-int | MultiLineString / LineString": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "R7 | measure(Difference(a,U)) | Union | a vs U | - | plain-float | LineString / MultiLineString": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "R7 | measure(Difference(a,U)) | Union | a vs U | - | plain-int | MultiLineString / LineString": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   }
+  },
+  "left_out_by_cap": {}
+ },
+ "findings": [
+  {
+   "key_id": "7edcca65a4f8",
+   "key": {
+    "rule": "R11",
+    "function": "Intersection",
+    "paths": "Intersection(a,b) vs Intersection(a,b,g)",
+    "types_sig": "MultiLineString / MultiLineString",
+    "a_normalized": "MULTILINESTRING((653425.4422645 857305.2118306,653435.1246503 857315.5196627))",
+    "b_normalized": "MULTILINESTRING((653420.6010716 857300.0579145,653430.2834574 857310.3657466))"
+   },
+   "rule": "R11",
+   "sub": "Intersection floating vs fixed",
+   "function": "Intersection",
+   "paths": "Intersection(a,b) vs Intersection(a,b,g)",
+   "orientation": null,
+   "types_sig": "MultiLineString / MultiLineString",
+   "a": "MULTILINESTRING ((653435.1246503 857315.5196627, 653425.4422645 857305.2118306))",
+   "b": "MULTILINESTRING ((653430.2834574 857310.3657466, 653420.6010716 857300.0579145))",
+   "coord": "float",
+   "rep_item": {
+    "item": "lane1:148:v4",
+    "lane": "lane1",
+    "pair_id": 148,
+    "seed": 2,
+    "kind": "overlay",
+    "idx": 16,
+    "arm": "degen-float",
+    "coord": "float",
+    "moves": [
+     "collinear-overlap"
+    ],
+    "source": "form=multi/multi;regime=rotation;angle=3.816371177493368;cx=653470.5;cy=857262.5",
+    "raw": {
+     "floating": 0.0,
+     "fixed": 7.071067729141879,
+     "grid": 1e-07,
+     "measure": "length",
+     "m_small": 39.606359782238876,
+     "L": 121.03607987274881,
+     "M": 857315.5196627335
+    }
+   },
+   "original_reproduces": true,
+   "representatives": [
+    {
+     "rep": "c272efd5c18d",
+     "item": "lane1:148:v4",
+     "group": "R11 | Intersection floating vs fixed | Intersection | Intersection(a,b) vs Intersection(a,b,g) | - | degen-float | MultiLineString / MultiLineString",
+     "chain": [
+      {
+       "step": 1,
+       "call": 2,
+       "geom": "a",
+       "op": "drop part (1,)",
+       "vertices_a": 7,
+       "vertices_b": 6,
+       "a": "MULTILINESTRING ((653435.1246503392 857315.5196627335, 653425.4422644809 857305.2118305613, 653424.8177807276 857299.5895516601, 653416.3848436563 857287.7200288244, 653427.3174002221 857277.2567976343, 653411.0748066318 857291.1556520283, 653424.0378979566 857273.3523303351))",
+       "b": "MULTILINESTRING ((653430.28345741 857310.3657466475, 653420.6010715518 857300.0579144751, 653406.2331324224 857298.8079844079), (653472.6102797092 857211.0408247293, 653477.2955923402 857208.3860468572, 653482.9178712413 857207.7615631039))"
+      },
+      {
+       "step": 2,
+       "call": 4,
+       "geom": "b",
+       "op": "drop part (1,)",
+       "vertices_a": 7,
+       "vertices_b": 3,
+       "a": "MULTILINESTRING ((653435.1246503392 857315.5196627335, 653425.4422644809 857305.2118305613, 653424.8177807276 857299.5895516601, 653416.3848436563 857287.7200288244, 653427.3174002221 857277.2567976343, 653411.0748066318 857291.1556520283, 653424.0378979566 857273.3523303351))",
+       "b": "MULTILINESTRING ((653430.28345741 857310.3657466475, 653420.6010715518 857300.0579144751, 653406.2331324224 857298.8079844079))"
+      },
+      {
+       "step": 3,
+       "call": 7,
+       "geom": "a",
+       "op": "drop vertex 2 of (0,)",
+       "vertices_a": 6,
+       "vertices_b": 3,
+       "a": "MULTILINESTRING ((653435.1246503392 857315.5196627335, 653425.4422644809 857305.2118305613, 653416.3848436563 857287.7200288244, 653427.3174002221 857277.2567976343, 653411.0748066318 857291.1556520283, 653424.0378979566 857273.3523303351))",
+       "b": "MULTILINESTRING ((653430.28345741 857310.3657466475, 653420.6010715518 857300.0579144751, 653406.2331324224 857298.8079844079))"
+      },
+      {
+       "step": 4,
+       "call": 10,
+       "geom": "a",
+       "op": "drop vertex 2 of (0,)",
+       "vertices_a": 5,
+       "vertices_b": 3,
+       "a": "MULTILINESTRING ((653435.1246503392 857315.5196627335, 653425.4422644809 857305.2118305613, 653427.3174002221 857277.2567976343, 653411.0748066318 857291.1556520283, 653424.0378979566 857273.3523303351))",
+       "b": "MULTILINESTRING ((653430.28345741 857310.3657466475, 653420.6010715518 857300.0579144751, 653406.2331324224 857298.8079844079))"
+      },
+      {
+       "step": 5,
+       "call": 14,
+       "geom": "a",
+       "op": "drop vertex 3 of (0,)",
+       "vertices_a": 4,
+       "vertices_b": 3,
+       "a": "MULTILINESTRING ((653435.1246503392 857315.5196627335, 653425.4422644809 857305.2118305613, 653427.3174002221 857277.2567976343, 653424.0378979566 857273.3523303351))",
+       "b": "MULTILINESTRING ((653430.28345741 857310.3657466475, 653420.6010715518 857300.0579144751, 653406.2331324224 857298.8079844079))"
+      },
+      {
+       "step": 6,
+       "call": 17,
+       "geom": "a",
+       "op": "drop vertex 2 of (0,)",
+       "vertices_a": 3,
+       "vertices_b": 3,
+       "a": "MULTILINESTRING ((653435.1246503392 857315.5196627335, 653425.4422644809 857305.2118305613, 653424.0378979566 857273.3523303351))",
+       "b": "MULTILINESTRING ((653430.28345741 857310.3657466475, 653420.6010715518 857300.0579144751, 653406.2331324224 857298.8079844079))"
+      },
+      {
+       "step": 7,
+       "call": 20,
+       "geom": "a",
+       "op": "drop vertex 2 of (0,)",
+       "vertices_a": 2,
+       "vertices_b": 3,
+       "a": "MULTILINESTRING ((653435.1246503392 857315.5196627335, 653425.4422644809 857305.2118305613))",
+       "b": "MULTILINESTRING ((653430.28345741 857310.3657466475, 653420.6010715518 857300.0579144751, 653406.2331324224 857298.8079844079))"
+      },
+      {
+       "step": 8,
+       "call": 23,
+       "geom": "b",
+       "op": "drop vertex 2 of (0,)",
+       "vertices_a": 2,
+       "vertices_b": 2,
+       "a": "MULTILINESTRING ((653435.1246503392 857315.5196627335, 653425.4422644809 857305.2118305613))",
+       "b": "MULTILINESTRING ((653430.28345741 857310.3657466475, 653420.6010715518 857300.0579144751))"
+      },
+      {
+       "step": 9,
+       "call": 32,
+       "geom": "ab",
+       "op": "round to 13 significant digits",
+       "vertices_a": 2,
+       "vertices_b": 2,
+       "a": "MULTILINESTRING ((653435.1246503 857315.5196627, 653425.4422645 857305.2118306))",
+       "b": "MULTILINESTRING ((653430.2834574 857310.3657466, 653420.6010716 857300.0579145))"
+      }
+     ],
+     "oracle": {
+      "kind": "evaluate on throwaway current: same (rule, sub, function, orientation) counted",
+      "image": "postgis/postgis@sha256:4a43e3c3e5d55b9208240fc71db543b79c638766280c625a425bd0a2390989c4"
+     },
+     "original_a": "MULTILINESTRING ((653435.1246503392 857315.5196627335, 653425.4422644809 857305.2118305613, 653424.8177807276 857299.5895516601, 653416.3848436563 857287.7200288244, 653427.3174002221 857277.2567976343, 653411.0748066318 857291.1556520283, 653424.0378979566 857273.3523303351), (653525.3950391148 857263.5171925008, 653527.2692122952 857261.1746565053, 653499.3134574477 857278.508893463, 653498.064249301 857273.6674598936))",
+     "original_b": "MULTILINESTRING ((653430.28345741 857310.3657466475, 653420.6010715518 857300.0579144751, 653406.2331324224 857298.8079844079), (653472.6102797092 857211.0408247293, 653477.2955923402 857208.3860468572, 653482.9178712413 857207.7615631039))",
+     "vertices": [
+      17,
+      4
+     ],
+     "oracle_calls": 57
+    }
+   ],
+   "shrink_seconds": [
+    16.685661799998343
+   ],
+   "raw_count": 1,
+   "raw_shared": 0,
+   "arms": [
+    "degen-float"
+   ],
+   "seeds": [
+    2
+   ],
+   "groups": [
+    "R11 | Intersection floating vs fixed | Intersection | Intersection(a,b) vs Intersection(a,b,g) | - | degen-float | MultiLineString / MultiLineString"
+   ],
+   "rerun": {
+    "images": {
+     "current": {
+      "present": true,
+      "present_counted": true,
+      "violations": [
+       {
+        "rule": "R11",
+        "sub": "Intersection floating vs fixed",
+        "function": "Intersection",
+        "paths": "Intersection(a,b) vs Intersection(a,b,g)",
+        "orientation": null,
+        "tier": "candidate",
+        "band": "triage",
+        "magnitude": 7.071067729141877,
+        "plim": false,
+        "raw": {
+         "floating": 0.0,
+         "fixed": 7.071067729141877,
+         "grid": 1e-07,
+         "measure": "length",
+         "m_small": 14.142135531176839,
+         "L": 15.461748200003058,
+         "M": 857315.5196627
+        }
+       }
+      ],
+      "fixed_precision_analog_violated": null,
+      "outcomes": {},
+      "outcome_messages": [],
+      "info": {
+       "L": 15.461748200003058,
+       "M": 857315.5196627,
+       "grid": 1e-07,
+       "tiers": {
+        "predicate": "candidate",
+        "overlay": "candidate"
+       },
+       "types": [
+        "MultiLineString",
+        "MultiLineString"
+       ],
+       "precision_limited": false,
+       "crashed_functions": []
+      },
+      "seconds": 0.1091216999993776
+     },
+     "dev": {
+      "present": true,
+      "present_counted": true,
+      "violations": [
+       {
+        "rule": "R11",
+        "sub": "Intersection floating vs fixed",
+        "function": "Intersection",
+        "paths": "Intersection(a,b) vs Intersection(a,b,g)",
+        "orientation": null,
+        "tier": "candidate",
+        "band": "triage",
+        "magnitude": 7.071067729141877,
+        "plim": false,
+        "raw": {
+         "floating": 0.0,
+         "fixed": 7.071067729141877,
+         "grid": 1e-07,
+         "measure": "length",
+         "m_small": 14.142135531176839,
+         "L": 15.461748200003058,
+         "M": 857315.5196627
+        }
+       }
+      ],
+      "fixed_precision_analog_violated": null,
+      "outcomes": {},
+      "outcome_messages": [],
+      "info": {
+       "L": 15.461748200003058,
+       "M": 857315.5196627,
+       "grid": 1e-07,
+       "tiers": {
+        "predicate": "candidate",
+        "overlay": "candidate"
+       },
+       "types": [
+        "MultiLineString",
+        "MultiLineString"
+       ],
+       "precision_limited": false,
+       "crashed_functions": []
+      },
+      "seconds": 7.728809600001114
+     },
+     "old": {
+      "present": true,
+      "present_counted": true,
+      "violations": [
+       {
+        "rule": "R11",
+        "sub": "Intersection floating vs fixed",
+        "function": "Intersection",
+        "paths": "Intersection(a,b) vs Intersection(a,b,g)",
+        "orientation": null,
+        "tier": "candidate",
+        "band": "triage",
+        "magnitude": 7.071067729141877,
+        "plim": false,
+        "raw": {
+         "floating": 0.0,
+         "fixed": 7.071067729141877,
+         "grid": 1e-07,
+         "measure": "length",
+         "m_small": 14.142135531176839,
+         "L": 15.461748200003058,
+         "M": 857315.5196627
+        }
+       }
+      ],
+      "fixed_precision_analog_violated": null,
+      "outcomes": {},
+      "outcome_messages": [],
+      "info": {
+       "L": 15.461748200003058,
+       "M": 857315.5196627,
+       "grid": 1e-07,
+       "tiers": {
+        "predicate": "candidate",
+        "overlay": "candidate"
+       },
+       "types": [
+        "MultiLineString",
+        "MultiLineString"
+       ],
+       "precision_limited": false,
+       "crashed_functions": []
+      },
+      "seconds": 9.823298799998156
+     }
+    },
+    "versions": {
+     "current": "POSTGIS=\"3.6.4 94d984b\" [EXTENSION] PGSQL=\"180\" GEOS=\"3.14.1-CAPI-1.20.5\" (compiled against GEOS 3.13.1) PROJ=\"9.8.1 NETWORK_ENABLED=OFF URL_ENDPOINT=https://cdn.proj.org USER_WRITABLE_DIRECTORY=/var/lib/postgresql/.local/share/proj DATABASE_PATH=/usr/share/proj/proj.db\" (compiled against PROJ 9.6.0) LIBXML=\"2.9.14\" LIBJSON=\"0.18\" LIBPROTOBUF=\"1.5.1\" WAGYU=\"0.5.0 (Internal)\" TOPOLOGY",
+     "dev": "POSTGIS=\"3.7.0dev 3.7.0rc3-1-g4db4d8050\" [EXTENSION] PGSQL=\"180\" GEOS=\"3.16.0dev-CAPI-1.23.0 3.15.0rc1-41-g283e82726\" PROJ=\"9.10.0 NETWORK_ENABLED=OFF URL_ENDPOINT=https://cdn.proj.org USER_WRITABLE_DIRECTORY=/var/lib/postgresql/.local/share/proj DATABASE_PATH=/usr/local/share/proj/proj.db\" (compiled against PROJ 9.10.0) LIBXML=\"2.9.14\" LIBJSON=\"0.18\" LIBPROTOBUF=\"1.5.1\" WAGYU=\"0.5.0 (Internal)\" TOPOLOGY",
+     "old": "POSTGIS=\"3.5.2 dea6d0a\" [EXTENSION] PGSQL=\"170\" GEOS=\"3.9.0-CAPI-1.16.2\" PROJ=\"7.2.1 NETWORK_ENABLED=OFF URL_ENDPOINT=https://cdn.proj.org USER_WRITABLE_DIRECTORY=/var/lib/postgresql/.local/share/proj DATABASE_PATH=/usr/share/proj/proj.db\" (compiled against PROJ 7.2.1) LIBXML=\"2.9.10\" LIBJSON=\"0.15\" LIBPROTOBUF=\"1.3.3\" WAGYU=\"0.5.0 (Internal)\" TOPOLOGY"
+    },
+    "shapely": {
+     "applicable": true,
+     "violated": true,
+     "band": "triage",
+     "detail": {
+      "magnitude": 7.071067729141877,
+      "measure": "length",
+      "m_small": 14.142135531176839,
+      "L": 15.461748200003058,
+      "M": 857315.5196627
+     },
+     "fixed": null,
+     "shapely": "2.2.0",
+     "geos": "3.14.1"
+    },
+    "shapely_seconds": 1.4876981999987038,
+    "margin_check": null
+   },
+   "draft_class": "present in dev (new candidate)",
+   "evidence": [
+    "current present_counted=True",
+    "dev present_counted=True",
+    "old present_counted=True",
+    "Shapely applicable=True violated=True"
+   ],
+   "class_status": "draft",
+   "known_open_issue": null,
+   "seconds": {
+    "shrink": 16.685661799998343,
+    "rerun": 19.14892829999735
+   }
+  },
+  {
+   "key_id": "3a6e49fad1da",
+   "key": {
+    "rule": "R11",
+    "function": "Union",
+    "paths": "Union(a,b) vs Union(a,b,g)",
+    "types_sig": "MultiLineString / MultiLineString",
+    "a_normalized": "MULTILINESTRING((653425.4422645 857305.2118306,653435.1246503 857315.5196627))",
+    "b_normalized": "MULTILINESTRING((653420.6010716 857300.0579145,653430.2834574 857310.3657466))"
+   },
+   "rule": "R11",
+   "sub": "Union floating vs fixed",
+   "function": "Union",
+   "paths": "Union(a,b) vs Union(a,b,g)",
+   "orientation": null,
+   "types_sig": "MultiLineString / MultiLineString",
+   "a": "MULTILINESTRING ((653435.1246503 857315.5196627, 653425.4422645 857305.2118306))",
+   "b": "MULTILINESTRING ((653430.2834574 857310.3657466, 653420.6010716 857300.0579145))",
+   "coord": "float",
+   "rep_item": {
+    "item": "lane1:148:v5",
+    "lane": "lane1",
+    "pair_id": 148,
+    "seed": 2,
+    "kind": "overlay",
+    "idx": 16,
+    "arm": "degen-float",
+    "coord": "float",
+    "moves": [
+     "collinear-overlap"
+    ],
+    "source": "form=multi/multi;regime=rotation;angle=3.816371177493368;cx=653470.5;cy=857262.5",
+    "raw": {
+     "floating": 173.39235766341204,
+     "fixed": 166.32128990004168,
+     "grid": 1e-07,
+     "measure": "length",
+     "m_small": 39.606359782238876,
+     "L": 121.03607987274881,
+     "M": 857315.5196627335
+    }
+   },
+   "original_reproduces": true,
+   "representatives": [
+    {
+     "rep": "85e996b1cd3c",
+     "item": "lane1:148:v5",
+     "group": "R11 | Union floating vs fixed | Union | Union(a,b) vs Union(a,b,g) | - | degen-float | MultiLineString / MultiLineString",
+     "chain": [
+      {
+       "step": 1,
+       "call": 2,
+       "geom": "a",
+       "op": "drop part (1,)",
+       "vertices_a": 7,
+       "vertices_b": 6,
+       "a": "MULTILINESTRING ((653435.1246503392 857315.5196627335, 653425.4422644809 857305.2118305613, 653424.8177807276 857299.5895516601, 653416.3848436563 857287.7200288244, 653427.3174002221 857277.2567976343, 653411.0748066318 857291.1556520283, 653424.0378979566 857273.3523303351))",
+       "b": "MULTILINESTRING ((653430.28345741 857310.3657466475, 653420.6010715518 857300.0579144751, 653406.2331324224 857298.8079844079), (653472.6102797092 857211.0408247293, 653477.2955923402 857208.3860468572, 653482.9178712413 857207.7615631039))"
+      },
+      {
+       "step": 2,
+       "call": 4,
+       "geom": "b",
+       "op": "drop part (1,)",
+       "vertices_a": 7,
+       "vertices_b": 3,
+       "a": "MULTILINESTRING ((653435.1246503392 857315.5196627335, 653425.4422644809 857305.2118305613, 653424.8177807276 857299.5895516601, 653416.3848436563 857287.7200288244, 653427.3174002221 857277.2567976343, 653411.0748066318 857291.1556520283, 653424.0378979566 857273.3523303351))",
+       "b": "MULTILINESTRING ((653430.28345741 857310.3657466475, 653420.6010715518 857300.0579144751, 653406.2331324224 857298.8079844079))"
+      },
+      {
+       "step": 3,
+       "call": 7,
+       "geom": "a",
+       "op": "drop vertex 2 of (0,)",
+       "vertices_a": 6,
+       "vertices_b": 3,
+       "a": "MULTILINESTRING ((653435.1246503392 857315.5196627335, 653425.4422644809 857305.2118305613, 653416.3848436563 857287.7200288244, 653427.3174002221 857277.2567976343, 653411.0748066318 857291.1556520283, 653424.0378979566 857273.3523303351))",
+       "b": "MULTILINESTRING ((653430.28345741 857310.3657466475, 653420.6010715518 857300.0579144751, 653406.2331324224 857298.8079844079))"
+      },
+      {
+       "step": 4,
+       "call": 10,
+       "geom": "a",
+       "op": "drop vertex 2 of (0,)",
+       "vertices_a": 5,
+       "vertices_b": 3,
+       "a": "MULTILINESTRING ((653435.1246503392 857315.5196627335, 653425.4422644809 857305.2118305613, 653427.3174002221 857277.2567976343, 653411.0748066318 857291.1556520283, 653424.0378979566 857273.3523303351))",
+       "b": "MULTILINESTRING ((653430.28345741 857310.3657466475, 653420.6010715518 857300.0579144751, 653406.2331324224 857298.8079844079))"
+      },
+      {
+       "step": 5,
+       "call": 14,
+       "geom": "a",
+       "op": "drop vertex 3 of (0,)",
+       "vertices_a": 4,
+       "vertices_b": 3,
+       "a": "MULTILINESTRING ((653435.1246503392 857315.5196627335, 653425.4422644809 857305.2118305613, 653427.3174002221 857277.2567976343, 653424.0378979566 857273.3523303351))",
+       "b": "MULTILINESTRING ((653430.28345741 857310.3657466475, 653420.6010715518 857300.0579144751, 653406.2331324224 857298.8079844079))"
+      },
+      {
+       "step": 6,
+       "call": 17,
+       "geom": "a",
+       "op": "drop vertex 2 of (0,)",
+       "vertices_a": 3,
+       "vertices_b": 3,
+       "a": "MULTILINESTRING ((653435.1246503392 857315.5196627335, 653425.4422644809 857305.2118305613, 653424.0378979566 857273.3523303351))",
+       "b": "MULTILINESTRING ((653430.28345741 857310.3657466475, 653420.6010715518 857300.0579144751, 653406.2331324224 857298.8079844079))"
+      },
+      {
+       "step": 7,
+       "call": 20,
+       "geom": "a",
+       "op": "drop vertex 2 of (0,)",
+       "vertices_a": 2,
+       "vertices_b": 3,
+       "a": "MULTILINESTRING ((653435.1246503392 857315.5196627335, 653425.4422644809 857305.2118305613))",
+       "b": "MULTILINESTRING ((653430.28345741 857310.3657466475, 653420.6010715518 857300.0579144751, 653406.2331324224 857298.8079844079))"
+      },
+      {
+       "step": 8,
+       "call": 23,
+       "geom": "b",
+       "op": "drop vertex 2 of (0,)",
+       "vertices_a": 2,
+       "vertices_b": 2,
+       "a": "MULTILINESTRING ((653435.1246503392 857315.5196627335, 653425.4422644809 857305.2118305613))",
+       "b": "MULTILINESTRING ((653430.28345741 857310.3657466475, 653420.6010715518 857300.0579144751))"
+      },
+      {
+       "step": 9,
+       "call": 32,
+       "geom": "ab",
+       "op": "round to 13 significant digits",
+       "vertices_a": 2,
+       "vertices_b": 2,
+       "a": "MULTILINESTRING ((653435.1246503 857315.5196627, 653425.4422645 857305.2118306))",
+       "b": "MULTILINESTRING ((653430.2834574 857310.3657466, 653420.6010716 857300.0579145))"
+      }
+     ],
+     "oracle": {
+      "kind": "evaluate on throwaway current: same (rule, sub, function, orientation) counted",
+      "image": "postgis/postgis@sha256:4a43e3c3e5d55b9208240fc71db543b79c638766280c625a425bd0a2390989c4"
+     },
+     "original_a": "MULTILINESTRING ((653435.1246503392 857315.5196627335, 653425.4422644809 857305.2118305613, 653424.8177807276 857299.5895516601, 653416.3848436563 857287.7200288244, 653427.3174002221 857277.2567976343, 653411.0748066318 857291.1556520283, 653424.0378979566 857273.3523303351), (653525.3950391148 857263.5171925008, 653527.2692122952 857261.1746565053, 653499.3134574477 857278.508893463, 653498.064249301 857273.6674598936))",
+     "original_b": "MULTILINESTRING ((653430.28345741 857310.3657466475, 653420.6010715518 857300.0579144751, 653406.2331324224 857298.8079844079), (653472.6102797092 857211.0408247293, 653477.2955923402 857208.3860468572, 653482.9178712413 857207.7615631039))",
+     "vertices": [
+      17,
+      4
+     ],
+     "oracle_calls": 57
+    }
+   ],
+   "shrink_seconds": [
+    6.960329900000943
+   ],
+   "raw_count": 1,
+   "raw_shared": 0,
+   "arms": [
+    "degen-float"
+   ],
+   "seeds": [
+    2
+   ],
+   "groups": [
+    "R11 | Union floating vs fixed | Union | Union(a,b) vs Union(a,b,g) | - | degen-float | MultiLineString / MultiLineString"
+   ],
+   "rerun": {
+    "images": {
+     "current": {
+      "present": true,
+      "present_counted": true,
+      "violations": [
+       {
+        "rule": "R11",
+        "sub": "Union floating vs fixed",
+        "function": "Union",
+        "paths": "Union(a,b) vs Union(a,b,g)",
+        "orientation": null,
+        "tier": "candidate",
+        "band": "triage",
+        "magnitude": 7.07106772914188,
+        "plim": false,
+        "raw": {
+         "floating": 28.284271062353678,
+         "fixed": 21.213203333211798,
+         "grid": 1e-07,
+         "measure": "length",
+         "m_small": 14.142135531176839,
+         "L": 15.461748200003058,
+         "M": 857315.5196627
+        }
+       }
+      ],
+      "fixed_precision_analog_violated": null,
+      "outcomes": {},
+      "outcome_messages": [],
+      "info": {
+       "L": 15.461748200003058,
+       "M": 857315.5196627,
+       "grid": 1e-07,
+       "tiers": {
+        "predicate": "candidate",
+        "overlay": "candidate"
+       },
+       "types": [
+        "MultiLineString",
+        "MultiLineString"
+       ],
+       "precision_limited": false,
+       "crashed_functions": []
+      },
+      "seconds": 0.12468190000072354
+     },
+     "dev": {
+      "present": true,
+      "present_counted": true,
+      "violations": [
+       {
+        "rule": "R11",
+        "sub": "Union floating vs fixed",
+        "function": "Union",
+        "paths": "Union(a,b) vs Union(a,b,g)",
+        "orientation": null,
+        "tier": "candidate",
+        "band": "triage",
+        "magnitude": 7.07106772914188,
+        "plim": false,
+        "raw": {
+         "floating": 28.284271062353678,
+         "fixed": 21.213203333211798,
+         "grid": 1e-07,
+         "measure": "length",
+         "m_small": 14.142135531176839,
+         "L": 15.461748200003058,
+         "M": 857315.5196627
+        }
+       }
+      ],
+      "fixed_precision_analog_violated": null,
+      "outcomes": {},
+      "outcome_messages": [],
+      "info": {
+       "L": 15.461748200003058,
+       "M": 857315.5196627,
+       "grid": 1e-07,
+       "tiers": {
+        "predicate": "candidate",
+        "overlay": "candidate"
+       },
+       "types": [
+        "MultiLineString",
+        "MultiLineString"
+       ],
+       "precision_limited": false,
+       "crashed_functions": []
+      },
+      "seconds": 0.10221070000261534
+     },
+     "old": {
+      "present": true,
+      "present_counted": true,
+      "violations": [
+       {
+        "rule": "R11",
+        "sub": "Union floating vs fixed",
+        "function": "Union",
+        "paths": "Union(a,b) vs Union(a,b,g)",
+        "orientation": null,
+        "tier": "candidate",
+        "band": "triage",
+        "magnitude": 7.07106772914188,
+        "plim": false,
+        "raw": {
+         "floating": 28.284271062353678,
+         "fixed": 21.213203333211798,
+         "grid": 1e-07,
+         "measure": "length",
+         "m_small": 14.142135531176839,
+         "L": 15.461748200003058,
+         "M": 857315.5196627
+        }
+       }
+      ],
+      "fixed_precision_analog_violated": null,
+      "outcomes": {},
+      "outcome_messages": [],
+      "info": {
+       "L": 15.461748200003058,
+       "M": 857315.5196627,
+       "grid": 1e-07,
+       "tiers": {
+        "predicate": "candidate",
+        "overlay": "candidate"
+       },
+       "types": [
+        "MultiLineString",
+        "MultiLineString"
+       ],
+       "precision_limited": false,
+       "crashed_functions": []
+      },
+      "seconds": 0.15801300000021
+     }
+    },
+    "versions": {
+     "current": "POSTGIS=\"3.6.4 94d984b\" [EXTENSION] PGSQL=\"180\" GEOS=\"3.14.1-CAPI-1.20.5\" (compiled against GEOS 3.13.1) PROJ=\"9.8.1 NETWORK_ENABLED=OFF URL_ENDPOINT=https://cdn.proj.org USER_WRITABLE_DIRECTORY=/var/lib/postgresql/.local/share/proj DATABASE_PATH=/usr/share/proj/proj.db\" (compiled against PROJ 9.6.0) LIBXML=\"2.9.14\" LIBJSON=\"0.18\" LIBPROTOBUF=\"1.5.1\" WAGYU=\"0.5.0 (Internal)\" TOPOLOGY",
+     "dev": "POSTGIS=\"3.7.0dev 3.7.0rc3-1-g4db4d8050\" [EXTENSION] PGSQL=\"180\" GEOS=\"3.16.0dev-CAPI-1.23.0 3.15.0rc1-41-g283e82726\" PROJ=\"9.10.0 NETWORK_ENABLED=OFF URL_ENDPOINT=https://cdn.proj.org USER_WRITABLE_DIRECTORY=/var/lib/postgresql/.local/share/proj DATABASE_PATH=/usr/local/share/proj/proj.db\" (compiled against PROJ 9.10.0) LIBXML=\"2.9.14\" LIBJSON=\"0.18\" LIBPROTOBUF=\"1.5.1\" WAGYU=\"0.5.0 (Internal)\" TOPOLOGY",
+     "old": "POSTGIS=\"3.5.2 dea6d0a\" [EXTENSION] PGSQL=\"170\" GEOS=\"3.9.0-CAPI-1.16.2\" PROJ=\"7.2.1 NETWORK_ENABLED=OFF URL_ENDPOINT=https://cdn.proj.org USER_WRITABLE_DIRECTORY=/var/lib/postgresql/.local/share/proj DATABASE_PATH=/usr/share/proj/proj.db\" (compiled against PROJ 7.2.1) LIBXML=\"2.9.10\" LIBJSON=\"0.15\" LIBPROTOBUF=\"1.3.3\" WAGYU=\"0.5.0 (Internal)\" TOPOLOGY"
+    },
+    "shapely": {
+     "applicable": true,
+     "violated": true,
+     "band": "triage",
+     "detail": {
+      "magnitude": 7.07106772914188,
+      "measure": "length",
+      "m_small": 14.142135531176839,
+      "L": 15.461748200003058,
+      "M": 857315.5196627
+     },
+     "fixed": null,
+     "shapely": "2.2.0",
+     "geos": "3.14.1"
+    },
+    "shapely_seconds": 1.568748499998037,
+    "margin_check": null
+   },
+   "draft_class": "present in dev (new candidate)",
+   "evidence": [
+    "current present_counted=True",
+    "dev present_counted=True",
+    "old present_counted=True",
+    "Shapely applicable=True violated=True"
+   ],
+   "class_status": "draft",
+   "known_open_issue": null,
+   "seconds": {
+    "shrink": 6.960329900000943,
+    "rerun": 1.953654100001586
+   }
+  },
+  {
+   "key_id": "0a041090737a",
+   "key": {
+    "rule": "R7",
+    "function": "Union",
+    "paths": "a vs U",
+    "types_sig": "MultiLineString / MultiLineString",
+    "a_normalized": "MULTILINESTRING((653424.0378979566 857273.3523303351,653411.0748066318 857291.1556520283,653427.3174002221 857277.2567976343,653416.3848436563 857287.7200288244,653424.8177807276 857299.5895516601,653425.4422644809 857305.2118305613,653435.1246503392 857315.5196627335),(653498.064249301 857273.6674598936,653499.3134574477 857278.508893463,653527.2692122952 857261.1746565053,653525.3950391148 857263.5171925008))",
+    "b_normalized": "MULTILINESTRING((653472.6102797092 857211.0408247293,653477.2955923402 857208.3860468572,653482.9178712413 857207.7615631039),(653406.2331324224 857298.8079844079,653420.6010715518 857300.0579144751,653430.28345741 857310.3657466475))"
+   },
+   "rule": "R7",
+   "sub": "measure(Difference(a,U))",
+   "function": "Union",
+   "paths": "a vs U",
+   "orientation": null,
+   "types_sig": "MultiLineString / MultiLineString",
+   "a": "MULTILINESTRING ((653435.1246503392 857315.5196627335, 653425.4422644809 857305.2118305613, 653424.8177807276 857299.5895516601, 653416.3848436563 857287.7200288244, 653427.3174002221 857277.2567976343, 653411.0748066318 857291.1556520283, 653424.0378979566 857273.3523303351), (653525.3950391148 857263.5171925008, 653527.2692122952 857261.1746565053, 653499.3134574477 857278.508893463, 653498.064249301 857273.6674598936))",
+   "b": "MULTILINESTRING ((653430.28345741 857310.3657466475, 653420.6010715518 857300.0579144751, 653406.2331324224 857298.8079844079), (653472.6102797092 857211.0408247293, 653477.2955923402 857208.3860468572, 653482.9178712413 857207.7615631039))",
+   "coord": "float",
+   "rep_item": {
+    "item": "lane1:148:v3",
+    "lane": "lane1",
+    "pair_id": 148,
+    "seed": 2,
+    "kind": "overlay",
+    "idx": 16,
+    "arm": "degen-float",
+    "coord": "float",
+    "moves": [
+     "collinear-overlap"
+    ],
+    "source": "form=multi/multi;regime=rotation;angle=3.816371177493368;cx=653470.5;cy=857262.5",
+    "raw": {
+     "value": 14.142135623801446,
+     "measure": "length",
+     "m_small": 39.606359782238876,
+     "L": 121.03607987274881,
+     "M": 857315.5196627335
+    }
+   },
+   "original_reproduces": false,
+   "representatives": [
+    {
+     "rep": "24715acaa085",
+     "item": "lane1:148:v3",
+     "group": "R7 | measure(Difference(a,U)) | Union | a vs U | - | degen-float | MultiLineString / MultiLineString",
+     "chain": [],
+     "oracle": {
+      "kind": "evaluate on throwaway current: same (rule, sub, function, orientation) counted",
+      "image": "postgis/postgis@sha256:4a43e3c3e5d55b9208240fc71db543b79c638766280c625a425bd0a2390989c4"
+     },
+     "original_a": "MULTILINESTRING ((653435.1246503392 857315.5196627335, 653425.4422644809 857305.2118305613, 653424.8177807276 857299.5895516601, 653416.3848436563 857287.7200288244, 653427.3174002221 857277.2567976343, 653411.0748066318 857291.1556520283, 653424.0378979566 857273.3523303351), (653525.3950391148 857263.5171925008, 653527.2692122952 857261.1746565053, 653499.3134574477 857278.508893463, 653498.064249301 857273.6674598936))",
+     "original_b": "MULTILINESTRING ((653430.28345741 857310.3657466475, 653420.6010715518 857300.0579144751, 653406.2331324224 857298.8079844079), (653472.6102797092 857211.0408247293, 653477.2955923402 857208.3860468572, 653482.9178712413 857207.7615631039))",
+     "vertices": [
+      17,
+      17
+     ],
+     "oracle_calls": 1
+    }
+   ],
+   "shrink_seconds": [
+    0.11660289999781526
+   ],
+   "raw_count": 1,
+   "raw_shared": 0,
+   "arms": [
+    "degen-float"
+   ],
+   "seeds": [
+    2
+   ],
+   "groups": [
+    "R7 | measure(Difference(a,U)) | Union | a vs U | - | degen-float | MultiLineString / MultiLineString"
+   ],
+   "rerun": {
+    "images": {
+     "current": {
+      "present": false,
+      "present_counted": false,
+      "violations": [],
+      "fixed_precision_analog_violated": null,
+      "outcomes": {},
+      "outcome_messages": [],
+      "info": {
+       "L": 121.03607987274881,
+       "M": 857315.5196627335,
+       "grid": 1e-07,
+       "tiers": {
+        "predicate": "candidate",
+        "overlay": "candidate"
+       },
+       "types": [
+        "MultiLineString",
+        "MultiLineString"
+       ],
+       "precision_limited": false,
+       "crashed_functions": []
+      },
+      "seconds": 0.12484519999998156
+     },
+     "dev": {
+      "present": false,
+      "present_counted": false,
+      "violations": [],
+      "fixed_precision_analog_violated": null,
+      "outcomes": {},
+      "outcome_messages": [],
+      "info": {
+       "L": 121.03607987274881,
+       "M": 857315.5196627335,
+       "grid": 1e-07,
+       "tiers": {
+        "predicate": "candidate",
+        "overlay": "candidate"
+       },
+       "types": [
+        "MultiLineString",
+        "MultiLineString"
+       ],
+       "precision_limited": false,
+       "crashed_functions": []
+      },
+      "seconds": 0.11900160000004689
+     },
+     "old": {
+      "present": false,
+      "present_counted": false,
+      "violations": [],
+      "fixed_precision_analog_violated": null,
+      "outcomes": {},
+      "outcome_messages": [],
+      "info": {
+       "L": 121.03607987274881,
+       "M": 857315.5196627335,
+       "grid": 1e-07,
+       "tiers": {
+        "predicate": "candidate",
+        "overlay": "candidate"
+       },
+       "types": [
+        "MultiLineString",
+        "MultiLineString"
+       ],
+       "precision_limited": false,
+       "crashed_functions": []
+      },
+      "seconds": 0.18320200000016484
+     }
+    },
+    "versions": {
+     "current": "POSTGIS=\"3.6.4 94d984b\" [EXTENSION] PGSQL=\"180\" GEOS=\"3.14.1-CAPI-1.20.5\" (compiled against GEOS 3.13.1) PROJ=\"9.8.1 NETWORK_ENABLED=OFF URL_ENDPOINT=https://cdn.proj.org USER_WRITABLE_DIRECTORY=/var/lib/postgresql/.local/share/proj DATABASE_PATH=/usr/share/proj/proj.db\" (compiled against PROJ 9.6.0) LIBXML=\"2.9.14\" LIBJSON=\"0.18\" LIBPROTOBUF=\"1.5.1\" WAGYU=\"0.5.0 (Internal)\" TOPOLOGY",
+     "dev": "POSTGIS=\"3.7.0dev 3.7.0rc3-1-g4db4d8050\" [EXTENSION] PGSQL=\"180\" GEOS=\"3.16.0dev-CAPI-1.23.0 3.15.0rc1-41-g283e82726\" PROJ=\"9.10.0 NETWORK_ENABLED=OFF URL_ENDPOINT=https://cdn.proj.org USER_WRITABLE_DIRECTORY=/var/lib/postgresql/.local/share/proj DATABASE_PATH=/usr/local/share/proj/proj.db\" (compiled against PROJ 9.10.0) LIBXML=\"2.9.14\" LIBJSON=\"0.18\" LIBPROTOBUF=\"1.5.1\" WAGYU=\"0.5.0 (Internal)\" TOPOLOGY",
+     "old": "POSTGIS=\"3.5.2 dea6d0a\" [EXTENSION] PGSQL=\"170\" GEOS=\"3.9.0-CAPI-1.16.2\" PROJ=\"7.2.1 NETWORK_ENABLED=OFF URL_ENDPOINT=https://cdn.proj.org USER_WRITABLE_DIRECTORY=/var/lib/postgresql/.local/share/proj DATABASE_PATH=/usr/share/proj/proj.db\" (compiled against PROJ 7.2.1) LIBXML=\"2.9.10\" LIBJSON=\"0.15\" LIBPROTOBUF=\"1.3.3\" WAGYU=\"0.5.0 (Internal)\" TOPOLOGY"
+    },
+    "shapely": {
+     "applicable": true,
+     "violated": false,
+     "band": null,
+     "detail": {
+      "method": "certified buffer containment"
+     },
+     "fixed": {
+      "grid": 1e-07,
+      "violated": false,
+      "band": null,
+      "detail": {
+       "method": "certified buffer containment"
+      }
+     },
+     "shapely": "2.2.0",
+     "geos": "3.14.1"
+    },
+    "shapely_seconds": 1.4584892999992007,
+    "margin_check": null
+   },
+   "draft_class": "harness or generator error",
+   "evidence": [
+    "current present_counted=False",
+    "dev present_counted=False",
+    "old present_counted=False",
+    "Shapely applicable=True violated=False",
+    "original pair did not reproduce on the throwaway current",
+    "not reproduced on current, nor in Shapely"
+   ],
+   "class_status": "draft",
+   "known_open_issue": null,
+   "seconds": {
+    "shrink": 0.11660289999781526,
+    "rerun": 1.885538099999394
+   }
+  },
+  {
+   "key_id": "96ba8d5706b5",
+   "key": {
+    "rule": "R7",
+    "function": "Union",
+    "paths": "a vs U",
+    "types_sig": "MultiLineString / LineString",
+    "a_normalized": "MULTILINESTRING((987849 200466,987850 200469,987852 200468,987852 200469,987853 200469,987853 200472,987855 200470,987856 200473),(987845 200464,987845 200462,987844 200459,987848 200459),(987859 200477,987861 200481,987859 200482))",
+    "b_normalized": "LINESTRING(987824 200462,987834 200456,987846 200449,987847 200484,987863 200474,987850 200490)"
+   },
+   "rule": "R7",
+   "sub": "measure(Difference(a,U))",
+   "function": "Union",
+   "paths": "a vs U",
+   "orientation": null,
+   "types_sig": "MultiLineString / LineString",
+   "a": "MULTILINESTRING ((987848 200459, 987844 200459, 987845 200462, 987845 200464), (987856 200473, 987855 200470, 987853 200472, 987853 200469, 987852 200469, 987852 200468, 987850 200469, 987849 200466), (987859 200477, 987861 200481, 987859 200482))",
+   "b": "LINESTRING (987824 200462, 987834 200456, 987846 200449, 987847 200484, 987863 200474, 987850 200490)",
+   "coord": "int",
+   "rep_item": {
+    "item": "lane0:97:v1",
+    "lane": "lane0",
+    "pair_id": 97,
+    "seed": 100,
+    "kind": "overlay",
+    "idx": 4,
+    "arm": "plain-int",
+    "coord": "int",
+    "moves": [],
+    "source": "form=multi/single",
+    "raw": {
+     "value": 4.47213595499958,
+     "measure": "length",
+     "m_small": 32.259532015250485,
+     "L": 41.0,
+     "M": 987863.0
+    }
+   },
+   "original_reproduces": false,
+   "representatives": [
+    {
+     "rep": "57fc38974c9b",
+     "item": "lane0:97:v1",
+     "group": "R7 | measure(Difference(a,U)) | Union | a vs U | - | plain-int | MultiLineString / LineString",
+     "chain": [],
+     "oracle": {
+      "kind": "evaluate on throwaway current: same (rule, sub, function, orientation) counted",
+      "image": "postgis/postgis@sha256:4a43e3c3e5d55b9208240fc71db543b79c638766280c625a425bd0a2390989c4"
+     },
+     "original_a": "MULTILINESTRING ((987848 200459, 987844 200459, 987845 200462, 987845 200464), (987856 200473, 987855 200470, 987853 200472, 987853 200469, 987852 200469, 987852 200468, 987850 200469, 987849 200466), (987859 200477, 987861 200481, 987859 200482))",
+     "original_b": "LINESTRING (987824 200462, 987834 200456, 987846 200449, 987847 200484, 987863 200474, 987850 200490)",
+     "vertices": [
+      21,
+      21
+     ],
+     "oracle_calls": 1
+    }
+   ],
+   "shrink_seconds": [
+    0.1213869999992312
+   ],
+   "raw_count": 1,
+   "raw_shared": 0,
+   "arms": [
+    "plain-int"
+   ],
+   "seeds": [
+    100
+   ],
+   "groups": [
+    "R7 | measure(Difference(a,U)) | Union | a vs U | - | plain-int | MultiLineString / LineString"
+   ],
+   "rerun": {
+    "images": {
+     "current": {
+      "present": false,
+      "present_counted": false,
+      "violations": [],
+      "fixed_precision_analog_violated": null,
+      "outcomes": {},
+      "outcome_messages": [],
+      "info": {
+       "L": 41.0,
+       "M": 987863.0,
+       "grid": 1e-07,
+       "tiers": {
+        "predicate": "strict",
+        "overlay": "strict"
+       },
+       "types": [
+        "MultiLineString",
+        "LineString"
+       ],
+       "precision_limited": false,
+       "crashed_functions": []
+      },
+      "seconds": 0.13445770000180346
+     },
+     "dev": {
+      "present": false,
+      "present_counted": false,
+      "violations": [],
+      "fixed_precision_analog_violated": null,
+      "outcomes": {},
+      "outcome_messages": [],
+      "info": {
+       "L": 41.0,
+       "M": 987863.0,
+       "grid": 1e-07,
+       "tiers": {
+        "predicate": "strict",
+        "overlay": "strict"
+       },
+       "types": [
+        "MultiLineString",
+        "LineString"
+       ],
+       "precision_limited": false,
+       "crashed_functions": []
+      },
+      "seconds": 0.13695480000023963
+     },
+     "old": {
+      "present": false,
+      "present_counted": false,
+      "violations": [],
+      "fixed_precision_analog_violated": null,
+      "outcomes": {},
+      "outcome_messages": [],
+      "info": {
+       "L": 41.0,
+       "M": 987863.0,
+       "grid": 1e-07,
+       "tiers": {
+        "predicate": "strict",
+        "overlay": "strict"
+       },
+       "types": [
+        "MultiLineString",
+        "LineString"
+       ],
+       "precision_limited": false,
+       "crashed_functions": []
+      },
+      "seconds": 0.1942520999982662
+     }
+    },
+    "versions": {
+     "current": "POSTGIS=\"3.6.4 94d984b\" [EXTENSION] PGSQL=\"180\" GEOS=\"3.14.1-CAPI-1.20.5\" (compiled against GEOS 3.13.1) PROJ=\"9.8.1 NETWORK_ENABLED=OFF URL_ENDPOINT=https://cdn.proj.org USER_WRITABLE_DIRECTORY=/var/lib/postgresql/.local/share/proj DATABASE_PATH=/usr/share/proj/proj.db\" (compiled against PROJ 9.6.0) LIBXML=\"2.9.14\" LIBJSON=\"0.18\" LIBPROTOBUF=\"1.5.1\" WAGYU=\"0.5.0 (Internal)\" TOPOLOGY",
+     "dev": "POSTGIS=\"3.7.0dev 3.7.0rc3-1-g4db4d8050\" [EXTENSION] PGSQL=\"180\" GEOS=\"3.16.0dev-CAPI-1.23.0 3.15.0rc1-41-g283e82726\" PROJ=\"9.10.0 NETWORK_ENABLED=OFF URL_ENDPOINT=https://cdn.proj.org USER_WRITABLE_DIRECTORY=/var/lib/postgresql/.local/share/proj DATABASE_PATH=/usr/local/share/proj/proj.db\" (compiled against PROJ 9.10.0) LIBXML=\"2.9.14\" LIBJSON=\"0.18\" LIBPROTOBUF=\"1.5.1\" WAGYU=\"0.5.0 (Internal)\" TOPOLOGY",
+     "old": "POSTGIS=\"3.5.2 dea6d0a\" [EXTENSION] PGSQL=\"170\" GEOS=\"3.9.0-CAPI-1.16.2\" PROJ=\"7.2.1 NETWORK_ENABLED=OFF URL_ENDPOINT=https://cdn.proj.org USER_WRITABLE_DIRECTORY=/var/lib/postgresql/.local/share/proj DATABASE_PATH=/usr/share/proj/proj.db\" (compiled against PROJ 7.2.1) LIBXML=\"2.9.10\" LIBJSON=\"0.15\" LIBPROTOBUF=\"1.3.3\" WAGYU=\"0.5.0 (Internal)\" TOPOLOGY"
+    },
+    "shapely": {
+     "applicable": true,
+     "violated": false,
+     "band": null,
+     "detail": {
+      "method": "certified buffer containment"
+     },
+     "fixed": {
+      "grid": 1e-07,
+      "violated": false,
+      "band": null,
+      "detail": {
+       "method": "certified buffer containment"
+      }
+     },
+     "shapely": "2.2.0",
+     "geos": "3.14.1"
+    },
+    "shapely_seconds": 1.5024856999989424,
+    "margin_check": null
+   },
+   "draft_class": "harness or generator error",
+   "evidence": [
+    "current present_counted=False",
+    "dev present_counted=False",
+    "old present_counted=False",
+    "Shapely applicable=True violated=False",
+    "original pair did not reproduce on the throwaway current",
+    "not reproduced on current, nor in Shapely"
+   ],
+   "class_status": "draft",
+   "known_open_issue": null,
+   "seconds": {
+    "shrink": 0.1213869999992312,
+    "rerun": 1.9681502999992517
+   }
+  },
+  {
+   "key_id": "a258b182f8eb",
+   "key": {
+    "rule": "R7",
+    "function": "Union",
+    "paths": "a vs U",
+    "types_sig": "LineString / MultiLineString",
+    "a_normalized": "LINESTRING(190165369 135526369,190165391 135526349,190165392 135526349,190165399 135526357,190165408 135526360,190165415 135526362,190165414 135526392,190165436 135526373)",
+    "b_normalized": "MULTILINESTRING((190165379 135526359,190165382 135526356,190165385 135526356,190165380 135526353,190165384 135526352,190165387 135526349))"
+   },
+   "rule": "R7",
+   "sub": "measure(Difference(a,U))",
+   "function": "Union",
+   "paths": "a vs U",
+   "orientation": null,
+   "types_sig": "LineString / MultiLineString",
+   "a": "LINESTRING (190165369.0 135526369.0, 190165391.0 135526349.0, 190165392.0 135526349.0, 190165399.0 135526357.0, 190165408.0 135526360.0, 190165415.0 135526362.0, 190165414.0 135526392.0, 190165436.0 135526373.0)",
+   "b": "MULTILINESTRING ((190165379.0 135526359.0, 190165382.0 135526356.0, 190165385.0 135526356.0, 190165380.0 135526353.0, 190165384.0 135526352.0, 190165387.0 135526349.0))",
+   "coord": "float",
+   "rep_item": {
+    "item": "lane0:154:v2",
+    "lane": "lane0",
+    "pair_id": 154,
+    "seed": 100,
+    "kind": "overlay",
+    "idx": 18,
+    "arm": "plain-float",
+    "coord": "float",
+    "moves": [],
+    "source": "form=single/multi;regime=translate-2^27;ox=190119911;oy=135479848",
+    "raw": {
+     "value": 10.145260334368787,
+     "measure": "length",
+     "m_small": 21.43933889470153,
+     "L": 67.0,
+     "M": 190165436.0
+    }
+   },
+   "original_reproduces": false,
+   "representatives": [
+    {
+     "rep": "e56699afdbb3",
+     "item": "lane0:154:v2",
+     "group": "R7 | measure(Difference(a,U)) | Union | a vs U | - | plain-float | LineString / MultiLineString",
+     "chain": [],
+     "oracle": {
+      "kind": "evaluate on throwaway current: same (rule, sub, function, orientation) counted",
+      "image": "postgis/postgis@sha256:4a43e3c3e5d55b9208240fc71db543b79c638766280c625a425bd0a2390989c4"
+     },
+     "original_a": "LINESTRING (190165369.0 135526369.0, 190165391.0 135526349.0, 190165392.0 135526349.0, 190165399.0 135526357.0, 190165408.0 135526360.0, 190165415.0 135526362.0, 190165414.0 135526392.0, 190165436.0 135526373.0)",
+     "original_b": "MULTILINESTRING ((190165379.0 135526359.0, 190165382.0 135526356.0, 190165385.0 135526356.0, 190165380.0 135526353.0, 190165384.0 135526352.0, 190165387.0 135526349.0))",
+     "vertices": [
+      14,
+      14
+     ],
+     "oracle_calls": 1
+    }
+   ],
+   "shrink_seconds": [
+    0.12283959999695071
+   ],
+   "raw_count": 1,
+   "raw_shared": 0,
+   "arms": [
+    "plain-float"
+   ],
+   "seeds": [
+    100
+   ],
+   "groups": [
+    "R7 | measure(Difference(a,U)) | Union | a vs U | - | plain-float | LineString / MultiLineString"
+   ],
+   "rerun": {
+    "images": {
+     "current": {
+      "present": false,
+      "present_counted": false,
+      "violations": [],
+      "fixed_precision_analog_violated": null,
+      "outcomes": {
+       "tier_mismatch": 1
+      },
+      "outcome_messages": [
+       "tier: tier_mismatch: pair.coord='float' but the coordinates give predicate tier strict; the coordinates decide"
+      ],
+      "info": {
+       "L": 67.0,
+       "M": 190165436.0,
+       "grid": 0.0001,
+       "tiers": {
+        "predicate": "strict",
+        "overlay": "candidate"
+       },
+       "types": [
+        "LineString",
+        "MultiLineString"
+       ],
+       "precision_limited": false,
+       "crashed_functions": []
+      },
+      "seconds": 0.1219091999992088
+     },
+     "dev": {
+      "present": false,
+      "present_counted": false,
+      "violations": [],
+      "fixed_precision_analog_violated": null,
+      "outcomes": {
+       "tier_mismatch": 1
+      },
+      "outcome_messages": [
+       "tier: tier_mismatch: pair.coord='float' but the coordinates give predicate tier strict; the coordinates decide"
+      ],
+      "info": {
+       "L": 67.0,
+       "M": 190165436.0,
+       "grid": 0.0001,
+       "tiers": {
+        "predicate": "strict",
+        "overlay": "candidate"
+       },
+       "types": [
+        "LineString",
+        "MultiLineString"
+       ],
+       "precision_limited": false,
+       "crashed_functions": []
+      },
+      "seconds": 0.1199603000022762
+     },
+     "old": {
+      "present": false,
+      "present_counted": false,
+      "violations": [],
+      "fixed_precision_analog_violated": null,
+      "outcomes": {
+       "tier_mismatch": 1
+      },
+      "outcome_messages": [
+       "tier: tier_mismatch: pair.coord='float' but the coordinates give predicate tier strict; the coordinates decide"
+      ],
+      "info": {
+       "L": 67.0,
+       "M": 190165436.0,
+       "grid": 0.0001,
+       "tiers": {
+        "predicate": "strict",
+        "overlay": "candidate"
+       },
+       "types": [
+        "LineString",
+        "MultiLineString"
+       ],
+       "precision_limited": false,
+       "crashed_functions": []
+      },
+      "seconds": 0.197922400002426
+     }
+    },
+    "versions": {
+     "current": "POSTGIS=\"3.6.4 94d984b\" [EXTENSION] PGSQL=\"180\" GEOS=\"3.14.1-CAPI-1.20.5\" (compiled against GEOS 3.13.1) PROJ=\"9.8.1 NETWORK_ENABLED=OFF URL_ENDPOINT=https://cdn.proj.org USER_WRITABLE_DIRECTORY=/var/lib/postgresql/.local/share/proj DATABASE_PATH=/usr/share/proj/proj.db\" (compiled against PROJ 9.6.0) LIBXML=\"2.9.14\" LIBJSON=\"0.18\" LIBPROTOBUF=\"1.5.1\" WAGYU=\"0.5.0 (Internal)\" TOPOLOGY",
+     "dev": "POSTGIS=\"3.7.0dev 3.7.0rc3-1-g4db4d8050\" [EXTENSION] PGSQL=\"180\" GEOS=\"3.16.0dev-CAPI-1.23.0 3.15.0rc1-41-g283e82726\" PROJ=\"9.10.0 NETWORK_ENABLED=OFF URL_ENDPOINT=https://cdn.proj.org USER_WRITABLE_DIRECTORY=/var/lib/postgresql/.local/share/proj DATABASE_PATH=/usr/local/share/proj/proj.db\" (compiled against PROJ 9.10.0) LIBXML=\"2.9.14\" LIBJSON=\"0.18\" LIBPROTOBUF=\"1.5.1\" WAGYU=\"0.5.0 (Internal)\" TOPOLOGY",
+     "old": "POSTGIS=\"3.5.2 dea6d0a\" [EXTENSION] PGSQL=\"170\" GEOS=\"3.9.0-CAPI-1.16.2\" PROJ=\"7.2.1 NETWORK_ENABLED=OFF URL_ENDPOINT=https://cdn.proj.org USER_WRITABLE_DIRECTORY=/var/lib/postgresql/.local/share/proj DATABASE_PATH=/usr/share/proj/proj.db\" (compiled against PROJ 7.2.1) LIBXML=\"2.9.10\" LIBJSON=\"0.15\" LIBPROTOBUF=\"1.3.3\" WAGYU=\"0.5.0 (Internal)\" TOPOLOGY"
+    },
+    "shapely": {
+     "applicable": true,
+     "violated": false,
+     "band": null,
+     "detail": {
+      "method": "certified buffer containment"
+     },
+     "fixed": {
+      "grid": 0.0001,
+      "violated": false,
+      "band": null,
+      "detail": {
+       "method": "certified buffer containment"
+      }
+     },
+     "shapely": "2.2.0",
+     "geos": "3.14.1"
+    },
+    "shapely_seconds": 1.4950141000008443,
+    "margin_check": null
+   },
+   "draft_class": "harness or generator error",
+   "evidence": [
+    "current present_counted=False",
+    "dev present_counted=False",
+    "old present_counted=False",
+    "Shapely applicable=True violated=False",
+    "original pair did not reproduce on the throwaway current",
+    "not reproduced on current, nor in Shapely"
+   ],
+   "class_status": "draft",
+   "known_open_issue": null,
+   "seconds": {
+    "shrink": 0.12283959999695071,
+    "rerun": 1.9348060000047553
+   }
+  },
+  {
+   "key_id": "a844dbafa96e",
+   "key": {
+    "rule": "R7",
+    "function": "Union",
+    "paths": "a vs U",
+    "types_sig": "LineString / MultiLineString",
+    "a_normalized": "LINESTRING(261144.22176308287 719774.7138659884,261175.94229669415 719851.6151517216,261041.98836951214 719914.8792441637,261095.08445515877 719931.1827925202,261134.45570472363 719962.0681403035,261156.8791501632 719985.0939756763,261215.89024755545 719986.7342148548,261197.28824897326 720002.41750688)",
+    "b_normalized": "MULTILINESTRING((261205.51957734267 719998.9181879071,261202.36025265217 719994.9158551499,261211.80640504725 719997.7033638813,261221.59255172472 720004.7198682253,261215.89024755545 719986.7342148548))"
+   },
+   "rule": "R7",
+   "sub": "measure(Difference(a,U))",
+   "function": "Union",
+   "paths": "a vs U",
+   "orientation": null,
+   "types_sig": "LineString / MultiLineString",
+   "a": "LINESTRING (261197.28824897326 720002.41750688, 261215.89024755545 719986.7342148548, 261156.8791501632 719985.0939756763, 261134.45570472363 719962.0681403035, 261095.08445515877 719931.1827925202, 261041.98836951214 719914.8792441637, 261175.94229669415 719851.6151517216, 261144.22176308287 719774.7138659884)",
+   "b": "MULTILINESTRING ((261215.89024755545 719986.7342148548, 261221.59255172472 720004.7198682253, 261211.80640504725 719997.7033638813, 261202.36025265217 719994.9158551499, 261205.51957734267 719998.9181879071))",
+   "coord": "float",
+   "rep_item": {
+    "item": "lane1:116:v2",
+    "lane": "lane1",
+    "pair_id": 116,
+    "seed": 2,
+    "kind": "overlay",
+    "idx": 8,
+    "arm": "degen-float",
+    "coord": "float",
+    "moves": [
+     "shared-vertex"
+    ],
+    "source": "form=single/multi;regime=rotation;angle=2.275971046643323;cx=261164.5;cy=719899.0",
+    "raw": {
+     "value": 15.697451691134656,
+     "measure": "length",
+     "m_small": 45.85743415834649,
+     "L": 230.00600223685615,
+     "M": 720004.7198682253
+    }
+   },
+   "original_reproduces": false,
+   "representatives": [
+    {
+     "rep": "bbbf9bfa5eec",
+     "item": "lane1:116:v2",
+     "group": "R7 | measure(Difference(a,U)) | Union | a vs U | - | degen-float | LineString / MultiLineString",
+     "chain": [],
+     "oracle": {
+      "kind": "evaluate on throwaway current: same (rule, sub, function, orientation) counted",
+      "image": "postgis/postgis@sha256:4a43e3c3e5d55b9208240fc71db543b79c638766280c625a425bd0a2390989c4"
+     },
+     "original_a": "LINESTRING (261197.28824897326 720002.41750688, 261215.89024755545 719986.7342148548, 261156.8791501632 719985.0939756763, 261134.45570472363 719962.0681403035, 261095.08445515877 719931.1827925202, 261041.98836951214 719914.8792441637, 261175.94229669415 719851.6151517216, 261144.22176308287 719774.7138659884)",
+     "original_b": "MULTILINESTRING ((261215.89024755545 719986.7342148548, 261221.59255172472 720004.7198682253, 261211.80640504725 719997.7033638813, 261202.36025265217 719994.9158551499, 261205.51957734267 719998.9181879071))",
+     "vertices": [
+      13,
+      13
+     ],
+     "oracle_calls": 1
+    }
+   ],
+   "shrink_seconds": [
+    0.13640699999814387
+   ],
+   "raw_count": 1,
+   "raw_shared": 0,
+   "arms": [
+    "degen-float"
+   ],
+   "seeds": [
+    2
+   ],
+   "groups": [
+    "R7 | measure(Difference(a,U)) | Union | a vs U | - | degen-float | LineString / MultiLineString"
+   ],
+   "rerun": {
+    "images": {
+     "current": {
+      "present": true,
+      "present_counted": false,
+      "violations": [
+       {
+        "rule": "R7",
+        "sub": "measure(Difference(a,U))",
+        "function": "Union",
+        "paths": "a vs U",
+        "orientation": null,
+        "tier": "candidate",
+        "band": "logged",
+        "magnitude": 7.704286315592828e-11,
+        "plim": false,
+        "raw": {
+         "leftover_length": 15.697451691134656,
+         "container": "u_ab",
+         "part": "a",
+         "magnitude_kind": "lower bound: max distance of the vertices of ST_Segmentize(part, L/1024) to the container",
+         "covers_buffer_1e-12M": false,
+         "covers_buffer_1e-9M": true,
+         "buffer_check_failed": null,
+         "L": 230.00600223685615,
+         "M": 720004.7198682253
+        }
+       }
+      ],
+      "fixed_precision_analog_violated": null,
+      "outcomes": {},
+      "outcome_messages": [],
+      "info": {
+       "L": 230.00600223685615,
+       "M": 720004.7198682253,
+       "grid": 1e-07,
+       "tiers": {
+        "predicate": "candidate",
+        "overlay": "candidate"
+       },
+       "types": [
+        "LineString",
+        "MultiLineString"
+       ],
+       "precision_limited": false,
+       "crashed_functions": []
+      },
+      "seconds": 0.1323865999984264
+     },
+     "dev": {
+      "present": true,
+      "present_counted": false,
+      "violations": [
+       {
+        "rule": "R7",
+        "sub": "measure(Difference(a,U))",
+        "function": "Union",
+        "paths": "a vs U",
+        "orientation": null,
+        "tier": "candidate",
+        "band": "logged",
+        "magnitude": 7.704286315592828e-11,
+        "plim": false,
+        "raw": {
+         "leftover_length": 15.697451691134656,
+         "container": "u_ab",
+         "part": "a",
+         "magnitude_kind": "lower bound: max distance of the vertices of ST_Segmentize(part, L/1024) to the container",
+         "covers_buffer_1e-12M": false,
+         "covers_buffer_1e-9M": true,
+         "buffer_check_failed": null,
+         "L": 230.00600223685615,
+         "M": 720004.7198682253
+        }
+       }
+      ],
+      "fixed_precision_analog_violated": null,
+      "outcomes": {},
+      "outcome_messages": [],
+      "info": {
+       "L": 230.00600223685615,
+       "M": 720004.7198682253,
+       "grid": 1e-07,
+       "tiers": {
+        "predicate": "candidate",
+        "overlay": "candidate"
+       },
+       "types": [
+        "LineString",
+        "MultiLineString"
+       ],
+       "precision_limited": false,
+       "crashed_functions": []
+      },
+      "seconds": 0.13357470000119065
+     },
+     "old": {
+      "present": true,
+      "present_counted": false,
+      "violations": [
+       {
+        "rule": "R7",
+        "sub": "measure(Difference(a,U))",
+        "function": "Union",
+        "paths": "a vs U",
+        "orientation": null,
+        "tier": "candidate",
+        "band": "logged",
+        "magnitude": 7.704286315592828e-11,
+        "plim": false,
+        "raw": {
+         "leftover_length": 15.697451691134656,
+         "container": "u_ab",
+         "part": "a",
+         "magnitude_kind": "lower bound: max distance of the vertices of ST_Segmentize(part, L/1024) to the container",
+         "covers_buffer_1e-12M": false,
+         "covers_buffer_1e-9M": true,
+         "buffer_check_failed": null,
+         "L": 230.00600223685615,
+         "M": 720004.7198682253
+        }
+       }
+      ],
+      "fixed_precision_analog_violated": null,
+      "outcomes": {},
+      "outcome_messages": [],
+      "info": {
+       "L": 230.00600223685615,
+       "M": 720004.7198682253,
+       "grid": 1e-07,
+       "tiers": {
+        "predicate": "candidate",
+        "overlay": "candidate"
+       },
+       "types": [
+        "LineString",
+        "MultiLineString"
+       ],
+       "precision_limited": false,
+       "crashed_functions": []
+      },
+      "seconds": 0.18571630000224104
+     }
+    },
+    "versions": {
+     "current": "POSTGIS=\"3.6.4 94d984b\" [EXTENSION] PGSQL=\"180\" GEOS=\"3.14.1-CAPI-1.20.5\" (compiled against GEOS 3.13.1) PROJ=\"9.8.1 NETWORK_ENABLED=OFF URL_ENDPOINT=https://cdn.proj.org USER_WRITABLE_DIRECTORY=/var/lib/postgresql/.local/share/proj DATABASE_PATH=/usr/share/proj/proj.db\" (compiled against PROJ 9.6.0) LIBXML=\"2.9.14\" LIBJSON=\"0.18\" LIBPROTOBUF=\"1.5.1\" WAGYU=\"0.5.0 (Internal)\" TOPOLOGY",
+     "dev": "POSTGIS=\"3.7.0dev 3.7.0rc3-1-g4db4d8050\" [EXTENSION] PGSQL=\"180\" GEOS=\"3.16.0dev-CAPI-1.23.0 3.15.0rc1-41-g283e82726\" PROJ=\"9.10.0 NETWORK_ENABLED=OFF URL_ENDPOINT=https://cdn.proj.org USER_WRITABLE_DIRECTORY=/var/lib/postgresql/.local/share/proj DATABASE_PATH=/usr/local/share/proj/proj.db\" (compiled against PROJ 9.10.0) LIBXML=\"2.9.14\" LIBJSON=\"0.18\" LIBPROTOBUF=\"1.5.1\" WAGYU=\"0.5.0 (Internal)\" TOPOLOGY",
+     "old": "POSTGIS=\"3.5.2 dea6d0a\" [EXTENSION] PGSQL=\"170\" GEOS=\"3.9.0-CAPI-1.16.2\" PROJ=\"7.2.1 NETWORK_ENABLED=OFF URL_ENDPOINT=https://cdn.proj.org USER_WRITABLE_DIRECTORY=/var/lib/postgresql/.local/share/proj DATABASE_PATH=/usr/share/proj/proj.db\" (compiled against PROJ 7.2.1) LIBXML=\"2.9.10\" LIBJSON=\"0.15\" LIBPROTOBUF=\"1.3.3\" WAGYU=\"0.5.0 (Internal)\" TOPOLOGY"
+    },
+    "shapely": {
+     "applicable": true,
+     "violated": false,
+     "band": "logged",
+     "detail": {
+      "method": "certified buffer containment"
+     },
+     "fixed": {
+      "grid": 1e-07,
+      "violated": false,
+      "band": null,
+      "detail": {
+       "method": "certified buffer containment"
+      }
+     },
+     "shapely": "2.2.0",
+     "geos": "3.14.1"
+    },
+    "shapely_seconds": 1.4799623999970208,
+    "margin_check": {
+     "magnitude": 7.704286315592828e-11,
+     "bound": 0.007200047198682253,
+     "kind": "distance",
+     "within": true,
+     "note": "heuristic bound: OverlayNG worst-case snap displacement max(1e-9*L, 1e-8*M) (plan, R12), times the operands' total boundary length for areas"
+    }
+   },
+   "draft_class": "harness or generator error",
+   "evidence": [
+    "current present_counted=False",
+    "dev present_counted=False",
+    "old present_counted=False",
+    "Shapely applicable=True violated=False",
+    "precision evidence: magnitude 7.7e-11 within distance snap bound 0.0072",
+    "original pair did not reproduce on the throwaway current",
+    "not reproduced on current, nor in Shapely"
+   ],
+   "class_status": "draft",
+   "known_open_issue": null,
+   "seconds": {
+    "shrink": 0.13640699999814387,
+    "rerun": 1.931639999998879
+   }
+  },
+  {
+   "key_id": "acc57190f9b4",
+   "key": {
+    "rule": "R7",
+    "function": "Union",
+    "paths": "a vs U",
+    "types_sig": "MultiLineString / LineString",
+    "a_normalized": "MULTILINESTRING((50742 455119,50743 455119,50745 455120,50747 455121,50749 455119,50754 455112),(50728 455144,50728 455161))",
+    "b_normalized": "LINESTRING(50742 455119,50749 455116,50758 455115,50781 455139)"
+   },
+   "rule": "R7",
+   "sub": "measure(Difference(a,U))",
+   "function": "Union",
+   "paths": "a vs U",
+   "orientation": null,
+   "types_sig": "MultiLineString / LineString",
+   "a": "MULTILINESTRING ((50754 455112, 50749 455119, 50747 455121, 50745 455120, 50743 455119, 50742 455119), (50728 455161, 50728 455144))",
+   "b": "LINESTRING (50742 455119, 50749 455116, 50758 455115, 50781 455139)",
+   "coord": "int",
+   "rep_item": {
+    "item": "lane1:159:v7",
+    "lane": "lane1",
+    "pair_id": 159,
+    "seed": 2,
+    "kind": "overlay",
+    "idx": 19,
+    "arm": "degen-int",
+    "coord": "int",
+    "moves": [
+     "shared-vertex"
+    ],
+    "source": "form=multi/single",
+    "raw": {
+     "value": 8.602325267042627,
+     "measure": "length",
+     "m_small": 33.902888346788394,
+     "L": 53.0,
+     "M": 455161.0
+    }
+   },
+   "original_reproduces": false,
+   "representatives": [
+    {
+     "rep": "2b8ab9bf1c67",
+     "item": "lane1:159:v7",
+     "group": "R7 | measure(Difference(a,U)) | Union | a vs U | - | degen-int | MultiLineString / LineString",
+     "chain": [],
+     "oracle": {
+      "kind": "evaluate on throwaway current: same (rule, sub, function, orientation) counted",
+      "image": "postgis/postgis@sha256:4a43e3c3e5d55b9208240fc71db543b79c638766280c625a425bd0a2390989c4"
+     },
+     "original_a": "MULTILINESTRING ((50754 455112, 50749 455119, 50747 455121, 50745 455120, 50743 455119, 50742 455119), (50728 455161, 50728 455144))",
+     "original_b": "LINESTRING (50742 455119, 50749 455116, 50758 455115, 50781 455139)",
+     "vertices": [
+      12,
+      12
+     ],
+     "oracle_calls": 1
+    }
+   ],
+   "shrink_seconds": [
+    0.1540141000004951
+   ],
+   "raw_count": 1,
+   "raw_shared": 0,
+   "arms": [
+    "degen-int"
+   ],
+   "seeds": [
+    2
+   ],
+   "groups": [
+    "R7 | measure(Difference(a,U)) | Union | a vs U | - | degen-int | MultiLineString / LineString"
+   ],
+   "rerun": {
+    "images": {
+     "current": {
+      "present": false,
+      "present_counted": false,
+      "violations": [],
+      "fixed_precision_analog_violated": null,
+      "outcomes": {},
+      "outcome_messages": [],
+      "info": {
+       "L": 53.0,
+       "M": 455161.0,
+       "grid": 1e-07,
+       "tiers": {
+        "predicate": "strict",
+        "overlay": "strict"
+       },
+       "types": [
+        "MultiLineString",
+        "LineString"
+       ],
+       "precision_limited": false,
+       "crashed_functions": []
+      },
+      "seconds": 0.10185620000265772
+     },
+     "dev": {
+      "present": false,
+      "present_counted": false,
+      "violations": [],
+      "fixed_precision_analog_violated": null,
+      "outcomes": {},
+      "outcome_messages": [],
+      "info": {
+       "L": 53.0,
+       "M": 455161.0,
+       "grid": 1e-07,
+       "tiers": {
+        "predicate": "strict",
+        "overlay": "strict"
+       },
+       "types": [
+        "MultiLineString",
+        "LineString"
+       ],
+       "precision_limited": false,
+       "crashed_functions": []
+      },
+      "seconds": 0.10609499999918626
+     },
+     "old": {
+      "present": false,
+      "present_counted": false,
+      "violations": [],
+      "fixed_precision_analog_violated": null,
+      "outcomes": {},
+      "outcome_messages": [],
+      "info": {
+       "L": 53.0,
+       "M": 455161.0,
+       "grid": 1e-07,
+       "tiers": {
+        "predicate": "strict",
+        "overlay": "strict"
+       },
+       "types": [
+        "MultiLineString",
+        "LineString"
+       ],
+       "precision_limited": false,
+       "crashed_functions": []
+      },
+      "seconds": 0.17367000000012922
+     }
+    },
+    "versions": {
+     "current": "POSTGIS=\"3.6.4 94d984b\" [EXTENSION] PGSQL=\"180\" GEOS=\"3.14.1-CAPI-1.20.5\" (compiled against GEOS 3.13.1) PROJ=\"9.8.1 NETWORK_ENABLED=OFF URL_ENDPOINT=https://cdn.proj.org USER_WRITABLE_DIRECTORY=/var/lib/postgresql/.local/share/proj DATABASE_PATH=/usr/share/proj/proj.db\" (compiled against PROJ 9.6.0) LIBXML=\"2.9.14\" LIBJSON=\"0.18\" LIBPROTOBUF=\"1.5.1\" WAGYU=\"0.5.0 (Internal)\" TOPOLOGY",
+     "dev": "POSTGIS=\"3.7.0dev 3.7.0rc3-1-g4db4d8050\" [EXTENSION] PGSQL=\"180\" GEOS=\"3.16.0dev-CAPI-1.23.0 3.15.0rc1-41-g283e82726\" PROJ=\"9.10.0 NETWORK_ENABLED=OFF URL_ENDPOINT=https://cdn.proj.org USER_WRITABLE_DIRECTORY=/var/lib/postgresql/.local/share/proj DATABASE_PATH=/usr/local/share/proj/proj.db\" (compiled against PROJ 9.10.0) LIBXML=\"2.9.14\" LIBJSON=\"0.18\" LIBPROTOBUF=\"1.5.1\" WAGYU=\"0.5.0 (Internal)\" TOPOLOGY",
+     "old": "POSTGIS=\"3.5.2 dea6d0a\" [EXTENSION] PGSQL=\"170\" GEOS=\"3.9.0-CAPI-1.16.2\" PROJ=\"7.2.1 NETWORK_ENABLED=OFF URL_ENDPOINT=https://cdn.proj.org USER_WRITABLE_DIRECTORY=/var/lib/postgresql/.local/share/proj DATABASE_PATH=/usr/share/proj/proj.db\" (compiled against PROJ 7.2.1) LIBXML=\"2.9.10\" LIBJSON=\"0.15\" LIBPROTOBUF=\"1.3.3\" WAGYU=\"0.5.0 (Internal)\" TOPOLOGY"
+    },
+    "shapely": {
+     "applicable": true,
+     "violated": false,
+     "band": null,
+     "detail": {
+      "method": "certified buffer containment"
+     },
+     "fixed": {
+      "grid": 1e-07,
+      "violated": false,
+      "band": null,
+      "detail": {
+       "method": "certified buffer containment"
+      }
+     },
+     "shapely": "2.2.0",
+     "geos": "3.14.1"
+    },
+    "shapely_seconds": 1.4479239000029338,
+    "margin_check": null
+   },
+   "draft_class": "harness or generator error",
+   "evidence": [
+    "current present_counted=False",
+    "dev present_counted=False",
+    "old present_counted=False",
+    "Shapely applicable=True violated=False",
+    "original pair did not reproduce on the throwaway current",
+    "not reproduced on current, nor in Shapely"
+   ],
+   "class_status": "draft",
+   "known_open_issue": null,
+   "seconds": {
+    "shrink": 0.1540141000004951,
+    "rerun": 1.829545100004907
+   }
+  }
+ ]
+}

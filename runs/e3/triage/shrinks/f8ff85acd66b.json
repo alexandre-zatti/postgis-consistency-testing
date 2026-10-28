@@ -1,0 +1,30 @@
+{
+ "rep": "f8ff85acd66b",
+ "item": "lane0:103748:v2391",
+ "group": "R11 | Intersection floating vs fixed | Intersection | Intersection(a,b) vs Intersection(a,b,g) | - | degen-float | LineString / LineString",
+ "steps": 200,
+ "oracle": {
+  "kind": "evaluate on throwaway current: same (rule, sub, function, orientation) counted",
+  "image": "postgis/postgis@sha256:4a43e3c3e5d55b9208240fc71db543b79c638766280c625a425bd0a2390989c4"
+ },
+ "original_reproduces": true,
+ "shrunk_a": "LINESTRING (284250.94319 -414923.69463, 284201.7816 -415065.56093)",
+ "shrunk_b": "LINESTRING (284300.10478 -414781.82833, 284152.62001 -415207.42723)",
+ "coord": "float",
+ "chain": [
+  {
+   "step": 1,
+   "call": 9,
+   "geom": "ab",
+   "op": "round to 11 significant digits",
+   "vertices_a": 2,
+   "vertices_b": 2,
+   "a": "LINESTRING (284250.94319 -414923.69463, 284201.7816 -415065.56093)",
+   "b": "LINESTRING (284300.10478 -414781.82833, 284152.62001 -415207.42723)"
+  }
+ ],
+ "oracle_calls": 34,
+ "vertices_before": 4,
+ "vertices_after": 4,
+ "seconds": 3.312709999998333
+}

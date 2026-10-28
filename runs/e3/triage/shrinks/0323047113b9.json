@@ -1,0 +1,84 @@
+{
+ "rep": "0323047113b9",
+ "item": "lane1:21491:crash:ST_Relate(matrix)",
+ "group": "crash | backend crash | ST_Relate(matrix) |  | - | degen-int | MultiPolygon / Polygon",
+ "steps": 200,
+ "oracle": {
+  "kind": "throwaway container: lone probe crashes the backend",
+  "image": "postgis/postgis@sha256:4a43e3c3e5d55b9208240fc71db543b79c638766280c625a425bd0a2390989c4",
+  "probes": [
+   {
+    "o": "ab",
+    "fn": "ST_Relate(matrix)",
+    "wrap": 1,
+    "sql": "ST_Relate(ST_ForceCollection(a),b)"
+   },
+   {
+    "o": "ba",
+    "fn": "ST_Relate(matrix)",
+    "wrap": 2,
+    "sql": "ST_Relate(b,ST_ForceCollection(a))"
+   }
+  ]
+ },
+ "original_reproduces": true,
+ "shrunk_a": "MULTIPOLYGON (EMPTY, ((461106 695653, 461094 695647, 461087 695625, 461106 695653)), ((461106 695653, 461101 695665, 461108 695666, 461106 695653)))",
+ "shrunk_b": "POLYGON ((461074 695540, 461164 695569, 461121 695658, 461074 695540))",
+ "coord": "int",
+ "chain": [
+  {
+   "step": 1,
+   "call": 4,
+   "geom": "a",
+   "op": "drop vertex 0 of (1, 0)",
+   "vertices_a": 9,
+   "vertices_b": 4,
+   "a": "MULTIPOLYGON (EMPTY, ((461119 695617, 461125 695627, 461123 695648, 461106 695653, 461094 695647, 461087 695625, 461119 695617)), ((461106 695653, 461101 695665, 461108 695666, 461106 695653)))",
+   "b": "POLYGON ((461022 695654, 461074 695540, 461164 695569, 461121 695658, 461022 695654))"
+  },
+  {
+   "step": 2,
+   "call": 8,
+   "geom": "a",
+   "op": "drop vertex 0 of (1, 0)",
+   "vertices_a": 8,
+   "vertices_b": 4,
+   "a": "MULTIPOLYGON (EMPTY, ((461125 695627, 461123 695648, 461106 695653, 461094 695647, 461087 695625, 461125 695627)), ((461106 695653, 461101 695665, 461108 695666, 461106 695653)))",
+   "b": "POLYGON ((461022 695654, 461074 695540, 461164 695569, 461121 695658, 461022 695654))"
+  },
+  {
+   "step": 3,
+   "call": 12,
+   "geom": "a",
+   "op": "drop vertex 0 of (1, 0)",
+   "vertices_a": 7,
+   "vertices_b": 4,
+   "a": "MULTIPOLYGON (EMPTY, ((461123 695648, 461106 695653, 461094 695647, 461087 695625, 461123 695648)), ((461106 695653, 461101 695665, 461108 695666, 461106 695653)))",
+   "b": "POLYGON ((461022 695654, 461074 695540, 461164 695569, 461121 695658, 461022 695654))"
+  },
+  {
+   "step": 4,
+   "call": 16,
+   "geom": "a",
+   "op": "drop vertex 0 of (1, 0)",
+   "vertices_a": 6,
+   "vertices_b": 4,
+   "a": "MULTIPOLYGON (EMPTY, ((461106 695653, 461094 695647, 461087 695625, 461106 695653)), ((461106 695653, 461101 695665, 461108 695666, 461106 695653)))",
+   "b": "POLYGON ((461022 695654, 461074 695540, 461164 695569, 461121 695658, 461022 695654))"
+  },
+  {
+   "step": 5,
+   "call": 20,
+   "geom": "b",
+   "op": "drop vertex 0 of (0,)",
+   "vertices_a": 6,
+   "vertices_b": 3,
+   "a": "MULTIPOLYGON (EMPTY, ((461106 695653, 461094 695647, 461087 695625, 461106 695653)), ((461106 695653, 461101 695665, 461108 695666, 461106 695653)))",
+   "b": "POLYGON ((461074 695540, 461164 695569, 461121 695658, 461074 695540))"
+  }
+ ],
+ "oracle_calls": 23,
+ "vertices_before": 14,
+ "vertices_after": 9,
+ "seconds": 16.744919999997364
+}

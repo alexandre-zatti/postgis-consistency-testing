@@ -1,0 +1,33 @@
+=== python -s reproduce.py (2026-10-28)
+Shapely 2.2.0 GEOS 3.14.1
+a = MULTIPOLYGON (((778596 894741, 778576 894719, 778597 894724, 778596 894741)), ((778596 894741, 778604 894748, 778606 894738, 778596 894741), (778596 894741, 778598 894742, 778598 894741, 778596 894741))) 
+b = MULTIPOLYGON (((778535 894759, 778501 894754, 778462 894786, 778535 894759))) 
+valid: True True
+relate(a, b)                 = FF2FF1212
+relate(ForceCollection(a), b) = FF2FFF212
+expected: the same matrix (same point set); a and b are disjoint, so EB should be 1
+verdict: reproduced, wrapping changes relate (candidate bug)
+
+=== psql < reproduce.sql, current (container tavs-current-1)
+ postgis |        geos        
+---------+--------------------
+ 3.6.4   | 3.14.1-CAPI-1.20.5
+(1 row)
+
+ valid |   lone    |  wrapped  
+-------+-----------+-----------
+ t     | FF2FF1212 | FF2FFF212
+(1 row)
+
+
+=== psql < reproduce.sql, dev (container tavs-dev-1)
+ postgis  |         geos          
+----------+-----------------------
+ 3.7.0dev | 3.16.0dev-CAPI-1.23.0
+(1 row)
+
+ valid |   lone    |  wrapped  
+-------+-----------+-----------
+ t     | FF2FF1212 | FF2FFF212
+(1 row)
+

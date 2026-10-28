@@ -1,0 +1,30 @@
+{
+ "rep": "5dd66777b32f",
+ "item": "lane0:111668:v2855",
+ "group": "R11 | Union floating vs fixed | Union | Union(a,b) vs Union(a,b,g) | - | degen-float | MultiLineString / MultiLineString",
+ "steps": 200,
+ "oracle": {
+  "kind": "evaluate on throwaway current: same (rule, sub, function, orientation) counted",
+  "image": "postgis/postgis@sha256:4a43e3c3e5d55b9208240fc71db543b79c638766280c625a425bd0a2390989c4"
+ },
+ "original_reproduces": true,
+ "shrunk_a": "MULTILINESTRING ((99781.0912341 915071.666537, 99784.4007925 915074.321123))",
+ "shrunk_b": "MULTILINESTRING ((99777.7816756 915069.011952, 99783.2976064 915073.436261))",
+ "coord": "float",
+ "chain": [
+  {
+   "step": 1,
+   "call": 8,
+   "geom": "ab",
+   "op": "round to 12 significant digits",
+   "vertices_a": 2,
+   "vertices_b": 2,
+   "a": "MULTILINESTRING ((99781.0912341 915071.666537, 99784.4007925 915074.321123))",
+   "b": "MULTILINESTRING ((99777.7816756 915069.011952, 99783.2976064 915073.436261))"
+  }
+ ],
+ "oracle_calls": 30,
+ "vertices_before": 4,
+ "vertices_after": 4,
+ "seconds": 1.0959855999972206
+}

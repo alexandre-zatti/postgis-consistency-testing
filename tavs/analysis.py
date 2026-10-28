@@ -99,7 +99,7 @@ def load(cdir: Path) -> dict:
 def counted(v: dict, sensitivity: bool = False) -> bool:
     """Primary: strict; or a candidate from a yes/no rule (no magnitude, counted as in the
     triage band); or a measured candidate in the triage band. Precision-limited removes only
-    measured candidates: yes/no overlay rules stay evaluated on such pairs (advisor, Q1).
+    measured candidates: yes/no overlay rules stay evaluated on such pairs (review, Q1).
     Sensitivity: strict plus measured triage-band only."""
     if v["tier"] == "strict":
         return True

@@ -1,0 +1,198 @@
+{
+ "rep": "b193f3456e82",
+ "item": "lane4:8771:crash:ST_Touches",
+ "group": "crash | backend crash | ST_Touches |  | - | degen-int | GeometryCollection(Polygon,Polygon EMPTY) / LineString",
+ "steps": 200,
+ "oracle": {
+  "kind": "throwaway container: lone probe crashes the backend",
+  "image": "postgis/postgis@sha256:4a43e3c3e5d55b9208240fc71db543b79c638766280c625a425bd0a2390989c4",
+  "probes": [
+   {
+    "o": "ab",
+    "fn": "ST_Touches",
+    "wrap": 0,
+    "sql": "ST_Touches(a,b)"
+   },
+   {
+    "o": "ab",
+    "fn": "ST_Touches",
+    "wrap": 1,
+    "sql": "ST_Touches(ST_ForceCollection(a),b)"
+   },
+   {
+    "o": "ab",
+    "fn": "ST_Touches",
+    "wrap": 2,
+    "sql": "ST_Touches(a,ST_ForceCollection(b))"
+   },
+   {
+    "o": "ba",
+    "fn": "ST_Touches",
+    "wrap": 0,
+    "sql": "ST_Touches(b,a)"
+   },
+   {
+    "o": "ba",
+    "fn": "ST_Touches",
+    "wrap": 1,
+    "sql": "ST_Touches(ST_ForceCollection(b),a)"
+   },
+   {
+    "o": "ba",
+    "fn": "ST_Touches",
+    "wrap": 2,
+    "sql": "ST_Touches(b,ST_ForceCollection(a))"
+   }
+  ]
+ },
+ "original_reproduces": true,
+ "shrunk_a": "GEOMETRYCOLLECTION (POLYGON ((978796 767953, 978792 767955, 978792 767952, 978796 767953)), POLYGON EMPTY, POLYGON ((978796 767953, 978797 767951, 978796 767951, 978796 767953)))",
+ "shrunk_b": "LINESTRING (978792 767957, 978787 767954)",
+ "coord": "int",
+ "chain": [
+  {
+   "step": 1,
+   "call": 4,
+   "geom": "a",
+   "op": "drop hole (0, 1)",
+   "vertices_a": 14,
+   "vertices_b": 7,
+   "a": "GEOMETRYCOLLECTION (POLYGON ((978796 767953, 978797 767954, 978800 767956, 978797 767958, 978797 767961, 978794 767960, 978793 767959, 978791 767958, 978790 767955, 978792 767955, 978792 767952, 978796 767953)), POLYGON EMPTY, POLYGON ((978796 767953, 978797 767951, 978796 767951, 978796 767953)))",
+   "b": "LINESTRING (978796 767953, 978795 767954, 978792 767952, 978791 767952, 978792 767957, 978790 767956, 978787 767954)"
+  },
+  {
+   "step": 2,
+   "call": 9,
+   "geom": "a",
+   "op": "drop vertex 1 of (0, 0)",
+   "vertices_a": 13,
+   "vertices_b": 7,
+   "a": "GEOMETRYCOLLECTION (POLYGON ((978796 767953, 978800 767956, 978797 767958, 978797 767961, 978794 767960, 978793 767959, 978791 767958, 978790 767955, 978792 767955, 978792 767952, 978796 767953)), POLYGON EMPTY, POLYGON ((978796 767953, 978797 767951, 978796 767951, 978796 767953)))",
+   "b": "LINESTRING (978796 767953, 978795 767954, 978792 767952, 978791 767952, 978792 767957, 978790 767956, 978787 767954)"
+  },
+  {
+   "step": 3,
+   "call": 14,
+   "geom": "a",
+   "op": "drop vertex 1 of (0, 0)",
+   "vertices_a": 12,
+   "vertices_b": 7,
+   "a": "GEOMETRYCOLLECTION (POLYGON ((978796 767953, 978797 767958, 978797 767961, 978794 767960, 978793 767959, 978791 767958, 978790 767955, 978792 767955, 978792 767952, 978796 767953)), POLYGON EMPTY, POLYGON ((978796 767953, 978797 767951, 978796 767951, 978796 767953)))",
+   "b": "LINESTRING (978796 767953, 978795 767954, 978792 767952, 978791 767952, 978792 767957, 978790 767956, 978787 767954)"
+  },
+  {
+   "step": 4,
+   "call": 19,
+   "geom": "a",
+   "op": "drop vertex 1 of (0, 0)",
+   "vertices_a": 11,
+   "vertices_b": 7,
+   "a": "GEOMETRYCOLLECTION (POLYGON ((978796 767953, 978797 767961, 978794 767960, 978793 767959, 978791 767958, 978790 767955, 978792 767955, 978792 767952, 978796 767953)), POLYGON EMPTY, POLYGON ((978796 767953, 978797 767951, 978796 767951, 978796 767953)))",
+   "b": "LINESTRING (978796 767953, 978795 767954, 978792 767952, 978791 767952, 978792 767957, 978790 767956, 978787 767954)"
+  },
+  {
+   "step": 5,
+   "call": 24,
+   "geom": "a",
+   "op": "drop vertex 1 of (0, 0)",
+   "vertices_a": 10,
+   "vertices_b": 7,
+   "a": "GEOMETRYCOLLECTION (POLYGON ((978796 767953, 978794 767960, 978793 767959, 978791 767958, 978790 767955, 978792 767955, 978792 767952, 978796 767953)), POLYGON EMPTY, POLYGON ((978796 767953, 978797 767951, 978796 767951, 978796 767953)))",
+   "b": "LINESTRING (978796 767953, 978795 767954, 978792 767952, 978791 767952, 978792 767957, 978790 767956, 978787 767954)"
+  },
+  {
+   "step": 6,
+   "call": 29,
+   "geom": "a",
+   "op": "drop vertex 1 of (0, 0)",
+   "vertices_a": 9,
+   "vertices_b": 7,
+   "a": "GEOMETRYCOLLECTION (POLYGON ((978796 767953, 978793 767959, 978791 767958, 978790 767955, 978792 767955, 978792 767952, 978796 767953)), POLYGON EMPTY, POLYGON ((978796 767953, 978797 767951, 978796 767951, 978796 767953)))",
+   "b": "LINESTRING (978796 767953, 978795 767954, 978792 767952, 978791 767952, 978792 767957, 978790 767956, 978787 767954)"
+  },
+  {
+   "step": 7,
+   "call": 34,
+   "geom": "a",
+   "op": "drop vertex 1 of (0, 0)",
+   "vertices_a": 8,
+   "vertices_b": 7,
+   "a": "GEOMETRYCOLLECTION (POLYGON ((978796 767953, 978791 767958, 978790 767955, 978792 767955, 978792 767952, 978796 767953)), POLYGON EMPTY, POLYGON ((978796 767953, 978797 767951, 978796 767951, 978796 767953)))",
+   "b": "LINESTRING (978796 767953, 978795 767954, 978792 767952, 978791 767952, 978792 767957, 978790 767956, 978787 767954)"
+  },
+  {
+   "step": 8,
+   "call": 38,
+   "geom": "a",
+   "op": "drop vertex 2 of (0, 0)",
+   "vertices_a": 7,
+   "vertices_b": 7,
+   "a": "GEOMETRYCOLLECTION (POLYGON ((978796 767953, 978791 767958, 978792 767955, 978792 767952, 978796 767953)), POLYGON EMPTY, POLYGON ((978796 767953, 978797 767951, 978796 767951, 978796 767953)))",
+   "b": "LINESTRING (978796 767953, 978795 767954, 978792 767952, 978791 767952, 978792 767957, 978790 767956, 978787 767954)"
+  },
+  {
+   "step": 9,
+   "call": 43,
+   "geom": "a",
+   "op": "drop vertex 1 of (0, 0)",
+   "vertices_a": 6,
+   "vertices_b": 7,
+   "a": "GEOMETRYCOLLECTION (POLYGON ((978796 767953, 978792 767955, 978792 767952, 978796 767953)), POLYGON EMPTY, POLYGON ((978796 767953, 978797 767951, 978796 767951, 978796 767953)))",
+   "b": "LINESTRING (978796 767953, 978795 767954, 978792 767952, 978791 767952, 978792 767957, 978790 767956, 978787 767954)"
+  },
+  {
+   "step": 10,
+   "call": 47,
+   "geom": "b",
+   "op": "drop vertex 0 of ()",
+   "vertices_a": 6,
+   "vertices_b": 6,
+   "a": "GEOMETRYCOLLECTION (POLYGON ((978796 767953, 978792 767955, 978792 767952, 978796 767953)), POLYGON EMPTY, POLYGON ((978796 767953, 978797 767951, 978796 767951, 978796 767953)))",
+   "b": "LINESTRING (978795 767954, 978792 767952, 978791 767952, 978792 767957, 978790 767956, 978787 767954)"
+  },
+  {
+   "step": 11,
+   "call": 51,
+   "geom": "b",
+   "op": "drop vertex 0 of ()",
+   "vertices_a": 6,
+   "vertices_b": 5,
+   "a": "GEOMETRYCOLLECTION (POLYGON ((978796 767953, 978792 767955, 978792 767952, 978796 767953)), POLYGON EMPTY, POLYGON ((978796 767953, 978797 767951, 978796 767951, 978796 767953)))",
+   "b": "LINESTRING (978792 767952, 978791 767952, 978792 767957, 978790 767956, 978787 767954)"
+  },
+  {
+   "step": 12,
+   "call": 55,
+   "geom": "b",
+   "op": "drop vertex 0 of ()",
+   "vertices_a": 6,
+   "vertices_b": 4,
+   "a": "GEOMETRYCOLLECTION (POLYGON ((978796 767953, 978792 767955, 978792 767952, 978796 767953)), POLYGON EMPTY, POLYGON ((978796 767953, 978797 767951, 978796 767951, 978796 767953)))",
+   "b": "LINESTRING (978791 767952, 978792 767957, 978790 767956, 978787 767954)"
+  },
+  {
+   "step": 13,
+   "call": 59,
+   "geom": "b",
+   "op": "drop vertex 0 of ()",
+   "vertices_a": 6,
+   "vertices_b": 3,
+   "a": "GEOMETRYCOLLECTION (POLYGON ((978796 767953, 978792 767955, 978792 767952, 978796 767953)), POLYGON EMPTY, POLYGON ((978796 767953, 978797 767951, 978796 767951, 978796 767953)))",
+   "b": "LINESTRING (978792 767957, 978790 767956, 978787 767954)"
+  },
+  {
+   "step": 14,
+   "call": 64,
+   "geom": "b",
+   "op": "drop vertex 1 of ()",
+   "vertices_a": 6,
+   "vertices_b": 2,
+   "a": "GEOMETRYCOLLECTION (POLYGON ((978796 767953, 978792 767955, 978792 767952, 978796 767953)), POLYGON EMPTY, POLYGON ((978796 767953, 978797 767951, 978796 767951, 978796 767953)))",
+   "b": "LINESTRING (978792 767957, 978787 767954)"
+  }
+ ],
+ "oracle_calls": 67,
+ "vertices_before": 32,
+ "vertices_after": 8,
+ "seconds": 51.517227100004675
+}

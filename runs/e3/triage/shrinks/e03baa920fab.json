@@ -1,0 +1,40 @@
+{
+ "rep": "e03baa920fab",
+ "item": "lane4:93443:v1806",
+ "group": "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ba | degen-int | GeometryCollection(LineString EMPTY,Point) / MultiPolygon",
+ "steps": 200,
+ "oracle": {
+  "kind": "evaluate on throwaway current: same (rule, sub, function, orientation) counted",
+  "image": "postgis/postgis@sha256:4a43e3c3e5d55b9208240fc71db543b79c638766280c625a425bd0a2390989c4"
+ },
+ "original_reproduces": true,
+ "shrunk_a": "GEOMETRYCOLLECTION (LINESTRING EMPTY, POINT (151317 672985))",
+ "shrunk_b": "MULTIPOLYGON (((151315 672994, 151306 672981, 151322 672980, 151315 672994), (151312 672984, 151318 672983, 151317 672985, 151312 672984)))",
+ "coord": "int",
+ "chain": [
+  {
+   "step": 1,
+   "call": 4,
+   "geom": "b",
+   "op": "drop hole (0, 2)",
+   "vertices_a": 1,
+   "vertices_b": 7,
+   "a": "GEOMETRYCOLLECTION (LINESTRING EMPTY, POINT (151317 672985))",
+   "b": "MULTIPOLYGON (((151315 672994, 151306 672981, 151322 672980, 151315 672994), (151315 672985, 151312 672984, 151318 672983, 151317 672985, 151315 672985)))"
+  },
+  {
+   "step": 2,
+   "call": 8,
+   "geom": "b",
+   "op": "drop vertex 0 of (0, 1)",
+   "vertices_a": 1,
+   "vertices_b": 6,
+   "a": "GEOMETRYCOLLECTION (LINESTRING EMPTY, POINT (151317 672985))",
+   "b": "MULTIPOLYGON (((151315 672994, 151306 672981, 151322 672980, 151315 672994), (151312 672984, 151318 672983, 151317 672985, 151312 672984)))"
+  }
+ ],
+ "oracle_calls": 12,
+ "vertices_before": 12,
+ "vertices_after": 7,
+ "seconds": 0.07281179999699816
+}

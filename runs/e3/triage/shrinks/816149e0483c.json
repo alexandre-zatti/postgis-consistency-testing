@@ -1,0 +1,30 @@
+{
+ "rep": "816149e0483c",
+ "item": "lane4:11935:v6",
+ "group": "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ba | degen-int | GeometryCollection(Point,Polygon EMPTY) / MultiPolygon",
+ "steps": 200,
+ "oracle": {
+  "kind": "evaluate on throwaway current: same (rule, sub, function, orientation) counted",
+  "image": "postgis/postgis@sha256:4a43e3c3e5d55b9208240fc71db543b79c638766280c625a425bd0a2390989c4"
+ },
+ "original_reproduces": true,
+ "shrunk_a": "GEOMETRYCOLLECTION (POINT (699498 359277), POLYGON EMPTY)",
+ "shrunk_b": "MULTIPOLYGON (((699498 359277, 699529 359278, 699508 359302, 699498 359277)))",
+ "coord": "int",
+ "chain": [
+  {
+   "step": 1,
+   "call": 3,
+   "geom": "b",
+   "op": "drop hole (0, 1)",
+   "vertices_a": 1,
+   "vertices_b": 3,
+   "a": "GEOMETRYCOLLECTION (POINT (699498 359277), POLYGON EMPTY)",
+   "b": "MULTIPOLYGON (((699498 359277, 699529 359278, 699508 359302, 699498 359277)))"
+  }
+ ],
+ "oracle_calls": 6,
+ "vertices_before": 7,
+ "vertices_after": 4,
+ "seconds": 0.03390469999430934
+}

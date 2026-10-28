@@ -1,0 +1,54 @@
+E4 triage of C:\Users\Ale\masters\coursework\MCET063 - Tópicos em Testes Automatizados e Verificação de Software (2026-2)\final-project\experiment\runs\smoke  (2026-10-27 17:03:55)
+selected items 7 in 7 groups; representatives 7 (K=3, cap=300)
+left out by the cap: 0 representatives in 0 groups
+shrinks: 7  (reproduced originally: 2)
+unique findings: 7
+
+Draft classes (lead decides):
+  harness or generator error: 5
+  present in dev (new candidate): 2
+
+Findings:
+- [7edcca65a4f8] R11 Intersection floating vs fixed / Intersection (MultiLineString / MultiLineString), raw 1 (+0 shared), arms degen-float: draft 'present in dev (new candidate)'
+    A = MULTILINESTRING ((653435.1246503 857315.5196627, 653425.4422645 857305.2118306))
+    B = MULTILINESTRING ((653430.2834574 857310.3657466, 653420.6010716 857300.0579145))
+    evidence: current present_counted=True; dev present_counted=True; old present_counted=True; Shapely applicable=True violated=True
+    seconds: shrink 16.7, rerun 19.1
+- [3a6e49fad1da] R11 Union floating vs fixed / Union (MultiLineString / MultiLineString), raw 1 (+0 shared), arms degen-float: draft 'present in dev (new candidate)'
+    A = MULTILINESTRING ((653435.1246503 857315.5196627, 653425.4422645 857305.2118306))
+    B = MULTILINESTRING ((653430.2834574 857310.3657466, 653420.6010716 857300.0579145))
+    evidence: current present_counted=True; dev present_counted=True; old present_counted=True; Shapely applicable=True violated=True
+    seconds: shrink 7.0, rerun 2.0
+- [0a041090737a] R7 measure(Difference(a,U)) / Union (MultiLineString / MultiLineString), raw 1 (+0 shared), arms degen-float: draft 'harness or generator error'
+    A = MULTILINESTRING ((653435.1246503392 857315.5196627335, 653425.4422644809 857305.2118305613, 653424.8177807276 857299.5895516601, 653416.3848436563 857287.7200288244, 653427.3174002221 857277.256797...
+    B = MULTILINESTRING ((653430.28345741 857310.3657466475, 653420.6010715518 857300.0579144751, 653406.2331324224 857298.8079844079), (653472.6102797092 857211.0408247293, 653477.2955923402 857208.386046...
+    evidence: current present_counted=False; dev present_counted=False; old present_counted=False; Shapely applicable=True violated=False; original pair did not reproduce on the throwaway current; not reproduced on current, nor in Shapely
+    seconds: shrink 0.1, rerun 1.9
+- [96ba8d5706b5] R7 measure(Difference(a,U)) / Union (MultiLineString / LineString), raw 1 (+0 shared), arms plain-int: draft 'harness or generator error'
+    A = MULTILINESTRING ((987848 200459, 987844 200459, 987845 200462, 987845 200464), (987856 200473, 987855 200470, 987853 200472, 987853 200469, 987852 200469, 987852 200468, 987850 200469, 987849 20046...
+    B = LINESTRING (987824 200462, 987834 200456, 987846 200449, 987847 200484, 987863 200474, 987850 200490)
+    evidence: current present_counted=False; dev present_counted=False; old present_counted=False; Shapely applicable=True violated=False; original pair did not reproduce on the throwaway current; not reproduced on current, nor in Shapely
+    seconds: shrink 0.1, rerun 2.0
+- [a258b182f8eb] R7 measure(Difference(a,U)) / Union (LineString / MultiLineString), raw 1 (+0 shared), arms plain-float: draft 'harness or generator error'
+    A = LINESTRING (190165369.0 135526369.0, 190165391.0 135526349.0, 190165392.0 135526349.0, 190165399.0 135526357.0, 190165408.0 135526360.0, 190165415.0 135526362.0, 190165414.0 135526392.0, 190165436....
+    B = MULTILINESTRING ((190165379.0 135526359.0, 190165382.0 135526356.0, 190165385.0 135526356.0, 190165380.0 135526353.0, 190165384.0 135526352.0, 190165387.0 135526349.0))
+    evidence: current present_counted=False; dev present_counted=False; old present_counted=False; Shapely applicable=True violated=False; original pair did not reproduce on the throwaway current; not reproduced on current, nor in Shapely
+    seconds: shrink 0.1, rerun 1.9
+- [a844dbafa96e] R7 measure(Difference(a,U)) / Union (LineString / MultiLineString), raw 1 (+0 shared), arms degen-float: draft 'harness or generator error'
+    A = LINESTRING (261197.28824897326 720002.41750688, 261215.89024755545 719986.7342148548, 261156.8791501632 719985.0939756763, 261134.45570472363 719962.0681403035, 261095.08445515877 719931.1827925202...
+    B = MULTILINESTRING ((261215.89024755545 719986.7342148548, 261221.59255172472 720004.7198682253, 261211.80640504725 719997.7033638813, 261202.36025265217 719994.9158551499, 261205.51957734267 719998.9...
+    evidence: current present_counted=False; dev present_counted=False; old present_counted=False; Shapely applicable=True violated=False; precision evidence: magnitude 7.7e-11 within distance snap bound 0.0072; original pair did not reproduce on the throwaway current; not reproduced on current, nor in Shapely
+    seconds: shrink 0.1, rerun 1.9
+- [acc57190f9b4] R7 measure(Difference(a,U)) / Union (MultiLineString / LineString), raw 1 (+0 shared), arms degen-int: draft 'harness or generator error'
+    A = MULTILINESTRING ((50754 455112, 50749 455119, 50747 455121, 50745 455120, 50743 455119, 50742 455119), (50728 455161, 50728 455144))
+    B = LINESTRING (50742 455119, 50749 455116, 50758 455115, 50781 455139)
+    evidence: current present_counted=False; dev present_counted=False; old present_counted=False; Shapely applicable=True violated=False; original pair did not reproduce on the throwaway current; not reproduced on current, nor in Shapely
+    seconds: shrink 0.2, rerun 1.8
+
+Containers:
+  started tavs-triage-current-15944 from postgis/postgis@sha256:4a43e3c3e5d55b9208240fc71db543b79c638766280c625a425bd0a2390989c4 on 127.0.0.1:62290
+  started tavs-triage-dev-15944 from postgis/postgis@sha256:620f1f1ffb479ffbda686dbfde113557a9859cdf9de0f86683b0702846915107 on 127.0.0.1:62302
+  started tavs-triage-old-15944 from postgis/postgis@sha256:01a6a70e41e6c4467c8f55f6063555ed72db2d6662cd0d571040d42eadaeb6f6 on 127.0.0.1:62311
+  removed tavs-triage-current-15944: rc=0
+  removed tavs-triage-dev-15944: rc=0
+  removed tavs-triage-old-15944: rc=0

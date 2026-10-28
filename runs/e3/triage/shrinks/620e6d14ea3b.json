@@ -1,0 +1,90 @@
+{
+ "rep": "620e6d14ea3b",
+ "item": "lane0:69723:v1886",
+ "group": "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ba | degen-int | GeometryCollection(LineString EMPTY,Point) / MultiPolygon",
+ "steps": 200,
+ "oracle": {
+  "kind": "evaluate on throwaway current: same (rule, sub, function, orientation) counted",
+  "image": "postgis/postgis@sha256:4a43e3c3e5d55b9208240fc71db543b79c638766280c625a425bd0a2390989c4"
+ },
+ "original_reproduces": true,
+ "shrunk_a": "GEOMETRYCOLLECTION (POINT (159902 49069), LINESTRING EMPTY)",
+ "shrunk_b": "MULTIPOLYGON (((159947 49102, 159877 49098, 159912 49047, 159935 49045, 159947 49102), (159902 49069, 159914 49061, 159925 49060, 159902 49069)))",
+ "coord": "int",
+ "chain": [
+  {
+   "step": 1,
+   "call": 4,
+   "geom": "b",
+   "op": "drop vertex 0 of (0, 0)",
+   "vertices_a": 1,
+   "vertices_b": 13,
+   "a": "GEOMETRYCOLLECTION (POINT (159902 49069), LINESTRING EMPTY)",
+   "b": "MULTIPOLYGON (((159947 49102, 159913 49107, 159877 49098, 159886 49064, 159912 49047, 159935 49045, 159947 49102), (159936 49072, 159930 49086, 159914 49089, 159898 49085, 159902 49069, 159914 49061, 159925 49060, 159936 49072)))"
+  },
+  {
+   "step": 2,
+   "call": 8,
+   "geom": "b",
+   "op": "drop vertex 1 of (0, 0)",
+   "vertices_a": 1,
+   "vertices_b": 12,
+   "a": "GEOMETRYCOLLECTION (POINT (159902 49069), LINESTRING EMPTY)",
+   "b": "MULTIPOLYGON (((159947 49102, 159877 49098, 159886 49064, 159912 49047, 159935 49045, 159947 49102), (159936 49072, 159930 49086, 159914 49089, 159898 49085, 159902 49069, 159914 49061, 159925 49060, 159936 49072)))"
+  },
+  {
+   "step": 3,
+   "call": 12,
+   "geom": "b",
+   "op": "drop vertex 2 of (0, 0)",
+   "vertices_a": 1,
+   "vertices_b": 11,
+   "a": "GEOMETRYCOLLECTION (POINT (159902 49069), LINESTRING EMPTY)",
+   "b": "MULTIPOLYGON (((159947 49102, 159877 49098, 159912 49047, 159935 49045, 159947 49102), (159936 49072, 159930 49086, 159914 49089, 159898 49085, 159902 49069, 159914 49061, 159925 49060, 159936 49072)))"
+  },
+  {
+   "step": 4,
+   "call": 16,
+   "geom": "b",
+   "op": "drop vertex 0 of (0, 1)",
+   "vertices_a": 1,
+   "vertices_b": 10,
+   "a": "GEOMETRYCOLLECTION (POINT (159902 49069), LINESTRING EMPTY)",
+   "b": "MULTIPOLYGON (((159947 49102, 159877 49098, 159912 49047, 159935 49045, 159947 49102), (159930 49086, 159914 49089, 159898 49085, 159902 49069, 159914 49061, 159925 49060, 159930 49086)))"
+  },
+  {
+   "step": 5,
+   "call": 20,
+   "geom": "b",
+   "op": "drop vertex 0 of (0, 1)",
+   "vertices_a": 1,
+   "vertices_b": 9,
+   "a": "GEOMETRYCOLLECTION (POINT (159902 49069), LINESTRING EMPTY)",
+   "b": "MULTIPOLYGON (((159947 49102, 159877 49098, 159912 49047, 159935 49045, 159947 49102), (159914 49089, 159898 49085, 159902 49069, 159914 49061, 159925 49060, 159914 49089)))"
+  },
+  {
+   "step": 6,
+   "call": 24,
+   "geom": "b",
+   "op": "drop vertex 0 of (0, 1)",
+   "vertices_a": 1,
+   "vertices_b": 8,
+   "a": "GEOMETRYCOLLECTION (POINT (159902 49069), LINESTRING EMPTY)",
+   "b": "MULTIPOLYGON (((159947 49102, 159877 49098, 159912 49047, 159935 49045, 159947 49102), (159898 49085, 159902 49069, 159914 49061, 159925 49060, 159898 49085)))"
+  },
+  {
+   "step": 7,
+   "call": 28,
+   "geom": "b",
+   "op": "drop vertex 0 of (0, 1)",
+   "vertices_a": 1,
+   "vertices_b": 7,
+   "a": "GEOMETRYCOLLECTION (POINT (159902 49069), LINESTRING EMPTY)",
+   "b": "MULTIPOLYGON (((159947 49102, 159877 49098, 159912 49047, 159935 49045, 159947 49102), (159902 49069, 159914 49061, 159925 49060, 159902 49069)))"
+  }
+ ],
+ "oracle_calls": 32,
+ "vertices_before": 15,
+ "vertices_after": 8,
+ "seconds": 0.1371956999937538
+}

@@ -1,0 +1,30 @@
+{
+ "rep": "f1b9975b16e3",
+ "item": "lane2:118640:v3159",
+ "group": "R10 | dim(Intersection) = max(II,IB,BI,BB) | Intersection/Relate | ST_Dimension(ST_Intersection) vs ST_Relate cells | - | degen-float | Polygon / MultiPolygon",
+ "steps": 200,
+ "oracle": {
+  "kind": "evaluate on throwaway current: same (rule, sub, function, orientation) counted",
+  "image": "postgis/postgis@sha256:4a43e3c3e5d55b9208240fc71db543b79c638766280c625a425bd0a2390989c4"
+ },
+ "original_reproduces": true,
+ "shrunk_a": "POLYGON ((130818.05446458526 326678.076834531, 130868.54945461838 326612.538632072, 130896.68837880505 326718.9021641007, 130818.05446458526 326678.076834531))",
+ "shrunk_b": "MULTIPOLYGON (((130841.2548654113 326647.9646874552, 130891.7498554444 326582.4264849963, 130835.1096440828 326590.7262715545, 130841.2548654113 326647.9646874552)))",
+ "coord": "float",
+ "chain": [
+  {
+   "step": 1,
+   "call": 37,
+   "geom": "b",
+   "op": "round to 16 significant digits",
+   "vertices_a": 3,
+   "vertices_b": 3,
+   "a": "POLYGON ((130818.05446458526 326678.076834531, 130868.54945461838 326612.538632072, 130896.68837880505 326718.9021641007, 130818.05446458526 326678.076834531))",
+   "b": "MULTIPOLYGON (((130841.2548654113 326647.9646874552, 130891.7498554444 326582.4264849963, 130835.1096440828 326590.7262715545, 130841.2548654113 326647.9646874552)))"
+  }
+ ],
+ "oracle_calls": 73,
+ "vertices_before": 6,
+ "vertices_after": 6,
+ "seconds": 2.547394400004123
+}

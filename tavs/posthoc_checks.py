@@ -1,4 +1,4 @@
-"""Advisor checks on E3: R3 harness checks, R10/R11 mechanism split, four contrasts, post-hoc sensitivity."""
+"""Review checks on E3 (exploratory): R3 harness checks, R10/R11 mechanism split, four contrasts, post-hoc sensitivity."""
 import glob, json, sqlite3, sys
 from collections import Counter, defaultdict
 from scipy.stats import wilcoxon

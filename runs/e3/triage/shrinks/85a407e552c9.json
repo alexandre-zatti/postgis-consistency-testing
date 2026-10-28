@@ -1,0 +1,118 @@
+{
+ "rep": "85a407e552c9",
+ "item": "lane1:81967:crash:ST_Relate(matrix)",
+ "group": "crash | backend crash | ST_Relate(matrix) |  | - | degen-int | GeometryCollection(Polygon,Polygon EMPTY) / Polygon",
+ "steps": 200,
+ "oracle": {
+  "kind": "throwaway container: lone probe crashes the backend",
+  "image": "postgis/postgis@sha256:4a43e3c3e5d55b9208240fc71db543b79c638766280c625a425bd0a2390989c4",
+  "probes": [
+   {
+    "o": "ab",
+    "fn": "ST_Relate(matrix)",
+    "wrap": 0,
+    "sql": "ST_Relate(a,b)"
+   },
+   {
+    "o": "ab",
+    "fn": "ST_Relate(matrix)",
+    "wrap": 1,
+    "sql": "ST_Relate(ST_ForceCollection(a),b)"
+   },
+   {
+    "o": "ab",
+    "fn": "ST_Relate(matrix)",
+    "wrap": 2,
+    "sql": "ST_Relate(a,ST_ForceCollection(b))"
+   },
+   {
+    "o": "ba",
+    "fn": "ST_Relate(matrix)",
+    "wrap": 0,
+    "sql": "ST_Relate(b,a)"
+   },
+   {
+    "o": "ba",
+    "fn": "ST_Relate(matrix)",
+    "wrap": 1,
+    "sql": "ST_Relate(ST_ForceCollection(b),a)"
+   },
+   {
+    "o": "ba",
+    "fn": "ST_Relate(matrix)",
+    "wrap": 2,
+    "sql": "ST_Relate(b,ST_ForceCollection(a))"
+   }
+  ]
+ },
+ "original_reproduces": true,
+ "shrunk_a": "GEOMETRYCOLLECTION (POLYGON ((539725 785070, 539643 784764, 539849 784694, 539725 785070)), POLYGON EMPTY, POLYGON ((539849 784694, 539879 784591, 539812 784593, 539849 784694)))",
+ "shrunk_b": "POLYGON ((539823 784701, 539850 784678, 539883 784724, 539823 784701))",
+ "coord": "int",
+ "chain": [
+  {
+   "step": 1,
+   "call": 4,
+   "geom": "a",
+   "op": "drop hole (0, 1)",
+   "vertices_a": 8,
+   "vertices_b": 14,
+   "a": "GEOMETRYCOLLECTION (POLYGON ((540114 784827, 539945 785028, 539725 785070, 539643 784764, 539849 784694, 540114 784827)), POLYGON EMPTY, POLYGON ((539849 784694, 539879 784591, 539812 784593, 539849 784694)))",
+   "b": "POLYGON ((539857 784743, 539823 784701, 539850 784678, 539883 784724, 539857 784743), (539854 784711, 539856 784705, 539864 784715, 539853 784723, 539849 784718, 539854 784711), (539849 784708, 539846 784713, 539841 784706, 539851 784698, 539853 784701, 539849 784708))"
+  },
+  {
+   "step": 2,
+   "call": 8,
+   "geom": "b",
+   "op": "drop hole (1,)",
+   "vertices_a": 8,
+   "vertices_b": 9,
+   "a": "GEOMETRYCOLLECTION (POLYGON ((540114 784827, 539945 785028, 539725 785070, 539643 784764, 539849 784694, 540114 784827)), POLYGON EMPTY, POLYGON ((539849 784694, 539879 784591, 539812 784593, 539849 784694)))",
+   "b": "POLYGON ((539857 784743, 539823 784701, 539850 784678, 539883 784724, 539857 784743), (539849 784708, 539846 784713, 539841 784706, 539851 784698, 539853 784701, 539849 784708))"
+  },
+  {
+   "step": 3,
+   "call": 12,
+   "geom": "b",
+   "op": "drop hole (1,)",
+   "vertices_a": 8,
+   "vertices_b": 4,
+   "a": "GEOMETRYCOLLECTION (POLYGON ((540114 784827, 539945 785028, 539725 785070, 539643 784764, 539849 784694, 540114 784827)), POLYGON EMPTY, POLYGON ((539849 784694, 539879 784591, 539812 784593, 539849 784694)))",
+   "b": "POLYGON ((539857 784743, 539823 784701, 539850 784678, 539883 784724, 539857 784743))"
+  },
+  {
+   "step": 4,
+   "call": 16,
+   "geom": "a",
+   "op": "drop vertex 0 of (0, 0)",
+   "vertices_a": 7,
+   "vertices_b": 4,
+   "a": "GEOMETRYCOLLECTION (POLYGON ((539945 785028, 539725 785070, 539643 784764, 539849 784694, 539945 785028)), POLYGON EMPTY, POLYGON ((539849 784694, 539879 784591, 539812 784593, 539849 784694)))",
+   "b": "POLYGON ((539857 784743, 539823 784701, 539850 784678, 539883 784724, 539857 784743))"
+  },
+  {
+   "step": 5,
+   "call": 20,
+   "geom": "a",
+   "op": "drop vertex 0 of (0, 0)",
+   "vertices_a": 6,
+   "vertices_b": 4,
+   "a": "GEOMETRYCOLLECTION (POLYGON ((539725 785070, 539643 784764, 539849 784694, 539725 785070)), POLYGON EMPTY, POLYGON ((539849 784694, 539879 784591, 539812 784593, 539849 784694)))",
+   "b": "POLYGON ((539857 784743, 539823 784701, 539850 784678, 539883 784724, 539857 784743))"
+  },
+  {
+   "step": 6,
+   "call": 24,
+   "geom": "b",
+   "op": "drop vertex 0 of (0,)",
+   "vertices_a": 6,
+   "vertices_b": 3,
+   "a": "GEOMETRYCOLLECTION (POLYGON ((539725 785070, 539643 784764, 539849 784694, 539725 785070)), POLYGON EMPTY, POLYGON ((539849 784694, 539879 784591, 539812 784593, 539849 784694)))",
+   "b": "POLYGON ((539823 784701, 539850 784678, 539883 784724, 539823 784701))"
+  }
+ ],
+ "oracle_calls": 27,
+ "vertices_before": 27,
+ "vertices_after": 9,
+ "seconds": 33.415270299999975
+}

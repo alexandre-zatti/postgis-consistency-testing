@@ -1,0 +1,70 @@
+{
+ "rep": "75c82b9aed8e",
+ "item": "lane3:52562:v1187",
+ "group": "R11 | Intersection floating vs fixed | Intersection | Intersection(a,b) vs Intersection(a,b,g) | - | plain-float | LineString / LineString",
+ "steps": 200,
+ "oracle": {
+  "kind": "evaluate on throwaway current: same (rule, sub, function, orientation) counted",
+  "image": "postgis/postgis@sha256:4a43e3c3e5d55b9208240fc71db543b79c638766280c625a425bd0a2390989c4"
+ },
+ "original_reproduces": true,
+ "shrunk_a": "LINESTRING (-181066.9613509 -410688.6754814, -181063.5807024 -410692.0561298)",
+ "shrunk_b": "LINESTRING (-181062.4538196 -410693.1830126, -181072.5957649 -410683.0410673)",
+ "coord": "float",
+ "chain": [
+  {
+   "step": 1,
+   "call": 1,
+   "geom": "a",
+   "op": "drop vertex 0 of ()",
+   "vertices_a": 3,
+   "vertices_b": 4,
+   "a": "LINESTRING (-181083.864593053 -410677.406653227, -181066.96135085414 -410688.6754813596, -181063.5807024144 -410692.0561297994)",
+   "b": "LINESTRING (-181064.70758522756 -410695.43677823915, -181059.07317116123 -410690.9292469861, -181062.4538196011 -410693.18301261263, -181072.59576492046 -410683.04106729326)"
+  },
+  {
+   "step": 2,
+   "call": 2,
+   "geom": "a",
+   "op": "drop vertex 0 of ()",
+   "vertices_a": 2,
+   "vertices_b": 4,
+   "a": "LINESTRING (-181066.96135085414 -410688.6754813596, -181063.5807024144 -410692.0561297994)",
+   "b": "LINESTRING (-181064.70758522756 -410695.43677823915, -181059.07317116123 -410690.9292469861, -181062.4538196011 -410693.18301261263, -181072.59576492046 -410683.04106729326)"
+  },
+  {
+   "step": 3,
+   "call": 3,
+   "geom": "b",
+   "op": "drop vertex 0 of ()",
+   "vertices_a": 2,
+   "vertices_b": 3,
+   "a": "LINESTRING (-181066.96135085414 -410688.6754813596, -181063.5807024144 -410692.0561297994)",
+   "b": "LINESTRING (-181059.07317116123 -410690.9292469861, -181062.4538196011 -410693.18301261263, -181072.59576492046 -410683.04106729326)"
+  },
+  {
+   "step": 4,
+   "call": 4,
+   "geom": "b",
+   "op": "drop vertex 0 of ()",
+   "vertices_a": 2,
+   "vertices_b": 2,
+   "a": "LINESTRING (-181066.96135085414 -410688.6754813596, -181063.5807024144 -410692.0561297994)",
+   "b": "LINESTRING (-181062.4538196011 -410693.18301261263, -181072.59576492046 -410683.04106729326)"
+  },
+  {
+   "step": 5,
+   "call": 13,
+   "geom": "ab",
+   "op": "round to 13 significant digits",
+   "vertices_a": 2,
+   "vertices_b": 2,
+   "a": "LINESTRING (-181066.9613509 -410688.6754814, -181063.5807024 -410692.0561298)",
+   "b": "LINESTRING (-181062.4538196 -410693.1830126, -181072.5957649 -410683.0410673)"
+  }
+ ],
+ "oracle_calls": 38,
+ "vertices_before": 8,
+ "vertices_after": 4,
+ "seconds": 1.4243036000043503
+}

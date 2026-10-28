@@ -1,0 +1,82 @@
+{
+ "rep": "903a8b6479bb",
+ "item": "lane0:93052:crash:ST_Touches",
+ "group": "crash | backend crash | ST_Touches |  | - | degen-float | GeometryCollection(Polygon,Polygon EMPTY) / LineString",
+ "steps": 200,
+ "oracle": {
+  "kind": "throwaway container: lone probe crashes the backend",
+  "image": "postgis/postgis@sha256:4a43e3c3e5d55b9208240fc71db543b79c638766280c625a425bd0a2390989c4",
+  "probes": [
+   {
+    "o": "ab",
+    "fn": "ST_Touches",
+    "sql": "ST_Touches(a,b)"
+   },
+   {
+    "o": "ba",
+    "fn": "ST_Touches",
+    "sql": "ST_Touches(b,a)"
+   }
+  ]
+ },
+ "original_reproduces": true,
+ "shrunk_a": "GEOMETRYCOLLECTION (POLYGON EMPTY, POLYGON ((513813.0 1007370.0, 513857.0 1007350.0, 513857.0 1007390.0, 513813.0 1007370.0)), POLYGON ((513857.0 1007350.0, 513869.0 1007340.0, 513861.0 1007330.0, 513857.0 1007350.0)))",
+ "shrunk_b": "LINESTRING (514000.0 1007000.0, 513800.0 1008000.0)",
+ "coord": "float",
+ "chain": [
+  {
+   "step": 1,
+   "call": 4,
+   "geom": "a",
+   "op": "drop hole (1, 1)",
+   "vertices_a": 6,
+   "vertices_b": 3,
+   "a": "GEOMETRYCOLLECTION (POLYGON EMPTY, POLYGON ((513813.40733612474 1007368.2844113437, 513856.5904561182 1007345.8518870181, 513857.0222336566 1007388.0515738433, 513813.40733612474 1007368.2844113437)), POLYGON ((513856.5904561182 1007345.8518870181, 513869.38322344987 1007336.2422510209, 513860.97855707695 1007330.0485781879, 513856.5904561182 1007345.8518870181)))",
+   "b": "LINESTRING (514048.335732129 1007273.1074774214, 513916.860922183 1007439.4065283798, 513822.4841421152 1007470.2776052001)"
+  },
+  {
+   "step": 2,
+   "call": 9,
+   "geom": "b",
+   "op": "drop vertex 1 of ()",
+   "vertices_a": 6,
+   "vertices_b": 2,
+   "a": "GEOMETRYCOLLECTION (POLYGON EMPTY, POLYGON ((513813.40733612474 1007368.2844113437, 513856.5904561182 1007345.8518870181, 513857.0222336566 1007388.0515738433, 513813.40733612474 1007368.2844113437)), POLYGON ((513856.5904561182 1007345.8518870181, 513869.38322344987 1007336.2422510209, 513860.97855707695 1007330.0485781879, 513856.5904561182 1007345.8518870181)))",
+   "b": "LINESTRING (514048.335732129 1007273.1074774214, 513822.4841421152 1007470.2776052001)"
+  },
+  {
+   "step": 3,
+   "call": 13,
+   "geom": "ab",
+   "op": "round to 6 significant digits",
+   "vertices_a": 6,
+   "vertices_b": 2,
+   "a": "GEOMETRYCOLLECTION (POLYGON EMPTY, POLYGON ((513813.0 1007370.0, 513857.0 1007350.0, 513857.0 1007390.0, 513813.0 1007370.0)), POLYGON ((513857.0 1007350.0, 513869.0 1007340.0, 513861.0 1007330.0, 513857.0 1007350.0)))",
+   "b": "LINESTRING (514048.0 1007270.0, 513822.0 1007470.0)"
+  },
+  {
+   "step": 4,
+   "call": 18,
+   "geom": "b",
+   "op": "round to 5 significant digits",
+   "vertices_a": 6,
+   "vertices_b": 2,
+   "a": "GEOMETRYCOLLECTION (POLYGON EMPTY, POLYGON ((513813.0 1007370.0, 513857.0 1007350.0, 513857.0 1007390.0, 513813.0 1007370.0)), POLYGON ((513857.0 1007350.0, 513869.0 1007340.0, 513861.0 1007330.0, 513857.0 1007350.0)))",
+   "b": "LINESTRING (514050.0 1007300.0, 513820.0 1007500.0)"
+  },
+  {
+   "step": 5,
+   "call": 22,
+   "geom": "b",
+   "op": "round to 4 significant digits",
+   "vertices_a": 6,
+   "vertices_b": 2,
+   "a": "GEOMETRYCOLLECTION (POLYGON EMPTY, POLYGON ((513813.0 1007370.0, 513857.0 1007350.0, 513857.0 1007390.0, 513813.0 1007370.0)), POLYGON ((513857.0 1007350.0, 513869.0 1007340.0, 513861.0 1007330.0, 513857.0 1007350.0)))",
+   "b": "LINESTRING (514000.0 1007000.0, 513800.0 1008000.0)"
+  }
+ ],
+ "oracle_calls": 25,
+ "vertices_before": 12,
+ "vertices_after": 8,
+ "seconds": 17.288269800003036
+}

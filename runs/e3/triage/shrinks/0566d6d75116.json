@@ -1,0 +1,50 @@
+{
+ "rep": "0566d6d75116",
+ "item": "lane4:16003:v14",
+ "group": "R3 | lone vs prepared arg2 | Within | lone vs prepared arg2[2] | ab | degen-int | GeometryCollection(Point,Polygon EMPTY) / Polygon",
+ "steps": 200,
+ "oracle": {
+  "kind": "evaluate on throwaway current: same (rule, sub, function, orientation) counted",
+  "image": "postgis/postgis@sha256:4a43e3c3e5d55b9208240fc71db543b79c638766280c625a425bd0a2390989c4"
+ },
+ "original_reproduces": true,
+ "shrunk_a": "GEOMETRYCOLLECTION (POLYGON EMPTY, POINT (657859 254832))",
+ "shrunk_b": "POLYGON ((657862 254813, 657856 254851, 657810 254851, 657862 254813))",
+ "coord": "int",
+ "chain": [
+  {
+   "step": 1,
+   "call": 3,
+   "geom": "b",
+   "op": "drop vertex 0 of (0,)",
+   "vertices_a": 1,
+   "vertices_b": 5,
+   "a": "GEOMETRYCOLLECTION (POLYGON EMPTY, POINT (657859 254832))",
+   "b": "POLYGON ((657804 254792, 657838 254761, 657862 254813, 657856 254851, 657810 254851, 657804 254792))"
+  },
+  {
+   "step": 2,
+   "call": 6,
+   "geom": "b",
+   "op": "drop vertex 0 of (0,)",
+   "vertices_a": 1,
+   "vertices_b": 4,
+   "a": "GEOMETRYCOLLECTION (POLYGON EMPTY, POINT (657859 254832))",
+   "b": "POLYGON ((657838 254761, 657862 254813, 657856 254851, 657810 254851, 657838 254761))"
+  },
+  {
+   "step": 3,
+   "call": 9,
+   "geom": "b",
+   "op": "drop vertex 0 of (0,)",
+   "vertices_a": 1,
+   "vertices_b": 3,
+   "a": "GEOMETRYCOLLECTION (POLYGON EMPTY, POINT (657859 254832))",
+   "b": "POLYGON ((657862 254813, 657856 254851, 657810 254851, 657862 254813))"
+  }
+ ],
+ "oracle_calls": 12,
+ "vertices_before": 7,
+ "vertices_after": 4,
+ "seconds": 0.07155039999634027
+}

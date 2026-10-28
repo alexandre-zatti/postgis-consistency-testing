@@ -1,0 +1,50 @@
+{
+ "rep": "7253e672a07b",
+ "item": "lane2:17980:v24",
+ "group": "R3 | lone vs prepared arg2 | Within | lone vs prepared arg2[2] | ab | degen-float | GeometryCollection(Point,Polygon EMPTY) / Polygon",
+ "steps": 200,
+ "oracle": {
+  "kind": "evaluate on throwaway current: same (rule, sub, function, orientation) counted",
+  "image": "postgis/postgis@sha256:4a43e3c3e5d55b9208240fc71db543b79c638766280c625a425bd0a2390989c4"
+ },
+ "original_reproduces": true,
+ "shrunk_a": "GEOMETRYCOLLECTION (POINT (5.22e-08 3.39e-08), POINT (5.22e-08 3.39e-08), POLYGON EMPTY)",
+ "shrunk_b": "POLYGON ((5.22e-08 3.4e-08, 5.22e-08 3.39e-08, 5.23e-08 3.39e-08, 5.22e-08 3.4e-08))",
+ "coord": "float",
+ "chain": [
+  {
+   "step": 1,
+   "call": 4,
+   "geom": "b",
+   "op": "drop vertex 0 of (0,)",
+   "vertices_a": 2,
+   "vertices_b": 4,
+   "a": "GEOMETRYCOLLECTION (POINT (5.223796506470535e-08 3.3949504540942144e-08), POINT (5.2241148296161555e-08 3.394802661205176e-08), POLYGON EMPTY)",
+   "b": "POLYGON ((5.226183930062689e-08 3.398042736080242e-08, 5.2236828196328133e-08 3.39703092322452e-08, 5.223796506470535e-08 3.3949504540942144e-08, 5.2260247684898786e-08 3.3939159038709477e-08, 5.226183930062689e-08 3.398042736080242e-08))"
+  },
+  {
+   "step": 2,
+   "call": 8,
+   "geom": "b",
+   "op": "drop vertex 0 of (0,)",
+   "vertices_a": 2,
+   "vertices_b": 3,
+   "a": "GEOMETRYCOLLECTION (POINT (5.223796506470535e-08 3.3949504540942144e-08), POINT (5.2241148296161555e-08 3.394802661205176e-08), POLYGON EMPTY)",
+   "b": "POLYGON ((5.2236828196328133e-08 3.39703092322452e-08, 5.223796506470535e-08 3.3949504540942144e-08, 5.2260247684898786e-08 3.3939159038709477e-08, 5.2236828196328133e-08 3.39703092322452e-08))"
+  },
+  {
+   "step": 3,
+   "call": 12,
+   "geom": "ab",
+   "op": "round to 3 significant digits",
+   "vertices_a": 2,
+   "vertices_b": 3,
+   "a": "GEOMETRYCOLLECTION (POINT (5.22e-08 3.39e-08), POINT (5.22e-08 3.39e-08), POLYGON EMPTY)",
+   "b": "POLYGON ((5.22e-08 3.4e-08, 5.22e-08 3.39e-08, 5.23e-08 3.39e-08, 5.22e-08 3.4e-08))"
+  }
+ ],
+ "oracle_calls": 17,
+ "vertices_before": 7,
+ "vertices_after": 5,
+ "seconds": 0.10323820000485284
+}

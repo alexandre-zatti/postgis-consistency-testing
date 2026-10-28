@@ -1,0 +1,90 @@
+{
+ "rep": "6737d2072082",
+ "item": "lane2:80359:v1855",
+ "group": "R3 | lone vs prepared arg2 | Within | lone vs prepared arg2[2] | ba | degen-int | Polygon / GeometryCollection(Point,Polygon EMPTY)",
+ "steps": 200,
+ "oracle": {
+  "kind": "evaluate on throwaway current: same (rule, sub, function, orientation) counted",
+  "image": "postgis/postgis@sha256:4a43e3c3e5d55b9208240fc71db543b79c638766280c625a425bd0a2390989c4"
+ },
+ "original_reproduces": true,
+ "shrunk_a": "POLYGON ((11577 905956, 11934 906353, 11813 906417, 11577 905956))",
+ "shrunk_b": "GEOMETRYCOLLECTION (POLYGON EMPTY, POINT (11577 905956))",
+ "coord": "int",
+ "chain": [
+  {
+   "step": 1,
+   "call": 2,
+   "geom": "b",
+   "op": "drop part (1,)",
+   "vertices_a": 9,
+   "vertices_b": 1,
+   "a": "POLYGON ((11639 906315, 11587 906154, 11577 905956, 11773 905893, 11927 905892, 12013 906018, 11977 906165, 11934 906353, 11813 906417, 11639 906315))",
+   "b": "GEOMETRYCOLLECTION (POLYGON EMPTY, POINT (11577 905956))"
+  },
+  {
+   "step": 2,
+   "call": 5,
+   "geom": "a",
+   "op": "drop vertex 0 of (0,)",
+   "vertices_a": 8,
+   "vertices_b": 1,
+   "a": "POLYGON ((11587 906154, 11577 905956, 11773 905893, 11927 905892, 12013 906018, 11977 906165, 11934 906353, 11813 906417, 11587 906154))",
+   "b": "GEOMETRYCOLLECTION (POLYGON EMPTY, POINT (11577 905956))"
+  },
+  {
+   "step": 3,
+   "call": 8,
+   "geom": "a",
+   "op": "drop vertex 0 of (0,)",
+   "vertices_a": 7,
+   "vertices_b": 1,
+   "a": "POLYGON ((11577 905956, 11773 905893, 11927 905892, 12013 906018, 11977 906165, 11934 906353, 11813 906417, 11577 905956))",
+   "b": "GEOMETRYCOLLECTION (POLYGON EMPTY, POINT (11577 905956))"
+  },
+  {
+   "step": 4,
+   "call": 12,
+   "geom": "a",
+   "op": "drop vertex 1 of (0,)",
+   "vertices_a": 6,
+   "vertices_b": 1,
+   "a": "POLYGON ((11577 905956, 11927 905892, 12013 906018, 11977 906165, 11934 906353, 11813 906417, 11577 905956))",
+   "b": "GEOMETRYCOLLECTION (POLYGON EMPTY, POINT (11577 905956))"
+  },
+  {
+   "step": 5,
+   "call": 16,
+   "geom": "a",
+   "op": "drop vertex 1 of (0,)",
+   "vertices_a": 5,
+   "vertices_b": 1,
+   "a": "POLYGON ((11577 905956, 12013 906018, 11977 906165, 11934 906353, 11813 906417, 11577 905956))",
+   "b": "GEOMETRYCOLLECTION (POLYGON EMPTY, POINT (11577 905956))"
+  },
+  {
+   "step": 6,
+   "call": 20,
+   "geom": "a",
+   "op": "drop vertex 1 of (0,)",
+   "vertices_a": 4,
+   "vertices_b": 1,
+   "a": "POLYGON ((11577 905956, 11977 906165, 11934 906353, 11813 906417, 11577 905956))",
+   "b": "GEOMETRYCOLLECTION (POLYGON EMPTY, POINT (11577 905956))"
+  },
+  {
+   "step": 7,
+   "call": 24,
+   "geom": "a",
+   "op": "drop vertex 1 of (0,)",
+   "vertices_a": 3,
+   "vertices_b": 1,
+   "a": "POLYGON ((11577 905956, 11934 906353, 11813 906417, 11577 905956))",
+   "b": "GEOMETRYCOLLECTION (POLYGON EMPTY, POINT (11577 905956))"
+  }
+ ],
+ "oracle_calls": 27,
+ "vertices_before": 11,
+ "vertices_after": 4,
+ "seconds": 0.10815780000120867
+}

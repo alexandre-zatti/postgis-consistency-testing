@@ -1,0 +1,40 @@
+{
+ "rep": "913e0fb75ec6",
+ "item": "lane2:26812:v31",
+ "group": "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ba | degen-float | GeometryCollection(Point,Polygon EMPTY) / Polygon",
+ "steps": 200,
+ "oracle": {
+  "kind": "evaluate on throwaway current: same (rule, sub, function, orientation) counted",
+  "image": "postgis/postgis@sha256:4a43e3c3e5d55b9208240fc71db543b79c638766280c625a425bd0a2390989c4"
+ },
+ "original_reproduces": true,
+ "shrunk_a": "GEOMETRYCOLLECTION (POINT (655301.0 729946.0), POLYGON EMPTY)",
+ "shrunk_b": "POLYGON ((655300.0 729955.0, 655298.0 729950.0, 655301.0 729946.0, 655300.0 729955.0))",
+ "coord": "float",
+ "chain": [
+  {
+   "step": 1,
+   "call": 3,
+   "geom": "b",
+   "op": "drop vertex 0 of (0,)",
+   "vertices_a": 1,
+   "vertices_b": 3,
+   "a": "GEOMETRYCOLLECTION (POINT (655300.6589387518 729946.2836138007), POLYGON EMPTY)",
+   "b": "POLYGON ((655299.8151671018 729955.187997519, 655297.6501149762 729949.5922357931, 655300.6589387518 729946.2836138007, 655299.8151671018 729955.187997519))"
+  },
+  {
+   "step": 2,
+   "call": 6,
+   "geom": "ab",
+   "op": "round to 6 significant digits",
+   "vertices_a": 1,
+   "vertices_b": 3,
+   "a": "GEOMETRYCOLLECTION (POINT (655301.0 729946.0), POLYGON EMPTY)",
+   "b": "POLYGON ((655300.0 729955.0, 655298.0 729950.0, 655301.0 729946.0, 655300.0 729955.0))"
+  }
+ ],
+ "oracle_calls": 14,
+ "vertices_before": 5,
+ "vertices_after": 4,
+ "seconds": 0.08015439999871887
+}

@@ -1,0 +1,148 @@
+{
+ "rep": "ae1e83243eab",
+ "item": "lane2:84279:crash:ST_Relate(matrix)",
+ "group": "crash | backend crash | ST_Relate(matrix) |  | - | degen-int | LineString / GeometryCollection(LineString,Polygon,Polygon EMPTY)",
+ "steps": 200,
+ "oracle": {
+  "kind": "throwaway container: lone probe crashes the backend",
+  "image": "postgis/postgis@sha256:4a43e3c3e5d55b9208240fc71db543b79c638766280c625a425bd0a2390989c4",
+  "probes": [
+   {
+    "o": "ab",
+    "fn": "ST_Relate(matrix)",
+    "wrap": 0,
+    "sql": "ST_Relate(a,b)"
+   },
+   {
+    "o": "ab",
+    "fn": "ST_Relate(matrix)",
+    "wrap": 1,
+    "sql": "ST_Relate(ST_ForceCollection(a),b)"
+   },
+   {
+    "o": "ab",
+    "fn": "ST_Relate(matrix)",
+    "wrap": 2,
+    "sql": "ST_Relate(a,ST_ForceCollection(b))"
+   },
+   {
+    "o": "ba",
+    "fn": "ST_Relate(matrix)",
+    "wrap": 0,
+    "sql": "ST_Relate(b,a)"
+   },
+   {
+    "o": "ba",
+    "fn": "ST_Relate(matrix)",
+    "wrap": 1,
+    "sql": "ST_Relate(ST_ForceCollection(b),a)"
+   },
+   {
+    "o": "ba",
+    "fn": "ST_Relate(matrix)",
+    "wrap": 2,
+    "sql": "ST_Relate(b,ST_ForceCollection(a))"
+   }
+  ]
+ },
+ "original_reproduces": true,
+ "shrunk_a": "LINESTRING (441142 589204, 441430 589276)",
+ "shrunk_b": "GEOMETRYCOLLECTION (POLYGON ((441158 589289, 441289 589200, 441477 589201, 441158 589289)), POLYGON ((441158 589289, 441084 589193, 441038 589272, 441158 589289)), POLYGON EMPTY)",
+ "coord": "int",
+ "chain": [
+  {
+   "step": 1,
+   "call": 1,
+   "geom": "b",
+   "op": "drop part (0,)",
+   "vertices_a": 6,
+   "vertices_b": 15,
+   "a": "LINESTRING (440935 589086, 441067 589036, 441185 589020, 441142 589204, 441424 589245, 441430 589276)",
+   "b": "GEOMETRYCOLLECTION (POLYGON ((441485 589493, 441246 589583, 441155 589468, 441158 589289, 441289 589200, 441477 589201, 441485 589493), (441364 589397, 441282 589428, 441251 589389, 441252 589327, 441297 589297, 441361 589297, 441364 589397)), POLYGON ((441158 589289, 441084 589193, 441038 589272, 441158 589289)), POLYGON EMPTY)"
+  },
+  {
+   "step": 2,
+   "call": 5,
+   "geom": "b",
+   "op": "drop hole (0, 1)",
+   "vertices_a": 6,
+   "vertices_b": 9,
+   "a": "LINESTRING (440935 589086, 441067 589036, 441185 589020, 441142 589204, 441424 589245, 441430 589276)",
+   "b": "GEOMETRYCOLLECTION (POLYGON ((441485 589493, 441246 589583, 441155 589468, 441158 589289, 441289 589200, 441477 589201, 441485 589493)), POLYGON ((441158 589289, 441084 589193, 441038 589272, 441158 589289)), POLYGON EMPTY)"
+  },
+  {
+   "step": 3,
+   "call": 9,
+   "geom": "a",
+   "op": "drop vertex 0 of ()",
+   "vertices_a": 5,
+   "vertices_b": 9,
+   "a": "LINESTRING (441067 589036, 441185 589020, 441142 589204, 441424 589245, 441430 589276)",
+   "b": "GEOMETRYCOLLECTION (POLYGON ((441485 589493, 441246 589583, 441155 589468, 441158 589289, 441289 589200, 441477 589201, 441485 589493)), POLYGON ((441158 589289, 441084 589193, 441038 589272, 441158 589289)), POLYGON EMPTY)"
+  },
+  {
+   "step": 4,
+   "call": 13,
+   "geom": "a",
+   "op": "drop vertex 0 of ()",
+   "vertices_a": 4,
+   "vertices_b": 9,
+   "a": "LINESTRING (441185 589020, 441142 589204, 441424 589245, 441430 589276)",
+   "b": "GEOMETRYCOLLECTION (POLYGON ((441485 589493, 441246 589583, 441155 589468, 441158 589289, 441289 589200, 441477 589201, 441485 589493)), POLYGON ((441158 589289, 441084 589193, 441038 589272, 441158 589289)), POLYGON EMPTY)"
+  },
+  {
+   "step": 5,
+   "call": 17,
+   "geom": "a",
+   "op": "drop vertex 0 of ()",
+   "vertices_a": 3,
+   "vertices_b": 9,
+   "a": "LINESTRING (441142 589204, 441424 589245, 441430 589276)",
+   "b": "GEOMETRYCOLLECTION (POLYGON ((441485 589493, 441246 589583, 441155 589468, 441158 589289, 441289 589200, 441477 589201, 441485 589493)), POLYGON ((441158 589289, 441084 589193, 441038 589272, 441158 589289)), POLYGON EMPTY)"
+  },
+  {
+   "step": 6,
+   "call": 22,
+   "geom": "a",
+   "op": "drop vertex 1 of ()",
+   "vertices_a": 2,
+   "vertices_b": 9,
+   "a": "LINESTRING (441142 589204, 441430 589276)",
+   "b": "GEOMETRYCOLLECTION (POLYGON ((441485 589493, 441246 589583, 441155 589468, 441158 589289, 441289 589200, 441477 589201, 441485 589493)), POLYGON ((441158 589289, 441084 589193, 441038 589272, 441158 589289)), POLYGON EMPTY)"
+  },
+  {
+   "step": 7,
+   "call": 26,
+   "geom": "b",
+   "op": "drop vertex 0 of (0, 0)",
+   "vertices_a": 2,
+   "vertices_b": 8,
+   "a": "LINESTRING (441142 589204, 441430 589276)",
+   "b": "GEOMETRYCOLLECTION (POLYGON ((441246 589583, 441155 589468, 441158 589289, 441289 589200, 441477 589201, 441246 589583)), POLYGON ((441158 589289, 441084 589193, 441038 589272, 441158 589289)), POLYGON EMPTY)"
+  },
+  {
+   "step": 8,
+   "call": 30,
+   "geom": "b",
+   "op": "drop vertex 0 of (0, 0)",
+   "vertices_a": 2,
+   "vertices_b": 7,
+   "a": "LINESTRING (441142 589204, 441430 589276)",
+   "b": "GEOMETRYCOLLECTION (POLYGON ((441155 589468, 441158 589289, 441289 589200, 441477 589201, 441155 589468)), POLYGON ((441158 589289, 441084 589193, 441038 589272, 441158 589289)), POLYGON EMPTY)"
+  },
+  {
+   "step": 9,
+   "call": 34,
+   "geom": "b",
+   "op": "drop vertex 0 of (0, 0)",
+   "vertices_a": 2,
+   "vertices_b": 6,
+   "a": "LINESTRING (441142 589204, 441430 589276)",
+   "b": "GEOMETRYCOLLECTION (POLYGON ((441158 589289, 441289 589200, 441477 589201, 441158 589289)), POLYGON ((441158 589289, 441084 589193, 441038 589272, 441158 589289)), POLYGON EMPTY)"
+  }
+ ],
+ "oracle_calls": 37,
+ "vertices_before": 27,
+ "vertices_after": 8,
+ "seconds": 44.255907200000365
+}

@@ -1,0 +1,50 @@
+{
+ "rep": "f8b871f930bf",
+ "item": "lane1:5160:v4",
+ "group": "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ab | degen-float | MultiPolygon / GeometryCollection(Point,Polygon EMPTY)",
+ "steps": 200,
+ "oracle": {
+  "kind": "evaluate on throwaway current: same (rule, sub, function, orientation) counted",
+  "image": "postgis/postgis@sha256:4a43e3c3e5d55b9208240fc71db543b79c638766280c625a425bd0a2390989c4"
+ },
+ "original_reproduces": true,
+ "shrunk_a": "MULTIPOLYGON (((2001900.0 1735200.0, 2002000.0 1735100.0, 2002100.0 1735200.0, 2001900.0 1735200.0)))",
+ "shrunk_b": "GEOMETRYCOLLECTION (POINT (2001900.0 1735200.0), POLYGON EMPTY)",
+ "coord": "float",
+ "chain": [
+  {
+   "step": 1,
+   "call": 3,
+   "geom": "a",
+   "op": "drop hole (0, 1)",
+   "vertices_a": 7,
+   "vertices_b": 1,
+   "a": "MULTIPOLYGON (((2001919.6576400779 1735178.406085746, 2001980.9909437017 1735058.1447060914, 2002088.0235715944 1735159.1642650012, 2001919.6576400779 1735178.406085746), (2001994.2196954638 1735141.125058053, 2001989.4092402775 1735109.8570993429, 2002032.7033369532 1735149.543354629, 2001989.4092402775 1735155.5564236115, 2001994.2196954638 1735141.125058053)))",
+   "b": "GEOMETRYCOLLECTION (POINT (2001919.6576400779 1735178.406085746), POLYGON EMPTY)"
+  },
+  {
+   "step": 2,
+   "call": 6,
+   "geom": "a",
+   "op": "drop hole (0, 1)",
+   "vertices_a": 3,
+   "vertices_b": 1,
+   "a": "MULTIPOLYGON (((2001919.6576400779 1735178.406085746, 2001980.9909437017 1735058.1447060914, 2002088.0235715944 1735159.1642650012, 2001919.6576400779 1735178.406085746)))",
+   "b": "GEOMETRYCOLLECTION (POINT (2001919.6576400779 1735178.406085746), POLYGON EMPTY)"
+  },
+  {
+   "step": 3,
+   "call": 9,
+   "geom": "ab",
+   "op": "round to 5 significant digits",
+   "vertices_a": 3,
+   "vertices_b": 1,
+   "a": "MULTIPOLYGON (((2001900.0 1735200.0, 2002000.0 1735100.0, 2002100.0 1735200.0, 2001900.0 1735200.0)))",
+   "b": "GEOMETRYCOLLECTION (POINT (2001900.0 1735200.0), POLYGON EMPTY)"
+  }
+ ],
+ "oracle_calls": 16,
+ "vertices_before": 12,
+ "vertices_after": 4,
+ "seconds": 0.07075880000047619
+}

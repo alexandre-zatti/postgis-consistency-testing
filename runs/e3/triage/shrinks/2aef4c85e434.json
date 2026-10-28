@@ -1,0 +1,94 @@
+{
+ "rep": "2aef4c85e434",
+ "item": "lane1:31447:crash:ST_Touches",
+ "group": "crash | backend crash | ST_Touches |  | - | degen-int | MultiPolygon / GeometryCollection(LineString)",
+ "steps": 200,
+ "oracle": {
+  "kind": "throwaway container: lone probe crashes the backend",
+  "image": "postgis/postgis@sha256:4a43e3c3e5d55b9208240fc71db543b79c638766280c625a425bd0a2390989c4",
+  "probes": [
+   {
+    "o": "ab",
+    "fn": "ST_Touches",
+    "wrap": 1,
+    "sql": "ST_Touches(ST_ForceCollection(a),b)"
+   },
+   {
+    "o": "ba",
+    "fn": "ST_Touches",
+    "wrap": 2,
+    "sql": "ST_Touches(b,ST_ForceCollection(a))"
+   }
+  ]
+ },
+ "original_reproduces": true,
+ "shrunk_a": "MULTIPOLYGON (((134909 869208, 134922 869186, 134940 869204, 134909 869208)), ((134909 869208, 134902 869208, 134906 869215, 134909 869208)), EMPTY)",
+ "shrunk_b": "GEOMETRYCOLLECTION (LINESTRING (134968 869208, 134902 869084))",
+ "coord": "int",
+ "chain": [
+  {
+   "step": 1,
+   "call": 4,
+   "geom": "a",
+   "op": "drop hole (0, 1)",
+   "vertices_a": 6,
+   "vertices_b": 7,
+   "a": "MULTIPOLYGON (((134909 869208, 134922 869186, 134940 869204, 134909 869208)), ((134909 869208, 134902 869208, 134906 869215, 134909 869208)), EMPTY)",
+   "b": "GEOMETRYCOLLECTION (LINESTRING (134787 869245, 134900 869284, 134898 869202, 134968 869208, 134902 869084, 135005 869135, 135035 869081))"
+  },
+  {
+   "step": 2,
+   "call": 8,
+   "geom": "b",
+   "op": "drop vertex 0 of (0,)",
+   "vertices_a": 6,
+   "vertices_b": 6,
+   "a": "MULTIPOLYGON (((134909 869208, 134922 869186, 134940 869204, 134909 869208)), ((134909 869208, 134902 869208, 134906 869215, 134909 869208)), EMPTY)",
+   "b": "GEOMETRYCOLLECTION (LINESTRING (134900 869284, 134898 869202, 134968 869208, 134902 869084, 135005 869135, 135035 869081))"
+  },
+  {
+   "step": 3,
+   "call": 12,
+   "geom": "b",
+   "op": "drop vertex 0 of (0,)",
+   "vertices_a": 6,
+   "vertices_b": 5,
+   "a": "MULTIPOLYGON (((134909 869208, 134922 869186, 134940 869204, 134909 869208)), ((134909 869208, 134902 869208, 134906 869215, 134909 869208)), EMPTY)",
+   "b": "GEOMETRYCOLLECTION (LINESTRING (134898 869202, 134968 869208, 134902 869084, 135005 869135, 135035 869081))"
+  },
+  {
+   "step": 4,
+   "call": 16,
+   "geom": "b",
+   "op": "drop vertex 0 of (0,)",
+   "vertices_a": 6,
+   "vertices_b": 4,
+   "a": "MULTIPOLYGON (((134909 869208, 134922 869186, 134940 869204, 134909 869208)), ((134909 869208, 134902 869208, 134906 869215, 134909 869208)), EMPTY)",
+   "b": "GEOMETRYCOLLECTION (LINESTRING (134968 869208, 134902 869084, 135005 869135, 135035 869081))"
+  },
+  {
+   "step": 5,
+   "call": 22,
+   "geom": "b",
+   "op": "drop vertex 2 of (0,)",
+   "vertices_a": 6,
+   "vertices_b": 3,
+   "a": "MULTIPOLYGON (((134909 869208, 134922 869186, 134940 869204, 134909 869208)), ((134909 869208, 134902 869208, 134906 869215, 134909 869208)), EMPTY)",
+   "b": "GEOMETRYCOLLECTION (LINESTRING (134968 869208, 134902 869084, 135035 869081))"
+  },
+  {
+   "step": 6,
+   "call": 28,
+   "geom": "b",
+   "op": "drop vertex 2 of (0,)",
+   "vertices_a": 6,
+   "vertices_b": 2,
+   "a": "MULTIPOLYGON (((134909 869208, 134922 869186, 134940 869204, 134909 869208)), ((134909 869208, 134902 869208, 134906 869215, 134909 869208)), EMPTY)",
+   "b": "GEOMETRYCOLLECTION (LINESTRING (134968 869208, 134902 869084))"
+  }
+ ],
+ "oracle_calls": 31,
+ "vertices_before": 16,
+ "vertices_after": 8,
+ "seconds": 20.007176700004493
+}

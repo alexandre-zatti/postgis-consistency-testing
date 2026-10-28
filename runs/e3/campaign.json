@@ -1,0 +1,52 @@
+{
+  "campaign": "e3",
+  "seeds": [
+    101,
+    102,
+    103,
+    104,
+    105,
+    106,
+    107,
+    108,
+    109,
+    110
+  ],
+  "kinds": [
+    "predicate",
+    "overlay"
+  ],
+  "n": 8000,
+  "arms": [
+    "plain-int",
+    "plain-float",
+    "degen-int",
+    "degen-float"
+  ],
+  "lanes": 5,
+  "chunk": 25,
+  "assignment": [
+    [
+      101,
+      106
+    ],
+    [
+      102,
+      107
+    ],
+    [
+      103,
+      108
+    ],
+    [
+      104,
+      109
+    ],
+    [
+      105,
+      110
+    ]
+  ],
+  "created": "2026-10-27 16:39:02",
+  "digest": "postgis/postgis@sha256:4a43e3c3e5d55b9208240fc71db543b79c638766280c625a425bd0a2390989c4"
+}

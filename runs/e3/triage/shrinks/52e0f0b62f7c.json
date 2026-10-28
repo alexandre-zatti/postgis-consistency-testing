@@ -1,0 +1,74 @@
+{
+ "rep": "52e0f0b62f7c",
+ "item": "lane3:9207:crash:ST_Relate(matrix)",
+ "group": "crash | backend crash | ST_Relate(matrix) |  | - | degen-int | MultiPolygon / GeometryCollection(Polygon)",
+ "steps": 200,
+ "oracle": {
+  "kind": "throwaway container: lone probe crashes the backend",
+  "image": "postgis/postgis@sha256:4a43e3c3e5d55b9208240fc71db543b79c638766280c625a425bd0a2390989c4",
+  "probes": [
+   {
+    "o": "ab",
+    "fn": "ST_Relate(matrix)",
+    "wrap": 1,
+    "sql": "ST_Relate(ST_ForceCollection(a),b)"
+   },
+   {
+    "o": "ba",
+    "fn": "ST_Relate(matrix)",
+    "wrap": 2,
+    "sql": "ST_Relate(b,ST_ForceCollection(a))"
+   }
+  ]
+ },
+ "original_reproduces": true,
+ "shrunk_a": "MULTIPOLYGON (EMPTY, ((1000341 7146, 999987 7515, 999939 6863, 1000341 7146)), ((1000341 7146, 1000508 7189, 1000494 7067, 1000341 7146)))",
+ "shrunk_b": "GEOMETRYCOLLECTION (POLYGON ((999846 6669, 999995 6848, 999770 6851, 999846 6669)))",
+ "coord": "int",
+ "chain": [
+  {
+   "step": 1,
+   "call": 4,
+   "geom": "b",
+   "op": "drop part (0,)",
+   "vertices_a": 15,
+   "vertices_b": 6,
+   "a": "MULTIPOLYGON (EMPTY, ((1000341 7146, 999987 7515, 999939 6863, 1000341 7146), (1000049 7183, 1000104 7120, 1000157 7157, 1000012 7309, 1000005 7221, 1000049 7183), (1000019 7157, 999999 7183, 999987 7026, 1000065 7081, 1000019 7157)), ((1000341 7146, 1000508 7189, 1000494 7067, 1000341 7146)))",
+   "b": "GEOMETRYCOLLECTION (POLYGON ((999846 6669, 999995 6848, 999770 6851, 999846 6669), (999847 6760, 999901 6825, 999820 6826, 999847 6760)))"
+  },
+  {
+   "step": 2,
+   "call": 8,
+   "geom": "a",
+   "op": "drop hole (1, 1)",
+   "vertices_a": 10,
+   "vertices_b": 6,
+   "a": "MULTIPOLYGON (EMPTY, ((1000341 7146, 999987 7515, 999939 6863, 1000341 7146), (1000019 7157, 999999 7183, 999987 7026, 1000065 7081, 1000019 7157)), ((1000341 7146, 1000508 7189, 1000494 7067, 1000341 7146)))",
+   "b": "GEOMETRYCOLLECTION (POLYGON ((999846 6669, 999995 6848, 999770 6851, 999846 6669), (999847 6760, 999901 6825, 999820 6826, 999847 6760)))"
+  },
+  {
+   "step": 3,
+   "call": 12,
+   "geom": "a",
+   "op": "drop hole (1, 1)",
+   "vertices_a": 6,
+   "vertices_b": 6,
+   "a": "MULTIPOLYGON (EMPTY, ((1000341 7146, 999987 7515, 999939 6863, 1000341 7146)), ((1000341 7146, 1000508 7189, 1000494 7067, 1000341 7146)))",
+   "b": "GEOMETRYCOLLECTION (POLYGON ((999846 6669, 999995 6848, 999770 6851, 999846 6669), (999847 6760, 999901 6825, 999820 6826, 999847 6760)))"
+  },
+  {
+   "step": 4,
+   "call": 16,
+   "geom": "b",
+   "op": "drop hole (0, 1)",
+   "vertices_a": 6,
+   "vertices_b": 3,
+   "a": "MULTIPOLYGON (EMPTY, ((1000341 7146, 999987 7515, 999939 6863, 1000341 7146)), ((1000341 7146, 1000508 7189, 1000494 7067, 1000341 7146)))",
+   "b": "GEOMETRYCOLLECTION (POLYGON ((999846 6669, 999995 6848, 999770 6851, 999846 6669)))"
+  }
+ ],
+ "oracle_calls": 19,
+ "vertices_before": 33,
+ "vertices_after": 9,
+ "seconds": 15.027846700002556
+}

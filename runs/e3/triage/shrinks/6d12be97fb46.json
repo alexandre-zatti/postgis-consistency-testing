@@ -1,0 +1,30 @@
+{
+ "rep": "6d12be97fb46",
+ "item": "lane0:105924:v2539",
+ "group": "R10 | dim(Intersection) = max(II,IB,BI,BB) | Intersection/Relate | ST_Dimension(ST_Intersection) vs ST_Relate cells | - | degen-float | Polygon / Polygon",
+ "steps": 200,
+ "oracle": {
+  "kind": "evaluate on throwaway current: same (rule, sub, function, orientation) counted",
+  "image": "postgis/postgis@sha256:4a43e3c3e5d55b9208240fc71db543b79c638766280c625a425bd0a2390989c4"
+ },
+ "original_reproduces": true,
+ "shrunk_a": "POLYGON ((1346270.3525703056 725674.1730483961, 1346548.9844984573 725489.3661572752, 1346247.607106783 725337.2558699676, 1346270.3525703056 725674.1730483961))",
+ "shrunk_b": "POLYGON ((1346131.0366062296 725766.5764939566, 1346548.9844984573 725489.3661572752, 1346676.927730772 726343.7426308426, 1346131.0366062296 725766.5764939566))",
+ "coord": "float",
+ "chain": [
+  {
+   "step": 1,
+   "call": 3,
+   "geom": "b",
+   "op": "drop vertex 2 of (0,)",
+   "vertices_a": 3,
+   "vertices_b": 3,
+   "a": "POLYGON ((1346270.3525703056 725674.1730483961, 1346548.9844984573 725489.3661572752, 1346247.607106783 725337.2558699676, 1346270.3525703056 725674.1730483961))",
+   "b": "POLYGON ((1346131.0366062296 725766.5764939566, 1346548.9844984573 725489.3661572752, 1346676.927730772 726343.7426308426, 1346131.0366062296 725766.5764939566))"
+  }
+ ],
+ "oracle_calls": 43,
+ "vertices_before": 7,
+ "vertices_after": 6,
+ "seconds": 1.4842133999991347
+}

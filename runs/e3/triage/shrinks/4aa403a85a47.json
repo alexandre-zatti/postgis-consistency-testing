@@ -1,0 +1,50 @@
+{
+ "rep": "4aa403a85a47",
+ "item": "lane0:66096:v1880",
+ "group": "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ab | degen-float | Polygon / GeometryCollection(Point,Polygon EMPTY)",
+ "steps": 200,
+ "oracle": {
+  "kind": "evaluate on throwaway current: same (rule, sub, function, orientation) counted",
+  "image": "postgis/postgis@sha256:4a43e3c3e5d55b9208240fc71db543b79c638766280c625a425bd0a2390989c4"
+ },
+ "original_reproduces": true,
+ "shrunk_a": "POLYGON ((1590685350269400.0 1278079645113700.0, 1590685350269300.0 1278079645113600.0, 1590685350269400.0 1278079645113600.0, 1590685350269400.0 1278079645113700.0))",
+ "shrunk_b": "GEOMETRYCOLLECTION (POLYGON EMPTY, POINT (1590685350269400.0 1278079645113700.0))",
+ "coord": "float",
+ "chain": [
+  {
+   "step": 1,
+   "call": 3,
+   "geom": "a",
+   "op": "drop vertex 0 of (0,)",
+   "vertices_a": 4,
+   "vertices_b": 1,
+   "a": "POLYGON ((1590685350269367.0 1278079645113680.0, 1590685350269336.0 1278079645113673.0, 1590685350269335.0 1278079645113631.0, 1590685350269388.0 1278079645113622.0, 1590685350269367.0 1278079645113680.0))",
+   "b": "GEOMETRYCOLLECTION (POLYGON EMPTY, POINT (1590685350269367.0 1278079645113680.0))"
+  },
+  {
+   "step": 2,
+   "call": 7,
+   "geom": "a",
+   "op": "drop vertex 1 of (0,)",
+   "vertices_a": 3,
+   "vertices_b": 1,
+   "a": "POLYGON ((1590685350269367.0 1278079645113680.0, 1590685350269335.0 1278079645113631.0, 1590685350269388.0 1278079645113622.0, 1590685350269367.0 1278079645113680.0))",
+   "b": "GEOMETRYCOLLECTION (POLYGON EMPTY, POINT (1590685350269367.0 1278079645113680.0))"
+  },
+  {
+   "step": 3,
+   "call": 10,
+   "geom": "ab",
+   "op": "round to 14 significant digits",
+   "vertices_a": 3,
+   "vertices_b": 1,
+   "a": "POLYGON ((1590685350269400.0 1278079645113700.0, 1590685350269300.0 1278079645113600.0, 1590685350269400.0 1278079645113600.0, 1590685350269400.0 1278079645113700.0))",
+   "b": "GEOMETRYCOLLECTION (POLYGON EMPTY, POINT (1590685350269400.0 1278079645113700.0))"
+  }
+ ],
+ "oracle_calls": 26,
+ "vertices_before": 6,
+ "vertices_after": 4,
+ "seconds": 0.14339660000405274
+}

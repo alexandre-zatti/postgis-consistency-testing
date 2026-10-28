@@ -1,0 +1,19 @@
+{
+ "rep": "2b8ab9bf1c67",
+ "item": "lane1:159:v7",
+ "group": "R7 | measure(Difference(a,U)) | Union | a vs U | - | degen-int | MultiLineString / LineString",
+ "steps": 200,
+ "oracle": {
+  "kind": "evaluate on throwaway current: same (rule, sub, function, orientation) counted",
+  "image": "postgis/postgis@sha256:4a43e3c3e5d55b9208240fc71db543b79c638766280c625a425bd0a2390989c4"
+ },
+ "original_reproduces": false,
+ "shrunk_a": "MULTILINESTRING ((50754 455112, 50749 455119, 50747 455121, 50745 455120, 50743 455119, 50742 455119), (50728 455161, 50728 455144))",
+ "shrunk_b": "LINESTRING (50742 455119, 50749 455116, 50758 455115, 50781 455139)",
+ "coord": "int",
+ "chain": [],
+ "oracle_calls": 1,
+ "vertices_before": 12,
+ "vertices_after": 12,
+ "seconds": 0.1540141000004951
+}

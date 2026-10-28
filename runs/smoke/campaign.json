@@ -1,0 +1,30 @@
+{
+  "campaign": "smoke",
+  "seeds": [
+    100,
+    2
+  ],
+  "kinds": [
+    "predicate",
+    "overlay"
+  ],
+  "n": 20,
+  "arms": [
+    "plain-int",
+    "plain-float",
+    "degen-int",
+    "degen-float"
+  ],
+  "lanes": 2,
+  "chunk": 5,
+  "assignment": [
+    [
+      100
+    ],
+    [
+      2
+    ]
+  ],
+  "created": "2026-10-27 16:32:47",
+  "digest": "postgis/postgis@sha256:4a43e3c3e5d55b9208240fc71db543b79c638766280c625a425bd0a2390989c4"
+}

@@ -1,0 +1,136 @@
+{
+ "rep": "3fc2c136dc45",
+ "item": "lane2:94423:crash:ST_Relate(pattern)",
+ "group": "crash | backend crash | ST_Relate(pattern) |  | - | degen-int | MultiLineString / GeometryCollection(Polygon,Polygon EMPTY)",
+ "steps": 200,
+ "oracle": {
+  "kind": "throwaway container: lone probe crashes the backend",
+  "image": "postgis/postgis@sha256:4a43e3c3e5d55b9208240fc71db543b79c638766280c625a425bd0a2390989c4",
+  "probes": [
+   {
+    "o": "ab",
+    "fn": "ST_Relate(pattern)",
+    "wrap": 0,
+    "pattern": "****T*FF*",
+    "sql": "ST_Relate(a,b,'****T*FF*')"
+   },
+   {
+    "o": "ba",
+    "fn": "ST_Relate(pattern)",
+    "wrap": 0,
+    "pattern": "****T*FF*",
+    "sql": "ST_Relate(b,a,'****T*FF*')"
+   }
+  ]
+ },
+ "original_reproduces": true,
+ "shrunk_a": "MULTILINESTRING ((735000 671327, 735052 671292))",
+ "shrunk_b": "GEOMETRYCOLLECTION (POLYGON EMPTY, POLYGON ((735019 671341, 735013 671401, 734993 671386, 735019 671341)), POLYGON ((735019 671341, 735023 671327, 735013 671328, 735019 671341)))",
+ "coord": "int",
+ "chain": [
+  {
+   "step": 1,
+   "call": 2,
+   "geom": "a",
+   "op": "drop part (1,)",
+   "vertices_a": 7,
+   "vertices_b": 10,
+   "a": "MULTILINESTRING ((734907 671271, 734975 671254, 734969 671287, 735006 671269, 735000 671327, 735040 671327, 735052 671292))",
+   "b": "GEOMETRYCOLLECTION (POLYGON EMPTY, POLYGON ((734998 671362, 735019 671341, 735038 671352, 735060 671375, 735032 671391, 735013 671401, 734993 671386, 734998 671362)), POLYGON ((735019 671341, 735023 671327, 735013 671328, 735019 671341)))"
+  },
+  {
+   "step": 2,
+   "call": 6,
+   "geom": "a",
+   "op": "drop vertex 0 of (0,)",
+   "vertices_a": 6,
+   "vertices_b": 10,
+   "a": "MULTILINESTRING ((734975 671254, 734969 671287, 735006 671269, 735000 671327, 735040 671327, 735052 671292))",
+   "b": "GEOMETRYCOLLECTION (POLYGON EMPTY, POLYGON ((734998 671362, 735019 671341, 735038 671352, 735060 671375, 735032 671391, 735013 671401, 734993 671386, 734998 671362)), POLYGON ((735019 671341, 735023 671327, 735013 671328, 735019 671341)))"
+  },
+  {
+   "step": 3,
+   "call": 10,
+   "geom": "a",
+   "op": "drop vertex 0 of (0,)",
+   "vertices_a": 5,
+   "vertices_b": 10,
+   "a": "MULTILINESTRING ((734969 671287, 735006 671269, 735000 671327, 735040 671327, 735052 671292))",
+   "b": "GEOMETRYCOLLECTION (POLYGON EMPTY, POLYGON ((734998 671362, 735019 671341, 735038 671352, 735060 671375, 735032 671391, 735013 671401, 734993 671386, 734998 671362)), POLYGON ((735019 671341, 735023 671327, 735013 671328, 735019 671341)))"
+  },
+  {
+   "step": 4,
+   "call": 14,
+   "geom": "a",
+   "op": "drop vertex 0 of (0,)",
+   "vertices_a": 4,
+   "vertices_b": 10,
+   "a": "MULTILINESTRING ((735006 671269, 735000 671327, 735040 671327, 735052 671292))",
+   "b": "GEOMETRYCOLLECTION (POLYGON EMPTY, POLYGON ((734998 671362, 735019 671341, 735038 671352, 735060 671375, 735032 671391, 735013 671401, 734993 671386, 734998 671362)), POLYGON ((735019 671341, 735023 671327, 735013 671328, 735019 671341)))"
+  },
+  {
+   "step": 5,
+   "call": 18,
+   "geom": "a",
+   "op": "drop vertex 0 of (0,)",
+   "vertices_a": 3,
+   "vertices_b": 10,
+   "a": "MULTILINESTRING ((735000 671327, 735040 671327, 735052 671292))",
+   "b": "GEOMETRYCOLLECTION (POLYGON EMPTY, POLYGON ((734998 671362, 735019 671341, 735038 671352, 735060 671375, 735032 671391, 735013 671401, 734993 671386, 734998 671362)), POLYGON ((735019 671341, 735023 671327, 735013 671328, 735019 671341)))"
+  },
+  {
+   "step": 6,
+   "call": 23,
+   "geom": "a",
+   "op": "drop vertex 1 of (0,)",
+   "vertices_a": 2,
+   "vertices_b": 10,
+   "a": "MULTILINESTRING ((735000 671327, 735052 671292))",
+   "b": "GEOMETRYCOLLECTION (POLYGON EMPTY, POLYGON ((734998 671362, 735019 671341, 735038 671352, 735060 671375, 735032 671391, 735013 671401, 734993 671386, 734998 671362)), POLYGON ((735019 671341, 735023 671327, 735013 671328, 735019 671341)))"
+  },
+  {
+   "step": 7,
+   "call": 27,
+   "geom": "b",
+   "op": "drop vertex 0 of (1, 0)",
+   "vertices_a": 2,
+   "vertices_b": 9,
+   "a": "MULTILINESTRING ((735000 671327, 735052 671292))",
+   "b": "GEOMETRYCOLLECTION (POLYGON EMPTY, POLYGON ((735019 671341, 735038 671352, 735060 671375, 735032 671391, 735013 671401, 734993 671386, 735019 671341)), POLYGON ((735019 671341, 735023 671327, 735013 671328, 735019 671341)))"
+  },
+  {
+   "step": 8,
+   "call": 32,
+   "geom": "b",
+   "op": "drop vertex 1 of (1, 0)",
+   "vertices_a": 2,
+   "vertices_b": 8,
+   "a": "MULTILINESTRING ((735000 671327, 735052 671292))",
+   "b": "GEOMETRYCOLLECTION (POLYGON EMPTY, POLYGON ((735019 671341, 735060 671375, 735032 671391, 735013 671401, 734993 671386, 735019 671341)), POLYGON ((735019 671341, 735023 671327, 735013 671328, 735019 671341)))"
+  },
+  {
+   "step": 9,
+   "call": 37,
+   "geom": "b",
+   "op": "drop vertex 1 of (1, 0)",
+   "vertices_a": 2,
+   "vertices_b": 7,
+   "a": "MULTILINESTRING ((735000 671327, 735052 671292))",
+   "b": "GEOMETRYCOLLECTION (POLYGON EMPTY, POLYGON ((735019 671341, 735032 671391, 735013 671401, 734993 671386, 735019 671341)), POLYGON ((735019 671341, 735023 671327, 735013 671328, 735019 671341)))"
+  },
+  {
+   "step": 10,
+   "call": 42,
+   "geom": "b",
+   "op": "drop vertex 1 of (1, 0)",
+   "vertices_a": 2,
+   "vertices_b": 6,
+   "a": "MULTILINESTRING ((735000 671327, 735052 671292))",
+   "b": "GEOMETRYCOLLECTION (POLYGON EMPTY, POLYGON ((735019 671341, 735013 671401, 734993 671386, 735019 671341)), POLYGON ((735019 671341, 735023 671327, 735013 671328, 735019 671341)))"
+  }
+ ],
+ "oracle_calls": 45,
+ "vertices_before": 24,
+ "vertices_after": 8,
+ "seconds": 29.950307799997972
+}

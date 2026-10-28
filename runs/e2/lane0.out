@@ -1,0 +1,8 @@
+progress done=0 remaining=1000 crashes=0
+lane 0: index join plan checked, index used = True
+progress done=200 remaining=800 crashes=0
+progress done=400 remaining=600 crashes=0
+progress done=600 remaining=400 crashes=0
+progress done=800 remaining=200 crashes=0
+progress done=1000 remaining=0 crashes=0
+progress done=1000 remaining=0 crashes=0

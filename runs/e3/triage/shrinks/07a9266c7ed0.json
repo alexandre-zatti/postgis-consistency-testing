@@ -1,0 +1,30 @@
+{
+ "rep": "07a9266c7ed0",
+ "item": "lane0:102736:v2324",
+ "group": "R11 | Union floating vs fixed | Union | Union(a,b) vs Union(a,b,g) | - | degen-float | LineString / LineString",
+ "steps": 200,
+ "oracle": {
+  "kind": "evaluate on throwaway current: same (rule, sub, function, orientation) counted",
+  "image": "postgis/postgis@sha256:4a43e3c3e5d55b9208240fc71db543b79c638766280c625a425bd0a2390989c4"
+ },
+ "original_reproduces": true,
+ "shrunk_a": "LINESTRING (858017.4577402 1004667.797322, 858032.8721933 1004672.634123)",
+ "shrunk_b": "LINESTRING (858007.1814382 1004664.572789, 858038.0103443 1004674.246389)",
+ "coord": "float",
+ "chain": [
+  {
+   "step": 1,
+   "call": 9,
+   "geom": "ab",
+   "op": "round to 13 significant digits",
+   "vertices_a": 2,
+   "vertices_b": 2,
+   "a": "LINESTRING (858017.4577402 1004667.797322, 858032.8721933 1004672.634123)",
+   "b": "LINESTRING (858007.1814382 1004664.572789, 858038.0103443 1004674.246389)"
+  }
+ ],
+ "oracle_calls": 34,
+ "vertices_before": 4,
+ "vertices_after": 4,
+ "seconds": 1.360809400001017
+}

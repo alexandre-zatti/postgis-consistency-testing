@@ -1,0 +1,105 @@
+{
+ "selection": {
+  "items": 7,
+  "groups": 7,
+  "k": 3,
+  "cap": 300,
+  "representatives": 7,
+  "per_group": {
+   "R11 | Intersection floating vs fixed | Intersection | Intersection(a,b) vs Intersection(a,b,g) | - | degen-float | MultiLineString / MultiLineString": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "R11 | Union floating vs fixed | Union | Union(a,b) vs Union(a,b,g) | - | degen-float | MultiLineString / MultiLineString": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "R7 | measure(Difference(a,U)) | Union | a vs U | - | degen-float | LineString / MultiLineString": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "R7 | measure(Difference(a,U)) | Union | a vs U | - | degen-float | MultiLineString / MultiLineString": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "R7 | measure(Difference(a,U)) | Union | a vs U | - | degen-int | MultiLineString / LineString": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "R7 | measure(Difference(a,U)) | Union | a vs U | - | plain-float | LineString / MultiLineString": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   },
+   "R7 | measure(Difference(a,U)) | Union | a vs U | - | plain-int | MultiLineString / LineString": {
+    "size": 1,
+    "representatives": 1,
+    "wanted": 1,
+    "left_out_by_cap": 0
+   }
+  },
+  "left_out_by_cap": {}
+ },
+ "representatives": [
+  {
+   "rep": "c272efd5c18d",
+   "item": "lane1:148:v4",
+   "group": "R11 | Intersection floating vs fixed | Intersection | Intersection(a,b) vs Intersection(a,b,g) | - | degen-float | MultiLineString / MultiLineString",
+   "rank": 0,
+   "vertices": 17
+  },
+  {
+   "rep": "85e996b1cd3c",
+   "item": "lane1:148:v5",
+   "group": "R11 | Union floating vs fixed | Union | Union(a,b) vs Union(a,b,g) | - | degen-float | MultiLineString / MultiLineString",
+   "rank": 0,
+   "vertices": 17
+  },
+  {
+   "rep": "bbbf9bfa5eec",
+   "item": "lane1:116:v2",
+   "group": "R7 | measure(Difference(a,U)) | Union | a vs U | - | degen-float | LineString / MultiLineString",
+   "rank": 0,
+   "vertices": 13
+  },
+  {
+   "rep": "24715acaa085",
+   "item": "lane1:148:v3",
+   "group": "R7 | measure(Difference(a,U)) | Union | a vs U | - | degen-float | MultiLineString / MultiLineString",
+   "rank": 0,
+   "vertices": 17
+  },
+  {
+   "rep": "2b8ab9bf1c67",
+   "item": "lane1:159:v7",
+   "group": "R7 | measure(Difference(a,U)) | Union | a vs U | - | degen-int | MultiLineString / LineString",
+   "rank": 0,
+   "vertices": 12
+  },
+  {
+   "rep": "e56699afdbb3",
+   "item": "lane0:154:v2",
+   "group": "R7 | measure(Difference(a,U)) | Union | a vs U | - | plain-float | LineString / MultiLineString",
+   "rank": 0,
+   "vertices": 14
+  },
+  {
+   "rep": "57fc38974c9b",
+   "item": "lane0:97:v1",
+   "group": "R7 | measure(Difference(a,U)) | Union | a vs U | - | plain-int | MultiLineString / LineString",
+   "rank": 0,
+   "vertices": 21
+  }
+ ]
+}

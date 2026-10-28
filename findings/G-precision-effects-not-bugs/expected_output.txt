@@ -1,0 +1,47 @@
+=== python -s reproduce.py (2026-10-28)
+Shapely 2.2.0 GEOS 3.14.1
+G1 a = MULTIPOLYGON (((385381.9 526823.6, 385377.7 526822, 385379.8 526819.9, 385381.9 526823.6))) 
+   b = POLYGON ((385382.9 526823.1, 385381.9 526826.2, 385378.7 526825.2, 385382.9 526823.1))
+   relate(a, b) = 2F2101212  II = 2 
+   intersection(a, b) = POINT (385381.9 526823.6)  dimension = 0
+   expected for exact arithmetic: dimension = II; here a precision effect gives 2 vs 0
+G3 a = MULTILINESTRING ((771384.3 141360, 771392.4 141493.5)) 
+   b = LINESTRING (771384.3 141360, 771387 141404.5)
+   intersection(a, b)              = POINT (771384.3 141360)  length = 0.0
+   intersection(a, b, grid_size=1e-07) = LINESTRING (771384.3 141360, 771387 141404.5)  length = 44.5818348657808
+   expected: floating length 0 is correct for the stored doubles (not exactly collinear); the grid snaps them
+verdict: both precision effects reproduced (not bugs)
+
+=== psql < reproduce.sql, current (container tavs-current-1)
+ postgis |        geos        
+---------+--------------------
+ 3.6.4   | 3.14.1-CAPI-1.20.5
+(1 row)
+
+  relate   |       intersection       | dim 
+-----------+--------------------------+-----
+ 2F2101212 | POINT(385381.9 526823.6) |   0
+(1 row)
+
+ floating_length |   fixed_length   |                    fixed                    
+-----------------+------------------+---------------------------------------------
+               0 | 44.5818348657808 | LINESTRING(771384.3 141360,771387 141404.5)
+(1 row)
+
+
+=== psql < reproduce.sql, dev (container tavs-dev-1)
+ postgis  |         geos          
+----------+-----------------------
+ 3.7.0dev | 3.16.0dev-CAPI-1.23.0
+(1 row)
+
+  relate   |       intersection       | dim 
+-----------+--------------------------+-----
+ 2F2101212 | POINT(385381.9 526823.6) |   0
+(1 row)
+
+ floating_length |   fixed_length   |                    fixed                    
+-----------------+------------------+---------------------------------------------
+               0 | 44.5818348657808 | LINESTRING(771384.3 141360,771387 141404.5)
+(1 row)
+

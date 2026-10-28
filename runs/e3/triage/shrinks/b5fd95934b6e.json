@@ -1,0 +1,40 @@
+{
+ "rep": "b5fd95934b6e",
+ "item": "lane1:66476:v1871",
+ "group": "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ba | degen-float | GeometryCollection(LineString EMPTY,Point) / Polygon",
+ "steps": 200,
+ "oracle": {
+  "kind": "evaluate on throwaway current: same (rule, sub, function, orientation) counted",
+  "image": "postgis/postgis@sha256:4a43e3c3e5d55b9208240fc71db543b79c638766280c625a425bd0a2390989c4"
+ },
+ "original_reproduces": true,
+ "shrunk_a": "GEOMETRYCOLLECTION (POINT (527400.0 143300.0), LINESTRING EMPTY)",
+ "shrunk_b": "POLYGON ((527400.0 143300.0, 527300.0 143200.0, 527400.0 143200.0, 527400.0 143300.0))",
+ "coord": "float",
+ "chain": [
+  {
+   "step": 1,
+   "call": 3,
+   "geom": "b",
+   "op": "drop vertex 0 of (0,)",
+   "vertices_a": 1,
+   "vertices_b": 3,
+   "a": "GEOMETRYCOLLECTION (POINT (527351.9946715 143264.85024335457), LINESTRING EMPTY)",
+   "b": "POLYGON ((527351.9946715 143264.85024335457, 527340.922316761 143236.80736617456, 527367.3221884172 143237.83048715367, 527351.9946715 143264.85024335457))"
+  },
+  {
+   "step": 2,
+   "call": 6,
+   "geom": "ab",
+   "op": "round to 4 significant digits",
+   "vertices_a": 1,
+   "vertices_b": 3,
+   "a": "GEOMETRYCOLLECTION (POINT (527400.0 143300.0), LINESTRING EMPTY)",
+   "b": "POLYGON ((527400.0 143300.0, 527300.0 143200.0, 527400.0 143200.0, 527400.0 143300.0))"
+  }
+ ],
+ "oracle_calls": 12,
+ "vertices_before": 5,
+ "vertices_after": 4,
+ "seconds": 0.0676504999937606
+}

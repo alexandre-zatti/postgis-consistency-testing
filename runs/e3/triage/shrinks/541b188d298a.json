@@ -1,0 +1,40 @@
+{
+ "rep": "541b188d298a",
+ "item": "lane0:63440:v1832",
+ "group": "R11 | Intersection floating vs fixed | Intersection | Intersection(a,b) vs Intersection(a,b,g) | - | degen-float | MultiLineString / MultiLineString",
+ "steps": 200,
+ "oracle": {
+  "kind": "evaluate on throwaway current: same (rule, sub, function, orientation) counted",
+  "image": "postgis/postgis@sha256:4a43e3c3e5d55b9208240fc71db543b79c638766280c625a425bd0a2390989c4"
+ },
+ "original_reproduces": true,
+ "shrunk_a": "MULTILINESTRING ((1088768.49701 1251593.96711, 1088788.68186 1251601.81678))",
+ "shrunk_b": "MULTILINESTRING ((1088768.497005 1251593.967114, 1088808.866723 1251609.666449))",
+ "coord": "float",
+ "chain": [
+  {
+   "step": 1,
+   "call": 8,
+   "geom": "ab",
+   "op": "round to 13 significant digits",
+   "vertices_a": 2,
+   "vertices_b": 2,
+   "a": "MULTILINESTRING ((1088768.497005 1251593.967114, 1088788.681864 1251601.816782))",
+   "b": "MULTILINESTRING ((1088768.497005 1251593.967114, 1088808.866723 1251609.666449))"
+  },
+  {
+   "step": 2,
+   "call": 22,
+   "geom": "a",
+   "op": "round to 12 significant digits",
+   "vertices_a": 2,
+   "vertices_b": 2,
+   "a": "MULTILINESTRING ((1088768.49701 1251593.96711, 1088788.68186 1251601.81678))",
+   "b": "MULTILINESTRING ((1088768.497005 1251593.967114, 1088808.866723 1251609.666449))"
+  }
+ ],
+ "oracle_calls": 42,
+ "vertices_before": 4,
+ "vertices_after": 4,
+ "seconds": 2.2268301000003703
+}

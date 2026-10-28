@@ -1,4 +1,10 @@
 .venv/
 __pycache__/
-*.sqlite
-runs/
+*.sqlite-shm
+*.sqlite-wal
+*.part
+# default E1 store and scratch
+runs/tavs.sqlite
+runs/e3/triage/tmp/
+# E3 lane databases (2.1 GB): GitHub release e3-data-v1, see scripts/fetch_e3_data.py
+runs/e3/lane*.sqlite

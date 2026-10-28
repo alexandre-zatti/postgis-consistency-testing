@@ -1,0 +1,2 @@
+file,rule,tier,band,precision_limited,pairs,violations
+validate/TestRelateLL.xml,R7,candidate,triage,False,1,1

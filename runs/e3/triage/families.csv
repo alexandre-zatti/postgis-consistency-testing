@@ -1,0 +1,400 @@
+key,rule,function,arms,family,class,confidence,references
+0207dc0b3f7e,R10,Intersection/Relate,plain-float,G1,precision effect: sliver collapse in overlay (R10 polygons),high,GEOS #1383 (open)
+046a34f76cae,R10,Intersection/Relate,degen-float,G2,precision effect: overlay lines between rounded shared crossings (R10 lines),high,GEOS #972 maintainer statement
+04d3e97b780f,R10,Intersection/Relate,degen-float,G2,precision effect: overlay lines between rounded shared crossings (R10 lines),high,GEOS #972 maintainer statement
+1abdbdcbc4e3,R10,Intersection/Relate,degen-float,G1,precision effect: sliver collapse in overlay (R10 polygons),high,GEOS #1383 (open)
+20f9339f57f7,R10,Intersection/Relate,degen-float,G1,precision effect: sliver collapse in overlay (R10 polygons),high,GEOS #1383 (open)
+32aaa5057e88,R10,Intersection/Relate,degen-float,G2,precision effect: overlay lines between rounded shared crossings (R10 lines),high,GEOS #972 maintainer statement
+49763440dbd2,R10,Intersection/Relate,plain-float,G2,precision effect: overlay lines between rounded shared crossings (R10 lines),high,GEOS #972 maintainer statement
+6c6c2a0a163c,R10,Intersection/Relate,plain-float,G2,precision effect: overlay lines between rounded shared crossings (R10 lines),high,GEOS #972 maintainer statement
+7945d2f8de8b,R10,Intersection/Relate,degen-float,G1,precision effect: sliver collapse in overlay (R10 polygons),high,GEOS #1383 (open)
+7d7a21673190,R10,Intersection/Relate,plain-float,G1,precision effect: sliver collapse in overlay (R10 polygons),high,GEOS #1383 (open)
+9355a698bf7c,R10,Intersection/Relate,degen-float,G2,precision effect: overlay lines between rounded shared crossings (R10 lines),high,GEOS #972 maintainer statement
+96473cddf2bc,R10,Intersection/Relate,degen-float,G2,precision effect: overlay lines between rounded shared crossings (R10 lines),high,GEOS #972 maintainer statement
+9ef5e1226f7d,R10,Intersection/Relate,degen-float,G1,precision effect: sliver collapse in overlay (R10 polygons),high,GEOS #1383 (open)
+b405d15c3617,R10,Intersection/Relate,degen-float,G2,precision effect: overlay lines between rounded shared crossings (R10 lines),high,GEOS #972 maintainer statement
+c3853aa26d75,R10,Intersection/Relate,degen-float,G1,precision effect: sliver collapse in overlay (R10 polygons),high,GEOS #1383 (open)
+d28da70b91e1,R10,Intersection/Relate,plain-float,G1,precision effect: sliver collapse in overlay (R10 polygons),high,GEOS #1383 (open)
+d85b5c71f36a,R10,Intersection/Relate,degen-float,G2,precision effect: overlay lines between rounded shared crossings (R10 lines),high,GEOS #972 maintainer statement
+e476fdf8a3a0,R10,Intersection/Relate,plain-float,G2,precision effect: overlay lines between rounded shared crossings (R10 lines),high,GEOS #972 maintainer statement
+eed6097ea115,R10,Intersection/Relate,degen-float,G1,precision effect: sliver collapse in overlay (R10 polygons),high,GEOS #1383 (open)
+eff3d5ecc436,R10,Intersection/Relate,degen-float,G2,precision effect: overlay lines between rounded shared crossings (R10 lines),high,GEOS #972 maintainer statement
+f4f50bcb6d87,R10,Intersection/Relate,degen-float,G1,precision effect: sliver collapse in overlay (R10 polygons),high,GEOS #1383 (open)
+f5645c7ca340,R10,Intersection/Relate,degen-float,G1,precision effect: sliver collapse in overlay (R10 polygons),high,GEOS #1383 (open)
+0697467a1a2a,R11,Intersection,degen-float,G3,oracle precision effect: the fixed-grid reference moved (R11 lines),high,snap rounding by design
+0d795aa373fe,R11,Intersection,plain-float,G3,oracle precision effect: the fixed-grid reference moved (R11 lines),high,snap rounding by design
+1a5492238a9a,R11,Intersection,degen-float,G3,oracle precision effect: the fixed-grid reference moved (R11 lines),high,snap rounding by design
+1bae9ebf5912,R11,Intersection,degen-float,G3,oracle precision effect: the fixed-grid reference moved (R11 lines),high,snap rounding by design
+2ebdf6dc741c,R11,Intersection,plain-float,G3,oracle precision effect: the fixed-grid reference moved (R11 lines),high,snap rounding by design
+4febb7f24404,R11,Intersection,plain-float,G4,known behaviour class: snapping fallback returns an input part,medium,GEOS #972 maintainer statement; JTS FAQ D8
+7434858be690,R11,Intersection,degen-float,G3,oracle precision effect: the fixed-grid reference moved (R11 lines),high,snap rounding by design
+86b16afe45d8,R11,Intersection,degen-float,G3,oracle precision effect: the fixed-grid reference moved (R11 lines),high,snap rounding by design
+8efd485f9a0c,R11,Intersection,plain-float,G3,oracle precision effect: the fixed-grid reference moved (R11 lines),high,snap rounding by design
+922c620fc161,R11,Intersection,plain-float,G3,oracle precision effect: the fixed-grid reference moved (R11 lines),high,snap rounding by design
+a82aecf061e4,R11,Intersection,degen-float,G3,oracle precision effect: the fixed-grid reference moved (R11 lines),high,snap rounding by design
+c7ec4af0f5ab,R11,Intersection,degen-float,G3,oracle precision effect: the fixed-grid reference moved (R11 lines),high,snap rounding by design
+dbe118539fa1,R11,Intersection,degen-float,G3,oracle precision effect: the fixed-grid reference moved (R11 lines),high,snap rounding by design
+e164bc58c525,R11,Intersection,plain-float,G3,oracle precision effect: the fixed-grid reference moved (R11 lines),high,snap rounding by design
+e287c6b3bbcb,R11,Intersection,plain-float,G3,oracle precision effect: the fixed-grid reference moved (R11 lines),high,snap rounding by design
+2530af475d7c,R11,Union,plain-float,G3,oracle precision effect: the fixed-grid reference moved (R11 lines),high,snap rounding by design
+2b7796ffa829,R11,Union,plain-float,G3,oracle precision effect: the fixed-grid reference moved (R11 lines),high,snap rounding by design
+38937487eecb,R11,Union,degen-float,G3,oracle precision effect: the fixed-grid reference moved (R11 lines),high,snap rounding by design
+44fa4173dd80,R11,Union,plain-float,G4,known behaviour class: snapping fallback returns an input part,medium,GEOS #972 maintainer statement; JTS FAQ D8
+46ed3855ec0d,R11,Union,degen-float,G3,oracle precision effect: the fixed-grid reference moved (R11 lines),high,snap rounding by design
+675d823c5ad0,R11,Union,plain-float,G3,oracle precision effect: the fixed-grid reference moved (R11 lines),high,snap rounding by design
+683a80778491,R11,Union,plain-float,G3,oracle precision effect: the fixed-grid reference moved (R11 lines),high,snap rounding by design
+6be5b8d25482,R11,Union,degen-float,G3,oracle precision effect: the fixed-grid reference moved (R11 lines),high,snap rounding by design
+78a947e6128f,R11,Union,degen-float,G3,oracle precision effect: the fixed-grid reference moved (R11 lines),high,snap rounding by design
+819e0f73873e,R11,Union,degen-float,G3,oracle precision effect: the fixed-grid reference moved (R11 lines),high,snap rounding by design
+9781dce665f3,R11,Union,degen-float,G3,oracle precision effect: the fixed-grid reference moved (R11 lines),high,snap rounding by design
+a048d2d077b4,R11,Union,plain-float,G3,oracle precision effect: the fixed-grid reference moved (R11 lines),high,snap rounding by design
+bcc73bb1a680,R11,Union,plain-float,G3,oracle precision effect: the fixed-grid reference moved (R11 lines),high,snap rounding by design
+c2cf593dd893,R11,Union,degen-float,G3,oracle precision effect: the fixed-grid reference moved (R11 lines),high,snap rounding by design
+d769a58a03d0,R11,Union,degen-float,G3,oracle precision effect: the fixed-grid reference moved (R11 lines),high,snap rounding by design
+27262e8ca8d1,R2,Relate,degen-int,D,consistent with known open issue: self-noding decided by first argument,medium,GEOS #1558; PR #1565 closed unmerged 2026-10-20
+5eb8d91024c7,R2,Relate,degen-float,C,consistent with known open issue: RelateNG rounding vs prepared,medium,GEOS #740 (open); JTS #396
+7d21957b5d7f,R2,Relate,degen-float,C,consistent with known open issue: RelateNG rounding vs prepared,medium,GEOS #740 (open); JTS #396
+c6321394979e,R2,Relate,degen-float,D,consistent with known open issue: self-noding decided by first argument,medium,GEOS #1558; PR #1565 closed unmerged 2026-10-20
+dbd61987613e,R2,Relate,degen-float,E,"unresolved, consistent with the #740 rounding class (not counted)",low,GEOS #740
+072283bc43b2,R3,Contains,degen-int,B,"unreported variant of a known cause: prepared Contains, point plus empty member",medium-high,"GEOS #1011 (unprepared path, closed 2024-10-16); GEOS #1008"
+0a0bf9c866ea,R3,Contains,degen-float,C,consistent with known open issue: RelateNG rounding vs prepared,medium,GEOS #740 (open); JTS #396
+0c7f9a1a0ed6,R3,Contains,degen-float,B,"unreported variant of a known cause: prepared Contains, point plus empty member",medium-high,"GEOS #1011 (unprepared path, closed 2024-10-16); GEOS #1008"
+138eccfd5f32,R3,Contains,degen-int,B,"unreported variant of a known cause: prepared Contains, point plus empty member",medium-high,"GEOS #1011 (unprepared path, closed 2024-10-16); GEOS #1008"
+178a0b6894da,R3,Contains,degen-float,C,consistent with known open issue: RelateNG rounding vs prepared,medium,GEOS #740 (open); JTS #396
+1d79c643b1fe,R3,Contains,degen-float,B,"unreported variant of a known cause: prepared Contains, point plus empty member",medium-high,"GEOS #1011 (unprepared path, closed 2024-10-16); GEOS #1008"
+2000e3219b02,R3,Contains,degen-float,B,"unreported variant of a known cause: prepared Contains, point plus empty member",medium-high,"GEOS #1011 (unprepared path, closed 2024-10-16); GEOS #1008"
+226e1c832547,R3,Contains,degen-int,B,"unreported variant of a known cause: prepared Contains, point plus empty member",medium-high,"GEOS #1011 (unprepared path, closed 2024-10-16); GEOS #1008"
+23e39e2ae176,R3,Contains,degen-float,C,consistent with known open issue: RelateNG rounding vs prepared,medium,GEOS #740 (open); JTS #396
+4af8fd47cb4a,R3,Contains,degen-int,B,"unreported variant of a known cause: prepared Contains, point plus empty member",medium-high,"GEOS #1011 (unprepared path, closed 2024-10-16); GEOS #1008"
+5086e9f79ec0,R3,Contains,degen-int,B,"unreported variant of a known cause: prepared Contains, point plus empty member",medium-high,"GEOS #1011 (unprepared path, closed 2024-10-16); GEOS #1008"
+55e1b1af46f6,R3,Contains,degen-float,B,"unreported variant of a known cause: prepared Contains, point plus empty member",medium-high,"GEOS #1011 (unprepared path, closed 2024-10-16); GEOS #1008"
+56456674d657,R3,Contains,degen-int,B,"unreported variant of a known cause: prepared Contains, point plus empty member",medium-high,"GEOS #1011 (unprepared path, closed 2024-10-16); GEOS #1008"
+5758332bcc56,R3,Contains,degen-float,B,"unreported variant of a known cause: prepared Contains, point plus empty member",medium-high,"GEOS #1011 (unprepared path, closed 2024-10-16); GEOS #1008"
+669dd37dfdb5,R3,Contains,degen-float,B,"unreported variant of a known cause: prepared Contains, point plus empty member",medium-high,"GEOS #1011 (unprepared path, closed 2024-10-16); GEOS #1008"
+67160bddabf1,R3,Contains,degen-int,B,"unreported variant of a known cause: prepared Contains, point plus empty member",medium-high,"GEOS #1011 (unprepared path, closed 2024-10-16); GEOS #1008"
+762b29f049d3,R3,Contains,degen-float,B,"unreported variant of a known cause: prepared Contains, point plus empty member",medium-high,"GEOS #1011 (unprepared path, closed 2024-10-16); GEOS #1008"
+78ac884e9a6e,R3,Contains,degen-float,B,"unreported variant of a known cause: prepared Contains, point plus empty member",medium-high,"GEOS #1011 (unprepared path, closed 2024-10-16); GEOS #1008"
+78fd36eb317c,R3,Contains,degen-int,B,"unreported variant of a known cause: prepared Contains, point plus empty member",medium-high,"GEOS #1011 (unprepared path, closed 2024-10-16); GEOS #1008"
+82b9b2139c37,R3,Contains,degen-float,B,"unreported variant of a known cause: prepared Contains, point plus empty member",medium-high,"GEOS #1011 (unprepared path, closed 2024-10-16); GEOS #1008"
+866be0c82f5f,R3,Contains,degen-int,B,"unreported variant of a known cause: prepared Contains, point plus empty member",medium-high,"GEOS #1011 (unprepared path, closed 2024-10-16); GEOS #1008"
+8b054805699c,R3,Contains,degen-int,B,"unreported variant of a known cause: prepared Contains, point plus empty member",medium-high,"GEOS #1011 (unprepared path, closed 2024-10-16); GEOS #1008"
+910529cf6bff,R3,Contains,degen-float,C,consistent with known open issue: RelateNG rounding vs prepared,medium,GEOS #740 (open); JTS #396
+bab03faa01c1,R3,Contains,degen-float,B,"unreported variant of a known cause: prepared Contains, point plus empty member",medium-high,"GEOS #1011 (unprepared path, closed 2024-10-16); GEOS #1008"
+bbca23ec9d5f,R3,Contains,degen-float,B,"unreported variant of a known cause: prepared Contains, point plus empty member",medium-high,"GEOS #1011 (unprepared path, closed 2024-10-16); GEOS #1008"
+be7b782a40c7,R3,Contains,degen-float,B,"unreported variant of a known cause: prepared Contains, point plus empty member",medium-high,"GEOS #1011 (unprepared path, closed 2024-10-16); GEOS #1008"
+c3426167a88e,R3,Contains,degen-float,B,"unreported variant of a known cause: prepared Contains, point plus empty member",medium-high,"GEOS #1011 (unprepared path, closed 2024-10-16); GEOS #1008"
+c7d8f2fa91b5,R3,Contains,degen-int,B,"unreported variant of a known cause: prepared Contains, point plus empty member",medium-high,"GEOS #1011 (unprepared path, closed 2024-10-16); GEOS #1008"
+c804c512c9d8,R3,Contains,degen-float,B,"unreported variant of a known cause: prepared Contains, point plus empty member",medium-high,"GEOS #1011 (unprepared path, closed 2024-10-16); GEOS #1008"
+c88216de2d1d,R3,Contains,degen-int,B,"unreported variant of a known cause: prepared Contains, point plus empty member",medium-high,"GEOS #1011 (unprepared path, closed 2024-10-16); GEOS #1008"
+d1e647d92e9c,R3,Contains,degen-float,B,"unreported variant of a known cause: prepared Contains, point plus empty member",medium-high,"GEOS #1011 (unprepared path, closed 2024-10-16); GEOS #1008"
+e16b0f6d53a1,R3,Contains,degen-float,C,consistent with known open issue: RelateNG rounding vs prepared,medium,GEOS #740 (open); JTS #396
+e3deac9e9e93,R3,Contains,degen-int,B,"unreported variant of a known cause: prepared Contains, point plus empty member",medium-high,"GEOS #1011 (unprepared path, closed 2024-10-16); GEOS #1008"
+e9a419b3aad6,R3,Contains,degen-float,C,consistent with known open issue: RelateNG rounding vs prepared,medium,GEOS #740 (open); JTS #396
+ea0e07060d6a,R3,Contains,degen-float,C,consistent with known open issue: RelateNG rounding vs prepared,medium,GEOS #740 (open); JTS #396
+ebd6d3e97d10,R3,Contains,degen-float,C,consistent with known open issue: RelateNG rounding vs prepared,medium,GEOS #740 (open); JTS #396
+ed03dcf368d0,R3,Contains,degen-int,B,"unreported variant of a known cause: prepared Contains, point plus empty member",medium-high,"GEOS #1011 (unprepared path, closed 2024-10-16); GEOS #1008"
+ef5d7a63c5cc,R3,Contains,degen-int,B,"unreported variant of a known cause: prepared Contains, point plus empty member",medium-high,"GEOS #1011 (unprepared path, closed 2024-10-16); GEOS #1008"
+fce9c48f0244,R3,Contains,degen-float,B,"unreported variant of a known cause: prepared Contains, point plus empty member",medium-high,"GEOS #1011 (unprepared path, closed 2024-10-16); GEOS #1008"
+fed4557feaa6,R3,Contains,degen-int,B,"unreported variant of a known cause: prepared Contains, point plus empty member",medium-high,"GEOS #1011 (unprepared path, closed 2024-10-16); GEOS #1008"
+02cc23ca3ec4,R3,Covers,degen-float,C,consistent with known open issue: RelateNG rounding vs prepared,medium,GEOS #740 (open); JTS #396
+0ea63812c22e,R3,Covers,degen-float,C,consistent with known open issue: RelateNG rounding vs prepared,medium,GEOS #740 (open); JTS #396
+2e655fc38341,R3,Covers,degen-float,C,consistent with known open issue: RelateNG rounding vs prepared,medium,GEOS #740 (open); JTS #396
+6cb2ba4793e1,R3,Covers,degen-float,C,consistent with known open issue: RelateNG rounding vs prepared,medium,GEOS #740 (open); JTS #396
+78b8285cf776,R3,Covers,degen-float,C,consistent with known open issue: RelateNG rounding vs prepared,medium,GEOS #740 (open); JTS #396
+ca9dd8741ec2,R3,Covers,degen-float,C,consistent with known open issue: RelateNG rounding vs prepared,medium,GEOS #740 (open); JTS #396
+d84212812d85,R3,Covers,degen-float,C,consistent with known open issue: RelateNG rounding vs prepared,medium,GEOS #740 (open); JTS #396
+e186f607fa0f,R3,Covers,degen-float,C,consistent with known open issue: RelateNG rounding vs prepared,medium,GEOS #740 (open); JTS #396
+09641bc3e5ac,R3,Within,degen-int,B,"unreported variant of a known cause: prepared Contains, point plus empty member",medium-high,"GEOS #1011 (unprepared path, closed 2024-10-16); GEOS #1008"
+0c60e64b88aa,R3,Within,degen-float,C,consistent with known open issue: RelateNG rounding vs prepared,medium,GEOS #740 (open); JTS #396
+108992244f21,R3,Within,degen-int,B,"unreported variant of a known cause: prepared Contains, point plus empty member",medium-high,"GEOS #1011 (unprepared path, closed 2024-10-16); GEOS #1008"
+1ce68e142fcf,R3,Within,degen-float,C,consistent with known open issue: RelateNG rounding vs prepared,medium,GEOS #740 (open); JTS #396
+249ae443ce9e,R3,Within,degen-int,B,"unreported variant of a known cause: prepared Contains, point plus empty member",medium-high,"GEOS #1011 (unprepared path, closed 2024-10-16); GEOS #1008"
+2637c97131ab,R3,Within,degen-int,B,"unreported variant of a known cause: prepared Contains, point plus empty member",medium-high,"GEOS #1011 (unprepared path, closed 2024-10-16); GEOS #1008"
+2c2498acf100,R3,Within,degen-int,B,"unreported variant of a known cause: prepared Contains, point plus empty member",medium-high,"GEOS #1011 (unprepared path, closed 2024-10-16); GEOS #1008"
+2e3b8406abc5,R3,Within,degen-int,B,"unreported variant of a known cause: prepared Contains, point plus empty member",medium-high,"GEOS #1011 (unprepared path, closed 2024-10-16); GEOS #1008"
+2e82b71eabd6,R3,Within,degen-float,B,"unreported variant of a known cause: prepared Contains, point plus empty member",medium-high,"GEOS #1011 (unprepared path, closed 2024-10-16); GEOS #1008"
+3230f50b7b11,R3,Within,degen-float,B,"unreported variant of a known cause: prepared Contains, point plus empty member",medium-high,"GEOS #1011 (unprepared path, closed 2024-10-16); GEOS #1008"
+3b08a63d085c,R3,Within,degen-float,B,"unreported variant of a known cause: prepared Contains, point plus empty member",medium-high,"GEOS #1011 (unprepared path, closed 2024-10-16); GEOS #1008"
+3b32ec9b5090,R3,Within,degen-float,C,consistent with known open issue: RelateNG rounding vs prepared,medium,GEOS #740 (open); JTS #396
+3ccb32ef2424,R3,Within,degen-float,B,"unreported variant of a known cause: prepared Contains, point plus empty member",medium-high,"GEOS #1011 (unprepared path, closed 2024-10-16); GEOS #1008"
+4838cbe8d78b,R3,Within,degen-float,B,"unreported variant of a known cause: prepared Contains, point plus empty member",medium-high,"GEOS #1011 (unprepared path, closed 2024-10-16); GEOS #1008"
+4c52b876edf1,R3,Within,degen-float,C,consistent with known open issue: RelateNG rounding vs prepared,medium,GEOS #740 (open); JTS #396
+526411285850,R3,Within,degen-int,B,"unreported variant of a known cause: prepared Contains, point plus empty member",medium-high,"GEOS #1011 (unprepared path, closed 2024-10-16); GEOS #1008"
+55170059b7a6,R3,Within,degen-float,C,consistent with known open issue: RelateNG rounding vs prepared,medium,GEOS #740 (open); JTS #396
+5ae5bfdaa6c0,R3,Within,degen-float,C,consistent with known open issue: RelateNG rounding vs prepared,medium,GEOS #740 (open); JTS #396
+6356b82c3e0b,R3,Within,degen-float,B,"unreported variant of a known cause: prepared Contains, point plus empty member",medium-high,"GEOS #1011 (unprepared path, closed 2024-10-16); GEOS #1008"
+67ec2b2b2c4f,R3,Within,degen-int,B,"unreported variant of a known cause: prepared Contains, point plus empty member",medium-high,"GEOS #1011 (unprepared path, closed 2024-10-16); GEOS #1008"
+792551f4510e,R3,Within,degen-float,B,"unreported variant of a known cause: prepared Contains, point plus empty member",medium-high,"GEOS #1011 (unprepared path, closed 2024-10-16); GEOS #1008"
+7a77ebddca4f,R3,Within,degen-int,B,"unreported variant of a known cause: prepared Contains, point plus empty member",medium-high,"GEOS #1011 (unprepared path, closed 2024-10-16); GEOS #1008"
+82d1024ba487,R3,Within,degen-int,B,"unreported variant of a known cause: prepared Contains, point plus empty member",medium-high,"GEOS #1011 (unprepared path, closed 2024-10-16); GEOS #1008"
+9d15fa1b9a3d,R3,Within,degen-float,B,"unreported variant of a known cause: prepared Contains, point plus empty member",medium-high,"GEOS #1011 (unprepared path, closed 2024-10-16); GEOS #1008"
+b41c8361f7ab,R3,Within,degen-float,B,"unreported variant of a known cause: prepared Contains, point plus empty member",medium-high,"GEOS #1011 (unprepared path, closed 2024-10-16); GEOS #1008"
+b7997e6e9a71,R3,Within,degen-float,B,"unreported variant of a known cause: prepared Contains, point plus empty member",medium-high,"GEOS #1011 (unprepared path, closed 2024-10-16); GEOS #1008"
+b84681512d5a,R3,Within,degen-float,B,"unreported variant of a known cause: prepared Contains, point plus empty member",medium-high,"GEOS #1011 (unprepared path, closed 2024-10-16); GEOS #1008"
+bf22724e4e63,R3,Within,degen-int,B,"unreported variant of a known cause: prepared Contains, point plus empty member",medium-high,"GEOS #1011 (unprepared path, closed 2024-10-16); GEOS #1008"
+ce3d2e003f56,R3,Within,degen-float,C,consistent with known open issue: RelateNG rounding vs prepared,medium,GEOS #740 (open); JTS #396
+d56d2b0d7362,R3,Within,degen-float,C,consistent with known open issue: RelateNG rounding vs prepared,medium,GEOS #740 (open); JTS #396
+e4cc1ce4f74d,R3,Within,degen-int,B,"unreported variant of a known cause: prepared Contains, point plus empty member",medium-high,"GEOS #1011 (unprepared path, closed 2024-10-16); GEOS #1008"
+f07189918f1e,R3,Within,degen-int,B,"unreported variant of a known cause: prepared Contains, point plus empty member",medium-high,"GEOS #1011 (unprepared path, closed 2024-10-16); GEOS #1008"
+f75aa7870801,R3,Within,degen-float,B,"unreported variant of a known cause: prepared Contains, point plus empty member",medium-high,"GEOS #1011 (unprepared path, closed 2024-10-16); GEOS #1008"
+fce2fefa68fb,R3,Within,degen-int,B,"unreported variant of a known cause: prepared Contains, point plus empty member",medium-high,"GEOS #1011 (unprepared path, closed 2024-10-16); GEOS #1008"
+0f60d799288b,R4,Relate,degen-int,F,"candidate: tangent-hole collection relate, mechanism by code reading",medium,none found; possibly related to GEOS #1558
+49271cf2e457,R4,Relate,degen-float,C,consistent with known open issue: RelateNG rounding vs prepared,medium,GEOS #740 (open); JTS #396
+65b990eb05cf,R4,Relate,degen-int,F,"candidate: tangent-hole collection relate, mechanism by code reading",medium,none found; possibly related to GEOS #1558
+674370b598e4,R4,Relate,degen-float,C,consistent with known open issue: RelateNG rounding vs prepared,medium,GEOS #740 (open); JTS #396
+8c2fe870bc29,R4,Relate,degen-float,C,consistent with known open issue: RelateNG rounding vs prepared,medium,GEOS #740 (open); JTS #396
+49cb0e6036b1,R5,Intersects/Intersection,degen-float,G4,known behaviour class: snapping fallback returns an input part,medium,GEOS #972 maintainer statement; JTS FAQ D8
+3124677a2c0c,crash,ST_Contains,degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+52fa48283b5b,crash,ST_Contains,degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+5562747dcf3b,crash,ST_Contains,degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+65269b94e562,crash,ST_Contains,degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+8ef04e7afdfa,crash,ST_Contains,degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+a39b894def2d,crash,ST_Contains,degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+b3d71523eb47,crash,ST_Contains,degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+bb95d9289cda,crash,ST_Contains,degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+e2100261dd82,crash,ST_Contains,degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+f1d5b1b8b35a,crash,ST_Contains,degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+f37e210c88b7,crash,ST_Contains,degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+521a6c83dbd6,crash,ST_CoveredBy,degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+5e68583f4aeb,crash,ST_CoveredBy,degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+6c5ccb26c74e,crash,ST_CoveredBy,degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+7052833cae7a,crash,ST_CoveredBy,degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+977fcaecb972,crash,ST_CoveredBy,degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+b65656d8f641,crash,ST_CoveredBy,degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+b8692ed13b44,crash,ST_CoveredBy,degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+cae549249874,crash,ST_CoveredBy,degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+cf31e252f83c,crash,ST_CoveredBy,degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+cfaf7aad3b79,crash,ST_CoveredBy,degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+d8261bf9c242,crash,ST_CoveredBy,degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+e852e5220cc0,crash,ST_CoveredBy,degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+ef0cad77b5cf,crash,ST_CoveredBy,degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+2612b1339cb7,crash,ST_Covers,degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+294fa540b9e7,crash,ST_Covers,degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+2f21b3671a46,crash,ST_Covers,degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+3c65694cb6d0,crash,ST_Covers,degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+4cd042b0a4e9,crash,ST_Covers,degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+50a2a6936177,crash,ST_Covers,degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+55126c6f66d3,crash,ST_Covers,degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+5e44738682f8,crash,ST_Covers,degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+77078e2fbcda,crash,ST_Covers,degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+7938b1290db5,crash,ST_Covers,degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+8020bd399d27,crash,ST_Covers,degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+838bdfd5d946,crash,ST_Covers,degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+b12ac70d395d,crash,ST_Covers,degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+c076a34c36d2,crash,ST_Covers,degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+c2f0762ca8eb,crash,ST_Covers,degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+f8fafa8e6c72,crash,ST_Covers,degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+07aa311ffc43,crash,ST_Disjoint,degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+0875e922fc42,crash,ST_Disjoint,degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+08fbed1ad875,crash,ST_Disjoint,degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+1f88dd32991d,crash,ST_Disjoint,degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+200bbde55fc9,crash,ST_Disjoint,degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+20f40f5217da,crash,ST_Disjoint,degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+3108ddb30877,crash,ST_Disjoint,degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+49bddc01b5f0,crash,ST_Disjoint,degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+6098eb6bf405,crash,ST_Disjoint,degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+72740587b844,crash,ST_Disjoint,degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+79ebe0993f9c,crash,ST_Disjoint,degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+87d689a0c41b,crash,ST_Disjoint,degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+900a43fc116f,crash,ST_Disjoint,degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+949893625530,crash,ST_Disjoint,degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+9be3a82bae4b,crash,ST_Disjoint,degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+9ea2ee48e9fb,crash,ST_Disjoint,degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+ab58b21c1d7b,crash,ST_Disjoint,degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+b1363d93bdb1,crash,ST_Disjoint,degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+b3af98a99f8f,crash,ST_Disjoint,degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+b7a595aeb735,crash,ST_Disjoint,degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+c0e1bf4a0551,crash,ST_Disjoint,degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+ca2dc37e5742,crash,ST_Disjoint,degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+caae5244d0e7,crash,ST_Disjoint,degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+d81a5d6c531c,crash,ST_Disjoint,degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+daf1c5b9d18b,crash,ST_Disjoint,degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+f3919b8e60c5,crash,ST_Disjoint,degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+fc8a0e82898e,crash,ST_Disjoint,degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+0a678a7e93be,crash,ST_Intersects,degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+0f9742f3195e,crash,ST_Intersects,degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+156f9d81eaf2,crash,ST_Intersects,degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+192bfc741bc2,crash,ST_Intersects,degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+1bfdd613d785,crash,ST_Intersects,degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+23d975e09523,crash,ST_Intersects,degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+30238451e55a,crash,ST_Intersects,degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+3973d5e8dba8,crash,ST_Intersects,degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+408c8a3f28c8,crash,ST_Intersects,degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+522b982a64fc,crash,ST_Intersects,degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+5620ade35425,crash,ST_Intersects,degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+616d87cc3d97,crash,ST_Intersects,degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+622c77921e2c,crash,ST_Intersects,degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+6c8a7fd7d5cc,crash,ST_Intersects,degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+7b658de31ea9,crash,ST_Intersects,degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+8615f6005aea,crash,ST_Intersects,degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+ac32459e2f09,crash,ST_Intersects,degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+b0187bfc5a8c,crash,ST_Intersects,degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+b38b1af4519a,crash,ST_Intersects,degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+ba4f00f8d629,crash,ST_Intersects,degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+c31f1d3ebe69,crash,ST_Intersects,degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+c50172cfb51b,crash,ST_Intersects,degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+cd7b9a56fabe,crash,ST_Intersects,degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+e459e898f3ba,crash,ST_Intersects,degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+e67ed2f9e93e,crash,ST_Intersects,degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+ee8b368bcb9d,crash,ST_Intersects,degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+fd39ab69e04c,crash,ST_Intersects,degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+034adc4d0d29,crash,ST_Relate(matrix),degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+03dd6fc57553,crash,ST_Relate(matrix),degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+0951f3f6be12,crash,ST_Relate(matrix),degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+0f61057e8887,crash,ST_Relate(matrix),degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+113ac531e510,crash,ST_Relate(matrix),degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+12c006d5f1d0,crash,ST_Relate(matrix),degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+13355f0b6789,crash,ST_Relate(matrix),degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+192109ccb470,crash,ST_Relate(matrix),degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+1eba8f0d86b8,crash,ST_Relate(matrix),degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+1fc6a0163abf,crash,ST_Relate(matrix),degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+2229d6ac55c3,crash,ST_Relate(matrix),degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+27c6bc1c85e8,crash,ST_Relate(matrix),degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+2ab8bf95ec64,crash,ST_Relate(matrix),degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+2fc0b9656bd6,crash,ST_Relate(matrix),degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+31699eb0b646,crash,ST_Relate(matrix),degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+38eaf962480f,crash,ST_Relate(matrix),degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+3a15df9efd47,crash,ST_Relate(matrix),degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+3fcfcc0448be,crash,ST_Relate(matrix),degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+3ffe0dadf605,crash,ST_Relate(matrix),degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+454c43cfae12,crash,ST_Relate(matrix),degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+495234421c1d,crash,ST_Relate(matrix),degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+4f3754936f22,crash,ST_Relate(matrix),degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+50f3aa06c1b4,crash,ST_Relate(matrix),degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+5148e75b42f5,crash,ST_Relate(matrix),degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+6266ae65d69e,crash,ST_Relate(matrix),degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+63db54bdc011,crash,ST_Relate(matrix),degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+6556925d80f0,crash,ST_Relate(matrix),degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+6fbd61466869,crash,ST_Relate(matrix),degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+7056ae8df798,crash,ST_Relate(matrix),degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+7720f4a51c10,crash,ST_Relate(matrix),degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+7753ef480f92,crash,ST_Relate(matrix),degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+7867a1734c30,crash,ST_Relate(matrix),degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+7da3df5c8443,crash,ST_Relate(matrix),degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+7e24d6f102b4,crash,ST_Relate(matrix),degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+7e3b24c5be02,crash,ST_Relate(matrix),degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+7f9a12dbcc53,crash,ST_Relate(matrix),degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+7fc1d1eeabbf,crash,ST_Relate(matrix),degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+8b23bc46904e,crash,ST_Relate(matrix),degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+8f0bc4330173,crash,ST_Relate(matrix),degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+909914c32730,crash,ST_Relate(matrix),degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+924d7491356c,crash,ST_Relate(matrix),degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+9835e6ece7a8,crash,ST_Relate(matrix),degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+9a830a7d462a,crash,ST_Relate(matrix),degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+a3cfd1de832e,crash,ST_Relate(matrix),degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+a61d2dc41739,crash,ST_Relate(matrix),degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+a79e9db0c3d0,crash,ST_Relate(matrix),degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+b11ebc3bf36a,crash,ST_Relate(matrix),degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+b811f3b012b5,crash,ST_Relate(matrix),degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+bfd0a2f2e3fc,crash,ST_Relate(matrix),degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+c08e0cfe4b98,crash,ST_Relate(matrix),degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+c2770c1397c9,crash,ST_Relate(matrix),degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+cbc1e959be5c,crash,ST_Relate(matrix),degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+cc89902d9d88,crash,ST_Relate(matrix),degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+d2d507ae7cef,crash,ST_Relate(matrix),degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+d2f0d253bb74,crash,ST_Relate(matrix),degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+d3080cdc0477,crash,ST_Relate(matrix),degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+d61db09925ca,crash,ST_Relate(matrix),degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+d7d8342cddf8,crash,ST_Relate(matrix),degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+df020dcbbc9b,crash,ST_Relate(matrix),degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+dfcd784e7e34,crash,ST_Relate(matrix),degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+e2da9d0d0e1b,crash,ST_Relate(matrix),degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+e6bae9ac8920,crash,ST_Relate(matrix),degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+e88c47b27d37,crash,ST_Relate(matrix),degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+eb2546da5a7e,crash,ST_Relate(matrix),degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+f5e94c69dbaf,crash,ST_Relate(matrix),degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+f98eb0c7b5d2,crash,ST_Relate(matrix),degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+fb15ebaf205d,crash,ST_Relate(matrix),degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+0bbf49338384,crash,ST_Relate(pattern),degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+17ca655c220b,crash,ST_Relate(pattern),degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+20edeca55367,crash,ST_Relate(pattern),degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+345f74590f31,crash,ST_Relate(pattern),degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+38bdf64b6c51,crash,ST_Relate(pattern),degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+3d86e762a760,crash,ST_Relate(pattern),degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+4737f3d0b55b,crash,ST_Relate(pattern),degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+57a5694cda2e,crash,ST_Relate(pattern),degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+5fe564a11d56,crash,ST_Relate(pattern),degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+6b6f1cb3f2ac,crash,ST_Relate(pattern),degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+6e4fd368c419,crash,ST_Relate(pattern),degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+9b00c72f23ae,crash,ST_Relate(pattern),degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+a7aa14eb1669,crash,ST_Relate(pattern),degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+c3c493987fc7,crash,ST_Relate(pattern),degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+c7039d0f847d,crash,ST_Relate(pattern),degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+ccadf9915f2b,crash,ST_Relate(pattern),degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+d60867b0d00a,crash,ST_Relate(pattern),degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+d8da60aed2b9,crash,ST_Relate(pattern),degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+d9a48dc4bc38,crash,ST_Relate(pattern),degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+dab18db2f8e0,crash,ST_Relate(pattern),degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+db253abf7e04,crash,ST_Relate(pattern),degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+e753a889c4e3,crash,ST_Relate(pattern),degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+f08724008041,crash,ST_Relate(pattern),degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+f0d9718c57fc,crash,ST_Relate(pattern),degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+03a91887b849,crash,ST_Touches,degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+054924a9bc46,crash,ST_Touches,degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+0597e066c455,crash,ST_Touches,degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+061067b8e22f,crash,ST_Touches,degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+083cda19db03,crash,ST_Touches,degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+1261f7ffeb77,crash,ST_Touches,degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+176153f8c513,crash,ST_Touches,degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+2132423645f4,crash,ST_Touches,degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+245196698be1,crash,ST_Touches,degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+2b93844e687c,crash,ST_Touches,degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+2c2c72b50699,crash,ST_Touches,degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+316050ca6557,crash,ST_Touches,degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+33d237428bc8,crash,ST_Touches,degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+3b659b04614e,crash,ST_Touches,degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+404307b07734,crash,ST_Touches,degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+4323c0f614be,crash,ST_Touches,degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+497f1396b0c5,crash,ST_Touches,degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+5974d6877812,crash,ST_Touches,degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+5ae2fef5351c,crash,ST_Touches,degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+5bf6c062348f,crash,ST_Touches,degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+5eab0cc7de1c,crash,ST_Touches,degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+60341d7e6420,crash,ST_Touches,degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+624e68424a10,crash,ST_Touches,degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+6eb2af57ac5e,crash,ST_Touches,degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+710baf6dd006,crash,ST_Touches,degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+7518d7cba207,crash,ST_Touches,degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+7933447557f1,crash,ST_Touches,degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+7aebcaa52bef,crash,ST_Touches,degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+7f9382bcb846,crash,ST_Touches,degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+817a91738216,crash,ST_Touches,degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+8608bfd43279,crash,ST_Touches,degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+88acae4000bf,crash,ST_Touches,degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+8bcba597ddc6,crash,ST_Touches,degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+91bfaeb7c3c3,crash,ST_Touches,degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+a0636716e35f,crash,ST_Touches,degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+a4e865068017,crash,ST_Touches,degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+a8e13f752a38,crash,ST_Touches,degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+aa2570f64fe0,crash,ST_Touches,degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+ad55b5752e4b,crash,ST_Touches,degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+b250dc1fcd53,crash,ST_Touches,degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+b82c2deb50c9,crash,ST_Touches,degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+b973d3c2bc32,crash,ST_Touches,degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+c5551a156270,crash,ST_Touches,degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+caa55e7b673d,crash,ST_Touches,degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+cd9c7ff51413,crash,ST_Touches,degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+d392f6900027,crash,ST_Touches,degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+d52b34545e58,crash,ST_Touches,degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+d543ce7c5361,crash,ST_Touches,degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+e3d8c01d8e91,crash,ST_Touches,degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+e96ad38bf06f,crash,ST_Touches,degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+eeddc20a4545,crash,ST_Touches,degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+ef7dc7f1eaf6,crash,ST_Touches,degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+f34240e4497e,crash,ST_Touches,degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+f37481820c02,crash,ST_Touches,degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+f5923fab5ea6,crash,ST_Touches,degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+ff035c54cf1b,crash,ST_Touches,degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+306dff47a83b,crash,ST_Within,degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+3ee24b1a13a2,crash,ST_Within,degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+4390e205daa3,crash,ST_Within,degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+6a9dc7c4daa9,crash,ST_Within,degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+a4669fa8ba2d,crash,ST_Within,degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+b8dd92f45a3e,crash,ST_Within,degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+bc1821fc8eac,crash,ST_Within,degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+bf0f154ef48f,crash,ST_Within,degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+d2f15ea02301,crash,ST_Within,degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+d5ce54b2c3f9,crash,ST_Within,degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+d871df7e2647,crash,ST_Within,degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+e2a330ac5c7e,crash,ST_Within,degen-int,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched
+fda2ce403c52,crash,ST_Within,degen-float,A,"new defect: RelateNG crash, POLYGON EMPTY in a polygon collection",high,none found in GEOS/JTS GitHub 2026-10-28; PostGIS Trac not searched

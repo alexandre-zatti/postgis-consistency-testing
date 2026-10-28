@@ -1,0 +1,2254 @@
+{
+  "campaign": "e3",
+  "files": [
+    "lane0.sqlite",
+    "lane1.sqlite",
+    "lane2.sqlite",
+    "lane3.sqlite",
+    "lane4.sqlite"
+  ],
+  "definition": {
+    "campaign": "e3",
+    "seeds": [
+      101,
+      102,
+      103,
+      104,
+      105,
+      106,
+      107,
+      108,
+      109,
+      110
+    ],
+    "kinds": [
+      "predicate",
+      "overlay"
+    ],
+    "n": 8000,
+    "arms": [
+      "plain-int",
+      "plain-float",
+      "degen-int",
+      "degen-float"
+    ],
+    "lanes": 5,
+    "chunk": 25,
+    "assignment": [
+      [
+        101,
+        106
+      ],
+      [
+        102,
+        107
+      ],
+      [
+        103,
+        108
+      ],
+      [
+        104,
+        109
+      ],
+      [
+        105,
+        110
+      ]
+    ],
+    "created": "2026-10-27 16:39:02",
+    "digest": "postgis/postgis@sha256:4a43e3c3e5d55b9208240fc71db543b79c638766280c625a425bd0a2390989c4"
+  },
+  "pairs_loaded": 640000,
+  "pairs_expected": 640000,
+  "duplicate_keys": 0,
+  "seeds": [
+    101,
+    102,
+    103,
+    104,
+    105,
+    106,
+    107,
+    108,
+    109,
+    110
+  ],
+  "kinds": [
+    "overlay",
+    "predicate"
+  ],
+  "arms": [
+    "plain-int",
+    "plain-float",
+    "degen-int",
+    "degen-float"
+  ],
+  "harness_error_pairs": {
+    "plain-int": 0,
+    "plain-float": 0,
+    "degen-int": 0,
+    "degen-float": 0
+  },
+  "definitions": {
+    "harness_kinds": [
+      "harness_exception",
+      "other_error",
+      "sql_error"
+    ],
+    "violating": "strict; or candidate from a yes/no rule (R1-R5, R10), counted as triage; or measured candidate in band triage; candidates flagged precision-limited excluded",
+    "sensitivity": "strict plus measured triage-band candidates only",
+    "pooling": "mean of per-kind rates (equal weight per kind)",
+    "wilcoxon": "scipy.stats.wilcoxon exact two-sided, zero_method=wilcox (zeros dropped)",
+    "holm": "m = 4 fixed; untested contrasts enter with p = 1"
+  },
+  "rates": {
+    "plain-int": {
+      "101": {
+        "pooled": 0.0,
+        "n": 16000,
+        "k": 0,
+        "by_kind": {
+          "overlay": {
+            "n": 8000,
+            "k": 0,
+            "rate": 0.0
+          },
+          "predicate": {
+            "n": 8000,
+            "k": 0,
+            "rate": 0.0
+          }
+        }
+      },
+      "102": {
+        "pooled": 0.0,
+        "n": 16000,
+        "k": 0,
+        "by_kind": {
+          "overlay": {
+            "n": 8000,
+            "k": 0,
+            "rate": 0.0
+          },
+          "predicate": {
+            "n": 8000,
+            "k": 0,
+            "rate": 0.0
+          }
+        }
+      },
+      "103": {
+        "pooled": 0.0,
+        "n": 16000,
+        "k": 0,
+        "by_kind": {
+          "overlay": {
+            "n": 8000,
+            "k": 0,
+            "rate": 0.0
+          },
+          "predicate": {
+            "n": 8000,
+            "k": 0,
+            "rate": 0.0
+          }
+        }
+      },
+      "104": {
+        "pooled": 0.0,
+        "n": 16000,
+        "k": 0,
+        "by_kind": {
+          "overlay": {
+            "n": 8000,
+            "k": 0,
+            "rate": 0.0
+          },
+          "predicate": {
+            "n": 8000,
+            "k": 0,
+            "rate": 0.0
+          }
+        }
+      },
+      "105": {
+        "pooled": 0.0,
+        "n": 16000,
+        "k": 0,
+        "by_kind": {
+          "overlay": {
+            "n": 8000,
+            "k": 0,
+            "rate": 0.0
+          },
+          "predicate": {
+            "n": 8000,
+            "k": 0,
+            "rate": 0.0
+          }
+        }
+      },
+      "106": {
+        "pooled": 0.0,
+        "n": 16000,
+        "k": 0,
+        "by_kind": {
+          "overlay": {
+            "n": 8000,
+            "k": 0,
+            "rate": 0.0
+          },
+          "predicate": {
+            "n": 8000,
+            "k": 0,
+            "rate": 0.0
+          }
+        }
+      },
+      "107": {
+        "pooled": 0.0,
+        "n": 16000,
+        "k": 0,
+        "by_kind": {
+          "overlay": {
+            "n": 8000,
+            "k": 0,
+            "rate": 0.0
+          },
+          "predicate": {
+            "n": 8000,
+            "k": 0,
+            "rate": 0.0
+          }
+        }
+      },
+      "108": {
+        "pooled": 0.0,
+        "n": 16000,
+        "k": 0,
+        "by_kind": {
+          "overlay": {
+            "n": 8000,
+            "k": 0,
+            "rate": 0.0
+          },
+          "predicate": {
+            "n": 8000,
+            "k": 0,
+            "rate": 0.0
+          }
+        }
+      },
+      "109": {
+        "pooled": 0.0,
+        "n": 16000,
+        "k": 0,
+        "by_kind": {
+          "overlay": {
+            "n": 8000,
+            "k": 0,
+            "rate": 0.0
+          },
+          "predicate": {
+            "n": 8000,
+            "k": 0,
+            "rate": 0.0
+          }
+        }
+      },
+      "110": {
+        "pooled": 0.0,
+        "n": 16000,
+        "k": 0,
+        "by_kind": {
+          "overlay": {
+            "n": 8000,
+            "k": 0,
+            "rate": 0.0
+          },
+          "predicate": {
+            "n": 8000,
+            "k": 0,
+            "rate": 0.0
+          }
+        }
+      }
+    },
+    "plain-float": {
+      "101": {
+        "pooled": 2.5,
+        "n": 16000,
+        "k": 4,
+        "by_kind": {
+          "overlay": {
+            "n": 8000,
+            "k": 4,
+            "rate": 5.0
+          },
+          "predicate": {
+            "n": 8000,
+            "k": 0,
+            "rate": 0.0
+          }
+        }
+      },
+      "102": {
+        "pooled": 1.25,
+        "n": 16000,
+        "k": 2,
+        "by_kind": {
+          "overlay": {
+            "n": 8000,
+            "k": 2,
+            "rate": 2.5
+          },
+          "predicate": {
+            "n": 8000,
+            "k": 0,
+            "rate": 0.0
+          }
+        }
+      },
+      "103": {
+        "pooled": 2.5,
+        "n": 16000,
+        "k": 4,
+        "by_kind": {
+          "overlay": {
+            "n": 8000,
+            "k": 4,
+            "rate": 5.0
+          },
+          "predicate": {
+            "n": 8000,
+            "k": 0,
+            "rate": 0.0
+          }
+        }
+      },
+      "104": {
+        "pooled": 1.875,
+        "n": 16000,
+        "k": 3,
+        "by_kind": {
+          "overlay": {
+            "n": 8000,
+            "k": 3,
+            "rate": 3.75
+          },
+          "predicate": {
+            "n": 8000,
+            "k": 0,
+            "rate": 0.0
+          }
+        }
+      },
+      "105": {
+        "pooled": 2.5,
+        "n": 16000,
+        "k": 4,
+        "by_kind": {
+          "overlay": {
+            "n": 8000,
+            "k": 4,
+            "rate": 5.0
+          },
+          "predicate": {
+            "n": 8000,
+            "k": 0,
+            "rate": 0.0
+          }
+        }
+      },
+      "106": {
+        "pooled": 0.625,
+        "n": 16000,
+        "k": 1,
+        "by_kind": {
+          "overlay": {
+            "n": 8000,
+            "k": 1,
+            "rate": 1.25
+          },
+          "predicate": {
+            "n": 8000,
+            "k": 0,
+            "rate": 0.0
+          }
+        }
+      },
+      "107": {
+        "pooled": 2.5,
+        "n": 16000,
+        "k": 4,
+        "by_kind": {
+          "overlay": {
+            "n": 8000,
+            "k": 4,
+            "rate": 5.0
+          },
+          "predicate": {
+            "n": 8000,
+            "k": 0,
+            "rate": 0.0
+          }
+        }
+      },
+      "108": {
+        "pooled": 2.5,
+        "n": 16000,
+        "k": 4,
+        "by_kind": {
+          "overlay": {
+            "n": 8000,
+            "k": 4,
+            "rate": 5.0
+          },
+          "predicate": {
+            "n": 8000,
+            "k": 0,
+            "rate": 0.0
+          }
+        }
+      },
+      "109": {
+        "pooled": 1.875,
+        "n": 16000,
+        "k": 3,
+        "by_kind": {
+          "overlay": {
+            "n": 8000,
+            "k": 3,
+            "rate": 3.75
+          },
+          "predicate": {
+            "n": 8000,
+            "k": 0,
+            "rate": 0.0
+          }
+        }
+      },
+      "110": {
+        "pooled": 0.0,
+        "n": 16000,
+        "k": 0,
+        "by_kind": {
+          "overlay": {
+            "n": 8000,
+            "k": 0,
+            "rate": 0.0
+          },
+          "predicate": {
+            "n": 8000,
+            "k": 0,
+            "rate": 0.0
+          }
+        }
+      }
+    },
+    "degen-int": {
+      "101": {
+        "pooled": 8.75,
+        "n": 16000,
+        "k": 14,
+        "by_kind": {
+          "overlay": {
+            "n": 8000,
+            "k": 0,
+            "rate": 0.0
+          },
+          "predicate": {
+            "n": 8000,
+            "k": 14,
+            "rate": 17.5
+          }
+        }
+      },
+      "102": {
+        "pooled": 5.625,
+        "n": 16000,
+        "k": 9,
+        "by_kind": {
+          "overlay": {
+            "n": 8000,
+            "k": 0,
+            "rate": 0.0
+          },
+          "predicate": {
+            "n": 8000,
+            "k": 9,
+            "rate": 11.25
+          }
+        }
+      },
+      "103": {
+        "pooled": 8.125,
+        "n": 16000,
+        "k": 13,
+        "by_kind": {
+          "overlay": {
+            "n": 8000,
+            "k": 0,
+            "rate": 0.0
+          },
+          "predicate": {
+            "n": 8000,
+            "k": 13,
+            "rate": 16.25
+          }
+        }
+      },
+      "104": {
+        "pooled": 7.5,
+        "n": 16000,
+        "k": 12,
+        "by_kind": {
+          "overlay": {
+            "n": 8000,
+            "k": 1,
+            "rate": 1.25
+          },
+          "predicate": {
+            "n": 8000,
+            "k": 11,
+            "rate": 13.75
+          }
+        }
+      },
+      "105": {
+        "pooled": 9.375,
+        "n": 16000,
+        "k": 15,
+        "by_kind": {
+          "overlay": {
+            "n": 8000,
+            "k": 0,
+            "rate": 0.0
+          },
+          "predicate": {
+            "n": 8000,
+            "k": 15,
+            "rate": 18.75
+          }
+        }
+      },
+      "106": {
+        "pooled": 11.25,
+        "n": 16000,
+        "k": 18,
+        "by_kind": {
+          "overlay": {
+            "n": 8000,
+            "k": 0,
+            "rate": 0.0
+          },
+          "predicate": {
+            "n": 8000,
+            "k": 18,
+            "rate": 22.5
+          }
+        }
+      },
+      "107": {
+        "pooled": 11.25,
+        "n": 16000,
+        "k": 18,
+        "by_kind": {
+          "overlay": {
+            "n": 8000,
+            "k": 0,
+            "rate": 0.0
+          },
+          "predicate": {
+            "n": 8000,
+            "k": 18,
+            "rate": 22.5
+          }
+        }
+      },
+      "108": {
+        "pooled": 12.5,
+        "n": 16000,
+        "k": 20,
+        "by_kind": {
+          "overlay": {
+            "n": 8000,
+            "k": 0,
+            "rate": 0.0
+          },
+          "predicate": {
+            "n": 8000,
+            "k": 20,
+            "rate": 25.0
+          }
+        }
+      },
+      "109": {
+        "pooled": 8.75,
+        "n": 16000,
+        "k": 14,
+        "by_kind": {
+          "overlay": {
+            "n": 8000,
+            "k": 0,
+            "rate": 0.0
+          },
+          "predicate": {
+            "n": 8000,
+            "k": 14,
+            "rate": 17.5
+          }
+        }
+      },
+      "110": {
+        "pooled": 8.125,
+        "n": 16000,
+        "k": 13,
+        "by_kind": {
+          "overlay": {
+            "n": 8000,
+            "k": 0,
+            "rate": 0.0
+          },
+          "predicate": {
+            "n": 8000,
+            "k": 13,
+            "rate": 16.25
+          }
+        }
+      }
+    },
+    "degen-float": {
+      "101": {
+        "pooled": 339.375,
+        "n": 16000,
+        "k": 543,
+        "by_kind": {
+          "overlay": {
+            "n": 8000,
+            "k": 531,
+            "rate": 663.75
+          },
+          "predicate": {
+            "n": 8000,
+            "k": 12,
+            "rate": 15.0
+          }
+        }
+      },
+      "102": {
+        "pooled": 336.875,
+        "n": 16000,
+        "k": 539,
+        "by_kind": {
+          "overlay": {
+            "n": 8000,
+            "k": 532,
+            "rate": 665.0
+          },
+          "predicate": {
+            "n": 8000,
+            "k": 7,
+            "rate": 8.75
+          }
+        }
+      },
+      "103": {
+        "pooled": 331.875,
+        "n": 16000,
+        "k": 531,
+        "by_kind": {
+          "overlay": {
+            "n": 8000,
+            "k": 521,
+            "rate": 651.25
+          },
+          "predicate": {
+            "n": 8000,
+            "k": 10,
+            "rate": 12.5
+          }
+        }
+      },
+      "104": {
+        "pooled": 342.5,
+        "n": 16000,
+        "k": 548,
+        "by_kind": {
+          "overlay": {
+            "n": 8000,
+            "k": 539,
+            "rate": 673.75
+          },
+          "predicate": {
+            "n": 8000,
+            "k": 9,
+            "rate": 11.25
+          }
+        }
+      },
+      "105": {
+        "pooled": 335.0,
+        "n": 16000,
+        "k": 536,
+        "by_kind": {
+          "overlay": {
+            "n": 8000,
+            "k": 525,
+            "rate": 656.25
+          },
+          "predicate": {
+            "n": 8000,
+            "k": 11,
+            "rate": 13.75
+          }
+        }
+      },
+      "106": {
+        "pooled": 361.25,
+        "n": 16000,
+        "k": 578,
+        "by_kind": {
+          "overlay": {
+            "n": 8000,
+            "k": 560,
+            "rate": 700.0
+          },
+          "predicate": {
+            "n": 8000,
+            "k": 18,
+            "rate": 22.5
+          }
+        }
+      },
+      "107": {
+        "pooled": 345.625,
+        "n": 16000,
+        "k": 553,
+        "by_kind": {
+          "overlay": {
+            "n": 8000,
+            "k": 541,
+            "rate": 676.25
+          },
+          "predicate": {
+            "n": 8000,
+            "k": 12,
+            "rate": 15.0
+          }
+        }
+      },
+      "108": {
+        "pooled": 338.125,
+        "n": 16000,
+        "k": 541,
+        "by_kind": {
+          "overlay": {
+            "n": 8000,
+            "k": 521,
+            "rate": 651.25
+          },
+          "predicate": {
+            "n": 8000,
+            "k": 20,
+            "rate": 25.0
+          }
+        }
+      },
+      "109": {
+        "pooled": 338.75,
+        "n": 16000,
+        "k": 542,
+        "by_kind": {
+          "overlay": {
+            "n": 8000,
+            "k": 531,
+            "rate": 663.75
+          },
+          "predicate": {
+            "n": 8000,
+            "k": 11,
+            "rate": 13.75
+          }
+        }
+      },
+      "110": {
+        "pooled": 363.125,
+        "n": 16000,
+        "k": 581,
+        "by_kind": {
+          "overlay": {
+            "n": 8000,
+            "k": 570,
+            "rate": 712.5
+          },
+          "predicate": {
+            "n": 8000,
+            "k": 11,
+            "rate": 13.75
+          }
+        }
+      }
+    }
+  },
+  "contrasts": [
+    {
+      "contrast": "degen vs plain within int",
+      "first": "degen-int",
+      "second": "plain-int",
+      "tested": false,
+      "seeds": [
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109,
+        110
+      ],
+      "rates_first": [
+        8.75,
+        5.625,
+        8.125,
+        7.5,
+        9.375,
+        11.25,
+        11.25,
+        12.5,
+        8.75,
+        8.125
+      ],
+      "rates_second": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "counts_first": 146,
+      "counts_second": 0,
+      "median_diff": 8.75,
+      "mcnemar": {
+        "b": 146,
+        "c": 0,
+        "pairs": 160000
+      },
+      "n_nonzero": 10,
+      "n_zero_dropped": 0,
+      "note": "an arm has zero violating pairs in every seed: counts only, not tested",
+      "p": null,
+      "p_holm": null
+    },
+    {
+      "contrast": "degen vs plain within float",
+      "first": "degen-float",
+      "second": "plain-float",
+      "tested": true,
+      "seeds": [
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109,
+        110
+      ],
+      "rates_first": [
+        339.375,
+        336.875,
+        331.875,
+        342.5,
+        335.0,
+        361.25,
+        345.625,
+        338.125,
+        338.75,
+        363.125
+      ],
+      "rates_second": [
+        2.5,
+        1.25,
+        2.5,
+        1.875,
+        2.5,
+        0.625,
+        2.5,
+        2.5,
+        1.875,
+        0.0
+      ],
+      "counts_first": 5492,
+      "counts_second": 29,
+      "median_diff": 336.875,
+      "mcnemar": {
+        "b": 5479,
+        "c": 16,
+        "pairs": 160000
+      },
+      "n_nonzero": 10,
+      "n_zero_dropped": 0,
+      "rank_biserial": 1.0,
+      "ties_in_nonzero_abs_diffs": true,
+      "statistic": 0.0,
+      "p": 0.001953125,
+      "p_holm": 0.0078125
+    },
+    {
+      "contrast": "float vs int within plain",
+      "first": "plain-float",
+      "second": "plain-int",
+      "tested": false,
+      "seeds": [
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109,
+        110
+      ],
+      "rates_first": [
+        2.5,
+        1.25,
+        2.5,
+        1.875,
+        2.5,
+        0.625,
+        2.5,
+        2.5,
+        1.875,
+        0.0
+      ],
+      "rates_second": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "counts_first": 29,
+      "counts_second": 0,
+      "median_diff": 2.1875,
+      "mcnemar": {
+        "b": 29,
+        "c": 0,
+        "pairs": 160000
+      },
+      "n_nonzero": 9,
+      "n_zero_dropped": 1,
+      "note": "an arm has zero violating pairs in every seed: counts only, not tested",
+      "p": null,
+      "p_holm": null
+    },
+    {
+      "contrast": "float vs int within degen",
+      "first": "degen-float",
+      "second": "degen-int",
+      "tested": true,
+      "seeds": [
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109,
+        110
+      ],
+      "rates_first": [
+        339.375,
+        336.875,
+        331.875,
+        342.5,
+        335.0,
+        361.25,
+        345.625,
+        338.125,
+        338.75,
+        363.125
+      ],
+      "rates_second": [
+        8.75,
+        5.625,
+        8.125,
+        7.5,
+        9.375,
+        11.25,
+        11.25,
+        12.5,
+        8.75,
+        8.125
+      ],
+      "counts_first": 5492,
+      "counts_second": 146,
+      "median_diff": 330.9375,
+      "mcnemar": {
+        "b": 5377,
+        "c": 31,
+        "pairs": 160000
+      },
+      "n_nonzero": 10,
+      "n_zero_dropped": 0,
+      "rank_biserial": 1.0,
+      "ties_in_nonzero_abs_diffs": true,
+      "statistic": 0.0,
+      "p": 0.001953125,
+      "p_holm": 0.0078125
+    }
+  ],
+  "secondary": {
+    "rule_rates": {
+      "plain-int": {
+        "R7": {
+          "pairs_any": 246,
+          "pairs_counted": 0,
+          "counted_per10k": 0.0
+        }
+      },
+      "plain-float": {
+        "R7": {
+          "pairs_any": 455,
+          "pairs_counted": 0,
+          "counted_per10k": 0.0
+        },
+        "R10": {
+          "pairs_any": 11,
+          "pairs_counted": 11,
+          "counted_per10k": 0.6875
+        },
+        "R11": {
+          "pairs_any": 2614,
+          "pairs_counted": 19,
+          "counted_per10k": 1.1875
+        }
+      },
+      "degen-int": {
+        "R2": {
+          "pairs_any": 1,
+          "pairs_counted": 1,
+          "counted_per10k": 0.0625
+        },
+        "R3": {
+          "pairs_any": 144,
+          "pairs_counted": 144,
+          "counted_per10k": 9.0
+        },
+        "R4": {
+          "pairs_any": 1,
+          "pairs_counted": 1,
+          "counted_per10k": 0.0625
+        },
+        "R7": {
+          "pairs_any": 630,
+          "pairs_counted": 0,
+          "counted_per10k": 0.0
+        }
+      },
+      "degen-float": {
+        "R2": {
+          "pairs_any": 4,
+          "pairs_counted": 4,
+          "counted_per10k": 0.25
+        },
+        "R3": {
+          "pairs_any": 128,
+          "pairs_counted": 128,
+          "counted_per10k": 8.0
+        },
+        "R4": {
+          "pairs_any": 5,
+          "pairs_counted": 5,
+          "counted_per10k": 0.3125
+        },
+        "R5": {
+          "pairs_any": 2,
+          "pairs_counted": 2,
+          "counted_per10k": 0.125
+        },
+        "R7": {
+          "pairs_any": 1880,
+          "pairs_counted": 0,
+          "counted_per10k": 0.0
+        },
+        "R10": {
+          "pairs_any": 610,
+          "pairs_counted": 610,
+          "counted_per10k": 38.125
+        },
+        "R11": {
+          "pairs_any": 6699,
+          "pairs_counted": 4896,
+          "counted_per10k": 306.0
+        }
+      }
+    },
+    "by_form": {
+      "plain-int": {
+        "collection/collection": {
+          "n": 3248,
+          "violating": 0,
+          "per10k": 0.0
+        },
+        "collection/multi": {
+          "n": 4872,
+          "violating": 0,
+          "per10k": 0.0
+        },
+        "collection/single": {
+          "n": 7972,
+          "violating": 0,
+          "per10k": 0.0
+        },
+        "multi/collection": {
+          "n": 4804,
+          "violating": 0,
+          "per10k": 0.0
+        },
+        "multi/multi": {
+          "n": 19980,
+          "violating": 0,
+          "per10k": 0.0
+        },
+        "multi/single": {
+          "n": 31075,
+          "violating": 0,
+          "per10k": 0.0
+        },
+        "single/collection": {
+          "n": 7931,
+          "violating": 0,
+          "per10k": 0.0
+        },
+        "single/multi": {
+          "n": 31433,
+          "violating": 0,
+          "per10k": 0.0
+        },
+        "single/single": {
+          "n": 48685,
+          "violating": 0,
+          "per10k": 0.0
+        }
+      },
+      "plain-float": {
+        "collection/collection": {
+          "n": 3248,
+          "violating": 0,
+          "per10k": 0.0
+        },
+        "collection/multi": {
+          "n": 4872,
+          "violating": 0,
+          "per10k": 0.0
+        },
+        "collection/single": {
+          "n": 7972,
+          "violating": 0,
+          "per10k": 0.0
+        },
+        "multi/collection": {
+          "n": 4804,
+          "violating": 0,
+          "per10k": 0.0
+        },
+        "multi/multi": {
+          "n": 19980,
+          "violating": 4,
+          "per10k": 2.002002002002002
+        },
+        "multi/single": {
+          "n": 31075,
+          "violating": 9,
+          "per10k": 2.8962188254223653
+        },
+        "single/collection": {
+          "n": 7931,
+          "violating": 0,
+          "per10k": 0.0
+        },
+        "single/multi": {
+          "n": 31433,
+          "violating": 8,
+          "per10k": 2.545095918302421
+        },
+        "single/single": {
+          "n": 48685,
+          "violating": 8,
+          "per10k": 1.6432165964876244
+        }
+      },
+      "degen-int": {
+        "collection/collection": {
+          "n": 3248,
+          "violating": 0,
+          "per10k": 0.0
+        },
+        "collection/multi": {
+          "n": 4872,
+          "violating": 5,
+          "per10k": 10.262725779967159
+        },
+        "collection/single": {
+          "n": 7972,
+          "violating": 10,
+          "per10k": 12.54390366281987
+        },
+        "multi/collection": {
+          "n": 4804,
+          "violating": 2,
+          "per10k": 4.163197335553705
+        },
+        "multi/multi": {
+          "n": 19980,
+          "violating": 11,
+          "per10k": 5.505505505505505
+        },
+        "multi/single": {
+          "n": 31075,
+          "violating": 17,
+          "per10k": 5.470635559131134
+        },
+        "single/collection": {
+          "n": 7931,
+          "violating": 7,
+          "per10k": 8.8261253309797
+        },
+        "single/multi": {
+          "n": 31433,
+          "violating": 25,
+          "per10k": 7.953424744695066
+        },
+        "single/single": {
+          "n": 48685,
+          "violating": 69,
+          "per10k": 14.17274314470576
+        }
+      },
+      "degen-float": {
+        "collection/collection": {
+          "n": 3248,
+          "violating": 0,
+          "per10k": 0.0
+        },
+        "collection/multi": {
+          "n": 4872,
+          "violating": 4,
+          "per10k": 8.210180623973727
+        },
+        "collection/single": {
+          "n": 7972,
+          "violating": 9,
+          "per10k": 11.289513296537882
+        },
+        "multi/collection": {
+          "n": 4804,
+          "violating": 3,
+          "per10k": 6.244796003330558
+        },
+        "multi/multi": {
+          "n": 19980,
+          "violating": 764,
+          "per10k": 382.3823823823824
+        },
+        "multi/single": {
+          "n": 31075,
+          "violating": 1240,
+          "per10k": 399.03459372485923
+        },
+        "single/collection": {
+          "n": 7931,
+          "violating": 5,
+          "per10k": 6.304375236414072
+        },
+        "single/multi": {
+          "n": 31433,
+          "violating": 1283,
+          "per10k": 408.1697578977508
+        },
+        "single/single": {
+          "n": 48685,
+          "violating": 2184,
+          "per10k": 448.5981308411215
+        }
+      }
+    },
+    "by_regime_float": {
+      "plain-float": {
+        "affine": {
+          "n": 40080,
+          "violating": 10,
+          "per10k": 2.4950099800399204
+        },
+        "rotation": {
+          "n": 39806,
+          "violating": 19,
+          "per10k": 4.773149776415615
+        },
+        "scale-2^-k": {
+          "n": 39976,
+          "violating": 0,
+          "per10k": 0.0
+        },
+        "translate-1e15": {
+          "n": 20009,
+          "violating": 0,
+          "per10k": 0.0
+        },
+        "translate-2^27": {
+          "n": 20129,
+          "violating": 0,
+          "per10k": 0.0
+        }
+      },
+      "degen-float": {
+        "affine": {
+          "n": 40080,
+          "violating": 2381,
+          "per10k": 594.061876247505
+        },
+        "rotation": {
+          "n": 39806,
+          "violating": 3042,
+          "per10k": 764.2064010450686
+        },
+        "scale-2^-k": {
+          "n": 39976,
+          "violating": 38,
+          "per10k": 9.505703422053232
+        },
+        "translate-1e15": {
+          "n": 20009,
+          "violating": 31,
+          "per10k": 15.493028137338198
+        },
+        "translate-2^27": {
+          "n": 20129,
+          "violating": 0,
+          "per10k": 0.0
+        }
+      }
+    },
+    "band_counts": {
+      "plain-int": {
+        "R7|logged|ok": 246
+      },
+      "plain-float": {
+        "R11|logged|ok": 2595,
+        "R11|triage|ok": 38,
+        "R7|logged|ok": 455
+      },
+      "degen-int": {
+        "R7|logged|ok": 630
+      },
+      "degen-float": {
+        "R11|logged|ok": 1803,
+        "R11|triage|ok": 9792,
+        "R7|logged|ok": 1880
+      }
+    },
+    "crashes": {
+      "events_in_pairs": 677,
+      "pairs_with_crash": 176,
+      "recovery_wait_s": 350.5,
+      "wall_s_of_pairs_with_crash": 3950.8081743000002,
+      "batch_crashes": 0,
+      "batch_crash_s": 0,
+      "by_arm": {
+        "plain-int": 0,
+        "plain-float": 0,
+        "degen-int": 87,
+        "degen-float": 89
+      },
+      "unique_signatures": 81,
+      "signatures": {
+        "ST_Relate(matrix) | LineString/MultiPolygon": 22,
+        "ST_Touches | LineString/MultiPolygon": 20,
+        "ST_Relate(matrix) | GeometryCollection/MultiPolygon": 19,
+        "ST_Relate(matrix) | MultiPolygon/MultiPolygon": 19,
+        "ST_Relate(matrix) | MultiPolygon/GeometryCollection": 18,
+        "ST_Touches | MultiPolygon/GeometryCollection": 18,
+        "ST_Relate(matrix) | MultiPolygon/LineString": 18,
+        "ST_Relate(matrix) | Polygon/MultiPolygon": 18,
+        "ST_Relate(matrix) | MultiLineString/MultiPolygon": 17,
+        "ST_Touches | GeometryCollection/MultiPolygon": 17,
+        "ST_Touches | MultiLineString/MultiPolygon": 16,
+        "ST_Touches | MultiPolygon/LineString": 16,
+        "ST_Disjoint | Polygon/MultiPolygon": 12,
+        "ST_Intersects | Polygon/MultiPolygon": 12,
+        "ST_Touches | Polygon/MultiPolygon": 12,
+        "ST_Disjoint | MultiPolygon/GeometryCollection": 12,
+        "ST_Intersects | MultiPolygon/GeometryCollection": 12,
+        "ST_Relate(matrix) | MultiPolygon/Polygon": 12,
+        "ST_Disjoint | MultiPolygon/MultiPolygon": 9,
+        "ST_Intersects | MultiPolygon/MultiPolygon": 9,
+        "ST_Touches | MultiPolygon/MultiPolygon": 9,
+        "ST_Relate(matrix) | MultiPolygon/MultiLineString": 8,
+        "ST_Touches | MultiPolygon/MultiLineString": 8,
+        "ST_Disjoint | GeometryCollection/MultiPolygon": 8,
+        "ST_Intersects | GeometryCollection/MultiPolygon": 8,
+        "ST_Relate(matrix) | LineString/GeometryCollection": 8,
+        "ST_Relate(pattern) | LineString/GeometryCollection": 8,
+        "ST_Touches | LineString/GeometryCollection": 8,
+        "ST_Disjoint | GeometryCollection/GeometryCollection": 4,
+        "ST_Intersects | GeometryCollection/GeometryCollection": 4,
+        "ST_Relate(matrix) | GeometryCollection/GeometryCollection": 4,
+        "ST_Relate(pattern) | GeometryCollection/GeometryCollection": 4,
+        "ST_Touches | GeometryCollection/GeometryCollection": 4,
+        "ST_Covers | MultiPolygon/GeometryCollection": 4,
+        "ST_Relate(matrix) | GeometryCollection/Polygon": 4,
+        "ST_Relate(pattern) | GeometryCollection/Polygon": 4,
+        "ST_Covers | MultiPolygon/LineString": 3,
+        "ST_Relate(matrix) | GeometryCollection/LineString": 3,
+        "ST_Relate(pattern) | GeometryCollection/LineString": 3,
+        "ST_Touches | GeometryCollection/LineString": 3,
+        "ST_CoveredBy | MultiPolygon/GeometryCollection": 3,
+        "ST_Within | MultiPolygon/GeometryCollection": 3,
+        "ST_Covers | Polygon/MultiPolygon": 3,
+        "ST_CoveredBy | MultiPolygon/MultiPolygon": 3,
+        "ST_Within | MultiPolygon/MultiPolygon": 3,
+        "ST_Covers | MultiPolygon/MultiPolygon": 3,
+        "ST_Covers | GeometryCollection/MultiPolygon": 3,
+        "ST_Covers | MultiLineString/MultiPolygon": 2,
+        "ST_Contains | MultiPolygon/GeometryCollection": 2,
+        "ST_Contains | GeometryCollection/Polygon": 2,
+        "ST_CoveredBy | GeometryCollection/Polygon": 2,
+        "ST_Covers | GeometryCollection/Polygon": 2,
+        "ST_Disjoint | GeometryCollection/Polygon": 2,
+        "ST_Intersects | GeometryCollection/Polygon": 2,
+        "ST_Touches | GeometryCollection/Polygon": 2,
+        "ST_Within | GeometryCollection/Polygon": 2,
+        "ST_Relate(matrix) | GeometryCollection/MultiLineString": 2,
+        "ST_Relate(pattern) | GeometryCollection/MultiLineString": 2,
+        "ST_Touches | GeometryCollection/MultiLineString": 2,
+        "ST_Relate(pattern) | MultiPolygon/GeometryCollection": 2,
+        "ST_Relate(matrix) | Polygon/GeometryCollection": 2,
+        "ST_Relate(pattern) | Polygon/GeometryCollection": 2,
+        "ST_Relate(matrix) | MultiLineString/GeometryCollection": 2,
+        "ST_Relate(pattern) | MultiLineString/GeometryCollection": 2,
+        "ST_Touches | MultiLineString/GeometryCollection": 2,
+        "ST_Contains | GeometryCollection/MultiPolygon": 2,
+        "ST_Relate(pattern) | GeometryCollection/MultiPolygon": 2,
+        "ST_Contains | MultiPolygon/MultiPolygon": 2,
+        "ST_CoveredBy | GeometryCollection/GeometryCollection": 2,
+        "ST_Within | GeometryCollection/GeometryCollection": 2,
+        "ST_Disjoint | GeometryCollection/LineString": 2,
+        "ST_Intersects | GeometryCollection/LineString": 2,
+        "ST_Contains | MultiPolygon/Polygon": 2,
+        "ST_CoveredBy | MultiPolygon/Polygon": 2,
+        "ST_Covers | MultiPolygon/Polygon": 2,
+        "ST_Within | MultiPolygon/Polygon": 2,
+        "ST_CoveredBy | Polygon/MultiPolygon": 1,
+        "ST_Within | Polygon/MultiPolygon": 1,
+        "ST_Contains | MultiLineString/MultiPolygon": 1,
+        "ST_CoveredBy | MultiLineString/MultiPolygon": 1,
+        "ST_Within | MultiLineString/MultiPolygon": 1
+      },
+      "by_lane": {
+        "lane0": {
+          "events": 124,
+          "recovery_wait_s": 63.5
+        },
+        "lane1": {
+          "events": 165,
+          "recovery_wait_s": 85.99999999999999
+        },
+        "lane2": {
+          "events": 131,
+          "recovery_wait_s": 67.4
+        },
+        "lane3": {
+          "events": 150,
+          "recovery_wait_s": 77.59999999999998
+        },
+        "lane4": {
+          "events": 107,
+          "recovery_wait_s": 56.000000000000014
+        }
+      }
+    },
+    "timing": {
+      "plain-int": {
+        "pairs": 160000,
+        "wall_s": 8495.211728900074,
+        "pairs_per_h": 67802.90102017012,
+        "median_ms": 35.74099999968894
+      },
+      "plain-float": {
+        "pairs": 160000,
+        "wall_s": 8595.38391920109,
+        "pairs_per_h": 67012.71350000818,
+        "median_ms": 36.50719999859575
+      },
+      "degen-int": {
+        "pairs": 160000,
+        "wall_s": 10507.49374100037,
+        "pairs_per_h": 54818.01980546902,
+        "median_ms": 39.530499998363666
+      },
+      "degen-float": {
+        "pairs": 160000,
+        "wall_s": 10797.17525680147,
+        "pairs_per_h": 53347.286331872776,
+        "median_ms": 39.33879999749479
+      },
+      "batch_join_s": 2609.925695799815
+    },
+    "tier_differs": {
+      "plain-int": {
+        "pairs": 160000,
+        "differ": 0,
+        "share": 0.0
+      },
+      "plain-float": {
+        "pairs": 160000,
+        "differ": 40138,
+        "share": 0.2508625
+      },
+      "degen-int": {
+        "pairs": 160000,
+        "differ": 0,
+        "share": 0.0
+      },
+      "degen-float": {
+        "pairs": 160000,
+        "differ": 37014,
+        "share": 0.2313375
+      }
+    },
+    "outcome_kinds": {
+      "plain-int": {},
+      "plain-float": {
+        "tier_mismatch": 40138
+      },
+      "degen-int": {
+        "skipped": 5113,
+        "crash": 332,
+        "not_applicable": 815
+      },
+      "degen-float": {
+        "tier_mismatch": 37018,
+        "skipped": 5256,
+        "crash": 345,
+        "not_applicable": 799
+      }
+    },
+    "other_unbanded_candidate_pairs": {
+      "plain-int": 0,
+      "plain-float": 0,
+      "degen-int": 0,
+      "degen-float": 0
+    },
+    "sensitivity_strict_plus_measured_triage": {
+      "plain-int": {
+        "101": {
+          "pooled": 0.0,
+          "n": 16000,
+          "k": 0,
+          "by_kind": {
+            "overlay": {
+              "n": 8000,
+              "k": 0,
+              "rate": 0.0
+            },
+            "predicate": {
+              "n": 8000,
+              "k": 0,
+              "rate": 0.0
+            }
+          }
+        },
+        "102": {
+          "pooled": 0.0,
+          "n": 16000,
+          "k": 0,
+          "by_kind": {
+            "overlay": {
+              "n": 8000,
+              "k": 0,
+              "rate": 0.0
+            },
+            "predicate": {
+              "n": 8000,
+              "k": 0,
+              "rate": 0.0
+            }
+          }
+        },
+        "103": {
+          "pooled": 0.0,
+          "n": 16000,
+          "k": 0,
+          "by_kind": {
+            "overlay": {
+              "n": 8000,
+              "k": 0,
+              "rate": 0.0
+            },
+            "predicate": {
+              "n": 8000,
+              "k": 0,
+              "rate": 0.0
+            }
+          }
+        },
+        "104": {
+          "pooled": 0.0,
+          "n": 16000,
+          "k": 0,
+          "by_kind": {
+            "overlay": {
+              "n": 8000,
+              "k": 0,
+              "rate": 0.0
+            },
+            "predicate": {
+              "n": 8000,
+              "k": 0,
+              "rate": 0.0
+            }
+          }
+        },
+        "105": {
+          "pooled": 0.0,
+          "n": 16000,
+          "k": 0,
+          "by_kind": {
+            "overlay": {
+              "n": 8000,
+              "k": 0,
+              "rate": 0.0
+            },
+            "predicate": {
+              "n": 8000,
+              "k": 0,
+              "rate": 0.0
+            }
+          }
+        },
+        "106": {
+          "pooled": 0.0,
+          "n": 16000,
+          "k": 0,
+          "by_kind": {
+            "overlay": {
+              "n": 8000,
+              "k": 0,
+              "rate": 0.0
+            },
+            "predicate": {
+              "n": 8000,
+              "k": 0,
+              "rate": 0.0
+            }
+          }
+        },
+        "107": {
+          "pooled": 0.0,
+          "n": 16000,
+          "k": 0,
+          "by_kind": {
+            "overlay": {
+              "n": 8000,
+              "k": 0,
+              "rate": 0.0
+            },
+            "predicate": {
+              "n": 8000,
+              "k": 0,
+              "rate": 0.0
+            }
+          }
+        },
+        "108": {
+          "pooled": 0.0,
+          "n": 16000,
+          "k": 0,
+          "by_kind": {
+            "overlay": {
+              "n": 8000,
+              "k": 0,
+              "rate": 0.0
+            },
+            "predicate": {
+              "n": 8000,
+              "k": 0,
+              "rate": 0.0
+            }
+          }
+        },
+        "109": {
+          "pooled": 0.0,
+          "n": 16000,
+          "k": 0,
+          "by_kind": {
+            "overlay": {
+              "n": 8000,
+              "k": 0,
+              "rate": 0.0
+            },
+            "predicate": {
+              "n": 8000,
+              "k": 0,
+              "rate": 0.0
+            }
+          }
+        },
+        "110": {
+          "pooled": 0.0,
+          "n": 16000,
+          "k": 0,
+          "by_kind": {
+            "overlay": {
+              "n": 8000,
+              "k": 0,
+              "rate": 0.0
+            },
+            "predicate": {
+              "n": 8000,
+              "k": 0,
+              "rate": 0.0
+            }
+          }
+        }
+      },
+      "plain-float": {
+        "101": {
+          "pooled": 2.5,
+          "n": 16000,
+          "k": 4,
+          "by_kind": {
+            "overlay": {
+              "n": 8000,
+              "k": 4,
+              "rate": 5.0
+            },
+            "predicate": {
+              "n": 8000,
+              "k": 0,
+              "rate": 0.0
+            }
+          }
+        },
+        "102": {
+          "pooled": 0.625,
+          "n": 16000,
+          "k": 1,
+          "by_kind": {
+            "overlay": {
+              "n": 8000,
+              "k": 1,
+              "rate": 1.25
+            },
+            "predicate": {
+              "n": 8000,
+              "k": 0,
+              "rate": 0.0
+            }
+          }
+        },
+        "103": {
+          "pooled": 1.25,
+          "n": 16000,
+          "k": 2,
+          "by_kind": {
+            "overlay": {
+              "n": 8000,
+              "k": 2,
+              "rate": 2.5
+            },
+            "predicate": {
+              "n": 8000,
+              "k": 0,
+              "rate": 0.0
+            }
+          }
+        },
+        "104": {
+          "pooled": 1.25,
+          "n": 16000,
+          "k": 2,
+          "by_kind": {
+            "overlay": {
+              "n": 8000,
+              "k": 2,
+              "rate": 2.5
+            },
+            "predicate": {
+              "n": 8000,
+              "k": 0,
+              "rate": 0.0
+            }
+          }
+        },
+        "105": {
+          "pooled": 1.25,
+          "n": 16000,
+          "k": 2,
+          "by_kind": {
+            "overlay": {
+              "n": 8000,
+              "k": 2,
+              "rate": 2.5
+            },
+            "predicate": {
+              "n": 8000,
+              "k": 0,
+              "rate": 0.0
+            }
+          }
+        },
+        "106": {
+          "pooled": 0.625,
+          "n": 16000,
+          "k": 1,
+          "by_kind": {
+            "overlay": {
+              "n": 8000,
+              "k": 1,
+              "rate": 1.25
+            },
+            "predicate": {
+              "n": 8000,
+              "k": 0,
+              "rate": 0.0
+            }
+          }
+        },
+        "107": {
+          "pooled": 1.875,
+          "n": 16000,
+          "k": 3,
+          "by_kind": {
+            "overlay": {
+              "n": 8000,
+              "k": 3,
+              "rate": 3.75
+            },
+            "predicate": {
+              "n": 8000,
+              "k": 0,
+              "rate": 0.0
+            }
+          }
+        },
+        "108": {
+          "pooled": 1.25,
+          "n": 16000,
+          "k": 2,
+          "by_kind": {
+            "overlay": {
+              "n": 8000,
+              "k": 2,
+              "rate": 2.5
+            },
+            "predicate": {
+              "n": 8000,
+              "k": 0,
+              "rate": 0.0
+            }
+          }
+        },
+        "109": {
+          "pooled": 1.25,
+          "n": 16000,
+          "k": 2,
+          "by_kind": {
+            "overlay": {
+              "n": 8000,
+              "k": 2,
+              "rate": 2.5
+            },
+            "predicate": {
+              "n": 8000,
+              "k": 0,
+              "rate": 0.0
+            }
+          }
+        },
+        "110": {
+          "pooled": 0.0,
+          "n": 16000,
+          "k": 0,
+          "by_kind": {
+            "overlay": {
+              "n": 8000,
+              "k": 0,
+              "rate": 0.0
+            },
+            "predicate": {
+              "n": 8000,
+              "k": 0,
+              "rate": 0.0
+            }
+          }
+        }
+      },
+      "degen-int": {
+        "101": {
+          "pooled": 8.75,
+          "n": 16000,
+          "k": 14,
+          "by_kind": {
+            "overlay": {
+              "n": 8000,
+              "k": 0,
+              "rate": 0.0
+            },
+            "predicate": {
+              "n": 8000,
+              "k": 14,
+              "rate": 17.5
+            }
+          }
+        },
+        "102": {
+          "pooled": 5.625,
+          "n": 16000,
+          "k": 9,
+          "by_kind": {
+            "overlay": {
+              "n": 8000,
+              "k": 0,
+              "rate": 0.0
+            },
+            "predicate": {
+              "n": 8000,
+              "k": 9,
+              "rate": 11.25
+            }
+          }
+        },
+        "103": {
+          "pooled": 8.125,
+          "n": 16000,
+          "k": 13,
+          "by_kind": {
+            "overlay": {
+              "n": 8000,
+              "k": 0,
+              "rate": 0.0
+            },
+            "predicate": {
+              "n": 8000,
+              "k": 13,
+              "rate": 16.25
+            }
+          }
+        },
+        "104": {
+          "pooled": 7.5,
+          "n": 16000,
+          "k": 12,
+          "by_kind": {
+            "overlay": {
+              "n": 8000,
+              "k": 1,
+              "rate": 1.25
+            },
+            "predicate": {
+              "n": 8000,
+              "k": 11,
+              "rate": 13.75
+            }
+          }
+        },
+        "105": {
+          "pooled": 9.375,
+          "n": 16000,
+          "k": 15,
+          "by_kind": {
+            "overlay": {
+              "n": 8000,
+              "k": 0,
+              "rate": 0.0
+            },
+            "predicate": {
+              "n": 8000,
+              "k": 15,
+              "rate": 18.75
+            }
+          }
+        },
+        "106": {
+          "pooled": 11.25,
+          "n": 16000,
+          "k": 18,
+          "by_kind": {
+            "overlay": {
+              "n": 8000,
+              "k": 0,
+              "rate": 0.0
+            },
+            "predicate": {
+              "n": 8000,
+              "k": 18,
+              "rate": 22.5
+            }
+          }
+        },
+        "107": {
+          "pooled": 11.25,
+          "n": 16000,
+          "k": 18,
+          "by_kind": {
+            "overlay": {
+              "n": 8000,
+              "k": 0,
+              "rate": 0.0
+            },
+            "predicate": {
+              "n": 8000,
+              "k": 18,
+              "rate": 22.5
+            }
+          }
+        },
+        "108": {
+          "pooled": 12.5,
+          "n": 16000,
+          "k": 20,
+          "by_kind": {
+            "overlay": {
+              "n": 8000,
+              "k": 0,
+              "rate": 0.0
+            },
+            "predicate": {
+              "n": 8000,
+              "k": 20,
+              "rate": 25.0
+            }
+          }
+        },
+        "109": {
+          "pooled": 8.75,
+          "n": 16000,
+          "k": 14,
+          "by_kind": {
+            "overlay": {
+              "n": 8000,
+              "k": 0,
+              "rate": 0.0
+            },
+            "predicate": {
+              "n": 8000,
+              "k": 14,
+              "rate": 17.5
+            }
+          }
+        },
+        "110": {
+          "pooled": 8.125,
+          "n": 16000,
+          "k": 13,
+          "by_kind": {
+            "overlay": {
+              "n": 8000,
+              "k": 0,
+              "rate": 0.0
+            },
+            "predicate": {
+              "n": 8000,
+              "k": 13,
+              "rate": 16.25
+            }
+          }
+        }
+      },
+      "degen-float": {
+        "101": {
+          "pooled": 305.0,
+          "n": 16000,
+          "k": 488,
+          "by_kind": {
+            "overlay": {
+              "n": 8000,
+              "k": 487,
+              "rate": 608.75
+            },
+            "predicate": {
+              "n": 8000,
+              "k": 1,
+              "rate": 1.25
+            }
+          }
+        },
+        "102": {
+          "pooled": 300.625,
+          "n": 16000,
+          "k": 481,
+          "by_kind": {
+            "overlay": {
+              "n": 8000,
+              "k": 479,
+              "rate": 598.75
+            },
+            "predicate": {
+              "n": 8000,
+              "k": 2,
+              "rate": 2.5
+            }
+          }
+        },
+        "103": {
+          "pooled": 301.875,
+          "n": 16000,
+          "k": 483,
+          "by_kind": {
+            "overlay": {
+              "n": 8000,
+              "k": 479,
+              "rate": 598.75
+            },
+            "predicate": {
+              "n": 8000,
+              "k": 4,
+              "rate": 5.0
+            }
+          }
+        },
+        "104": {
+          "pooled": 310.625,
+          "n": 16000,
+          "k": 497,
+          "by_kind": {
+            "overlay": {
+              "n": 8000,
+              "k": 495,
+              "rate": 618.75
+            },
+            "predicate": {
+              "n": 8000,
+              "k": 2,
+              "rate": 2.5
+            }
+          }
+        },
+        "105": {
+          "pooled": 305.0,
+          "n": 16000,
+          "k": 488,
+          "by_kind": {
+            "overlay": {
+              "n": 8000,
+              "k": 484,
+              "rate": 605.0
+            },
+            "predicate": {
+              "n": 8000,
+              "k": 4,
+              "rate": 5.0
+            }
+          }
+        },
+        "106": {
+          "pooled": 323.75,
+          "n": 16000,
+          "k": 518,
+          "by_kind": {
+            "overlay": {
+              "n": 8000,
+              "k": 513,
+              "rate": 641.25
+            },
+            "predicate": {
+              "n": 8000,
+              "k": 5,
+              "rate": 6.25
+            }
+          }
+        },
+        "107": {
+          "pooled": 311.875,
+          "n": 16000,
+          "k": 499,
+          "by_kind": {
+            "overlay": {
+              "n": 8000,
+              "k": 496,
+              "rate": 620.0
+            },
+            "predicate": {
+              "n": 8000,
+              "k": 3,
+              "rate": 3.75
+            }
+          }
+        },
+        "108": {
+          "pooled": 301.875,
+          "n": 16000,
+          "k": 483,
+          "by_kind": {
+            "overlay": {
+              "n": 8000,
+              "k": 479,
+              "rate": 598.75
+            },
+            "predicate": {
+              "n": 8000,
+              "k": 4,
+              "rate": 5.0
+            }
+          }
+        },
+        "109": {
+          "pooled": 289.375,
+          "n": 16000,
+          "k": 463,
+          "by_kind": {
+            "overlay": {
+              "n": 8000,
+              "k": 461,
+              "rate": 576.25
+            },
+            "predicate": {
+              "n": 8000,
+              "k": 2,
+              "rate": 2.5
+            }
+          }
+        },
+        "110": {
+          "pooled": 329.375,
+          "n": 16000,
+          "k": 527,
+          "by_kind": {
+            "overlay": {
+              "n": 8000,
+              "k": 523,
+              "rate": 653.75
+            },
+            "predicate": {
+              "n": 8000,
+              "k": 4,
+              "rate": 5.0
+            }
+          }
+        }
+      }
+    }
+  }
+}

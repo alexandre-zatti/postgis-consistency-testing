@@ -1,0 +1,19 @@
+{
+ "rep": "11df7ba0a31a",
+ "item": "lane3:41256:v559",
+ "group": "R10 | dim(Intersection) = max(II,IB,BI,BB) | Intersection/Relate | ST_Dimension(ST_Intersection) vs ST_Relate cells | - | degen-float | Polygon / Polygon",
+ "steps": 200,
+ "oracle": {
+  "kind": "evaluate on throwaway current: same (rule, sub, function, orientation) counted",
+  "image": "postgis/postgis@sha256:4a43e3c3e5d55b9208240fc71db543b79c638766280c625a425bd0a2390989c4"
+ },
+ "original_reproduces": true,
+ "shrunk_a": "POLYGON ((527594.896783757 1916861.5159477838, 527921.973443937 1916679.8066921283, 527680.7957046125 1916631.9015247284, 527594.896783757 1916861.5159477838))",
+ "shrunk_b": "POLYGON ((527817.9035975161 1916737.6232734732, 528116.8979181857 1917376.9094729158, 527282.6872444944 1917034.9656918186, 527817.9035975161 1916737.6232734732))",
+ "coord": "float",
+ "chain": [],
+ "oracle_calls": 37,
+ "vertices_before": 6,
+ "vertices_after": 6,
+ "seconds": 1.2722431999936816
+}

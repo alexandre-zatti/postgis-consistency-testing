@@ -1,0 +1,65 @@
+=== python -s reproduce.py (2026-10-28)
+Shapely 2.2.0 GEOS 3.14.1
+a = POLYGON ((0 0, 1 0, 0 1, 0 0))
+b = GEOMETRYCOLLECTION (POINT (0.5 0), POLYGON EMPTY)
+  relate(a, b) = FF20F1FF2  contains = False  prepared contains = True
+b = GEOMETRYCOLLECTION (POINT (0.5 0), LINESTRING EMPTY)
+  relate(a, b) = FF20F1FF2  contains = False  prepared contains = True
+b = POINT (0.5 0)
+  relate(a, b) = FF20F1FF2  contains = False  prepared contains = False
+expected: False everywhere (the point lies on the boundary of a: relate II=F, so a does not contain b)
+verdict: BUG reproduced, prepared Contains disagrees in 2 of 3 cases
+
+=== psql < reproduce.sql, current (container tavs-current-1)
+ postgis |        geos        
+---------+--------------------
+ 3.6.4   | 3.14.1-CAPI-1.20.5
+(1 row)
+
+  relate   
+-----------
+ FF20F1FF2
+(1 row)
+
+            b             | plain_prepared_prepared 
+--------------------------+-------------------------
+ GC(POINT, POLYGON EMPTY) | {f,t,t}
+(1 row)
+
+              b              | plain_prepared_prepared 
+-----------------------------+-------------------------
+ GC(POINT, LINESTRING EMPTY) | {f,t,t}
+(1 row)
+
+   b   | plain_prepared_prepared 
+-------+-------------------------
+ POINT | {f,f,f}
+(1 row)
+
+
+=== psql < reproduce.sql, dev (container tavs-dev-1)
+ postgis  |         geos          
+----------+-----------------------
+ 3.7.0dev | 3.16.0dev-CAPI-1.23.0
+(1 row)
+
+  relate   
+-----------
+ FF20F1FF2
+(1 row)
+
+            b             | plain_prepared_prepared 
+--------------------------+-------------------------
+ GC(POINT, POLYGON EMPTY) | {f,t,t}
+(1 row)
+
+              b              | plain_prepared_prepared 
+-----------------------------+-------------------------
+ GC(POINT, LINESTRING EMPTY) | {f,t,t}
+(1 row)
+
+   b   | plain_prepared_prepared 
+-------+-------------------------
+ POINT | {f,f,f}
+(1 row)
+

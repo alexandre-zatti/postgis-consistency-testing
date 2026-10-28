@@ -1,0 +1,84 @@
+{
+ "rep": "746da68ebcc9",
+ "item": "lane0:22523:crash:ST_Touches",
+ "group": "crash | backend crash | ST_Touches |  | - | degen-int | MultiPolygon / LineString",
+ "steps": 200,
+ "oracle": {
+  "kind": "throwaway container: lone probe crashes the backend",
+  "image": "postgis/postgis@sha256:4a43e3c3e5d55b9208240fc71db543b79c638766280c625a425bd0a2390989c4",
+  "probes": [
+   {
+    "o": "ab",
+    "fn": "ST_Touches",
+    "wrap": 1,
+    "sql": "ST_Touches(ST_ForceCollection(a),b)"
+   },
+   {
+    "o": "ba",
+    "fn": "ST_Touches",
+    "wrap": 2,
+    "sql": "ST_Touches(b,ST_ForceCollection(a))"
+   }
+  ]
+ },
+ "original_reproduces": true,
+ "shrunk_a": "MULTIPOLYGON (((949006 902594, 948976 902566, 949012 902565, 949006 902594)), EMPTY, ((949006 902594, 949008 902601, 949013 902596, 949006 902594)))",
+ "shrunk_b": "LINESTRING (949009 902601, 949006 902602)",
+ "coord": "int",
+ "chain": [
+  {
+   "step": 1,
+   "call": 4,
+   "geom": "a",
+   "op": "drop hole (0, 1)",
+   "vertices_a": 7,
+   "vertices_b": 5,
+   "a": "MULTIPOLYGON (((949006 902594, 948981 902598, 948976 902566, 949012 902565, 949006 902594)), EMPTY, ((949006 902594, 949008 902601, 949013 902596, 949006 902594)))",
+   "b": "LINESTRING (949013 902600, 949009 902601, 949010 902604, 949008 902602, 949006 902602)"
+  },
+  {
+   "step": 2,
+   "call": 9,
+   "geom": "a",
+   "op": "drop vertex 1 of (0, 0)",
+   "vertices_a": 6,
+   "vertices_b": 5,
+   "a": "MULTIPOLYGON (((949006 902594, 948976 902566, 949012 902565, 949006 902594)), EMPTY, ((949006 902594, 949008 902601, 949013 902596, 949006 902594)))",
+   "b": "LINESTRING (949013 902600, 949009 902601, 949010 902604, 949008 902602, 949006 902602)"
+  },
+  {
+   "step": 3,
+   "call": 13,
+   "geom": "b",
+   "op": "drop vertex 0 of ()",
+   "vertices_a": 6,
+   "vertices_b": 4,
+   "a": "MULTIPOLYGON (((949006 902594, 948976 902566, 949012 902565, 949006 902594)), EMPTY, ((949006 902594, 949008 902601, 949013 902596, 949006 902594)))",
+   "b": "LINESTRING (949009 902601, 949010 902604, 949008 902602, 949006 902602)"
+  },
+  {
+   "step": 4,
+   "call": 18,
+   "geom": "b",
+   "op": "drop vertex 1 of ()",
+   "vertices_a": 6,
+   "vertices_b": 3,
+   "a": "MULTIPOLYGON (((949006 902594, 948976 902566, 949012 902565, 949006 902594)), EMPTY, ((949006 902594, 949008 902601, 949013 902596, 949006 902594)))",
+   "b": "LINESTRING (949009 902601, 949008 902602, 949006 902602)"
+  },
+  {
+   "step": 5,
+   "call": 23,
+   "geom": "b",
+   "op": "drop vertex 1 of ()",
+   "vertices_a": 6,
+   "vertices_b": 2,
+   "a": "MULTIPOLYGON (((949006 902594, 948976 902566, 949012 902565, 949006 902594)), EMPTY, ((949006 902594, 949008 902601, 949013 902596, 949006 902594)))",
+   "b": "LINESTRING (949009 902601, 949006 902602)"
+  }
+ ],
+ "oracle_calls": 26,
+ "vertices_before": 16,
+ "vertices_after": 8,
+ "seconds": 18.364794700006314
+}

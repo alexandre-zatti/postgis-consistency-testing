@@ -1,0 +1,36 @@
+=== python -s reproduce.py (2026-10-28)
+Shapely 2.2.0 GEOS 3.14.1
+with POLYGON EMPTY:
+  relate(GEOMETRYCOLLECTION (POLYGON EMPTY, POLYGON ((0 0, 1 0, 0 1, 0 0)), POLYGON ((0 0, -1 0, 0 -1, 0 0))), POINT (0 0))
+  -> CRASH (exit code 3221225477, 0xC0000005)
+without the empty member:
+  relate(GEOMETRYCOLLECTION (POLYGON ((0 0, 1 0, 0 1, 0 0)), POLYGON ((0 0, -1 0, 0 -1, 0 0))), POINT (0 0))
+  -> FF20F1FF2
+both rings start off the touch point:
+  relate(GEOMETRYCOLLECTION (POLYGON EMPTY, POLYGON ((1 0, 0 1, 0 0, 1 0)), POLYGON ((-1 0, 0 -1, 0 0, -1 0))), POINT (0 0))
+  -> CRASH (exit code 3221225477, 0xC0000005)
+other argument: disjoint polygon:
+  relate(GEOMETRYCOLLECTION (POLYGON EMPTY, POLYGON ((0 0, 1 0, 0 1, 0 0)), POLYGON ((0 0, -1 0, 0 -1, 0 0))), POLYGON ((2 2, 3 2, 2 3, 2 2)))
+  -> CRASH (exit code 3221225477, 0xC0000005)
+same, first ring starts off the touch point:
+  relate(GEOMETRYCOLLECTION (POLYGON EMPTY, POLYGON ((1 0, 0 1, 0 0, 1 0)), POLYGON ((0 0, -1 0, 0 -1, 0 0))), POLYGON ((2 2, 3 2, 2 3, 2 2)))
+  -> FF2FF1212
+expected: no crash; the empty member changes nothing, so the first call should equal the second (FF20F1FF2)
+verdict: BUG reproduced, relate crashes the process
+
+=== psql < reproduce.sql, throwaway container from the 'current' image (postgis/postgis@sha256:4a43e3c3...); never on a shared server
+ postgis |        geos        
+---------+--------------------
+ 3.6.4   | 3.14.1-CAPI-1.20.5
+(1 row)
+
+ without_empty 
+---------------
+ FF20F1FF2
+(1 row)
+
+server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+connection to server was lost
+server log: client backend (PID 125) was terminated by signal 11: Segmentation fault

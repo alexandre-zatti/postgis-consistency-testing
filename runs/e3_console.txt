@@ -1,0 +1,48 @@
+memory: host available 5291 MB of 15836 MB; lanes requested 5 (5 containers to start, 0 already up); need about 3524 MB (300 MB per new container + 200 MB per worker + 1024 MB reserve); about 8 lanes fit
+lane 0 ready on port 54340: POSTGIS="3.6.4 94d984b" [EXTENSION] PGSQL="180" GEOS="3.14.1...
+lane 1 ready on port 54341: POSTGIS="3.6.4 94d984b" [EXTENSION] PGSQL="180" GEOS="3.14.1...
+lane 2 ready on port 54342: POSTGIS="3.6.4 94d984b" [EXTENSION] PGSQL="180" GEOS="3.14.1...
+lane 3 ready on port 54343: POSTGIS="3.6.4 94d984b" [EXTENSION] PGSQL="180" GEOS="3.14.1...
+lane 4 ready on port 54344: POSTGIS="3.6.4 94d984b" [EXTENSION] PGSQL="180" GEOS="3.14.1...
+lane 0: seeds [101, 106], worker PID 4484
+lane 1: seeds [102, 107], worker PID 11112
+lane 2: seeds [103, 108], worker PID 13544
+lane 3: seeds [104, 109], worker PID 15896
+lane 4: seeds [105, 110], worker PID 6592
+workers finished with exit codes [1, 1, 1, 1, 1]
+resuming campaign e3
+memory: host available 6503 MB of 15836 MB; lanes requested 5 (5 containers to start, 0 already up); need about 3524 MB (300 MB per new container + 200 MB per worker + 1024 MB reserve); about 10 lanes fit
+lane 0 ready on port 54340: POSTGIS="3.6.4 94d984b" [EXTENSION] PGSQL="180" GEOS="3.14.1...
+lane 1 ready on port 54341: POSTGIS="3.6.4 94d984b" [EXTENSION] PGSQL="180" GEOS="3.14.1...
+lane 2 ready on port 54342: POSTGIS="3.6.4 94d984b" [EXTENSION] PGSQL="180" GEOS="3.14.1...
+lane 3 ready on port 54343: POSTGIS="3.6.4 94d984b" [EXTENSION] PGSQL="180" GEOS="3.14.1...
+lane 4 ready on port 54344: POSTGIS="3.6.4 94d984b" [EXTENSION] PGSQL="180" GEOS="3.14.1...
+lane 0: seeds [101, 106], worker PID 18412
+lane 1: seeds [102, 107], worker PID 1008
+lane 2: seeds [103, 108], worker PID 5748
+lane 3: seeds [104, 109], worker PID 6416
+lane 4: seeds [105, 110], worker PID 15064
+workers finished with exit codes [0, 0, 0, 0, 0]
+2026-10-27 19:23:49 lane1 FINAL done=128000 remaining=0 pairs_per_h=52321 crashes=165 crash_s=86.0 strict_violations=41 strict_pairs=32
+Container tavs-lanes-lane4-1 Stopping 
+ Container tavs-lanes-lane3-1 Stopping 
+ Container tavs-lanes-lane1-1 Stopping 
+ Container tavs-lanes-lane0-1 Stopping 
+ Container tavs-lanes-lane2-1 Stopping 
+ Container tavs-lanes-lane4-1 Stopped 
+ Container tavs-lanes-lane4-1 Removing 
+ Container tavs-lanes-lane4-1 Removed 
+ Container tavs-lanes-lane2-1 Stopped 
+ Container tavs-lanes-lane2-1 Removing 
+ Container tavs-lanes-lane2-1 Removed 
+ Container tavs-lanes-lane3-1 Stopped 
+ Container tavs-lanes-lane3-1 Removing 
+ Container tavs-lanes-lane3-1 Removed 
+ Container tavs-lanes-lane1-1 Stopped 
+ Container tavs-lanes-lane1-1 Removing 
+ Container tavs-lanes-lane0-1 Stopped 
+ Container tavs-lanes-lane0-1 Removing 
+ Container tavs-lanes-lane1-1 Removed 
+ Container tavs-lanes-lane0-1 Removed 
+ Network tavs-lanes_default Removing 
+ Network tavs-lanes_default Removed

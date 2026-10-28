@@ -1,0 +1,40 @@
+{
+ "rep": "6ed314e65db3",
+ "item": "lane4:11936:v7",
+ "group": "R3 | lone vs prepared arg1 | Contains | lone vs prepared arg1[2] | ba | degen-float | GeometryCollection(Point,Polygon EMPTY) / MultiPolygon",
+ "steps": 200,
+ "oracle": {
+  "kind": "evaluate on throwaway current: same (rule, sub, function, orientation) counted",
+  "image": "postgis/postgis@sha256:4a43e3c3e5d55b9208240fc71db543b79c638766280c625a425bd0a2390989c4"
+ },
+ "original_reproduces": true,
+ "shrunk_a": "GEOMETRYCOLLECTION (POINT (699500.0 359290.0), POLYGON EMPTY)",
+ "shrunk_b": "MULTIPOLYGON (((699500.0 359290.0, 699470.0 359290.0, 699490.0 359270.0, 699500.0 359290.0)))",
+ "coord": "float",
+ "chain": [
+  {
+   "step": 1,
+   "call": 3,
+   "geom": "b",
+   "op": "drop hole (0, 1)",
+   "vertices_a": 1,
+   "vertices_b": 3,
+   "a": "GEOMETRYCOLLECTION (POINT (699500.1257650636 359289.81323118205), POLYGON EMPTY)",
+   "b": "MULTIPOLYGON (((699500.1257650636 359289.81323118205, 699469.4263227343 359294.2341180474, 699485.9196407057 359266.9399710137, 699500.1257650636 359289.81323118205)))"
+  },
+  {
+   "step": 2,
+   "call": 6,
+   "geom": "ab",
+   "op": "round to 5 significant digits",
+   "vertices_a": 1,
+   "vertices_b": 3,
+   "a": "GEOMETRYCOLLECTION (POINT (699500.0 359290.0), POLYGON EMPTY)",
+   "b": "MULTIPOLYGON (((699500.0 359290.0, 699470.0 359290.0, 699490.0 359270.0, 699500.0 359290.0)))"
+  }
+ ],
+ "oracle_calls": 13,
+ "vertices_before": 7,
+ "vertices_after": 4,
+ "seconds": 0.07595930000388762
+}

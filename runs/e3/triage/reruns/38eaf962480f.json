@@ -1,0 +1,209 @@
+{
+ "images": {
+  "current": {
+   "crash": true,
+   "probes": [
+    {
+     "probe": "ST_Relate(a,b)",
+     "o": "ab",
+     "error": null,
+     "value": "FF2FF1102",
+     "message": null
+    },
+    {
+     "probe": "ST_Relate(ST_ForceCollection(a),b)",
+     "o": "ab",
+     "error": "crash",
+     "value": null,
+     "message": "backend crash: consuming input failed: server closed the connection unexpectedly\n\tThis probably means the server terminated abnormally\n\tbefore or while processing the request. | statement: WITH g AS (SELECT ST_GeomFromText(%(a)s) a, ST_GeomFromText(%(b)s) b) SELECT (ST_Relate(ST_ForceCollection(a),b"
+    },
+    {
+     "probe": "ST_Relate(a,ST_ForceCollection(b))",
+     "o": "ab",
+     "error": null,
+     "value": "FF2FF1102",
+     "message": null
+    },
+    {
+     "probe": "ST_Relate(b,a)",
+     "o": "ba",
+     "error": null,
+     "value": "FF1FF0212",
+     "message": null
+    },
+    {
+     "probe": "ST_Relate(ST_ForceCollection(b),a)",
+     "o": "ba",
+     "error": null,
+     "value": "FF1FF0212",
+     "message": null
+    },
+    {
+     "probe": "ST_Relate(b,ST_ForceCollection(a))",
+     "o": "ba",
+     "error": "crash",
+     "value": null,
+     "message": "backend crash: consuming input failed: server closed the connection unexpectedly\n\tThis probably means the server terminated abnormally\n\tbefore or while processing the request. | statement: WITH g AS (SELECT ST_GeomFromText(%(a)s) a, ST_GeomFromText(%(b)s) b) SELECT (ST_Relate(b,ST_ForceCollection(a)"
+    }
+   ],
+   "seconds": 4.935614099995291
+  },
+  "dev": {
+   "crash": true,
+   "probes": [
+    {
+     "probe": "ST_Relate(a,b)",
+     "o": "ab",
+     "error": null,
+     "value": "FF2FF1102",
+     "message": null
+    },
+    {
+     "probe": "ST_Relate(ST_ForceCollection(a),b)",
+     "o": "ab",
+     "error": "crash",
+     "value": null,
+     "message": "backend crash: consuming input failed: server closed the connection unexpectedly\n\tThis probably means the server terminated abnormally\n\tbefore or while processing the request. | statement: WITH g AS (SELECT ST_GeomFromText(%(a)s) a, ST_GeomFromText(%(b)s) b) SELECT (ST_Relate(ST_ForceCollection(a),b"
+    },
+    {
+     "probe": "ST_Relate(a,ST_ForceCollection(b))",
+     "o": "ab",
+     "error": null,
+     "value": "FF2FF1102",
+     "message": null
+    },
+    {
+     "probe": "ST_Relate(b,a)",
+     "o": "ba",
+     "error": null,
+     "value": "FF1FF0212",
+     "message": null
+    },
+    {
+     "probe": "ST_Relate(ST_ForceCollection(b),a)",
+     "o": "ba",
+     "error": null,
+     "value": "FF1FF0212",
+     "message": null
+    },
+    {
+     "probe": "ST_Relate(b,ST_ForceCollection(a))",
+     "o": "ba",
+     "error": "crash",
+     "value": null,
+     "message": "backend crash: consuming input failed: server closed the connection unexpectedly\n\tThis probably means the server terminated abnormally\n\tbefore or while processing the request. | statement: WITH g AS (SELECT ST_GeomFromText(%(a)s) a, ST_GeomFromText(%(b)s) b) SELECT (ST_Relate(b,ST_ForceCollection(a)"
+    }
+   ],
+   "seconds": 4.642332100003841
+  },
+  "old": {
+   "crash": false,
+   "probes": [
+    {
+     "probe": "ST_Relate(a,b)",
+     "o": "ab",
+     "error": null,
+     "value": "FF2FF1102",
+     "message": null
+    },
+    {
+     "probe": "ST_Relate(ST_ForceCollection(a),b)",
+     "o": "ab",
+     "error": null,
+     "value": "FF2FF1102",
+     "message": null
+    },
+    {
+     "probe": "ST_Relate(a,ST_ForceCollection(b))",
+     "o": "ab",
+     "error": null,
+     "value": "FF2FF1102",
+     "message": null
+    },
+    {
+     "probe": "ST_Relate(b,a)",
+     "o": "ba",
+     "error": null,
+     "value": "FF1FF0212",
+     "message": null
+    },
+    {
+     "probe": "ST_Relate(ST_ForceCollection(b),a)",
+     "o": "ba",
+     "error": null,
+     "value": "FF1FF0212",
+     "message": null
+    },
+    {
+     "probe": "ST_Relate(b,ST_ForceCollection(a))",
+     "o": "ba",
+     "error": null,
+     "value": "FF1FF0212",
+     "message": null
+    }
+   ],
+   "seconds": 0.004616199999873061
+  }
+ },
+ "versions": {
+  "current": "POSTGIS=\"3.6.4 94d984b\" [EXTENSION] PGSQL=\"180\" GEOS=\"3.14.1-CAPI-1.20.5\" (compiled against GEOS 3.13.1) PROJ=\"9.8.1 NETWORK_ENABLED=OFF URL_ENDPOINT=https://cdn.proj.org USER_WRITABLE_DIRECTORY=/var/lib/postgresql/.local/share/proj DATABASE_PATH=/usr/share/proj/proj.db\" (compiled against PROJ 9.6.0) LIBXML=\"2.9.14\" LIBJSON=\"0.18\" LIBPROTOBUF=\"1.5.1\" WAGYU=\"0.5.0 (Internal)\" TOPOLOGY",
+  "dev": "POSTGIS=\"3.7.0dev 3.7.0rc3-1-g4db4d8050\" [EXTENSION] PGSQL=\"180\" GEOS=\"3.16.0dev-CAPI-1.23.0 3.15.0rc1-41-g283e82726\" PROJ=\"9.10.0 NETWORK_ENABLED=OFF URL_ENDPOINT=https://cdn.proj.org USER_WRITABLE_DIRECTORY=/var/lib/postgresql/.local/share/proj DATABASE_PATH=/usr/local/share/proj/proj.db\" (compiled against PROJ 9.10.0) LIBXML=\"2.9.14\" LIBJSON=\"0.18\" LIBPROTOBUF=\"1.5.1\" WAGYU=\"0.5.0 (Internal)\" TOPOLOGY",
+  "old": "POSTGIS=\"3.5.2 dea6d0a\" [EXTENSION] PGSQL=\"170\" GEOS=\"3.9.0-CAPI-1.16.2\" PROJ=\"7.2.1 NETWORK_ENABLED=OFF URL_ENDPOINT=https://cdn.proj.org USER_WRITABLE_DIRECTORY=/var/lib/postgresql/.local/share/proj DATABASE_PATH=/usr/share/proj/proj.db\" (compiled against PROJ 7.2.1) LIBXML=\"2.9.10\" LIBJSON=\"0.15\" LIBPROTOBUF=\"1.3.3\" WAGYU=\"0.5.0 (Internal)\" TOPOLOGY"
+ },
+ "shapely": {
+  "applicable": true,
+  "crash": true,
+  "calls": [
+   {
+    "fn": "relate",
+    "o": "ab",
+    "result": {
+     "value": "FF2FF1102"
+    }
+   },
+   {
+    "fn": "relate",
+    "o": "ab",
+    "result": {
+     "crashed": true,
+     "returncode": 3221225477,
+     "returncode_hex": "0xc0000005",
+     "stderr": ""
+    }
+   },
+   {
+    "fn": "relate",
+    "o": "ab",
+    "result": {
+     "value": "FF2FF1102"
+    }
+   },
+   {
+    "fn": "relate",
+    "o": "ba",
+    "result": {
+     "value": "FF1FF0212"
+    }
+   },
+   {
+    "fn": "relate",
+    "o": "ba",
+    "result": {
+     "value": "FF1FF0212"
+    }
+   },
+   {
+    "fn": "relate",
+    "o": "ba",
+    "result": {
+     "crashed": true,
+     "returncode": 3221225477,
+     "returncode_hex": "0xc0000005",
+     "stderr": ""
+    }
+   }
+  ]
+ },
+ "shapely_seconds": 3.357539099997666,
+ "margin_check": null
+}

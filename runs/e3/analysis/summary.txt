@@ -1,0 +1,177 @@
+Campaign e3: 640000 pairs loaded (expected 640000), duplicate keys 0, files lane0.sqlite, lane1.sqlite, lane2.sqlite, lane3.sqlite, lane4.sqlite
+Harness-error pairs removed: {'plain-int': 0, 'plain-float': 0, 'degen-int': 0, 'degen-float': 0}
+
+Primary: violating pairs per 10k, per seed (kinds pooled with equal weight)
+  plain-int    101:0.0 (0/16000)  102:0.0 (0/16000)  103:0.0 (0/16000)  104:0.0 (0/16000)  105:0.0 (0/16000)  106:0.0 (0/16000)  107:0.0 (0/16000)  108:0.0 (0/16000)  109:0.0 (0/16000)  110:0.0 (0/16000)
+  plain-float  101:2.5 (4/16000)  102:1.2 (2/16000)  103:2.5 (4/16000)  104:1.9 (3/16000)  105:2.5 (4/16000)  106:0.6 (1/16000)  107:2.5 (4/16000)  108:2.5 (4/16000)  109:1.9 (3/16000)  110:0.0 (0/16000)
+  degen-int    101:8.8 (14/16000)  102:5.6 (9/16000)  103:8.1 (13/16000)  104:7.5 (12/16000)  105:9.4 (15/16000)  106:11.2 (18/16000)  107:11.2 (18/16000)  108:12.5 (20/16000)  109:8.8 (14/16000)  110:8.1 (13/16000)
+  degen-float  101:339.4 (543/16000)  102:336.9 (539/16000)  103:331.9 (531/16000)  104:342.5 (548/16000)  105:335.0 (536/16000)  106:361.2 (578/16000)  107:345.6 (553/16000)  108:338.1 (541/16000)  109:338.8 (542/16000)  110:363.1 (581/16000)
+  per kind (descriptive):
+    plain-int    seed 101: overlay 0.0 (0/8000), predicate 0.0 (0/8000)
+    plain-int    seed 102: overlay 0.0 (0/8000), predicate 0.0 (0/8000)
+    plain-int    seed 103: overlay 0.0 (0/8000), predicate 0.0 (0/8000)
+    plain-int    seed 104: overlay 0.0 (0/8000), predicate 0.0 (0/8000)
+    plain-int    seed 105: overlay 0.0 (0/8000), predicate 0.0 (0/8000)
+    plain-int    seed 106: overlay 0.0 (0/8000), predicate 0.0 (0/8000)
+    plain-int    seed 107: overlay 0.0 (0/8000), predicate 0.0 (0/8000)
+    plain-int    seed 108: overlay 0.0 (0/8000), predicate 0.0 (0/8000)
+    plain-int    seed 109: overlay 0.0 (0/8000), predicate 0.0 (0/8000)
+    plain-int    seed 110: overlay 0.0 (0/8000), predicate 0.0 (0/8000)
+    plain-float  seed 101: overlay 5.0 (4/8000), predicate 0.0 (0/8000)
+    plain-float  seed 102: overlay 2.5 (2/8000), predicate 0.0 (0/8000)
+    plain-float  seed 103: overlay 5.0 (4/8000), predicate 0.0 (0/8000)
+    plain-float  seed 104: overlay 3.8 (3/8000), predicate 0.0 (0/8000)
+    plain-float  seed 105: overlay 5.0 (4/8000), predicate 0.0 (0/8000)
+    plain-float  seed 106: overlay 1.2 (1/8000), predicate 0.0 (0/8000)
+    plain-float  seed 107: overlay 5.0 (4/8000), predicate 0.0 (0/8000)
+    plain-float  seed 108: overlay 5.0 (4/8000), predicate 0.0 (0/8000)
+    plain-float  seed 109: overlay 3.8 (3/8000), predicate 0.0 (0/8000)
+    plain-float  seed 110: overlay 0.0 (0/8000), predicate 0.0 (0/8000)
+    degen-int    seed 101: overlay 0.0 (0/8000), predicate 17.5 (14/8000)
+    degen-int    seed 102: overlay 0.0 (0/8000), predicate 11.2 (9/8000)
+    degen-int    seed 103: overlay 0.0 (0/8000), predicate 16.2 (13/8000)
+    degen-int    seed 104: overlay 1.2 (1/8000), predicate 13.8 (11/8000)
+    degen-int    seed 105: overlay 0.0 (0/8000), predicate 18.8 (15/8000)
+    degen-int    seed 106: overlay 0.0 (0/8000), predicate 22.5 (18/8000)
+    degen-int    seed 107: overlay 0.0 (0/8000), predicate 22.5 (18/8000)
+    degen-int    seed 108: overlay 0.0 (0/8000), predicate 25.0 (20/8000)
+    degen-int    seed 109: overlay 0.0 (0/8000), predicate 17.5 (14/8000)
+    degen-int    seed 110: overlay 0.0 (0/8000), predicate 16.2 (13/8000)
+    degen-float  seed 101: overlay 663.8 (531/8000), predicate 15.0 (12/8000)
+    degen-float  seed 102: overlay 665.0 (532/8000), predicate 8.8 (7/8000)
+    degen-float  seed 103: overlay 651.2 (521/8000), predicate 12.5 (10/8000)
+    degen-float  seed 104: overlay 673.8 (539/8000), predicate 11.2 (9/8000)
+    degen-float  seed 105: overlay 656.2 (525/8000), predicate 13.8 (11/8000)
+    degen-float  seed 106: overlay 700.0 (560/8000), predicate 22.5 (18/8000)
+    degen-float  seed 107: overlay 676.2 (541/8000), predicate 15.0 (12/8000)
+    degen-float  seed 108: overlay 651.2 (521/8000), predicate 25.0 (20/8000)
+    degen-float  seed 109: overlay 663.8 (531/8000), predicate 13.8 (11/8000)
+    degen-float  seed 110: overlay 712.5 (570/8000), predicate 13.8 (11/8000)
+
+Planned contrasts (paired by seed; exact Wilcoxon, zeros dropped; Holm m=4)
+  contrast                         k1   k2  n!=0      W        p   p_holm   r_rb     b     c  note
+  degen vs plain within int       146    0    10      -        -        -      -   146     0  an arm has zero violating pairs in every seed: counts only, not tested
+  degen vs plain within float    5492   29    10    0.0   0.0020   0.0078   1.00  5479    16    (ties among |d|)
+  float vs int within plain        29    0     9      -        -        -      -    29     0  an arm has zero violating pairs in every seed: counts only, not tested
+  float vs int within degen      5492  146    10    0.0   0.0020   0.0078   1.00  5377    31    (ties among |d|)
+
+Rule-level (pairs with a counted violation / any violation):
+  plain-int    R7 0/246
+  plain-float  R7 0/455, R10 11/11, R11 19/2614
+  degen-int    R2 1/1, R3 144/144, R4 1/1, R7 0/630
+  degen-float  R2 4/4, R3 128/128, R4 5/5, R5 2/2, R7 0/1880, R10 610/610, R11 4896/6699
+
+By form within arm (violating/n):
+  plain-int    collection/collection 0/3248, collection/multi 0/4872, collection/single 0/7972, multi/collection 0/4804, multi/multi 0/19980, multi/single 0/31075, single/collection 0/7931, single/multi 0/31433, single/single 0/48685
+  plain-float  collection/collection 0/3248, collection/multi 0/4872, collection/single 0/7972, multi/collection 0/4804, multi/multi 4/19980, multi/single 9/31075, single/collection 0/7931, single/multi 8/31433, single/single 8/48685
+  degen-int    collection/collection 0/3248, collection/multi 5/4872, collection/single 10/7972, multi/collection 2/4804, multi/multi 11/19980, multi/single 17/31075, single/collection 7/7931, single/multi 25/31433, single/single 69/48685
+  degen-float  collection/collection 0/3248, collection/multi 4/4872, collection/single 9/7972, multi/collection 3/4804, multi/multi 764/19980, multi/single 1240/31075, single/collection 5/7931, single/multi 1283/31433, single/single 2184/48685
+By regime within float arms (violating/n):
+  plain-float  affine 10/40080, rotation 19/39806, scale-2^-k 0/39976, translate-1e15 0/20009, translate-2^27 0/20129
+  degen-float  affine 2381/40080, rotation 3042/39806, scale-2^-k 38/39976, translate-1e15 31/20009, translate-2^27 0/20129
+
+Candidate magnitude bands (rule|band|precision-limited: violations):
+  plain-int    R7|logged|ok: 246
+  plain-float  R11|logged|ok: 2595, R11|triage|ok: 38, R7|logged|ok: 455
+  degen-int    R7|logged|ok: 630
+  degen-float  R11|logged|ok: 1803, R11|triage|ok: 9792, R7|logged|ok: 1880
+
+Crashes: 677 events in 176 pairs (by arm {'plain-int': 0, 'plain-float': 0, 'degen-int': 87, 'degen-float': 89}), recovery wait 350.5 s, wall of crashed pairs 3950.8 s; batch crashes 0 (0.0 s); unique signatures 81
+  ST_Relate(matrix) | LineString/MultiPolygon: 22
+  ST_Touches | LineString/MultiPolygon: 20
+  ST_Relate(matrix) | GeometryCollection/MultiPolygon: 19
+  ST_Relate(matrix) | MultiPolygon/MultiPolygon: 19
+  ST_Relate(matrix) | MultiPolygon/GeometryCollection: 18
+  ST_Touches | MultiPolygon/GeometryCollection: 18
+  ST_Relate(matrix) | MultiPolygon/LineString: 18
+  ST_Relate(matrix) | Polygon/MultiPolygon: 18
+  ST_Relate(matrix) | MultiLineString/MultiPolygon: 17
+  ST_Touches | GeometryCollection/MultiPolygon: 17
+  ST_Touches | MultiLineString/MultiPolygon: 16
+  ST_Touches | MultiPolygon/LineString: 16
+  ST_Disjoint | Polygon/MultiPolygon: 12
+  ST_Intersects | Polygon/MultiPolygon: 12
+  ST_Touches | Polygon/MultiPolygon: 12
+  ST_Disjoint | MultiPolygon/GeometryCollection: 12
+  ST_Intersects | MultiPolygon/GeometryCollection: 12
+  ST_Relate(matrix) | MultiPolygon/Polygon: 12
+  ST_Disjoint | MultiPolygon/MultiPolygon: 9
+  ST_Intersects | MultiPolygon/MultiPolygon: 9
+  ST_Touches | MultiPolygon/MultiPolygon: 9
+  ST_Relate(matrix) | MultiPolygon/MultiLineString: 8
+  ST_Touches | MultiPolygon/MultiLineString: 8
+  ST_Disjoint | GeometryCollection/MultiPolygon: 8
+  ST_Intersects | GeometryCollection/MultiPolygon: 8
+  ST_Relate(matrix) | LineString/GeometryCollection: 8
+  ST_Relate(pattern) | LineString/GeometryCollection: 8
+  ST_Touches | LineString/GeometryCollection: 8
+  ST_Disjoint | GeometryCollection/GeometryCollection: 4
+  ST_Intersects | GeometryCollection/GeometryCollection: 4
+  ST_Relate(matrix) | GeometryCollection/GeometryCollection: 4
+  ST_Relate(pattern) | GeometryCollection/GeometryCollection: 4
+  ST_Touches | GeometryCollection/GeometryCollection: 4
+  ST_Covers | MultiPolygon/GeometryCollection: 4
+  ST_Relate(matrix) | GeometryCollection/Polygon: 4
+  ST_Relate(pattern) | GeometryCollection/Polygon: 4
+  ST_Covers | MultiPolygon/LineString: 3
+  ST_Relate(matrix) | GeometryCollection/LineString: 3
+  ST_Relate(pattern) | GeometryCollection/LineString: 3
+  ST_Touches | GeometryCollection/LineString: 3
+  ST_CoveredBy | MultiPolygon/GeometryCollection: 3
+  ST_Within | MultiPolygon/GeometryCollection: 3
+  ST_Covers | Polygon/MultiPolygon: 3
+  ST_CoveredBy | MultiPolygon/MultiPolygon: 3
+  ST_Within | MultiPolygon/MultiPolygon: 3
+  ST_Covers | MultiPolygon/MultiPolygon: 3
+  ST_Covers | GeometryCollection/MultiPolygon: 3
+  ST_Covers | MultiLineString/MultiPolygon: 2
+  ST_Contains | MultiPolygon/GeometryCollection: 2
+  ST_Contains | GeometryCollection/Polygon: 2
+  ST_CoveredBy | GeometryCollection/Polygon: 2
+  ST_Covers | GeometryCollection/Polygon: 2
+  ST_Disjoint | GeometryCollection/Polygon: 2
+  ST_Intersects | GeometryCollection/Polygon: 2
+  ST_Touches | GeometryCollection/Polygon: 2
+  ST_Within | GeometryCollection/Polygon: 2
+  ST_Relate(matrix) | GeometryCollection/MultiLineString: 2
+  ST_Relate(pattern) | GeometryCollection/MultiLineString: 2
+  ST_Touches | GeometryCollection/MultiLineString: 2
+  ST_Relate(pattern) | MultiPolygon/GeometryCollection: 2
+  ST_Relate(matrix) | Polygon/GeometryCollection: 2
+  ST_Relate(pattern) | Polygon/GeometryCollection: 2
+  ST_Relate(matrix) | MultiLineString/GeometryCollection: 2
+  ST_Relate(pattern) | MultiLineString/GeometryCollection: 2
+  ST_Touches | MultiLineString/GeometryCollection: 2
+  ST_Contains | GeometryCollection/MultiPolygon: 2
+  ST_Relate(pattern) | GeometryCollection/MultiPolygon: 2
+  ST_Contains | MultiPolygon/MultiPolygon: 2
+  ST_CoveredBy | GeometryCollection/GeometryCollection: 2
+  ST_Within | GeometryCollection/GeometryCollection: 2
+  ST_Disjoint | GeometryCollection/LineString: 2
+  ST_Intersects | GeometryCollection/LineString: 2
+  ST_Contains | MultiPolygon/Polygon: 2
+  ST_CoveredBy | MultiPolygon/Polygon: 2
+  ST_Covers | MultiPolygon/Polygon: 2
+  ST_Within | MultiPolygon/Polygon: 2
+  ST_CoveredBy | Polygon/MultiPolygon: 1
+  ST_Within | Polygon/MultiPolygon: 1
+  ST_Contains | MultiLineString/MultiPolygon: 1
+  ST_CoveredBy | MultiLineString/MultiPolygon: 1
+  ST_Within | MultiLineString/MultiPolygon: 1
+  by lane: {'lane0': {'events': 124, 'recovery_wait_s': 63.5}, 'lane1': {'events': 165, 'recovery_wait_s': 85.99999999999999}, 'lane2': {'events': 131, 'recovery_wait_s': 67.4}, 'lane3': {'events': 150, 'recovery_wait_s': 77.59999999999998}, 'lane4': {'events': 107, 'recovery_wait_s': 56.000000000000014}}
+
+Timing (evaluate wall time; batch joins separate):
+  plain-int    160000 pairs, 8495.2 s, 67803 pairs/h, median 35.7 ms
+  plain-float  160000 pairs, 8595.4 s, 67013 pairs/h, median 36.5 ms
+  degen-int    160000 pairs, 10507.5 s, 54818 pairs/h, median 39.5 ms
+  degen-float  160000 pairs, 10797.2 s, 53347 pairs/h, median 39.3 ms
+  batch joins: 2609.9 s
+
+Predicate tier differs from overlay tier: plain-int 0/160000, plain-float 40138/160000, degen-int 0/160000, degen-float 37014/160000
+Sensitivity (strict + measured triage only), per 10k per seed:
+  plain-int    101:0.0 (0/16000)  102:0.0 (0/16000)  103:0.0 (0/16000)  104:0.0 (0/16000)  105:0.0 (0/16000)  106:0.0 (0/16000)  107:0.0 (0/16000)  108:0.0 (0/16000)  109:0.0 (0/16000)  110:0.0 (0/16000)
+  plain-float  101:2.5 (4/16000)  102:0.6 (1/16000)  103:1.2 (2/16000)  104:1.2 (2/16000)  105:1.2 (2/16000)  106:0.6 (1/16000)  107:1.9 (3/16000)  108:1.2 (2/16000)  109:1.2 (2/16000)  110:0.0 (0/16000)
+  degen-int    101:8.8 (14/16000)  102:5.6 (9/16000)  103:8.1 (13/16000)  104:7.5 (12/16000)  105:9.4 (15/16000)  106:11.2 (18/16000)  107:11.2 (18/16000)  108:12.5 (20/16000)  109:8.8 (14/16000)  110:8.1 (13/16000)
+  degen-float  101:305.0 (488/16000)  102:300.6 (481/16000)  103:301.9 (483/16000)  104:310.6 (497/16000)  105:305.0 (488/16000)  106:323.8 (518/16000)  107:311.9 (499/16000)  108:301.9 (483/16000)  109:289.4 (463/16000)  110:329.4 (527/16000)
+Unbanded candidate pairs from rules outside R1-R5/R10 (not counted): plain-int 0, plain-float 0, degen-int 0, degen-float 0
+Outcome kinds: plain-int {}; plain-float {'tier_mismatch': 40138}; degen-int {'skipped': 5113, 'crash': 332, 'not_applicable': 815}; degen-float {'tier_mismatch': 37018, 'skipped': 5256, 'crash': 345, 'not_applicable': 799}

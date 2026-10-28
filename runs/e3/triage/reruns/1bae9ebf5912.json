@@ -1,0 +1,161 @@
+{
+ "images": {
+  "current": {
+   "present": true,
+   "present_counted": true,
+   "violations": [
+    {
+     "rule": "R11",
+     "sub": "Intersection floating vs fixed",
+     "function": "Intersection",
+     "paths": "Intersection(a,b) vs Intersection(a,b,g)",
+     "orientation": null,
+     "tier": "candidate",
+     "band": "triage",
+     "magnitude": 22.47420743876226,
+     "plim": false,
+     "raw": {
+      "floating": 0.0,
+      "fixed": 22.47420743876226,
+      "grid": 1e-07,
+      "measure": "length",
+      "m_small": 22.47420743876226,
+      "L": 44.39999999999418,
+      "M": 537228.1
+     }
+    }
+   ],
+   "fixed_precision_analog_violated": null,
+   "outcomes": {},
+   "outcome_messages": [],
+   "info": {
+    "L": 44.39999999999418,
+    "M": 537228.1,
+    "grid": 1e-07,
+    "tiers": {
+     "predicate": "candidate",
+     "overlay": "candidate"
+    },
+    "types": [
+     "LineString",
+     "MultiLineString"
+    ],
+    "precision_limited": false,
+    "crashed_functions": []
+   },
+   "seconds": 0.04219809999631252
+  },
+  "dev": {
+   "present": true,
+   "present_counted": true,
+   "violations": [
+    {
+     "rule": "R11",
+     "sub": "Intersection floating vs fixed",
+     "function": "Intersection",
+     "paths": "Intersection(a,b) vs Intersection(a,b,g)",
+     "orientation": null,
+     "tier": "candidate",
+     "band": "triage",
+     "magnitude": 22.47420743876226,
+     "plim": false,
+     "raw": {
+      "floating": 0.0,
+      "fixed": 22.47420743876226,
+      "grid": 1e-07,
+      "measure": "length",
+      "m_small": 22.47420743876226,
+      "L": 44.39999999999418,
+      "M": 537228.1
+     }
+    }
+   ],
+   "fixed_precision_analog_violated": null,
+   "outcomes": {},
+   "outcome_messages": [],
+   "info": {
+    "L": 44.39999999999418,
+    "M": 537228.1,
+    "grid": 1e-07,
+    "tiers": {
+     "predicate": "candidate",
+     "overlay": "candidate"
+    },
+    "types": [
+     "LineString",
+     "MultiLineString"
+    ],
+    "precision_limited": false,
+    "crashed_functions": []
+   },
+   "seconds": 0.04918820000602864
+  },
+  "old": {
+   "present": true,
+   "present_counted": true,
+   "violations": [
+    {
+     "rule": "R11",
+     "sub": "Intersection floating vs fixed",
+     "function": "Intersection",
+     "paths": "Intersection(a,b) vs Intersection(a,b,g)",
+     "orientation": null,
+     "tier": "candidate",
+     "band": "triage",
+     "magnitude": 22.47420743876226,
+     "plim": false,
+     "raw": {
+      "floating": 0.0,
+      "fixed": 22.47420743876226,
+      "grid": 1e-07,
+      "measure": "length",
+      "m_small": 22.47420743876226,
+      "L": 44.39999999999418,
+      "M": 537228.1
+     }
+    }
+   ],
+   "fixed_precision_analog_violated": null,
+   "outcomes": {},
+   "outcome_messages": [],
+   "info": {
+    "L": 44.39999999999418,
+    "M": 537228.1,
+    "grid": 1e-07,
+    "tiers": {
+     "predicate": "candidate",
+     "overlay": "candidate"
+    },
+    "types": [
+     "LineString",
+     "MultiLineString"
+    ],
+    "precision_limited": false,
+    "crashed_functions": []
+   },
+   "seconds": 0.08156089999829419
+  }
+ },
+ "versions": {
+  "current": "POSTGIS=\"3.6.4 94d984b\" [EXTENSION] PGSQL=\"180\" GEOS=\"3.14.1-CAPI-1.20.5\" (compiled against GEOS 3.13.1) PROJ=\"9.8.1 NETWORK_ENABLED=OFF URL_ENDPOINT=https://cdn.proj.org USER_WRITABLE_DIRECTORY=/var/lib/postgresql/.local/share/proj DATABASE_PATH=/usr/share/proj/proj.db\" (compiled against PROJ 9.6.0) LIBXML=\"2.9.14\" LIBJSON=\"0.18\" LIBPROTOBUF=\"1.5.1\" WAGYU=\"0.5.0 (Internal)\" TOPOLOGY",
+  "dev": "POSTGIS=\"3.7.0dev 3.7.0rc3-1-g4db4d8050\" [EXTENSION] PGSQL=\"180\" GEOS=\"3.16.0dev-CAPI-1.23.0 3.15.0rc1-41-g283e82726\" PROJ=\"9.10.0 NETWORK_ENABLED=OFF URL_ENDPOINT=https://cdn.proj.org USER_WRITABLE_DIRECTORY=/var/lib/postgresql/.local/share/proj DATABASE_PATH=/usr/local/share/proj/proj.db\" (compiled against PROJ 9.10.0) LIBXML=\"2.9.14\" LIBJSON=\"0.18\" LIBPROTOBUF=\"1.5.1\" WAGYU=\"0.5.0 (Internal)\" TOPOLOGY",
+  "old": "POSTGIS=\"3.5.2 dea6d0a\" [EXTENSION] PGSQL=\"170\" GEOS=\"3.9.0-CAPI-1.16.2\" PROJ=\"7.2.1 NETWORK_ENABLED=OFF URL_ENDPOINT=https://cdn.proj.org USER_WRITABLE_DIRECTORY=/var/lib/postgresql/.local/share/proj DATABASE_PATH=/usr/share/proj/proj.db\" (compiled against PROJ 7.2.1) LIBXML=\"2.9.10\" LIBJSON=\"0.15\" LIBPROTOBUF=\"1.3.3\" WAGYU=\"0.5.0 (Internal)\" TOPOLOGY"
+ },
+ "shapely": {
+  "applicable": true,
+  "violated": true,
+  "band": "triage",
+  "detail": {
+   "magnitude": 22.47420743876226,
+   "measure": "length",
+   "m_small": 22.47420743876226,
+   "L": 44.39999999999418,
+   "M": 537228.1
+  },
+  "fixed": null,
+  "shapely": "2.2.0",
+  "geos": "3.14.1"
+ },
+ "shapely_seconds": 0.5544570999991265,
+ "margin_check": null
+}

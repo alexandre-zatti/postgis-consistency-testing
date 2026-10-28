@@ -1,5 +1,5 @@
-"""Final E4 classes (lead decision 2026-10-28, after investigators and the advisor's challenge;
-experiment-plan.md, "Final classes by family"). Writes <campaign>/triage/families.csv, one row per
+"""Final E4 classes (decision 2026-10-28, after the family investigations and an independent
+challenge; docs/experiment-plan.md, "Final classes by family"). Writes <campaign>/triage/families.csv, one row per
 triage finding, and prints unique findings and defect families per arm.
 
 usage: python -m tavs.families runs/e3

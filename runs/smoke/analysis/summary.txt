@@ -1,0 +1,64 @@
+Campaign smoke: 320 pairs loaded (expected 320), duplicate keys 0, files lane0.sqlite, lane1.sqlite
+Harness-error pairs removed: {'plain-int': 0, 'plain-float': 0, 'degen-int': 0, 'degen-float': 0}
+
+Primary: violating pairs per 10k, per seed (kinds pooled with equal weight)
+  plain-int    2:0.0 (0/40)  100:250.0 (1/40)
+  plain-float  2:0.0 (0/40)  100:250.0 (1/40)
+  degen-int    2:250.0 (1/40)  100:0.0 (0/40)
+  degen-float  2:500.0 (2/40)  100:0.0 (0/40)
+  per kind (descriptive):
+    plain-int    seed 2: overlay 0.0 (0/20), predicate 0.0 (0/20)
+    plain-int    seed 100: overlay 500.0 (1/20), predicate 0.0 (0/20)
+    plain-float  seed 2: overlay 0.0 (0/20), predicate 0.0 (0/20)
+    plain-float  seed 100: overlay 500.0 (1/20), predicate 0.0 (0/20)
+    degen-int    seed 2: overlay 500.0 (1/20), predicate 0.0 (0/20)
+    degen-int    seed 100: overlay 0.0 (0/20), predicate 0.0 (0/20)
+    degen-float  seed 2: overlay 1000.0 (2/20), predicate 0.0 (0/20)
+    degen-float  seed 100: overlay 0.0 (0/20), predicate 0.0 (0/20)
+
+Planned contrasts (paired by seed; exact Wilcoxon, zeros dropped; Holm m=4)
+  contrast                         k1   k2  n!=0      W        p   p_holm   r_rb     b     c  note
+  degen vs plain within int         1    1     2    1.5   1.0000   1.0000   0.00     1     1    (ties among |d|)
+  degen vs plain within float       2    1     2    1.0   1.0000   1.0000   0.33     2     1  
+  float vs int within plain         1    1     0      -        -        -      -     1     1  every seed difference is zero: not tested
+  float vs int within degen         2    1     1    0.0   1.0000   1.0000   1.00     2     1  
+
+Rule-level (pairs with a counted violation / any violation):
+  plain-int    R7 1/1
+  plain-float  R7 1/1, R11 0/1
+  degen-int    R7 1/1
+  degen-float  R7 2/2, R11 1/2
+
+By form within arm (violating/n):
+  plain-int    collection/collection 0/2, collection/multi 0/1, collection/single 0/4, multi/collection 0/6, multi/multi 0/8, multi/single 1/20, single/collection 0/4, single/multi 0/17, single/single 0/18
+  plain-float  collection/collection 0/2, collection/multi 0/1, collection/single 0/4, multi/collection 0/6, multi/multi 0/8, multi/single 0/20, single/collection 0/4, single/multi 1/17, single/single 0/18
+  degen-int    collection/collection 0/2, collection/multi 0/1, collection/single 0/4, multi/collection 0/6, multi/multi 0/8, multi/single 1/20, single/collection 0/4, single/multi 0/17, single/single 0/18
+  degen-float  collection/collection 0/2, collection/multi 0/1, collection/single 0/4, multi/collection 0/6, multi/multi 1/8, multi/single 0/20, single/collection 0/4, single/multi 1/17, single/single 0/18
+By regime within float arms (violating/n):
+  plain-float  affine 0/25, rotation 0/19, scale-2^-k 0/17, translate-1e15 0/10, translate-2^27 1/9
+  degen-float  affine 0/25, rotation 2/19, scale-2^-k 0/17, translate-1e15 0/10, translate-2^27 0/9
+
+Candidate magnitude bands (rule|band|precision-limited: violations):
+  plain-int    R7|triage|ok: 1
+  plain-float  R11|logged|ok: 1, R7|triage|ok: 1
+  degen-int    R7|triage|ok: 1
+  degen-float  R11|logged|ok: 1, R11|triage|ok: 2, R7|triage|ok: 2
+
+Crashes: 0 events in 0 pairs (by arm {'plain-int': 0, 'plain-float': 0, 'degen-int': 0, 'degen-float': 0}), recovery wait 0.0 s, wall of crashed pairs 0.0 s; batch crashes 0 (0.0 s); unique signatures 0
+  by lane: {'lane0': {'events': 0, 'recovery_wait_s': 0.0}, 'lane1': {'events': 0, 'recovery_wait_s': 0.0}}
+
+Timing (evaluate wall time; batch joins separate):
+  plain-int    80 pairs, 3.3 s, 88097 pairs/h, median 22.4 ms
+  plain-float  80 pairs, 3.3 s, 88512 pairs/h, median 22.9 ms
+  degen-int    80 pairs, 3.2 s, 88752 pairs/h, median 23.5 ms
+  degen-float  80 pairs, 3.2 s, 90636 pairs/h, median 22.9 ms
+  batch joins: 2.3 s
+
+Predicate tier differs from overlay tier: plain-int 0/80, plain-float 19/80, degen-int 0/80, degen-float 16/80
+Sensitivity (strict + measured triage only), per 10k per seed:
+  plain-int    2:0.0 (0/40)  100:250.0 (1/40)
+  plain-float  2:0.0 (0/40)  100:250.0 (1/40)
+  degen-int    2:250.0 (1/40)  100:0.0 (0/40)
+  degen-float  2:500.0 (2/40)  100:0.0 (0/40)
+Unbanded candidate pairs from rules outside R1-R5/R10 (not counted): plain-int 0, plain-float 0, degen-int 0, degen-float 0
+Outcome kinds: plain-int {}; plain-float {'tier_mismatch': 19}; degen-int {}; degen-float {'tier_mismatch': 16}
