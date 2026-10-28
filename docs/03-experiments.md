@@ -137,15 +137,20 @@ triage resumed (`runs/e3_triage_console.txt`).
 
 ## Code versions
 
-| Commit | Step |
-|---|---|
-| 399c631 | images pinned |
-| 304c5ff | tool, checks R1–R11, generators, shrinker, calibration inputs |
-| ba83e25, 5f90a68 | paired generators, decimal transformations |
-| 641a8ef | fixes after the independent check, R12 added |
-| 79c8267, 45d9b93 | crash handling, index join per lane; 45d9b93 is the first freeze |
-| e891122, c2ab4cd | campaign runner and analysis |
-| 23761b7 | final checks after the one amendment (line-overlay tolerance); primary calibration, pilot and main run |
-| 4f4e867 | triage |
-| 050b8fb | triage crash-replay fix; exploratory analyses |
-| 6a0aacd | final classes by family |
+The commit hashes in these pages, in `runs/` and in the protocol are the ones recorded when the
+runs were made. The commit messages were later translated into English, which gave every commit
+a new hash without changing any file. The table maps each recorded hash to its commit in this
+repository.
+
+| Recorded | Commit here | Step |
+|---|---|---|
+| 399c631 | dbae56e | images pinned |
+| 304c5ff | c85ea8b | tool, checks R1–R11, generators, shrinker, calibration inputs |
+| ba83e25, 5f90a68 | 3394f20, 1e99e75 | paired generators, decimal transformations |
+| 641a8ef | 77f31bb | fixes after the independent check, R12 added |
+| 79c8267, 45d9b93 | 2ed50a6, 9c9467d | crash handling, index join per lane; 45d9b93 is the first freeze |
+| e891122, c2ab4cd | 88b37b4, 220a8f5 | campaign runner and analysis |
+| 23761b7 | 6de3171 | final checks after the one amendment (line-overlay tolerance); primary calibration, pilot and main run |
+| 4f4e867 | a335581 | triage |
+| 050b8fb | 87869c0 | triage crash-replay fix; exploratory analyses |
+| 6a0aacd | 22ed2c4 | final classes by family |

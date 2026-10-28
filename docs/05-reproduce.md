@@ -14,8 +14,6 @@ should work but were not tested.
 
 ## Setup (all levels)
 
-The repository is private: ask Alexandre to invite your GitHub account first.
-
 ```bash
 git clone https://github.com/alexandre-zatti/postgis-consistency-testing.git
 cd postgis-consistency-testing     # or whatever folder you cloned into

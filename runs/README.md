@@ -1,7 +1,9 @@
 # Runs
 
 Every run's raw results and summaries, exactly as produced. Nothing here was edited by hand.
-Superseded and failed runs are kept, because they document how the checks changed.
+Superseded and failed runs are kept, because they document how the checks changed. Commit
+hashes recorded here are the original ones; [docs/03-experiments.md](../docs/03-experiments.md)
+maps them to this repository's commits.
 
 | Folder or file | Step | Contents |
 |---|---|---|

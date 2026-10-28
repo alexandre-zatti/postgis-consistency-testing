@@ -8,7 +8,7 @@ Code and data: this repository (map in `README.md`).
 ## Constraints
 
 - Course final project (MCET063, assignment PDF in this folder): software artifact, experimental
-  evaluation, paper, presentation. Two weeks from 2026-10-27; Alexandre works alone.
+  evaluation, paper, presentation. Two weeks from 2026-10-27.
 - Answerable with zero new bugs. No bug count promised. Upstream reports only with Alexandre's OK.
 - Code and data stay local; nothing published without Alexandre's OK.
 
@@ -462,7 +462,7 @@ magnitude distribution; wall time and pairs per hour per arm.
 
 ## Decisions
 
-- 2026-10-27: Alexandre alone, two weeks; plan accepted; Spader full text to be provided by
+- 2026-10-27: two weeks; plan accepted; Spader full text to be provided by
   Alexandre later; an independent reviewer answers design questions as work
   proceeds.
 - 2026-10-27, reviewer review accepted with these changes: R1 compares named predicates with the
