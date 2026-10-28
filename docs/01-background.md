@@ -71,8 +71,8 @@ PostGIS can answer one question through different code paths:
 - **Wrapping:** the same shape can be passed as itself or inside a collection
   (`ST_ForceCollection`), which changes how GEOS sees it.
 
-All routes must give the same answer. Disagreements between routes are a main source of
-findings.
+All routes must give the same answer. In this project the prepared route and wrapping produced
+route disagreements; the index route produced none (see [04-results.md](04-results.md)).
 
 ## Rounding
 
@@ -90,6 +90,10 @@ numbers.
   GEOS's maintainers say so explicitly.
 - A **fixed-precision grid** (`ST_Intersection(a, b, gridSize)`) rounds everything to a chosen
   grid. We use it as a second opinion for overlays, and it can be wrong too (one of our results).
+- **What counts as the true answer:** the input is the doubles actually stored, not the decimal
+  text the shape was written in. `0.1` is stored as the nearest double, so three points that are
+  collinear as written may not be collinear once stored. Every exact check in this project uses
+  the stored doubles.
 
 **RelateNG** is GEOS's new predicate engine, translated from JTS in 2024 (GEOS 3.13). The old
 version tested here (GEOS 3.9.0) predates it, which helps date the problems.

@@ -16,10 +16,10 @@ Each script names, in a comment, the finding it comes from (its key in
 |---|---|---|
 | [A-relateng-crash-empty-polygon](A-relateng-crash-empty-polygon/) | GEOS crashes (segmentation fault) on a collection holding `POLYGON EMPTY` and two polygons touching at a point; without the empty polygon the answer is `FF20F1FF2` | new defect |
 | [B-prepared-contains-empty-member](B-prepared-contains-empty-member/) | a triangle "contains" a point on its own edge when the point comes with an empty part, but only on the prepared (cached) path | unreported variant of a known cause |
-| [C-relateng-rounding-vs-prepared](C-relateng-rounding-vs-prepared/) | direct and prepared Contains disagree on decimal polygons; an exact check shows the prepared answer is right | known open issue (GEOS #740) |
-| [D-relate-not-symmetric-self-noding](D-relate-not-symmetric-self-noding/) | `relate(b, a)` is not the transpose of `relate(a, b)`, on whole-number coordinates | known open issue (GEOS #1558) |
-| [F-candidate-tangent-hole-collection](F-candidate-tangent-hole-collection/) | wrapping a valid shape in a collection changes its relationship matrix | candidate |
-| [G-precision-effects-not-bugs](G-precision-effects-not-bugs/) | two rounding effects: a sliver overlap returned as a point, and a fixed-grid overlay that invents a 44.6-unit overlap where the true one has length 0 | not bugs |
+| [C-relateng-rounding-vs-prepared](C-relateng-rounding-vs-prepared/) | direct and prepared Contains disagree on decimal polygons; an exact check shows the prepared answer is right | consistent with a known open issue (GEOS #740) |
+| [D-relate-not-symmetric-self-noding](D-relate-not-symmetric-self-noding/) | `relate(b, a)` is not the transpose of `relate(a, b)`, on whole-number coordinates | consistent with a known open issue (GEOS #1558) |
+| [F-candidate-tangent-hole-collection](F-candidate-tangent-hole-collection/) | wrapping a valid shape in a collection changes its relationship matrix | candidate; possibly related to GEOS #1558 |
+| [G-precision-effects-not-bugs](G-precision-effects-not-bugs/) | two rounding effects: a sliver overlap returned as a point, and a fixed-grid overlay that invents a 44.6-unit overlap where, for the stored doubles, the true one has length 0 (see the note below) | not bugs |
 
 Family E (one unexplained case) has no folder.
 
@@ -30,12 +30,20 @@ Family E (one unexplained case) has no folder.
   3221225477 (0xC0000005); on Linux, as -11 or 139.
 - **`A-.../reproduce.sql` crashes the PostgreSQL server process.** Run it only on a throwaway
   container, for example:
-  `docker run -d --rm -e POSTGRES_PASSWORD=postgis -p 127.0.0.1:54390:5432 postgis/postgis:18-3.6`.
+  `docker run -d --rm -e POSTGRES_PASSWORD=postgis -p 127.0.0.1:54390:5432 postgis/postgis@sha256:4a43e3c3e5d55b9208240fc71db543b79c638766280c625a425bd0a2390989c4`
+  (the pinned current image from `compose.yaml`).
 - The SQL for B runs one query per input on purpose. When all inputs were in one grouped query,
   PostgreSQL reordered the rows and the cached (prepared) shape carried over between inputs,
   which changed the results.
 
 ## Notes found while writing these
+
+- **G, decimal text versus stored doubles.** The two G3 segments, as written in decimal, are
+  exactly collinear: their directions are (8.1, 133.5) and (2.7, 44.5), and the first is three
+  times the second. Read that way, one lies inside the other and the overlap is 44.58 long. But
+  the shapes the software receives are the doubles nearest to those decimals, and those are not
+  exactly collinear, so their true overlap has length 0. Throughout this project the stored
+  doubles are the input (see [docs/01-background.md](../docs/01-background.md), "Rounding").
 
 - **A, which ring start matters.** In the original finding, rotating one polygon's ring so it
   does not start at the touching point avoided the crash (`ring_start_variants.py`). With the

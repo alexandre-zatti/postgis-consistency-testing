@@ -20,10 +20,13 @@ list of explained problems. The binding text is the protocol,
 Each check is a relation that must hold whatever the right answer is. For example, nobody needs
 to know whether A contains B to know that "A contains B" must equal "B within A".
 
-**Strict** checks must hold exactly. On whole-number inputs a strict violation is a defect or
-a path inconsistency. **Candidate** checks allow some rounding. Violations are measured,
-compared with a fixed tolerance, and examined in triage. Yes/no checks are strict on
-whole-number inputs and candidates on decimal inputs.
+**Strict** checks must hold exactly, so a strict violation is a defect or a path inconsistency.
+**Candidate** checks are those where rounding may legitimately interfere. The tier is decided per
+pair from its coordinates. Predicate checks (R1–R4) are strict when all coordinates are whole
+numbers and the pair spans less than 2^20 units; overlay checks (R5–R12) also need every
+coordinate below 2^20. Otherwise they are candidates. A candidate yes/no check has no size to
+compare with a tolerance, so any disagreement counts as a flag and goes to triage. The checks
+that measure a size get a tolerance (below).
 
 ### Predicate checks (yes/no questions)
 
@@ -49,8 +52,13 @@ whole-number inputs and candidates on decimal inputs.
 
 R7, R8, R9 and R11 measure a size, so they need a tolerance. It was fixed before the pilot and
 never changed. Each measured difference is classed *noise*, *logged* or *triage*. Only *triage*
-counts as a violation. The tolerance scales with the shapes' size and coordinate magnitude, and
-pairs too small to measure at that magnitude are marked *precision-limited* and set aside.
+counts as a violation. The tolerance scales with the shapes' size and coordinate magnitude. When
+a pair is too small to measure at its magnitude, it is marked *precision-limited*: these four
+measured checks do not count on it, while the strict checks and the yes/no checks still do.
+
+In these pages a **flag** is one counted violation of one check on one pair, or one crash. A
+**flagged pair** is a pair with at least one counted violation; it counts once however many
+checks it fails.
 
 ## The generator
 
@@ -78,16 +86,31 @@ redrawn and counted.
 
 These cases are where geometry code is most fragile.
 
-**Decimal versions.** One of four transformations is applied to both shapes:
-- an affine map with full-precision digits;
-- a rotation;
-- a translation far from the origin;
-- an exact scaling down by a power of two.
+**Decimal versions.** One transformation per pair is applied to both shapes. The data uses five
+labels:
+- `affine`: an affine map with full-precision digits;
+- `rotation`: a rotation;
+- `scale-2^-k`: an exact scaling down by a power of two, to about 1e-8;
+- `translate-1e15` (predicate pairs) and `translate-2^27` (overlay pairs): a shift by a
+  whole-number offset. Overlay pairs get the smaller shift because at 1e15 the overlay engine's
+  legitimate snapping moves points by more than the shapes' size.
+
+Both shifts keep whole numbers whole, so a translated pair is "decimal" only by its arm. That is
+why the tier is computed per pair and never assumed from the arm. About one plain-float pair in
+four (40,138 of 160,000) is strict for the predicate checks but a candidate for the overlay
+checks.
+
+In the awkward decimal arm, slivers and spikes are added *after* the transformation, at the same
+place as in the whole-number arm. There they are one unit wide; here they are one to eight
+rounding steps wide (k·ulp(M), k in {1, 2, 4, 8}, where ulp(M) is the gap between neighbouring
+doubles at the pair's largest coordinate). This keeps the thin-sliver trigger of a known GEOS
+issue present under every transformation.
 
 **Paired design.** All four arms are built from the same base pair, identified by seed, kind and
 index. plain-int is the base pair, and degen-int is the base plus the moves. plain-float and
-degen-float apply the same transformation to those two. Differences between arms therefore come
-from the treatment, not from luck in drawing different pairs.
+degen-float apply the same transformation to those two (with degen-float's slivers rebuilt at the
+decimal scale, as above). Differences between arms therefore come from the treatment, not from
+luck in drawing different pairs.
 
 **Seeds.** Every pair is replayable from its seed number. The seeds were fixed before any run:
 seed 100 for the pilot, seeds 101–110 for the main run. Seeds below 100 were for development.
@@ -96,18 +119,19 @@ seed 100 for the pilot, seeds 101–110 for the main run. Seeds below 100 were f
 
 ```mermaid
 flowchart TD
-    A["11,367 flags in the main run<br/>(counted violations and crashes)"] --> B["Group by check, function, code path and shape types<br/>326 groups"]
-    B --> C["Pick up to 3 per group, smallest first, at least 1 per group<br/>400 representatives"]
+    A["11,367 flags in the main run<br/>from 5,667 flagged pairs and 176 crashing pairs"] --> B["Group by check, function, code path and shape types<br/>326 groups"]
+    B --> C["Pick up to 3 per group, smallest first, at least 1 per group,<br/>400 in total (the cap dropped 202 picks in 154 groups)"]
     C --> D["Shrink: drop parts, holes, corners, digits<br/>while the same check still fails (max 200 steps)"]
-    D --> E["Merge exact duplicates of the shrunk pair<br/>399 unique findings"]
+    D --> E["Merge duplicates: same check, function, path, shape types<br/>and normalised shrunk shapes; 399 unique findings"]
     E --> F["Rerun on current, development and old PostGIS<br/>and in Shapely (GEOS only)"]
     F --> G["Classify into families by root cause"]
 ```
 
 - Crashes are rerun in throwaway containers, because a crash takes the database process down.
 - Shapely runs in a separate process for the same reason.
-- A *finding* is one shrunk example, not one bug. Many findings can share one root cause, so the
-  final classification groups them into *families* (A to G, see
+- A *finding* is one shrunk example for one check and function, not one bug. The same shrunk
+  input can appear twice, for example once for Intersection and once for Union. Many findings
+  can share one root cause, so the final classification groups them into *families* (A to G, see
   [04-results.md](04-results.md)).
 - The possible classes are:
   - new defect;
@@ -119,8 +143,9 @@ flowchart TD
 
 ## Measures and statistics
 
-- **Primary measure:** violating pairs per 10,000, per seed and arm. A pair counts once however
-  many checks it fails.
+- **Primary measure:** flagged pairs per 10,000, per seed and arm. A pair counts once however
+  many checks it fails. Crashes are not violations: they are counted separately, and after a
+  crash the remaining calls of that SQL function on that pair are skipped.
 - **Comparisons:** four planned contrasts:
   - awkward vs ordinary, within whole numbers;
   - awkward vs ordinary, within decimals;

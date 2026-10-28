@@ -1,0 +1,5 @@
+# Text files are stored with LF; reruns that write CRLF (Windows, or the csv module anywhere)
+# then compare as unchanged.
+* text=auto
+*.sqlite binary
+*.zst binary

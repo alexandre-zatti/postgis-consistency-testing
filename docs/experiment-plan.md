@@ -25,7 +25,7 @@ Code and data: this repository (map in `README.md`).
 
 ## Targets
 
-| Role | Image (digest in `experiment/compose.yaml`) | Versions confirmed 2026-10-27 |
+| Role | Image (digest in `compose.yaml`) | Versions confirmed 2026-10-27 |
 |---|---|---|
 | Current (main target) | `postgis/postgis:18-3.6` | PostgreSQL 18.6, PostGIS 3.6.4 `94d984b`, GEOS 3.14.1 at run time (PostGIS compiled against 3.13.1) |
 | Development (triage, #1405 absence) | `postgis/postgis:18-master` | PostgreSQL 18.6, PostGIS 3.7.0dev `3.7.0rc3-1-g4db4d8050`, GEOS 3.16.0dev `283e82726` |
@@ -274,13 +274,24 @@ plain-float none; degen-int {A, B, D, F}; degen-float {A, B, C, D}. The robust c
 representatives, uncertain F). Harness notes: Shapely replays of 12 crash findings missed the
 PostGIS call path (above); `findings.csv` truncates WKT; `findings.json` keeps the draft classes.
 
-Reproducer notes (2026-10-28, while writing `findings/`, outside the registered results): for
-family A's minimal point query every ring start crashes; the ring-start effect shows with a
+Reproducer notes (2026-10-28, while writing `findings/`, outside the registered results):
+for family A's minimal point query every ring start crashes; the ring-start effect shows with a
 disjoint polygon as the other argument (first member's start matters), so which start matters
 depends on the input. Open lead: prepared Contains of the unit square `POLYGON ((0 0, 1 0, 1 1,
 0 1, 0 0))` against `GEOMETRYCOLLECTION (POINT (0.5 0), LINESTRING EMPTY)` (or `POINT EMPTY`)
-segfaults Shapely 2.2.0 (`POLYGON EMPTY` gives True, the triangle does not crash); not tested in
-PostGIS, cause unknown.
+segfaults Shapely 2.2.0 (rechecked; `POLYGON EMPTY` gives True, the triangle does not crash);
+not tested in PostGIS, cause unknown.
+
+Corrections (2026-10-28, from the repository review, rechecked against the stored data; the text
+above is kept as written): (1) the suite-level 7 of 12 in the paragraph "Rules frozen at
+experiment commit 23761b7" counted #1540, whose only flag
+is an R9 triage violation on a precision-limited pair, which does not count. Recomputed by
+`tavs/e1_detection.py`: 6 of 12 as pre-registered (5 counting only strict and measured
+triage), and 10 of 12 (9) with dev as the absent version for #1342, #1343, #1344 and #1354, which
+are correct there; rule level 4 of 12 unchanged; 13 seeds replayed, 12 with a verdict. (2) Arms in
+the family table: G1 plain-float 3 / degen-float 8, G2 3 / 8, G3 12 / 16, G4 2 / 1
+(`families.csv`). (3) PostGIS trac could not be searched (bot wall); the later search list that
+names it is wrong.
 
 Overlay rules (R5–R11) take valid inputs of one dimension: polygon/polygon and line/line
 (R5 also point/polygon). Measure = area for polygons, length for lines; points skip R7–R9.
@@ -422,7 +433,7 @@ cause supported but not traced.
 
 Dropped: #1022 (Crosses, not reproduced), #1224 (invalid inputs; fixed 3.13.1), #1248 (needs
 GEOS 3.13.1), #1355 (an exception, not a wrong result), GEOS #1275 (no geometry), JTS #1222
-(maintainer could not reproduce), JTS #1239 (JTS-only). Seed data: `experiment/seeds/`.
+(maintainer could not reproduce), JTS #1239 (JTS-only). Seed data: `seeds/`.
 A seed that the shared GEOS reproduces in Shapely but PostGIS SQL cannot reach is classed
 "not reproducible through PostGIS SQL", neither hit nor miss.
 

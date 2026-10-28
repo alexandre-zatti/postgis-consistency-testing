@@ -9,7 +9,7 @@ Definitions (fixed here, one place to change):
 - Harness-error pair: any outcome of kind in HARNESS_KINDS. Removed from every rate.
 - Violating pair: see `counted`: strict; or a yes/no-rule (R1-R5, R10) candidate, which has no
   magnitude and counts as in the triage band; or a measured candidate in band "triage".
-  Candidates flagged precision-limited never count. Crash outcomes are not violations.
+  Measured candidates flagged precision-limited never count. Crash outcomes are not violations.
   Sensitivity rates: strict plus measured triage-band candidates only. Unbanded candidates
   from other rules are reported, not counted.
 - Rate per (seed, arm): violating pairs per 10k, pooled over kinds with equal weight

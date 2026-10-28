@@ -12,8 +12,8 @@ the overlap of A and B?". Most of the geometry is computed by GEOS, a C++ librar
 QGIS and many other tools also use. When one of these answers is wrong, nothing warns the user.
 There is no answer key to compare against, so this project asks each question in several ways
 that must agree, and flags any disagreement. Random shape pairs are generated automatically
-(fuzzing). Every disagreement is shrunk to a minimal example, rerun on three PostGIS/GEOS versions
-and in Shapely, and classified. The project also measures whether deliberately awkward shapes
+(fuzzing). Disagreements and crashes are grouped by kind, and up to 400 representatives are shrunk
+to minimal examples, rerun on three PostGIS/GEOS versions and in Shapely, and classified. The project also measures whether deliberately awkward shapes
 find more problems than ordinary random ones. Awkward shapes are ones that touch at a single
 point, share an edge or contain an empty part.
 
@@ -32,12 +32,14 @@ flowchart LR
 
 | Step | What was done | Result |
 |---|---|---|
-| Calibration | 12 known GEOS bugs replayed; 964 cases from GEOS's own test suite as a false-alarm check | 4 of 12 caught by the check predicted in advance, 7 of 12 by some check; 0 false alarms |
+| Calibration | 13 known GEOS problems replayed, 12 with a clear verdict; 964 cases from GEOS's own test suite as a false-alarm check | 4 of 12 caught by the check predicted in advance; 6 of 12 by some check (10 of 12 when the development version, which already answers four of them correctly, counts as their bug-free version); 0 false alarms |
 | Pilot | 1,000 ordinary pairs | 0 problems |
 | Main run | 640,000 pairs in 4 groups × 10 seeds | ordinary shapes: no real bug; awkward shapes: several (below) |
-| Triage | 11,367 flags shrunk and merged | 399 unique minimal examples |
+| Triage | 11,367 flags (one per disagreeing check or crash) from 5,667 flagged pairs and 176 crashing pairs, grouped into 326 groups; 400 representatives shrunk | 399 unique minimal examples (unique by check, function and code path) |
 
-Flagged pairs per 10,000, range over the 10 seeds:
+Flagged pairs per 10,000, range over the 10 seeds. A pair is flagged when at least one check
+disagrees beyond its rounding tolerance. Crashes are counted separately (176 pairs, all with
+awkward shapes) and are not in these rates.
 
 | | whole-number coordinates | decimal coordinates |
 |---|---|---|
@@ -50,14 +52,15 @@ What the 399 examples turned out to be:
 |---|---|---|
 | GEOS crashes on a collection holding an empty polygon and two touching polygons | 254 | appears new; still present in the development version |
 | "contains" gives a wrong answer for a point on the border plus an empty part, on the cached code path only | 58 | unreported variant of a cause GEOS fixed elsewhere in 2024 |
-| Two known open GEOS issues | 31 | already reported upstream |
-| A possible new problem with a hole touching its border | 1 pair | candidate, explained only by reading the code |
+| Wrong answers consistent with two known open GEOS issues | 31 | already reported upstream |
+| A possible problem with a hole touching its border | 1 pair | candidate, explained only by reading the code; possibly related to a known open issue |
 | One unexplained case | 1 | not counted |
-| Rounding effects of decimal arithmetic | 53 | not bugs |
+| Rounding or snapping effects of decimal arithmetic | 53 | judged not bugs; 38 examples checked with exact arithmetic |
 
-Decimal coordinates added only rounding flags. Once the two rounding-sensitive checks are left
-out, awkward decimal and awkward whole-number shapes are flagged about equally often (139 vs
-146 pairs). Details and caveats are in [docs/04-results.md](docs/04-results.md).
+Decimal coordinates added mostly rounding flags, plus one known wrong-answer class (the larger of
+the two known issues above), and no new defect. Once the two rounding-sensitive checks are left
+out, awkward decimal and awkward whole-number shapes are flagged about equally often (139 vs 146
+pairs; the 139 still include that known class). Details and caveats are in [docs/04-results.md](docs/04-results.md).
 
 ## Try it in five minutes
 
@@ -77,11 +80,11 @@ in SQL, and the output we observed.
 levels of reproduction:
 
 1. **Look at the problems:** run the scripts in `findings/`. Needs Python and Shapely only.
-2. **Recompute every number:** download the main-run databases (2 GB) with
+2. **Recompute every number:** download the main-run databases (2.1 GB unpacked, 296 MB to download) with
    `python scripts/fetch_e3_data.py`, then run the analysis scripts. Needs Python only.
 3. **Rerun the experiments:** start the pinned PostGIS containers with Docker and run the
    calibration, the pilot, the main run and the triage. On the original 14-thread laptop, the
-   main run took about 2¾ hours on 5 parallel databases.
+   main run took about 2¾ hours on 5 parallel databases, including a 23-minute stop.
 
 ## Where things are
 
@@ -119,7 +122,8 @@ code runs again on exactly the same versions.
 
 ## Notes
 
-- This repository is private. Nothing here has been reported upstream.
+- This repository is private. To read it and download the data, ask Alexandre to invite your
+  GitHub account. Nothing here has been reported upstream.
 - `seeds/geos-xml/` contains test files copied from GEOS (LGPL-2.1), and `seeds/raw/` holds
   copies of public GEOS issue pages used to build the calibration set.
 - No license has been chosen yet, so all rights are reserved by default.
