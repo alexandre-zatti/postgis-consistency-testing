@@ -81,7 +81,7 @@ flags its own reference.
 | Variant | degen-float | degen-int | plain-float | Conclusion |
 |---|---|---|---|---|
 | registered (all checks) | 5,492 | 146 | 29 | |
-| without R11 on line pairs | 747 | 146 | – | all four contrasts still significant (Holm ≤ 0.016) |
+| without R11 on line pairs | 747 | 146 | 11 | all four contrasts still significant (Holm ≤ 0.016) |
 | also without R10 | 139 | 146 | 0 | decimal vs whole number within awkward: p = 0.36, no difference |
 
 Awkward shapes raise the rate in every variant. Decimal coordinates raise mainly the two
@@ -172,8 +172,9 @@ related to GEOS #1558 (the issue behind D, which is also the source of the calib
 - **G3.** In 14 of the 15 R11 line pairs, the floating answer (length 0) is the correct one and
   the fixed grid is wrong. "Correct" refers to the stored doubles: as written in decimal, the
   example segments can be exactly collinear (see [findings/](../findings/README.md)).
-- **Caveat.** This was checked on the shrunk examples, not on each of the roughly 10,400
-  campaign violations (610 R10 and 9,792 R11). Campaign flags inherit the class of their group,
+- **Caveat.** This was checked on the shrunk examples, not on each of the about 10,450
+  campaign violations (R10: 610 degen-float + 11 plain-float; R11: 9,792 degen-float + 38
+  plain-float). Campaign flags inherit the class of their group,
   and shrinking keeps the violation, not necessarily its mechanism.
 
 **Nothing is "fixed".** All 399 findings still reproduce on the development version.
