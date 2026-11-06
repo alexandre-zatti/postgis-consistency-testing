@@ -1,6 +1,6 @@
 # Experiment plan: consistency testing of PostGIS/GEOS spatial operations
 
-Status 2026-10-27: accepted by Alexandre for execution; revised after an independent adversarial
+Status 2026-10-27: accepted by Alexandre for execution; revised after a separate adversarial
 review (decisions at the end). Paper title: *Testing the Consistency of Spatial Operations in
 PostGIS Through Property-Based and Differential Testing*. Background: `docs/01-background.md`.
 Code and data: this repository (map in `README.md`).
@@ -69,7 +69,7 @@ has no index support, so it is not in (d); R12 added because R9 shares one nodin
 overlays and can be offset exactly (#1343). The rule set is frozen from the E1 re-run on, for
 E2 and E3.
 
-Amendments 2026-10-27 after the independent check of `rules.py` (before the frozen re-run):
+Amendments 2026-10-27 after the separate check of `rules.py` (before the frozen re-run):
 R7 lower-dimensional classification certified by buffer containment (noise if
 `ST_Covers(ST_Buffer(op, 1e-12·M), part)`, logged at 1e-9·M, triage otherwise; the vertex-only
 distance missed a line leaving a non-convex operand between vertices); R3 (c) primer is the
@@ -126,7 +126,7 @@ segments cross in floating point and overlap after snapping. Line intersection l
 discontinuous there. The R11 row says area, but the code used length for lines, following the
 generic measure line. Reporting is decided with the reviewer; the frozen rules are not changed.
 
-Reporting decisions (after independent review, 2026-10-27; `python -m tavs.posthoc_checks
+Reporting decisions (after a separate review, 2026-10-27; `python -m tavs.posthoc_checks
 runs/e3` and `python -m tavs.posthoc runs/e3` reproduce the numbers below):
 - The primary is reported as registered. The rule-validity observation becomes an RQ1 result,
   not only a threat: a candidate rule whose flags sort into precision effects answers RQ1. The
@@ -239,7 +239,7 @@ rerun of the R3, R2 and R4 examples in Shapely and checked tracker states with `
   the code) and the adjacent-edge locator merges sections without polygon identity. No tracker
   item. Three pairs are the #740 rounding class under forced self-noding.
 
-Final classes by family (decision 2026-10-28 after an independent challenge; per-finding
+Final classes by family (decision 2026-10-28 after a second-review challenge; per-finding
 classes in `runs/e3/triage/families.csv`, written by `python -m tavs.families runs/e3`; findings
 are shrunk inputs, not defects):
 
@@ -256,7 +256,7 @@ are shrunk inputs, not defects):
 | G3 R11 lines, fixed-grid reference moved | 28 | plain-float, degen-float | oracle precision effect |
 | G4 snapping fallback returns an input part (R11 pair, R5) | 3 | degen-float | known behaviour class by maintainer statement, not documented |
 
-Independent challenge accepted: A strengthened by reading, since the JTS original loops with a signed `int`
+Second-review challenge accepted: A strengthened by reading, since the JTS original loops with a signed `int`
 (`AdjacentEdgeLocator.java:59`) and never iterates on an empty ring, so A is a C++ port defect;
 the file is unchanged since the 2024-08 port; do not say "since 3.13.0" or call it a PostGIS bug.
 B narrowed from "new defect"; F and E downgraded. G is not "documented behaviour" at campaign
@@ -417,7 +417,7 @@ cause supported but not traced.
 
 | Seed | Expected rule(s) | Fires on | Silent on |
 |---|---|---|---|
-| Tangent hole (JTS/GEOS PR 1565 test 65; issue #1558 deleted) | R3 lone vs prepared Contains/Covers; R1 | current, dev | old. Already observed in PostGIS: lone `ST_Contains(b,a)` false, prepared true, on current and dev; old gives true everywhere |
+| Tangent hole (JTS/GEOS PR 1565 test 65; issue #1558) | R3 lone vs prepared Contains/Covers; R1 | current, dev | old. Already observed in PostGIS: lone `ST_Contains(b,a)` false, prepared true, on current and dev; old gives true everywhere |
 | GEOS #1405 (intersection order) | R8 | current | dev. Not reproduced in Shapely 3.14.1 with the issue's WKT; needs the post-`set_precision` geometries |
 | GEOS #1383 (sliver union empty) | R6 | current, dev | — (open). Confirm binary vs unary union |
 | GEOS #1523 (zero-width collinear hole) | R9, R11 (not R7) | current, dev | — (open, unconfirmed by maintainers) |
@@ -463,7 +463,7 @@ magnitude distribution; wall time and pairs per hour per arm.
 ## Decisions
 
 - 2026-10-27: two weeks; plan accepted; Spader full text to be provided by
-  Alexandre later; an independent reviewer answers design questions as work
+  Alexandre later; a separate reviewer answers design questions as work
   proceeds.
 - 2026-10-27, reviewer review accepted with these changes: R1 compares named predicates with the
   matrix only (the pattern call joins R3); overlay rules gained inclusion–exclusion (R9),

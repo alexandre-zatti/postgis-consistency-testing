@@ -95,10 +95,10 @@ class of each finding). A *finding* is one shrunk example. A *family* is one roo
 
 | Family | Findings | Arms | Class |
 |---|---|---|---|
-| **A** GEOS crash: empty polygon in a collection of touching polygons | 254 | degen-int, degen-float | **new defect** (not found in the GEOS/JTS GitHub trackers as of 2026-10-28; PostGIS's tracker not searched; unreported; not confirmed by maintainers) |
+| **A** GEOS crash: empty polygon in a collection of touching polygons | 254 | degen-int, degen-float | **new defect** when found (not in the GEOS/JTS GitHub trackers as of 2026-10-28; PostGIS's tracker not searched); since reported by another user (GEOS #1585) and fixed for 3.15.1 (PR #1590), see below |
 | **B** prepared Contains wrong for a point plus an empty part | 58 | degen-int, degen-float | **unreported variant of a known cause** (GEOS #1011; PR #1008 fixed the same function for collections with multipoints) |
 | **C** RelateNG rounding vs prepared predicate | 29 | degen-float | consistent with open GEOS #740 |
-| **D** `ST_Relate` not symmetric: self-noding decided by the first argument | 2 | degen-int, degen-float | consistent with GEOS #1558, now deleted (fix PR #1565 closed unmerged) |
+| **D** `ST_Relate` not symmetric: self-noding decided by the first argument | 2 | degen-int, degen-float | consistent with GEOS #1558, open and confirmed by a maintainer (fix PR #1565 closed unmerged) |
 | **E** needle polygon asymmetry | 1 | degen-float | unresolved, likely the #740 class; not counted |
 | **F** hole touching its shell, inside a collection | 2 (1 pair) | degen-int | candidate, by code reading; possibly related to GEOS #1558 |
 | **G1** sliver returned as a line or point in overlay | 11 | plain-float 3, degen-float 8 | rounding effect, not a bug (closest: open GEOS #1383) |
@@ -185,6 +185,32 @@ related to GEOS #1558 (the issue behind D, which is also the source of the calib
 - **Defect families per arm** (exploratory): none for either ordinary arm; {A, B, D, F} for
   degen-int; {A, B, C, D} for degen-float.
 
+## After the results (2026-11-06)
+
+These checks were added after the results and are exploratory.
+
+- **Family A upstream.** Another GEOS user reported the crash on 2026-10-31 (GEOS #1585), four
+  days after this study first saw it. GEOS PR #1590, merged on 2026-11-05 for 3.15.1, fixed it
+  by skipping empty rings in `AdjacentEdgeLocator`, the component the code reading named. No
+  GEOS release contains the fix yet (3.15.0 is the latest). This study reported nothing upstream.
+- **E5, replay on the fix** ([runs/e5-geos-fix/summary.md](../runs/e5-geos-fix/summary.md)).
+  PostGIS 3.7.0dev ran with GEOS rebuilt at the commit just before PR #1590 (fc3eca90) and at its
+  merge (2c8e04fa). Before the fix all 254 family A findings crashed (748 of 1,428 call forms);
+  at the fix none did, and the minimal reproducer returns `FF20F1FF2`. The unchanged development
+  image crashed on all 254, as in triage.
+- **Moves by family** ([runs/e3/analysis/moves-by-family.md](../runs/e3/analysis/moves-by-family.md)).
+  Every pair of families A and B carried an empty member (for B this is part of the family's
+  definition). The 25 pairs of families C to F carried none. The plain arms apply no move.
+- **Classes.** The classes were proposed with AI assistance and confirmed by the authors on
+  2026-11-06.
+- **GEOS #1558** is open, not deleted as an earlier version of these notes said; a maintainer
+  confirmed it on 2026-10-13 as a bug in GEOS and JTS.
+- **G4 line pair.** For the R11 pair of G4 (findings 4febb7f24404 and 44fa4173dd80, plain-float),
+  exact arithmetic on the stored doubles shows the two segments cross at one point, yet GEOS
+  3.14.1 `relate` (through Shapely) returns `1F1FF0102`, a line contact. The snapping mechanism
+  inferred for G4 does not explain this, so the class of this pair is uncertain. It was noticed
+  after triage and not investigated further.
+
 ## Answers to the questions
 
 - **RQ1.** The path checks (R2, R3, R4) and crash detection found real defects. The overlay
@@ -207,8 +233,8 @@ related to GEOS #1558 (the issue behind D, which is also the source of the calib
    comparison shows that targeted generation works, not that random testing is useless.
 2. **Calibration is partly in-sample.** The checks were amended after the first calibration
    runs.
-3. **The crash cause rests on code reading** plus 748 consistent tests. There is no debugger
-   trace and no maintainer confirmation.
+3. **The crash cause** rests on code reading, 748 consistent tests and the E5 replay, in which
+   the upstream fix removes the crash from all 254 findings. There is no debugger trace.
 4. **Triage was capped** at 400 representatives (202 further picks dropped). Rounding classes
    were checked on 38 shrunk examples.
 5. **Crashes are outside the primary rates.** The main finding, the crash, appears in the crash

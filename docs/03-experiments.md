@@ -20,7 +20,7 @@ flowchart LR
   current 3.6.4 with GEOS 3.14.1, development 3.7.0dev with GEOS 3.16.0dev, and old 3.5.2 with
   GEOS 3.9.0.
 - The tool was written: checks, generator, shrinker and results store.
-- `rules.py` was checked independently before freezing. The check found several problems, which
+- `rules.py` was checked in a separate review before freezing. The check found several problems, which
   were fixed, and R12 was added because R9 can be wrong in the same way as the overlays it checks.
 
 ## E1. Calibration on known bugs (RQ3)
@@ -131,9 +131,26 @@ triage resumed (`runs/e3_triage_console.txt`).
 - The crash, predicate and overlay findings were investigated separately: reading the GEOS
   source, exact rational arithmetic to decide which answer is right, and tracker searches
   ([archive/triage-investigations/](../archive/triage-investigations/)).
-- An independent challenge then narrowed several labels.
+- A second review then challenged the labels and narrowed several. The classes were proposed
+  with AI assistance and confirmed by the authors (2026-11-06).
 - The final family and class of each finding are in `runs/e3/triage/families.csv`, written by
   `python -s -m tavs.families runs/e3`.
+
+## E5. Replay of family A on the GEOS fix (added after the results, 2026-11-06)
+
+**Command:** `pwsh -NoLogo -NoProfile -NonInteractive -File scripts/run_e5_geos_fix.ps1`
+(builds the images from `docker/geos-rebuild/Dockerfile`, then runs `python -s -m tavs.replay_fix`).
+
+**What it does:** rebuilds GEOS inside the pinned development image at two commits, just before
+GEOS PR #1590 (fc3eca90) and at its merge (2c8e04fa), leaving PostGIS unchanged. It checks that
+the database backend maps the rebuilt libraries, then replays the crash probes of all 254 family A
+findings on both images and on the unchanged development image.
+
+**Result:** before the fix 254 of 254 findings crash (748 of 1,428 call forms); at the fix 0 of
+254; the unchanged development image 254 of 254. Outputs in `runs/e5-geos-fix/`.
+
+The exploratory moves-by-family count (`python -s -m tavs.posthoc_moves runs/e3`) is in
+`runs/e3/analysis/moves-by-family.md`.
 
 ## Code versions
 
@@ -147,7 +164,7 @@ repository.
 | 399c631 | dbae56e | images pinned |
 | 304c5ff | c85ea8b | tool, checks R1–R11, generators, shrinker, calibration inputs |
 | ba83e25, 5f90a68 | 3394f20, 1e99e75 | paired generators, decimal transformations |
-| 641a8ef | 77f31bb | fixes after the independent check, R12 added |
+| 641a8ef | 77f31bb | fixes after the separate check, R12 added |
 | 79c8267, 45d9b93 | 2ed50a6, 9c9467d | crash handling, index join per lane; 45d9b93 is the first freeze |
 | e891122, c2ab4cd | 88b37b4, 220a8f5 | campaign runner and analysis |
 | 23761b7 | 6de3171 | final checks after the one amendment (line-overlay tolerance); primary calibration, pilot and main run |

@@ -1,0 +1,41 @@
+level,family,arm,n,empty_wkt,no_move,shared-vertex,vertex-on-edge,collinear-overlap,hole-tangent,sliver-or-spike,parts-touching,empty-part,point-collection
+all pairs (denominator),-,plain-int,160000,0,160000,0,0,0,0,0,0,0,0
+all pairs (denominator),-,plain-float,160000,0,160000,0,0,0,0,0,0,0,0
+all pairs (denominator),-,degen-int,160000,21081,0,53521,42026,39953,20319,20288,20574,22029,21256
+all pairs (denominator),-,degen-float,160000,21081,0,53521,42026,39953,20319,20288,20574,22029,21256
+pairs,A,degen-int,87,87,0,0,0,0,0,0,87,87,0
+pairs,A,degen-float,89,89,0,0,0,1,0,0,88,89,0
+pairs,B,degen-int,144,144,0,36,47,0,0,2,0,144,58
+pairs,B,degen-float,114,114,0,36,23,0,0,2,0,114,52
+pairs,C,degen-float,21,0,0,1,11,11,3,1,7,0,0
+pairs,D,degen-int,1,0,0,0,0,0,0,1,0,0,0
+pairs,D,degen-float,1,0,0,0,0,0,0,1,0,0,0
+pairs,E,degen-float,1,0,0,0,0,1,0,1,0,0,0
+pairs,F,degen-int,1,0,0,0,0,0,1,0,1,0,0
+pairs,G1,plain-float,6,0,6,0,0,0,0,0,0,0,0
+pairs,G1,degen-float,235,0,0,18,53,203,38,22,35,0,0
+pairs,G2,plain-float,5,0,5,0,0,0,0,0,0,0,0
+pairs,G2,degen-float,375,0,0,94,190,277,0,0,0,0,0
+pairs,G3,plain-float,19,0,19,0,0,0,0,0,0,0,0
+pairs,G3,degen-float,4896,0,0,1552,1150,4807,0,0,0,0,0
+pairs,G4,plain-float,5,0,5,0,0,0,0,0,0,0,0
+pairs,G4,degen-float,2,0,0,0,2,2,0,0,0,0,0
+R3 pairs (any family),-,degen-int,144,144,0,36,47,0,0,2,0,144,58
+R3 pairs (any family),-,degen-float,128,114,0,37,33,6,1,3,2,114,52
+findings (representatives),A,degen-int,124,124,0,0,0,0,0,0,124,124,0
+findings (representatives),A,degen-float,130,130,0,0,0,4,0,0,126,130,0
+findings (representatives),B,degen-int,30,30,0,3,4,0,0,1,0,30,22
+findings (representatives),B,degen-float,28,28,0,3,3,0,0,0,0,28,22
+findings (representatives),C,degen-float,29,0,0,0,19,9,5,3,6,0,0
+findings (representatives),D,degen-int,1,0,0,0,0,0,0,1,0,0,0
+findings (representatives),D,degen-float,1,0,0,0,0,0,0,1,0,0,0
+findings (representatives),E,degen-float,1,0,0,0,0,1,0,1,0,0,0
+findings (representatives),F,degen-int,2,0,0,0,0,0,2,0,2,0,0
+findings (representatives),G1,plain-float,3,0,3,0,0,0,0,0,0,0,0
+findings (representatives),G1,degen-float,8,0,0,1,1,8,1,0,0,0,0
+findings (representatives),G2,plain-float,3,0,3,0,0,0,0,0,0,0,0
+findings (representatives),G2,degen-float,8,0,0,1,4,7,0,0,0,0,0
+findings (representatives),G3,plain-float,12,0,12,0,0,0,0,0,0,0,0
+findings (representatives),G3,degen-float,16,0,0,8,4,16,0,0,0,0,0
+findings (representatives),G4,plain-float,2,0,2,0,0,0,0,0,0,0,0
+findings (representatives),G4,degen-float,1,0,0,0,1,1,0,0,0,0,0

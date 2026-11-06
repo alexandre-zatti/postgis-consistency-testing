@@ -46,7 +46,7 @@ Flagged pairs per 10,000, range over the 10 seeds (crashes are counted separatel
 
 | Problem | Examples | Status |
 |---|---|---|
-| GEOS crashes on a collection holding an empty polygon and two touching polygons | 254 | appears new; still present in the development version |
+| GEOS crashes on a collection holding an empty polygon and two touching polygons | 254 | found here on 2026-10-27; reported by another user on 2026-10-31 (GEOS #1585) and fixed for GEOS 3.15.1 (PR #1590), which a replay confirms |
 | "contains" gives a wrong answer for a point on the border plus an empty part, on the cached code path only | 58 | unreported variant of a cause GEOS fixed elsewhere in 2024 |
 | Wrong answers consistent with two known open GEOS issues | 31 | already reported upstream |
 | A possible problem with a hole touching its border | 1 pair | candidate, explained only by reading the code |
