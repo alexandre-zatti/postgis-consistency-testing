@@ -83,5 +83,5 @@ scripts/fetch_e3_data.py          downloads the main-run databases from the GitH
 compose.yaml                      the three PostGIS versions, pinned by image digest
 ```
 
-AI disclosure: AI assistants helped design, code, run and document these experiments; the
-authors are responsible for the content.
+AI disclosure: the authors designed, coded, ran and documented these experiments with the
+assistance of AI tools and are responsible for the content.
