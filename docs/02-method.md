@@ -43,7 +43,7 @@ that measure a size get a tolerance (below).
 |---|---|---|
 | R5 | A and B intersect exactly when their intersection is not empty | Same fact computed two ways (predicate engine vs overlay engine) |
 | R6 | The union of a non-empty A is not empty, and overlay results are valid shapes | Union only adds |
-| R7 | The intersection lies inside A (and B), and A lies inside the union | Set logic |
+| R7 | The intersection lies inside A, and A lies inside the union; its lower-dimensional parts lie inside both A and B | Set logic |
 | R8 | Intersection(A,B) equals Intersection(B,A), same for Union | Argument order does not matter |
 | R9 | size(A ∪ B) = size(A) + size(B) − size(A ∩ B) | Inclusion–exclusion, with size = area for polygons and length for lines |
 | R10 | The dimension of the intersection matches the matrix: if the matrix says the interiors meet over an area, the intersection is an area, not a line | Predicate engine and overlay engine must agree |
@@ -79,10 +79,10 @@ redrawn and counted.
 - a corner exactly on the other shape's edge;
 - overlapping collinear edges;
 - a hole touching the outer border;
-- a sliver or spike one unit wide;
+- a thin sliver or spike;
 - parts of a multipolygon touching at a point;
-- empty parts;
-- collections made only of points.
+- empty parts (predicate pairs only);
+- collections made only of points (predicate pairs only).
 
 These cases are where geometry code is most fragile.
 
@@ -101,9 +101,8 @@ four (40,138 of 160,000) is strict for the predicate checks but a candidate for 
 checks.
 
 In the awkward decimal arm, slivers and spikes are added *after* the transformation, at the same
-place as in the whole-number arm. There they are one unit wide; here they are one to eight
-rounding steps wide (k·ulp(M), k in {1, 2, 4, 8}, where ulp(M) is the gap between neighbouring
-doubles at the pair's largest coordinate). This keeps the thin-sliver trigger of a known GEOS
+place as in the whole-number arm, but here they are one to eight rounding steps wide (k·ulp(M),
+k in {1, 2, 4, 8}, where ulp(M) is the gap between neighbouring doubles at the pair's largest coordinate). This keeps the thin-sliver trigger of a known GEOS
 issue present under every transformation.
 
 **Paired design.** All four arms are built from the same base pair, identified by seed, kind and

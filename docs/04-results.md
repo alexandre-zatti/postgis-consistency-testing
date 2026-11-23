@@ -12,7 +12,7 @@ level). 13 known problems were replayed; 12 have a verdict.
 
 | Measure | Result |
 |---|---|
-| Rule level: exactly the predicted checks fired on the predicted versions, and stayed silent where predicted | **4 of 12** (GEOS #1405, #1383, #1053, #1033) |
+| Rule level: the predicted checks fired on the predicted versions, and stayed silent where predicted | **4 of 12** (GEOS #1405, #1383, #1053, #1033) |
 | Suite level: some counted check fired on every version with the bug, and none fired on a version without it | **6 of 12** as pre-registered (5 counting only strict and measured flags); 10 of 12 (9) with the development version as the bug-free version of the four bugs in the note below |
 | No verdict | 1 (#1027, marked "to confirm" before the run; it fired only on the old version) |
 | False alarms on GEOS's own 964 test pairs | **0** (one measured difference in the *logged* band, below the triage threshold) |
@@ -91,14 +91,16 @@ wrong-answer class that appears only with decimal coordinates (see E4).
 ## E4. Triage (RQ1)
 
 Source: `runs/e3/triage/` (`findings.json` has the full shrunk inputs, `families.csv` the final
-class of each finding). A *finding* is one shrunk example. A *family* is one root cause.
+class of each finding). A *finding* is one shrunk example. A *family* is one root cause. The 399
+findings come from 221 distinct minimal inputs, because one input can give several findings (see
+[02-method.md](02-method.md)).
 
 | Family | Findings | Arms | Class |
 |---|---|---|---|
 | **A** GEOS crash: empty polygon in a collection of touching polygons | 254 | degen-int, degen-float | **new defect** when found (not in the GEOS/JTS GitHub trackers as of 2026-10-28; PostGIS's tracker not searched); since reported by another user (GEOS #1585) and fixed for 3.15.1 (PR #1590), see below |
-| **B** prepared Contains wrong for a point plus an empty part | 58 | degen-int, degen-float | **unreported variant of a known cause** (GEOS #1011; PR #1008 fixed the same function for collections with multipoints) |
+| **B** prepared Contains wrong for a point plus an empty part | 58 | degen-int, degen-float | **unreported variant of a known cause** when classified (GEOS #1011; PR #1008 fixed the same function for collections with multipoints); since reported by the authors (GEOS #1599) and fixed for 3.15.1 (PR #1601), see below |
 | **C** RelateNG rounding vs prepared predicate | 29 | degen-float | consistent with open GEOS #740 |
-| **D** `ST_Relate` not symmetric: self-noding decided by the first argument | 2 | degen-int, degen-float | consistent with GEOS #1558, open and confirmed by a maintainer (fix PR #1565 closed unmerged) |
+| **D** `ST_Relate` not symmetric: self-noding decided by the first argument | 2 | degen-int, degen-float | consistent with GEOS #1595, reported by the authors, which PR #1615 fixed |
 | **E** needle polygon asymmetry | 1 | degen-float | unresolved, likely the #740 class; not counted |
 | **F** hole touching its shell, inside a collection | 2 (1 pair) | degen-int | candidate, by code reading; possibly related to GEOS #1558 |
 | **G1** sliver returned as a line or point in overlay | 11 | plain-float 3, degen-float 8 | rounding effect, not a bug (closest: open GEOS #1383) |
@@ -128,8 +130,6 @@ this takes down the database process serving the query.
   run measured how often it occurs.
 - **Spread.** It is present on the current and development versions. The old version (3.9.0)
   predates RelateNG.
-- **Limits.** There is no debugger trace. PostGIS's own tracker could not be searched, because it
-  blocks automated access. Nothing has been reported upstream.
 - **Minimal input:** `relate(GEOMETRYCOLLECTION (POLYGON EMPTY, POLYGON ((0 0, 1 0, 0 1, 0 0)),
   POLYGON ((0 0, -1 0, 0 -1, 0 0))), POINT (0 0))`.
 
@@ -140,26 +140,29 @@ this takes down the database process serving the query.
 - **Cause.** The empty part raises the collection's dimension, so the prepared code skips its
   point-only branch.
 - **Status.** GEOS #1011 fixed the same cause on the direct path (closed 2024-10-16). GEOS PR #1008
-  concerns the same prepared function. We found nothing about this input on the prepared path.
+  concerns the same prepared function. At triage we found nothing about this input on the
+  prepared path. The authors reported it on 2026-11-08 (GEOS #1599), and PR #1601, merged on
+  2026-11-19 for GEOS 3.15.1, fixed it.
 - **Old version.** The old version (3.9.0) crashes on all 58 findings, for a reason we did not
   investigate. It cannot be family A, which needs RelateNG. So "absent there" would be wrong.
 
-**C and D, known issues.**
+**C and D, tracked GEOS issues.**
 - **C:** on decimal polygon pairs, RelateNG and the prepared predicate disagree, and the prepared
   one is right (24 findings, check R3). This is consistent with GEOS #740, open since 2022, which
   the maintainer attributes to noding robustness. C also holds five findings of the same rounding
   class from other checks: two line-vs-polygon pairs where a hole touches the shell (R2) and three
   pairs under forced self-noding (R4).
 - **D:** `ST_Relate(b, a)` is not the transpose of `ST_Relate(a, b)`, because the new engine
-  decides whether to self-node from the first argument only (GEOS #1558; its fix, PR #1565, was
-  closed unmerged on 2026-10-20). One of the two D findings has whole-number coordinates, so
+  decides whether to self-node from the first argument only. This is consistent with GEOS #1595
+  ("RelateNG: self-intersections of the second geometry are not noded"), which the authors
+  reported on 2026-11-08 and which PR #1615, merged on 2026-11-20, fixed. One of the two D findings has whole-number coordinates, so
   the wrong answer there cannot be blamed on rounding.
 
 **F, candidate.** Two triangles touch at a corner, with a hole touching the shell at that corner.
 Wrapping one argument in a collection changes the matrix from `FF2FF1212` to `FF2FFF212`, and both
 inputs are valid. A TODO in `RelateNG.cpp` matches. No tracker item matches exactly; it may be
-related to GEOS #1558 (the issue behind D, which is also the source of the calibration's
-`tangent-hole` case). There is no trace.
+related to GEOS #1558 (the source of the calibration's `tangent-hole` case, closed on 2026-11-20
+by PR #1615). There is no trace.
 
 **G, rounding effects.**
 - **How they were checked.** 38 shrunk overlay examples were checked in exact rational
@@ -177,7 +180,9 @@ related to GEOS #1558 (the issue behind D, which is also the source of the calib
   plain-float). Campaign flags inherit the class of their group,
   and shrinking keeps the violation, not necessarily its mechanism.
 
-**Nothing is "fixed".** All 399 findings still reproduce on the development version.
+**Upstream state.** All 399 findings still reproduce on the development version pinned on
+2026-10-27. Since then, GEOS has fixed A (PR #1590) and B (PR #1601) for 3.15.1. No GEOS release
+contains these fixes yet (3.15.0, released on 2026-09-01, is the latest).
 
 **Secondary measures:**
 - **Unique findings per arm** (registered): plain-int 0, plain-float 20 (all rounding),
@@ -185,14 +190,22 @@ related to GEOS #1558 (the issue behind D, which is also the source of the calib
 - **Defect families per arm** (exploratory): none for either ordinary arm; {A, B, D, F} for
   degen-int; {A, B, C, D} for degen-float.
 
-## After the results (2026-11-06)
+## After the results (2026-11-06 to 2026-11-23)
 
 These checks were added after the results and are exploratory.
 
 - **Family A upstream.** Another GEOS user reported the crash on 2026-10-31 (GEOS #1585), four
   days after this study first saw it. GEOS PR #1590, merged on 2026-11-05 for 3.15.1, fixed it
   by skipping empty rings in `AdjacentEdgeLocator`, the component the code reading named. No
-  GEOS release contains the fix yet (3.15.0 is the latest). This study reported nothing upstream.
+  GEOS release contains the fix yet (3.15.0 is the latest).
+- **Family B upstream.** The authors reported B on 2026-11-08 as GEOS #1599 ("Prepared polygon
+  contains with an empty member in the test geometry: wrong result, and a segfault on
+  rectangles"), together with the rectangle crash noted in [findings/](../findings/README.md).
+  GEOS PR #1601, merged on 2026-11-19 for 3.15.1, fixed both.
+- **Family D upstream.** On 2026-11-08 the authors reported as GEOS #1595 that RelateNG does not
+  self-node the second geometry, which makes `relate(B, A)` differ from the transpose of
+  `relate(A, B)`. D is consistent with it, and GEOS PR #1615 ("RelateNG: Fix strategy for
+  self-noding"), merged on 2026-11-20, fixed that issue. The same PR closed GEOS #1558.
 - **E5, replay on the fix** ([runs/e5-geos-fix/summary.md](../runs/e5-geos-fix/summary.md)).
   PostGIS 3.7.0dev ran with GEOS rebuilt at the commit just before PR #1590 (fc3eca90) and at its
   merge (2c8e04fa). Before the fix all 254 family A findings crashed (748 of 1,428 call forms);
@@ -201,15 +214,12 @@ These checks were added after the results and are exploratory.
 - **Moves by family** ([runs/e3/analysis/moves-by-family.md](../runs/e3/analysis/moves-by-family.md)).
   Every pair of families A and B carried an empty member (for B this is part of the family's
   definition). The 25 pairs of families C to F carried none. The plain arms apply no move.
-- **Classes.** The classes were proposed with AI assistance and confirmed by the authors on
+- **Classes.** The authors assigned the classes with AI assistance and settled the final ones on
   2026-11-06.
-- **GEOS #1558** is open, not deleted as an earlier version of these notes said; a maintainer
-  confirmed it on 2026-10-13 as a bug in GEOS and JTS.
 - **G4 line pair.** For the R11 pair of G4 (findings 4febb7f24404 and 44fa4173dd80, plain-float),
   exact arithmetic on the stored doubles shows the two segments cross at one point, yet GEOS
   3.14.1 `relate` (through Shapely) returns `1F1FF0102`, a line contact. The snapping mechanism
-  inferred for G4 does not explain this, so the class of this pair is uncertain. It was noticed
-  after triage and not investigated further.
+  inferred for G4 does not explain this, so the class of this pair is uncertain.
 
 ## Answers to the questions
 
@@ -223,7 +233,7 @@ These checks were added after the results and are exploratory.
     160,000 pairs per arm, and awkward shapes found at least four.
   - Decimal coordinates added mostly rounding flags, plus one known wrong-answer class (C), and
     no new defect.
-- **RQ3.** 4 of 12 known bugs were caught exactly as predicted and 6 of 12 by some counted check
+- **RQ3.** 4 of 12 known bugs were caught as predicted and 6 of 12 by some counted check
   (10 of 12 with the development version as the bug-free version of four bugs it answers
   correctly), with no false alarms on GEOS's test suite.
 

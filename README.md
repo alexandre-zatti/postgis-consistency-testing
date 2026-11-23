@@ -15,7 +15,9 @@ that must agree, and flags any disagreement. Random shape pairs are generated au
 (fuzzing). Disagreements and crashes are grouped by kind, and up to 400 representatives are shrunk
 to minimal examples, rerun on three PostGIS/GEOS versions and in Shapely, and classified. The
 project also measures whether deliberately awkward shapes (touching at a single point, sharing an
-edge, containing an empty part) find more problems than ordinary random ones.
+edge, containing an empty part) find more problems than ordinary random ones. The campaign found
+two GEOS defects, a crash and a wrong "contains" answer; both are now fixed upstream for GEOS
+3.15.1, and the authors reported the second one.
 
 ```mermaid
 flowchart LR
@@ -35,7 +37,7 @@ flowchart LR
 | Calibration | 13 known GEOS problems replayed, 12 with a clear verdict; 964 cases from GEOS's own test suite as a false-alarm check | 4 of 12 caught by the check predicted in advance; 6 of 12 by some check (10 of 12 when the development version, which already answers four of them correctly, counts as their bug-free version); 0 false alarms |
 | Pilot | 1,000 ordinary pairs | 0 problems |
 | Main run | 640,000 pairs in 4 groups × 10 seeds | ordinary shapes: no real bug; awkward shapes: several (below) |
-| Triage | 11,367 flags from 5,667 flagged pairs and 176 crashing pairs; 400 representatives shrunk | 399 unique minimal examples |
+| Triage | 11,367 flags from 5,667 flagged pairs and 176 crashing pairs; 400 representatives shrunk | 399 findings from 221 distinct minimal inputs |
 
 Flagged pairs per 10,000, range over the 10 seeds (crashes are counted separately, not here):
 
@@ -44,11 +46,11 @@ Flagged pairs per 10,000, range over the 10 seeds (crashes are counted separatel
 | ordinary shapes | 0 | 0 – 2.5 |
 | awkward shapes | 5.6 – 12.5 | 332 – 363 |
 
-| Problem | Examples | Status |
+| Problem | Findings | Status |
 |---|---|---|
 | GEOS crashes on a collection holding an empty polygon and two touching polygons | 254 | found here on 2026-10-27; reported by another user on 2026-10-31 (GEOS #1585) and fixed for GEOS 3.15.1 (PR #1590), which a replay confirms |
-| "contains" gives a wrong answer for a point on the border plus an empty part, on the cached code path only | 58 | unreported variant of a cause GEOS fixed elsewhere in 2024 |
-| Wrong answers consistent with two known open GEOS issues | 31 | already reported upstream |
+| "contains" gives a wrong answer for a point on the border plus an empty part, on the cached code path only | 58 | variant of a cause GEOS fixed elsewhere in 2024; reported by the authors on 2026-11-08 (GEOS #1599) and fixed for GEOS 3.15.1 (PR #1601) |
+| Wrong answers consistent with two GEOS issues | 31 | GEOS #740, still open; GEOS #1595, reported by the authors and fixed by PR #1615 |
 | A possible problem with a hole touching its border | 1 pair | candidate, explained only by reading the code |
 | One unexplained case | 1 | not counted |
 | Rounding or snapping effects of decimal arithmetic | 53 | judged not bugs |

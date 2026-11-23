@@ -42,7 +42,7 @@ flowchart LR
 primary run's database, copied there.
 
 **Result of the primary run:**
-- 4 of 12 caught by exactly the checks predicted in advance (rule level, in `runs/e1/summary.md`).
+- 4 of 12 caught by the checks predicted in advance (rule level, in `runs/e1/summary.md`).
 - 6 of 12 caught by some counted check, with no check firing on the version without the bug
   (suite level). Counting only strict and measured checks: 5 of 12.
 - Four of the bugs (#1342, #1343, #1344, #1354) already get the right answer on the development
@@ -84,7 +84,7 @@ python -s -m tavs.campaign run --campaign e3 --seeds 101-110 --kinds predicate o
 ```
 
 **Size:** 10 seeds × 2 kinds (predicate and overlay pairs) × 8,000 indices × 4 arms = 640,000
-pairs, with every check run on every pair. Five throwaway PostgreSQL containers
+pairs. Five throwaway PostgreSQL containers
 (`compose.lanes.yaml`) ran in parallel, two seeds each.
 
 **What happened:**
@@ -131,10 +131,11 @@ triage resumed (`runs/e3_triage_console.txt`).
 - The crash, predicate and overlay findings were investigated separately: reading the GEOS
   source, exact rational arithmetic to decide which answer is right, and tracker searches
   ([archive/triage-investigations/](../archive/triage-investigations/)).
-- A second review then challenged the labels and narrowed several. The classes were proposed
-  with AI assistance and confirmed by the authors (2026-11-06).
+- A second review then challenged the labels and narrowed several. The authors assigned
+  the classes with AI assistance and settled the final ones on 2026-11-06.
 - The final family and class of each finding are in `runs/e3/triage/families.csv`, written by
-  `python -s -m tavs.families runs/e3`.
+  `python -s -m tavs.families runs/e3`. The file keeps the tracker references as written on
+  2026-11-06, when D was still linked to GEOS #1558.
 
 ## E5. Replay of family A on the GEOS fix (added after the results, 2026-11-06)
 

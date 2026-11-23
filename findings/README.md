@@ -14,10 +14,10 @@ Each script names, in a comment, the finding it comes from (its key in
 
 | Folder | What you will see | Class |
 |---|---|---|
-| [A-relateng-crash-empty-polygon](A-relateng-crash-empty-polygon/) | GEOS crashes (segmentation fault) on a collection holding `POLYGON EMPTY` and two polygons touching at a point; without the empty polygon the answer is `FF20F1FF2` | new defect |
-| [B-prepared-contains-empty-member](B-prepared-contains-empty-member/) | a triangle "contains" a point on its own edge when the point comes with an empty part, but only on the prepared (cached) path | unreported variant of a known cause |
+| [A-relateng-crash-empty-polygon](A-relateng-crash-empty-polygon/) | GEOS crashes (segmentation fault) on a collection holding `POLYGON EMPTY` and two polygons touching at a point; without the empty polygon the answer is `FF20F1FF2` | new defect; reported four days later by another user as GEOS #1585 and fixed by PR #1590 (GEOS 3.15.1) |
+| [B-prepared-contains-empty-member](B-prepared-contains-empty-member/) | a triangle "contains" a point on its own edge when the point comes with an empty part, but only on the prepared (cached) path | variant of a known cause; reported by the authors as GEOS #1599 and fixed by PR #1601 (GEOS 3.15.1) |
 | [C-relateng-rounding-vs-prepared](C-relateng-rounding-vs-prepared/) | direct and prepared Contains disagree on decimal polygons; an exact check shows the prepared answer is right | consistent with a known open issue (GEOS #740) |
-| [D-relate-not-symmetric-self-noding](D-relate-not-symmetric-self-noding/) | `relate(b, a)` is not the transpose of `relate(a, b)`, on whole-number coordinates | consistent with GEOS #1558, open and confirmed by a maintainer (its fix, PR #1565, was closed unmerged) |
+| [D-relate-not-symmetric-self-noding](D-relate-not-symmetric-self-noding/) | `relate(b, a)` is not the transpose of `relate(a, b)`, on whole-number coordinates | consistent with GEOS #1595, reported by the authors, which PR #1615 fixed |
 | [F-candidate-tangent-hole-collection](F-candidate-tangent-hole-collection/) | wrapping a valid shape in a collection changes its relationship matrix | candidate; possibly related to GEOS #1558 |
 | [G-precision-effects-not-bugs](G-precision-effects-not-bugs/) | two rounding effects: a sliver overlap returned as a point, and a fixed-grid overlay that invents a 44.6-unit overlap where, for the stored doubles, the true one has length 0 (see the note below) | not bugs |
 
@@ -52,9 +52,10 @@ Family E (one unexplained case) has no folder.
   - **A possible explanation, not verified:** the crashing locator is built when a point being
     located lies on two polygon boundaries. That point can be the query point itself, or the
     first vertex of a ring, which RelateNG tests.
-- **B, a second crash (open lead, outside the registered results).** On the unit square
+- **B, a second crash (outside the registered results).** On the unit square
   `POLYGON ((0 0, 1 0, 1 1, 0 1, 0 0))`, prepared Contains against
   `GEOMETRYCOLLECTION (POINT (0.5 0), LINESTRING EMPTY)` crashes Shapely. The same happens with
   `POINT EMPTY`. With `POLYGON EMPTY` it returns True, and the triangle does not crash.
   - This was found by hand on 2026-10-28, not by the campaign.
-  - It has not been tested in PostGIS, and its cause is unknown.
+  - In PostGIS 3.6.4 it crashes the server backend when the rectangle repeats across rows.
+  - The authors included it in GEOS #1599, and the same PR #1601 closed it.
