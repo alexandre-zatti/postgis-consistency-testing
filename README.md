@@ -16,8 +16,10 @@ that must agree, and flags any disagreement. Random shape pairs are generated au
 to minimal examples, rerun on three PostGIS/GEOS versions and in Shapely, and classified. The
 project also measures whether deliberately awkward shapes (touching at a single point, sharing an
 edge, containing an empty part) find more problems than ordinary random ones. The campaign found
-two GEOS defects, a crash and a wrong "contains" answer; both are now fixed upstream for GEOS
-3.15.1, and the authors reported the second one.
+three GEOS defects: a crash, a wrong "contains" answer and a "relate" answer that is inconsistent
+when the two arguments are swapped. All three are fixed in GEOS 3.15.1, released on 2026-11-23.
+The authors reported the two wrong answers; another GEOS user reported the crash four days after
+the study found it.
 
 ```mermaid
 flowchart LR
@@ -49,9 +51,10 @@ Flagged pairs per 10,000, range over the 10 seeds (crashes are counted separatel
 | Problem | Findings | Status |
 |---|---|---|
 | GEOS crashes on a collection holding an empty polygon and two touching polygons | 254 | found here on 2026-10-27; reported by another user on 2026-10-31 (GEOS #1585) and fixed for GEOS 3.15.1 (PR #1590), which a replay confirms |
-| "contains" gives a wrong answer for a point on the border plus an empty part, on the cached code path only | 58 | variant of a cause GEOS fixed elsewhere in 2024; reported by the authors on 2026-11-08 (GEOS #1599) and fixed for GEOS 3.15.1 (PR #1601) |
-| Wrong answers consistent with two GEOS issues | 31 | GEOS #740, still open; GEOS #1595, reported by the authors and fixed by PR #1615 |
-| A possible problem with a hole touching its border | 1 pair | candidate, explained only by reading the code |
+| "contains" gives a wrong answer for a point on the border plus an empty part, on the cached code path only | 58 | variant of a cause GEOS fixed elsewhere in 2024; reported by the authors on 2026-11-08 (GEOS #1599) and fixed for GEOS 3.15.1 (PR #1601), which a replay confirms |
+| "relate" gives answers that do not match when the two arguments are swapped | 2 | reported by the authors on 2026-11-08 (GEOS #1595) and fixed for GEOS 3.15.1 (PR #1615), which a replay confirms |
+| Wrong answers on decimal shapes | 29 | 24 consistent with GEOS #740, still open; PR #1615 removes the other 5, which came from the self-noding strategy it replaced |
+| A possible problem with a hole touching its border | 1 pair | candidate, explained only by reading the code; still present after PR #1615 |
 | One unexplained case | 1 | not counted |
 | Rounding or snapping effects of decimal arithmetic | 53 | judged not bugs |
 

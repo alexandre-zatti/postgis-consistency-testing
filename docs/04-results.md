@@ -98,11 +98,11 @@ findings come from 221 distinct minimal inputs, because one input can give sever
 | Family | Findings | Arms | Class |
 |---|---|---|---|
 | **A** GEOS crash: empty polygon in a collection of touching polygons | 254 | degen-int, degen-float | **new defect** when found (not in the GEOS/JTS GitHub trackers as of 2026-10-28; PostGIS's tracker not searched); since reported by another user (GEOS #1585) and fixed for 3.15.1 (PR #1590), see below |
-| **B** prepared Contains wrong for a point plus an empty part | 58 | degen-int, degen-float | **unreported variant of a known cause** when classified (GEOS #1011; PR #1008 fixed the same function for collections with multipoints); since reported by the authors (GEOS #1599) and fixed for 3.15.1 (PR #1601), see below |
-| **C** RelateNG rounding vs prepared predicate | 29 | degen-float | consistent with open GEOS #740 |
-| **D** `ST_Relate` not symmetric: self-noding decided by the first argument | 2 | degen-int, degen-float | consistent with GEOS #1595, reported by the authors, which PR #1615 fixed |
+| **B** prepared Contains wrong for a point plus an empty part | 58 | degen-int, degen-float | **unreported variant of a known cause** when classified (GEOS #1011; PR #1008 fixed the same function for collections with multipoints); since reported by the authors (GEOS #1599) and fixed for 3.15.1 (PR #1601, confirmed by the E6 replay), see below |
+| **C** RelateNG rounding vs prepared predicate | 29 | degen-float | 24 consistent with open GEOS #740; PR #1615 removes the other 5, which came from the self-noding strategy it replaced (E6) |
+| **D** `ST_Relate` not symmetric: self-noding decided by the first argument | 2 | degen-int, degen-float | **GEOS defect**, reported by the authors (GEOS #1595) and fixed for 3.15.1 (PR #1615, confirmed by the E6 replay), see below |
 | **E** needle polygon asymmetry | 1 | degen-float | unresolved, likely the #740 class; not counted |
-| **F** hole touching its shell, inside a collection | 2 (1 pair) | degen-int | candidate, by code reading; possibly related to GEOS #1558 |
+| **F** hole touching its shell, inside a collection | 2 (1 pair) | degen-int | candidate, by code reading; still present after PR #1615, which closed GEOS #1558 (E6) |
 | **G1** sliver returned as a line or point in overlay | 11 | plain-float 3, degen-float 8 | rounding effect, not a bug (closest: open GEOS #1383) |
 | **G2** overlay lines between rounded crossings | 11 | plain-float 3, degen-float 8 | rounding effect (maintainer statement in GEOS #972) |
 | **G3** fixed-grid reference moved | 28 | plain-float 12, degen-float 16 | rounding effect in our reference |
@@ -142,27 +142,32 @@ this takes down the database process serving the query.
 - **Status.** GEOS #1011 fixed the same cause on the direct path (closed 2024-10-16). GEOS PR #1008
   concerns the same prepared function. At triage we found nothing about this input on the
   prepared path. The authors reported it on 2026-11-08 (GEOS #1599), and PR #1601, merged on
-  2026-11-19 for GEOS 3.15.1, fixed it.
+  2026-11-19 for GEOS 3.15.1, fixed it. The E6 replay confirms the fix: all 58 findings occur
+  just before PR #1601 and none at its merge.
 - **Old version.** The old version (3.9.0) crashes on all 58 findings, for a reason we did not
   investigate. It cannot be family A, which needs RelateNG. So "absent there" would be wrong.
 
-**C and D, tracked GEOS issues.**
+**C and D, RelateNG wrong answers.**
 - **C:** on decimal polygon pairs, RelateNG and the prepared predicate disagree, and the prepared
   one is right (24 findings, check R3). This is consistent with GEOS #740, open since 2022, which
-  the maintainer attributes to noding robustness. C also holds five findings of the same rounding
-  class from other checks: two line-vs-polygon pairs where a hole touches the shell (R2) and three
-  pairs under forced self-noding (R4).
+  the maintainer attributes to noding robustness. C also holds five findings from other checks:
+  two line-vs-polygon pairs where a hole touches the shell (R2) and three pairs under forced
+  self-noding (R4). The E6 replay shows that these five came from the self-noding strategy that
+  PR #1615 replaced: that PR removes them, while the 24 R3 findings remain.
 - **D:** `ST_Relate(b, a)` is not the transpose of `ST_Relate(a, b)`, because the new engine
-  decides whether to self-node from the first argument only. This is consistent with GEOS #1595
-  ("RelateNG: self-intersections of the second geometry are not noded"), which the authors
-  reported on 2026-11-08 and which PR #1615, merged on 2026-11-20, fixed. One of the two D findings has whole-number coordinates, so
-  the wrong answer there cannot be blamed on rounding.
+  decides whether to self-node from the first argument only. This is a GEOS defect. The authors
+  reported it on 2026-11-08 as GEOS #1595 ("RelateNG: self-intersections of the second geometry
+  are not noded"), and PR #1615, merged on 2026-11-20 for GEOS 3.15.1, fixed it. The E6 replay
+  confirms the fix: both findings occur on the three builds before PR #1615 and neither at its
+  merge. One of the two D findings has whole-number coordinates, so the wrong answer there cannot
+  be blamed on rounding.
 
 **F, candidate.** Two triangles touch at a corner, with a hole touching the shell at that corner.
 Wrapping one argument in a collection changes the matrix from `FF2FF1212` to `FF2FFF212`, and both
-inputs are valid. A TODO in `RelateNG.cpp` matches. No tracker item matches exactly; it may be
-related to GEOS #1558 (the source of the calibration's `tangent-hole` case, closed on 2026-11-20
-by PR #1615). There is no trace.
+inputs are valid. A TODO in `RelateNG.cpp` matches. No tracker item matches exactly. GEOS #1558
+(the source of the calibration's `tangent-hole` case) was closed on 2026-11-20 by PR #1615, and
+the E6 replay shows both F findings still occur at that fix, so F stays a candidate. There is no
+trace.
 
 **G, rounding effects.**
 - **How they were checked.** 38 shrunk overlay examples were checked in exact rational
@@ -181,8 +186,9 @@ by PR #1615). There is no trace.
   and shrinking keeps the violation, not necessarily its mechanism.
 
 **Upstream state.** All 399 findings still reproduce on the development version pinned on
-2026-10-27. Since then, GEOS has fixed A (PR #1590) and B (PR #1601) for 3.15.1. No GEOS release
-contains these fixes yet (3.15.0, released on 2026-09-01, is the latest).
+2026-10-27. Since then, GEOS has fixed three of the families: A (PR #1590), B (PR #1601) and D
+(PR #1615). GEOS 3.15.1, released on 2026-11-23, contains all three. The E5 and E6 replays, on
+the GEOS development branch, confirm each fix.
 
 **Secondary measures:**
 - **Unique findings per arm** (registered): plain-int 0, plain-float 20 (all rounding),
@@ -196,21 +202,30 @@ These checks were added after the results and are exploratory.
 
 - **Family A upstream.** Another GEOS user reported the crash on 2026-10-31 (GEOS #1585), four
   days after this study first saw it. GEOS PR #1590, merged on 2026-11-05 for 3.15.1, fixed it
-  by skipping empty rings in `AdjacentEdgeLocator`, the component the code reading named. No
-  GEOS release contains the fix yet (3.15.0 is the latest).
+  by skipping empty rings in `AdjacentEdgeLocator`, the component the code reading named. GEOS
+  3.15.1, released on 2026-11-23, contains the fix.
 - **Family B upstream.** The authors reported B on 2026-11-08 as GEOS #1599 ("Prepared polygon
   contains with an empty member in the test geometry: wrong result, and a segfault on
   rectangles"), together with the rectangle crash noted in [findings/](../findings/README.md).
   GEOS PR #1601, merged on 2026-11-19 for 3.15.1, fixed both.
 - **Family D upstream.** On 2026-11-08 the authors reported as GEOS #1595 that RelateNG does not
   self-node the second geometry, which makes `relate(B, A)` differ from the transpose of
-  `relate(A, B)`. D is consistent with it, and GEOS PR #1615 ("RelateNG: Fix strategy for
-  self-noding"), merged on 2026-11-20, fixed that issue. The same PR closed GEOS #1558.
+  `relate(A, B)`. GEOS PR #1615 ("RelateNG: Fix strategy for self-noding"), merged on 2026-11-20
+  for 3.15.1 with the maintainers' "Bug" label, fixed it. The same PR closed GEOS #1558.
 - **E5, replay on the fix** ([runs/e5-geos-fix/summary.md](../runs/e5-geos-fix/summary.md)).
   PostGIS 3.7.0dev ran with GEOS rebuilt at the commit just before PR #1590 (fc3eca90) and at its
   merge (2c8e04fa). Before the fix all 254 family A findings crashed (748 of 1,428 call forms);
   at the fix none did, and the minimal reproducer returns `FF20F1FF2`. The unchanged development
   image crashed on all 254, as in triage.
+- **E6, replay of families B to F on the fixes**
+  ([runs/e6-geos-fixes/summary.md](../runs/e6-geos-fixes/summary.md)). PostGIS 3.7.0dev ran with
+  GEOS rebuilt just before PR #1601 (faaaad0b), at its merge (695a1909), just before PR #1615
+  (b6754aa2) and at its merge (35fa80c9). All 58 family B findings occur before PR #1601 and none
+  from its merge on. Both family D findings occur on the three builds before PR #1615 and neither
+  at its merge; the reproducer's two calls return `212101212` and `212111212` before the fix and
+  `212111212` twice at the fix. The 24 C findings from check R3 occur on all four builds; the 5
+  from R2 and R4 stop at PR #1615, the self-noding fix. E and F occur on all four builds. The
+  first build agreed with the development-version result recorded by triage on all 92 findings.
 - **Moves by family** ([runs/e3/analysis/moves-by-family.md](../runs/e3/analysis/moves-by-family.md)).
   Every pair of families A and B carried an empty member (for B this is part of the family's
   definition). The 25 pairs of families C to F carried none. The plain arms apply no move.

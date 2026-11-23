@@ -150,6 +150,33 @@ findings on both images and on the unchanged development image.
 **Result:** before the fix 254 of 254 findings crash (748 of 1,428 call forms); at the fix 0 of
 254; the unchanged development image 254 of 254. Outputs in `runs/e5-geos-fix/`.
 
+## E6. Replay of families B to F on the GEOS fixes (added after the results, 2026-11-23)
+
+**Command:** `pwsh -NoLogo -NoProfile -NonInteractive -File scripts/run_e6_geos_fixes.ps1`
+(builds four images from `docker/geos-rebuild/Dockerfile`, then runs
+`python -s -m tavs.replay_fixes`).
+
+**What it does:** rebuilds GEOS inside the pinned development image at four commits, leaving
+PostGIS unchanged: just before GEOS PR #1601 (faaaad0b), at its merge (695a1909), just before
+GEOS PR #1615 (b6754aa2) and at its merge (35fa80c9). It checks that the database backend maps
+the rebuilt libraries, then reruns the 92 findings of families B to F (58, 29, 2, 1, 2) on each
+image with the triage's own rerun procedure.
+
+**Result:**
+- B: 58 of 58 findings occur before PR #1601, and 0 of 58 at its merge and on the two later
+  builds.
+- D: 2 of 2 occur on the three builds before PR #1615, and 0 of 2 at its merge. In the
+  reproducer the two calls return `212101212` and `212111212` before the fix; at the fix both
+  return `212111212`.
+- C: the 24 route findings (check R3) occur on all four builds. The 5 findings from checks R2
+  and R4 occur on the first three builds and not at the merge of PR #1615, so they came from
+  the self-noding strategy that PR replaced, not from the problem of GEOS #740.
+- E (1 finding) and F (2 findings) occur on all four builds.
+- Control: the first build agrees with the development-version result recorded by triage on all
+  92 findings.
+
+Outputs in `runs/e6-geos-fixes/`.
+
 The exploratory moves-by-family count (`python -s -m tavs.posthoc_moves runs/e3`) is in
 `runs/e3/analysis/moves-by-family.md`.
 
